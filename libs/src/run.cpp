@@ -1,6 +1,9 @@
 #include <iostream>
+#include <mrf24j40.h>
 #include <run.h>
 namespace MRF24J40{ 
+    std::unique_ptr<Mrf24j> mrf24j40_spi { (std::make_unique<Mrf24j>())};
+    
 
 Run::Run() 
 //:   mrf24j40_spi {std::make_unique<Mrf24j>()}

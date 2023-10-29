@@ -3,9 +3,8 @@
 #include <mrf24j40.h>
 
 namespace MRF24J40{
-    using Mrf24j_t = std::unique_ptr<Mrf24j> ;
-    Mrf24j_t mrf24j40_spi { (std::make_unique<Mrf24j>())};
-    
+   // using Mrf24j_t = std::unique_ptr<Mrf24j> ;
+
     struct Run //: public Mrf24j 
     {
             explicit Run();
