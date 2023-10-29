@@ -13,7 +13,8 @@ struct Mrf24j;
 
             void loop();
             void interrupt_routine();
-
+            friend void handle_tx();
+            friend void handle_rx();
         private :
            // std::unique_ptr<Mrf24j> mrf24j40_spi {};
             unsigned long last_time{0};
@@ -22,7 +23,7 @@ struct Mrf24j;
              std::unique_ptr<Mrf24j> mrf24j40_spi ;
     };
 
-                void handle_tx();
+            void handle_tx();
             void handle_rx();
 
 
