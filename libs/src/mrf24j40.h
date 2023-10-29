@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
-#include "spi.h"
+#include <spi.h>
 
 namespace MRF24J40{
 

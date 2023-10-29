@@ -98,17 +98,17 @@ typedef struct
 
 // function prototypes
 
-bool   RadioInit(void);
-void   RadioSetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID);
-bool   RadioSetChannel(uint8_t channel);
-void   RadioSetSleep(uint8_t powerState);
-uint8_t  RadioEnergyDetect(void);
-void   RadioTXRaw(void);
-void   RadioTXPacket(void);
-uint8_t  RadioRXPacket(void);
-uint8_t  RadioTXResult(void);
-uint8_t  RadioWaitTXResult(void);
-void   RadioDiscardPacket(void);
+//                    bool   RadioInit(void);
+//                    void   RadioSetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID);
+//                    bool   RadioSetChannel(uint8_t channel);
+//                    void   RadioSetSleep(uint8_t powerState);
+//                    uint8_t  RadioEnergyDetect(void);
+//                    void   RadioTXRaw(void);
+//                    void   RadioTXPacket(void);
+//                    uint8_t  RadioRXPacket(void);
+//                    uint8_t  RadioTXResult(void);
+//                    uint8_t  RadioWaitTXResult(void);
+//                    void   RadioDiscardPacket(void);
 
 // public variables
 
