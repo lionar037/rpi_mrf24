@@ -1,5 +1,5 @@
 //#include <vector>
-#include "spi.h"
+#include <spi.h>
 
 //#define CS 0
 //#define DBG_SPI

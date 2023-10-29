@@ -1,5 +1,5 @@
 #include <vector>
-#include "spi.h"
+#include <spi.h>
 #define SPI_DEVICE  "/dev/spidev0.0"
 
 namespace SPI {

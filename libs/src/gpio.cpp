@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <unistd.h>
-#include "gpio.h"
+#include <gpio.h>
 
 namespace GPIO{
 

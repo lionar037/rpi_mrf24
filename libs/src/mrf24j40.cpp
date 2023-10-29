@@ -315,6 +315,7 @@ static tx_info_t tx_info;
     }
 
     void Mrf24j::interrupts(){
+        
     }
 
     void Mrf24j::noInterrupts(){
