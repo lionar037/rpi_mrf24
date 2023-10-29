@@ -26,7 +26,7 @@ static tx_info_t tx_info;
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()}
     {
-        std::cout <<"constructor mrf24\r\n";
+        std::cout <<"Mrf24j( )\r\n";
     }
 
     void Mrf24j::reset(void) {
@@ -322,7 +322,7 @@ static tx_info_t tx_info;
 
     Mrf24j::~Mrf24j( ){
       //  delete prt_spi;
-    std::cout <<"destructor mrf24\r\n";
+    std::cout <<"~Mrf24j( )\r\n";
     }
 
 }
