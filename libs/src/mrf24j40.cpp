@@ -221,7 +221,7 @@ static tx_info_t tx_info;
                     /**
                      * Call this function periodically, it will invoke your nominated handlers
                      */
-    void Mrf24j::check_flags(void (*rx_handler)(void), void (*tx_handler)(void)){
+    void Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)()){
                     // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (flag_got_rx) {
             flag_got_rx = 0;
