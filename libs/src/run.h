@@ -10,6 +10,8 @@ namespace MRF24J40{
 
             void loop();
             void interrupt_routine();
+            friend void handle_tx();
+            friend void handle_rx();
         private :
             std::unique_ptr<MRF24J40::Mrf24j> mrf24j40_spi {};
             unsigned long last_time{0};
