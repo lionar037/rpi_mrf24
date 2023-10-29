@@ -3,7 +3,7 @@
 namespace MRF24J40{ 
 
 Run::Run() 
-:   mrf24j40_spi {std::make_unique<MRF24J40::Mrf24j>()}
+:   mrf24j40_spi {std::make_unique<Mrf24j>()}
 {
     mrf24j40_spi->init();
     mrf24j40_spi->interrupt_handler();
@@ -19,6 +19,7 @@ void Run::interrupt_routine() {
 
 void Run::loop() {
     mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
+
     unsigned long current_time = 100000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;

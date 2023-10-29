@@ -4,21 +4,21 @@
 
 namespace MRF24J40{
 
-    struct Run{
+    struct Run : public Mrf24j 
+    {
             explicit Run();
             ~Run();
 
             void loop();
             void interrupt_routine();
-            friend void handle_tx();
-            friend void handle_rx();
+             void handle_tx();
+             void handle_rx();
         private :
-            std::unique_ptr<MRF24J40::Mrf24j> mrf24j40_spi {};
+            std::unique_ptr<Mrf24j> mrf24j40_spi {};
             unsigned long last_time{0};
             unsigned long tx_interval{0};
     };
 
-            void handle_tx();
-            void handle_rx();
+
 
 }//end MRF24J40
