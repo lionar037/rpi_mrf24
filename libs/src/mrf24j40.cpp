@@ -33,19 +33,15 @@ static tx_info_t tx_info;
 
     }
 
-    uint8_t Mrf24j::read_short(uint8_t address) 
-    {
-                    //digitalWrite(_pin_cs, LOW);
+    uint8_t Mrf24j::read_short(uint8_t address) {
                     // 0 top for short addressing, 0 bottom for read
-        //prt_spi->transfer(address<<1 & 0b01111110);//original
         uint16_t tmp = (address<<1 & 0b01111110) & 0x00ff;
         uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menso significativos envia el comando
 
         return ret;
     }
 
-uint8_t Mrf24j::read_long(uint16_t address) {
-
+    uint8_t Mrf24j::read_long(uint16_t address) {
         uint8_t lsb_adress = (address >> 3 )& 0xff;
         uint8_t msb_adress = (address << 5) & 0xff;
         uint32_t tmp = (( 0x00 << 16 ) | (0x80 | lsb_adress) | (msb_adress <<8) ) &  0x00ffffff;
@@ -55,19 +51,16 @@ uint8_t Mrf24j::read_long(uint16_t address) {
 
 
     void Mrf24j::write_short(uint8_t address, uint8_t data) {
-
-                    //  digitalWrite(_pin_cs, LOW);//original
                     // 0 for top short address, 1 bottom for write
     uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
         prt_spi->Transfer2bytes(lsb_tmp);
     }
 
-    void Mrf24j::write_long(uint16_t address, uint8_t data) {
-
-        uint8_t ahigh = (address >> 3) & 0xff;
-        uint8_t alow = (address << 5) & 0xff;
-        uint32_t tmp = ( (0x80 | ahigh) | ( (alow | 0x10) << 8 ) | (data<<16) ) & 0xffffff;
-            prt_spi->Transfer3bytes(tmp);
+    void Mrf24j::write_long(const uint16_t address,const uint8_t data) {
+        uint8_t lsb_address = (address >> 3) & 0xff;
+        uint8_t msb_address = (address << 5) & 0xff;
+        uint32_t comp = ( (0x80 | lsb_address) | ( (msb_address | 0x10) << 8 ) | (data<<16) ) & 0xffffff;
+        prt_spi->Transfer3bytes(comp);
     }
 
     uint16_t Mrf24j::get_pan(void) {
