@@ -75,7 +75,7 @@ struct Mrf24j : public SPI::Spi
                          * Set PA/LNA external control
                          */
         void set_palna(bool);
-        void send16(uint16_t , char *);
+        void send16(uint16_t ,const char *);
         void interrupt_handler(void);
         void check_flags(void (*rx_handler)(void), void (*tx_handler)(void));
     private:
