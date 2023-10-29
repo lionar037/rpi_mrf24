@@ -5,7 +5,6 @@
 namespace MRF24J40{
     using Mrf24j_t = std::unique_ptr<Mrf24j> ;
 
-
     struct Run //: public Mrf24j 
     {
             explicit Run();

@@ -3,8 +3,10 @@
 namespace MRF24J40{ 
 
 Run::Run() 
-:   mrf24j40_spi {std::make_unique<Mrf24j>()}
+//:   mrf24j40_spi {std::make_unique<Mrf24j>()}
 {
+     mrf24j40_spi {std::make_unique<Mrf24j>()}
+     
     mrf24j40_spi->init();
     mrf24j40_spi->interrupt_handler();
     mrf24j40_spi->set_pan(0xcafe);
@@ -33,9 +35,9 @@ void Run::handle_rx() {
     
     std::cout<<"received a packet ";
     std::cout<<std::dec << mrf24j40_spi->get_rxinfo()->frame_length;
-    /*
-    std::cout<<" bytes long";
     
+    std::cout<<" bytes long";
+    /*
     if(mrf24j40_spi->get_bufferPHY()){
       std::cout<<"Packet data (PHY Payload):";
       for (int i = 0; i < mrf24j40_spi->get_rxinfo()->frame_length; i++) {
