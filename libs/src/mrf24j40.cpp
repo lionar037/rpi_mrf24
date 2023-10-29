@@ -88,7 +88,7 @@ static tx_info_t tx_info;
  * @param data
  */
 
-    void Mrf24j::send16(uint16_t dest16, const char* data) {
+    void Mrf24j::send16(uint16_t dest16, const char * data) {
         uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, bytes_MHR); // header length
