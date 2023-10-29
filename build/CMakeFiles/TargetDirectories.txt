@@ -1,3 +1,0 @@
-/home/pi/src/rpi_mrf24/build/CMakeFiles/rebuild_cache.dir
-/home/pi/src/rpi_mrf24/build/CMakeFiles/edit_cache.dir
-/home/pi/src/rpi_mrf24/build/CMakeFiles/app_mrf_rpi_libs.dir
