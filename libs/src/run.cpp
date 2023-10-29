@@ -28,7 +28,7 @@ void Run::loop() {
     }
 }
 
-void handle_rx() {
+void Run::handle_rx() {
     
     std::cout<<"received a packet ";
     std::cout<<std::dec << mrf24j40_spi->get_rxinfo()->frame_length;
@@ -56,7 +56,7 @@ void handle_rx() {
     */
 }
 
-    void handle_tx() {
+    void Run::handle_tx() {
         // if (mrf24j40_spi->get_txinfo()->tx_ok) {
              std::cout<<"TX went ok, got ack";
         // } else {
