@@ -4,7 +4,8 @@
 
 namespace MRF24J40{
     using Mrf24j_t = std::unique_ptr<Mrf24j> ;
-
+    Mrf24j_t mrf24j40_spi { (std::make_unique<Mrf24j>())};
+    
     struct Run //: public Mrf24j 
     {
             explicit Run();
@@ -19,7 +20,7 @@ namespace MRF24J40{
             unsigned long last_time{0};
             unsigned long tx_interval{0};
 
-            Mrf24j_t mrf24j40_spi {};
+            
     };
 
 
