@@ -20,17 +20,6 @@ void Run::interrupt_routine() {
     mrf24j40_spi->interrupt_handler(); // mrf24 object interrupt routine
 }
 
-void Run::loop() {
-
-    mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
-
-    unsigned long current_time = 100000;
-    if (current_time - last_time > tx_interval) {
-        last_time = current_time;
-        std::cout<<"txxxing...";
-        mrf24j40_spi->send16(0x4202, "abcd");
-    }
-}
 
 void Run::handle_rx() {
     
@@ -69,6 +58,19 @@ void Run::handle_rx() {
              std::cout<<" retries\n";
         // }
     }
+
+
+void Run::loop() {
+
+    mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
+
+    unsigned long current_time = 100000;
+    if (current_time - last_time > tx_interval) {
+        last_time = current_time;
+        std::cout<<"txxxing...";
+        mrf24j40_spi->send16(0x4202, "abcd");
+    }
+}
 
     Run::~Run() {
         std::cout<<"~Run()\n";
