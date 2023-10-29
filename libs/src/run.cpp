@@ -28,6 +28,7 @@ void Run::loop() {
 }
 
 void handle_rx() {
+    /*
     std::cout<<"received a packet ";
     std::cout<<std::dec<<Run::mrf24j40_spi->get_rxinfo()->frame_length;
     
@@ -51,6 +52,7 @@ void handle_rx() {
 
     std::cout<<"/";
     std::cout<<std::dec<<mrf24j40_spi->get_rxinfo()->rssi;
+    */
 }
 
     void handle_tx() {
