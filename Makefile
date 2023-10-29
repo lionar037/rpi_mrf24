@@ -7,7 +7,7 @@ BIN_DIR = bin
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 LIB_SRCS = $(wildcard $(LIB_DIR)/*.cpp)
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
-APP = $(BIN_DIR)/app
+APP = $(BIN_DIR)/app_mrf24_rpi
 
 .PHONY: all clean
 
