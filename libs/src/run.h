@@ -10,11 +10,11 @@ struct Mrf24j;
     {
             explicit Run();
             ~Run();
-
+            void handle_tx();
+            void handle_rx();
             void loop();
             void interrupt_routine();
-             void handle_tx();
-             void handle_rx();
+
         private :
            // std::unique_ptr<Mrf24j> mrf24j40_spi {};
             unsigned long last_time{0};
