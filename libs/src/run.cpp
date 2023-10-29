@@ -18,7 +18,7 @@ void Run::interrupt_routine() {
 }
 
 void Run::loop() {
-   // mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
+    mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
     unsigned long current_time = 100000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
