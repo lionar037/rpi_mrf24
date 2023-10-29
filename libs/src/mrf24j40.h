@@ -13,9 +13,9 @@ typedef struct _rx_info_t{
     uint8_t rssi;
 } rx_info_t;
 
-/**
- * Based on the TXSTAT register, but "better"
- */
+    /**
+     * Based on the TXSTAT register, but "better"
+     */
 typedef struct _tx_info_t{
     uint8_t tx_ok:1;
     uint8_t retries:2;

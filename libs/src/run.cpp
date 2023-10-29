@@ -54,11 +54,11 @@ void Run::handle_rx() {
 
     void Run::handle_tx() {
         // if (mrf24j40_spi->get_txinfo()->tx_ok) {
-        //     std::cout<<"TX went ok, got ack";
+             std::cout<<"TX went ok, got ack";
         // } else {
-        //     std::cout<<"TX failed after ";
+             std::cout<<"TX failed after ";
         //     std::cout<<mrf24j40_spi->get_txinfo()->retries;
-        //     std::cout<<" retries\n";
+             std::cout<<" retries\n";
         // }
     }
 

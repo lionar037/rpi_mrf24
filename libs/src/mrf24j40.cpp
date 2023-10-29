@@ -1,5 +1,5 @@
 #include <cstring>
-#include "commands_mrf24j40.h"
+#include "cmd_mrf24j40.h"
 #include "mrf24j40.h"
 
 namespace MRF24J40{
@@ -22,7 +22,6 @@ volatile uint8_t flag_got_tx;
 
 static rx_info_t rx_info;
 static tx_info_t tx_info;
-
 
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()}
@@ -72,7 +71,7 @@ uint8_t Mrf24j::read_long(uint16_t address) {
     }
 
     uint16_t Mrf24j::get_pan(void) {
-            uint8_t panh = read_short(MRF_PANIDH);
+        uint8_t panh = read_short(MRF_PANIDH);
         return panh << 8 | read_short(MRF_PANIDL);
     }
 
@@ -87,7 +86,7 @@ uint8_t Mrf24j::read_long(uint16_t address) {
     }
 
     uint16_t Mrf24j::address16_read(void) {
-            uint8_t a16h = read_short(MRF_SADRH);
+        uint8_t a16h = read_short(MRF_SADRH);
         return a16h << 8 | read_short(MRF_SADRL);
     }
 
