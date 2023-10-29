@@ -7,8 +7,7 @@ namespace MRF24J40{
     struct Run{
             explicit Run();
             ~Run();
-            void handle_tx();
-            void handle_rx();
+
             void loop();
             void interrupt_routine();
         private :
@@ -17,6 +16,7 @@ namespace MRF24J40{
             unsigned long tx_interval{0};
     };
 
-
+            void handle_tx();
+            void handle_rx();
 
 }//end MRF24J40
