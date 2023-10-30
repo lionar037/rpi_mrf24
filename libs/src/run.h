@@ -3,7 +3,7 @@
 
 
 namespace MRF24J40{
-    using Mrf24j_t = std::unique_ptr<Mrf24j> ;
+//using Mrf24j_t = std::unique_ptr<Mrf24j> ;
 struct Mrf24j;
  
  Mrf24j mrf24j40_spi ;
