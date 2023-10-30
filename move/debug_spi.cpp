@@ -58,12 +58,7 @@ namespace SPI
 
 
 
-    void Spi::msj_fail(){
-        #ifdef DBG
-            printf("Could not open the Spi device...\r\n");
-            #endif
-        return;
-    }
+  
 
     void Spi::read_write_dbg(){
         for(looper=0; looper<4; ++looper) {
@@ -89,24 +84,6 @@ namespace SPI
 
     void Spi::begin(){
     return ;
-    }
-
-
-
-
-    void Spi::spi_close(){
-        close(fs);
-        exit(EXIT_SUCCESS);
-    }
-
-    Spi::Spi(){
-        init();
-        settings_spi();
-    }
-
-    Spi::~Spi(){
-    spi_close();
-    if(fs)close(fs);
     }
 
 

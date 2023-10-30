@@ -96,4 +96,24 @@ uint8_t Spi::Transfer2bytes(uint16_t cmd){
     return 0x00;
     }
 
+
+
+
+    void Spi::spi_close(){
+        close(fs);
+        exit(EXIT_SUCCESS);
+    }
+
+    Spi::Spi(){
+        init();
+        settings_spi();
+    }
+
+    Spi::~Spi(){
+    spi_close();
+    if(fs)close(fs);
+    }
+
+
+
 }//end namespace SPI_H
