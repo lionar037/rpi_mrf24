@@ -15,15 +15,6 @@
 #include <linux/spi/spidev.h>
 #include <vector>
 
-#define CMD_WRITE 0x2
-#define CMD_READ 0x3
-
-#define READ 0b011 //Read data from memory array beginning at selected address
-#define WRITE 0b010 //Write data to memory array beginning at selected address
-#define WRDI 0b100//Reset the write enable latch (disable write operations)
-#define WREN 0b110//Set the write enable latch (enable write operations)
-#define RDSR 0b101//Read STATUS
-#define WRSR 0b001//Write STATUS register
 
 namespace SPI{
 
@@ -60,11 +51,11 @@ namespace SPI{
     const uint32_t len_data = 32;
     const uint32_t spi_speed = 5000000;
     
-    int fs{};
-    int ret{};
+    int fs{0};
+    int ret{0};
     struct spi_ioc_transfer spi{};
-    uint8_t looper{};
-    uint32_t scratch32{};
+    uint8_t looper{0};
+    uint32_t scratch32{0};
   };
 
 }//END namespace SPI_H

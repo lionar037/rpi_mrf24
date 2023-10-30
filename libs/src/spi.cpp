@@ -2,6 +2,17 @@
 #include <spi.h>
 #define SPI_DEVICE  "/dev/spidev0.0"
 
+#define CMD_WRITE 0x2
+#define CMD_READ 0x3
+
+#define READ 0b011 //Read data from memory array beginning at selected address
+#define WRITE 0b010 //Write data to memory array beginning at selected address
+#define WRDI 0b100//Reset the write enable latch (disable write operations)
+#define WREN 0b110//Set the write enable latch (enable write operations)
+#define RDSR 0b101//Read STATUS
+#define WRSR 0b001//Write STATUS register
+
+
 namespace SPI {
 
 void Spi::settings_spi(){
