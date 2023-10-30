@@ -21,7 +21,7 @@ namespace SPI{
 
     explicit Spi();
     ~Spi(){
-      std::cout<<"~Spi() secomienza a desarmar\n";
+      //std::cout<<"~Spi() secomienza a desarmar\n";
       if(fs)close(fs);
       spi_close();
       std::cout<<"~Spi()\n";
