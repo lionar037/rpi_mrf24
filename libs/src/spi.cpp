@@ -1,4 +1,3 @@
-
 #include <spi.h>
 #define SPI_DEVICE  "/dev/spidev0.0"
 
@@ -11,7 +10,6 @@
 #define WREN 0b110//Set the write enable latch (enable write operations)
 #define RDSR 0b101//Read STATUS
 #define WRSR 0b001//Write STATUS register
-
 
 namespace SPI {
 
@@ -26,7 +24,7 @@ namespace SPI {
       //for(looper=0; looper<spi->len+1; ++looper) {
            tx_buffer[0] = 0x00;
            //rx_buffer[looper] = 0xFF;
-           rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0x00;
+           rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0xff;
        //}
     return;
   }
