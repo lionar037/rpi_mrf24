@@ -5,7 +5,7 @@
 
 namespace MRF24J40{
 
-struct Mrf24j;
+struct MRF24J40::Mrf24j;
  
 Mrf24j mrf24j40_spi ;
 
