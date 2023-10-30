@@ -14,15 +14,15 @@ namespace SPI
 
     void Spi::printDBGSpi(){
         #ifdef DBG
-            std::cout << " spi.tx_buf  : "<< spi.tx_buf<<"\n";
-            std::cout << " spi.rx_buf  : "<< spi.rx_buf<<"\n";
+            std::cout << " spi.tx_buf  : "<< spi->tx_buf<<"\n";
+            std::cout << " spi.rx_buf  : "<< spi->rx_buf<<"\n";
             std::cout << " spi.len  : "<< spi.len<<"\n";
-            std::cout << " spi.delay_usecs  : "<< spi.delay_usecs<<"\n";
-            std::cout << " spi.speed_hz  : "<< spi.speed_hz<<"\n";
-            printf("spi.bits_per_word :%d \n",spi.bits_per_word);
-            printf("spi.cs_change :%d \n",spi.cs_change);
-            std::cout << " spi.bits_per_word  : "<< std::hex<<spi.bits_per_word<<"\n";
-            std::cout << " spi.cs_change : "<< std::hex<<spi.cs_change<<"\n";
+            std::cout << " spi.delay_usecs  : "<< spi->delay_usecs<<"\n";
+            std::cout << " spi.speed_hz  : "<< spi->speed_hz<<"\n";
+            printf("spi.bits_per_word :%d \n",spi->bits_per_word);
+            printf("spi.cs_change :%d \n",spi->cs_change);
+            std::cout << " spi.bits_per_word  : "<< std::hex<<spi->bits_per_word<<"\n";
+            std::cout << " spi.cs_change : "<< std::hex<<spi->cs_change<<"\n";
         #endif
             #ifdef DBG_SPI
                 if (rx_buffer[2]!=0xff)printf("rx buffer dec : %d\r\n"  ,rx_buffer[2]);
