@@ -16,7 +16,7 @@ namespace TYME{
         std::cout << " ~Time_t()\n";
     }
 
-    void Time_t::delay_ms(uint32_t t){
+    void Time_t::delay_ms(const uint32_t t){
         std::chrono::microseconds delay_loc(t);
         std::this_thread::sleep_for(delay_loc);
         //   usleep(t);//otra forma
