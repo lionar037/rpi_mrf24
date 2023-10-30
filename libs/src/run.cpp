@@ -4,15 +4,15 @@
 namespace MRF24J40{ 
 
 Run::Run() 
-:   mrf24j40_spi {std::make_unique<Mrf24j>()}
+//:   mrf24j40_spi {std::make_unique<Mrf24j>()}
 {
     
 
-    mrf24j40_spi->init();
-    mrf24j40_spi->interrupt_handler();
-    mrf24j40_spi->set_pan(0xcafe);
-    mrf24j40_spi->address16_write(0x6001); 
-    mrf24j40_spi->Transfer3bytes(0xE0C1);
+    mrf24j40_spi.init();
+    mrf24j40_spi.interrupt_handler();
+    mrf24j40_spi.set_pan(0xcafe);
+    mrf24j40_spi.address16_write(0x6001); 
+    mrf24j40_spi.Transfer3bytes(0xE0C1);
     std::cout<<"Run()\n";
 }
 
@@ -24,7 +24,7 @@ void Run::interrupt_routine() {
 void handle_rx() {
     
     std::cout<<"received a packet ";
-    std::cout<<std::dec << Run::mrf24j40_spi->get_rxinfo()->frame_length;
+    std::cout<<std::dec << Run::mrf24j40_spi.get_rxinfo()->frame_length;
     
     std::cout<<" bytes long";
     /*
@@ -62,13 +62,13 @@ void handle_rx() {
 
 void Run::loop() {
 
-    mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
+    mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
 
     unsigned long current_time = 100000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
         std::cout<<"txxxing...";
-        mrf24j40_spi->send16(0x4202, "abcd");
+        mrf24j40_spi.send16(0x4202, "abcd");
     }
 }
 
