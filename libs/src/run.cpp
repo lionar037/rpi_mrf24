@@ -15,14 +15,14 @@ Run::Run()
     mrf24j40_spi.address16_write(0x6001); 
 
     mrf24j40_spi.Transfer3bytes(0xE0C1);
-    //mrf24j40_spi.Transfer3bytes(0xC1E0);
+
     loop();
 }
 
 void Run::loop() {
 
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    unsigned long current_time = 100000;
+    unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
         std::cout<<"txxxing...\n";
@@ -55,7 +55,7 @@ void handle_rx() {
         std::cout<<mrf24j40_spi.get_rxinfo()->rx_data[i];
     }
     
-    std::cout<<"\r\nLQI/RSSI=";
+    std::cout<<"\r\nLQI/RSSI = ";
     std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
 
     std::cout<<"/";
@@ -65,7 +65,7 @@ void handle_rx() {
 
 void handle_tx() {
          if (mrf24j40_spi.get_txinfo()->tx_ok) {
-             std::cout<<"TX went ok, got ack";
+             std::cout<<"TX went ok, got ack ";
          } else {
              std::cout<<"TX failed after ";
              std::cout<<mrf24j40_spi.get_txinfo()->retries;
