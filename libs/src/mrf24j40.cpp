@@ -145,14 +145,13 @@ namespace MRF24J40{
         write_short(MRF_CCAEDTH, 0x60); // – Set CCA ED threshold.
         write_short(MRF_BBREG6, 0x40); // – Set appended RSSI value to RXFIFO.
         set_interrupts();
-        set_channel(12);
+        set_channel(24);//original 12
                 // max power is by default.. just leave it...
                 // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04); //  – Reset RF state machine.
         write_short(MRF_RFCTL, 0x00); // part 2
         delay(1); // delay at least 192usec
     }
-
 
             /**
              * Call this from within an interrupt handler connected to the MRFs output
