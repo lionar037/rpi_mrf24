@@ -16,7 +16,7 @@ namespace SPI
         #ifdef DBG
             std::cout << " spi.tx_buf  : "<< spi->tx_buf<<"\n";
             std::cout << " spi.rx_buf  : "<< spi->rx_buf<<"\n";
-            std::cout << " spi.len  : "<< spi.len<<"\n";
+            std::cout << " spi.len  : "<< spi->len<<"\n";
             std::cout << " spi.delay_usecs  : "<< spi->delay_usecs<<"\n";
             std::cout << " spi.speed_hz  : "<< spi->speed_hz<<"\n";
             printf("spi.bits_per_word :%d \n",spi->bits_per_word);
