@@ -27,26 +27,26 @@ void handle_rx() {
     std::cout<<std::dec << mrf24j40_spi.get_rxinfo()->frame_length;
     
     std::cout<<" bytes long";
-    /*
-    if(mrf24j40_spi->get_bufferPHY()){
+    
+    if(mrf24j40_spi.get_bufferPHY()){
       std::cout<<"Packet data (PHY Payload):";
-      for (int i = 0; i < mrf24j40_spi->get_rxinfo()->frame_length; i++) {
-          std::cout<<mrf24j40_spi->get_rxbuf()[i];
+      for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) {
+          std::cout<<mrf24j40_spi.get_rxbuf()[i];
       }
     }
     
     std::cout<<"\r\nASCII data (relevant data):";
-    for (int i = 0; i < mrf24j40_spi->rx_datalength(); i++) {
+    for (int i = 0; i < mrf24j40_spi.rx_datalength(); i++) {
 
-        std::cout<<mrf24j40_spi->get_rxinfo()->rx_data[i];
+        std::cout<<mrf24j40_spi.get_rxinfo()->rx_data[i];
     }
     
     std::cout<<"\r\nLQI/RSSI=";
-    std::cout<<std::dec<<mrf24j40_spi->get_rxinfo()->lqi;
+    std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
 
     std::cout<<"/";
-    std::cout<<std::dec<<mrf24j40_spi->get_rxinfo()->rssi;
-    */
+    std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->rssi;
+    
 }
 
     void handle_tx() {
