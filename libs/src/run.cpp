@@ -1,6 +1,7 @@
 #include <iostream>
-#include <mrf24j40.h>
 #include <run.h>
+#include <mrf24j40.h>
+
 namespace MRF24J40{ 
 
 Run::Run() {
