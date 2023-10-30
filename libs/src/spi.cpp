@@ -23,10 +23,11 @@ namespace SPI {
       spi->delay_usecs = 0;
       spi->len = 3;
 
-      for(looper=0; looper<spi->len+1; ++looper) {
-           tx_buffer[looper] = 0x00;
-           rx_buffer[looper] = 0xFF;
-       }
+      //for(looper=0; looper<spi->len+1; ++looper) {
+           tx_buffer[0] = 0x00;
+           //rx_buffer[looper] = 0xFF;
+           rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0x00;
+       //}
     return;
   }
 
