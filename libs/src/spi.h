@@ -62,7 +62,7 @@ namespace SPI{
     
     int fs{};
     int ret{};
-    struct spi_ioc_transfer spi;
+    struct spi_ioc_transfer spi{};
     uint8_t looper{};
     uint32_t scratch32{};
   };

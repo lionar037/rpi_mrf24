@@ -14,7 +14,7 @@ namespace SPI
   }
 
   void Spi::write(uint16_t cmd){
-    spi.len = 3;
+    spi.len = static_cast<size_t>(cmd)+1;;
     tx_buffer[0] = CMD_WRITE;
     tx_buffer[1]=cmd&0xff;
     tx_buffer[2]=(cmd>>8)&0xff;
@@ -24,7 +24,7 @@ namespace SPI
   }
 
   uint8_t Spi::read(uint16_t address){
-    spi.len = 3;
+    spi.len =  static_cast<size_t>(address)+1;
     tx_buffer[0]= CMD_READ;
     tx_buffer[1]=address&0xff;
     tx_buffer[2]=(address>>8)&0xff;
@@ -35,9 +35,7 @@ namespace SPI
   }
 
   void Spi::read_write(size_t size ,uint32_t cmd){
-    #ifdef DBG
-      std::cout<<"size_t : "<< size <<"\n";
-    #endif
+
       spi.len = size;
       tx_buffer[0]= cmd & 0xFF;
       tx_buffer[1]=(cmd>>8)&0xff;
