@@ -8,7 +8,7 @@ author : amaya
 #include <memory>
 int main(){
 std::unique_ptr<SPI::Spi> spi { std::make_unique<SPI::Spi>() };
-spi->~Spi();
+
 //spi=nullptr;
 return 0 ;
 }
