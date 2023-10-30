@@ -1,5 +1,5 @@
 CC = g++
-CXXFLAGS = -std=c++17 -Ilibs/src -Isrc 
+CXXFLAGS = -std=c++17 -Ilibs/src -Isrc -lthread
 SRC_DIR = src
 LIB_DIR = libs/src
 OBJ_DIR = obj
