@@ -27,6 +27,7 @@ void Spi::settings_spi(){
   //       tx_buffer[looper] = 0x00;
   //       rx_buffer[looper] = 0xFF;
   //   }
+  return;
 }
 
 
@@ -101,12 +102,14 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     void Spi::spi_close(){
         close(fs);
         exit(EXIT_SUCCESS);
+        return;
     }
 
     Spi::Spi(){
       std::cout<<"Spi()\n";
         init();
         settings_spi();
+        return;
     }
 
     Spi::~Spi(){
