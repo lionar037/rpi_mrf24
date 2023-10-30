@@ -1,4 +1,4 @@
-//#include <vector>
+#include <iostream>
 #include <spi.h>
 
 //#define CS 0
