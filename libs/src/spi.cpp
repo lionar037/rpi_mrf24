@@ -100,6 +100,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
 
     void Spi::spi_close(){
+      std::cout<<"spi_close()\n";
         close(fs);
         exit(EXIT_SUCCESS);
         return;
