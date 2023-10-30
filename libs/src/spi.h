@@ -60,11 +60,11 @@ namespace SPI{
     const uint32_t len_data = 32;
     const uint32_t spi_speed = 5000000;
     
-    int fs;
-    int ret;
+    int fs{};
+    int ret{};
     struct spi_ioc_transfer spi;
-    uint8_t looper;
-    uint32_t scratch32;
+    uint8_t looper{};
+    uint32_t scratch32{};
   };
 
 }//END namespace SPI_H
