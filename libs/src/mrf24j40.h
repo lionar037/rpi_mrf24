@@ -81,8 +81,6 @@ struct Mrf24j : public SPI::Spi
 
 
 
-                    // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
-            static uint8_t rx_buf[127];
 
             // essential for obtaining the data frame only
             // bytes_MHR = 2 Frame control + 1 sequence number + 2 panid + 2 shortAddr Destination + 2 shortAddr Source

@@ -3,6 +3,9 @@
 //#include <mrf24j40ma.h>
 
 namespace MRF24J40{
+    
+                    // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
+            static uint8_t rx_buf[127];
 
             static int ignoreBytes { 0}; // bytes to ignore, some modules behaviour.
 
