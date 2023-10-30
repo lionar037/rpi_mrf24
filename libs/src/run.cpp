@@ -3,11 +3,7 @@
 #include <run.h>
 namespace MRF24J40{ 
 
-Run::Run() 
-//:   mrf24j40_spi {std::make_unique<Mrf24j>()}
-{
-    
-
+Run::Run() {
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(0xcafe);
