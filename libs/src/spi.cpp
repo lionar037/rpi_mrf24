@@ -71,7 +71,7 @@ if(ret != 0) {
 const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     spi.len = sizeof(cmd);
     rx_buffer[0]=rx_buffer[1]=0xff;
-    rx_buffer[2]=rx_buffer[3]=0xff;
+    rx_buffer[2]=rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi);
       if(ret != 0) { 
@@ -87,7 +87,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
     spi.len = sizeof(buff_tmp);
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
-    rx_buffer[3]=0xff;
+    rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi);
         if(ret != 0) {

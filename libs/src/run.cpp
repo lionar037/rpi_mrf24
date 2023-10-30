@@ -2,7 +2,6 @@
 #include <mrf24j40.h>
 #include <run.h>
 
-
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;

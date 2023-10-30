@@ -27,7 +27,4 @@ void Spi::printDBGSpi(){
           #endif
 }
 
-
-
-
 }
