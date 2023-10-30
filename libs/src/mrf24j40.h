@@ -80,11 +80,9 @@ struct Mrf24j : public SPI::Spi
         std::unique_ptr<SPI::Spi> prt_spi {};
 
 
-
-
             // essential for obtaining the data frame only
             // bytes_MHR = 2 Frame control + 1 sequence number + 2 panid + 2 shortAddr Destination + 2 shortAddr Source
-            const int bytes_MHR { 9};
+            const int bytes_MHR {9};
             const int bytes_FCS {2}; // FCS length = 2
             const int bytes_nodata { bytes_MHR + bytes_FCS}; // no_data bytes in PHY payload,  header length + FCS
 

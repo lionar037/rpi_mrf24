@@ -30,6 +30,7 @@ namespace SPI
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi);
     if(ret != 0){return 0x00 ;}
     return rx_buffer[2];
+    return;
   }
 
   void Spi::read_write(size_t size ,uint32_t cmd){
@@ -54,6 +55,7 @@ namespace SPI
           for(looper=0; looper<4; ++looper)if(looper==2)printf(" rx_buffer : 0x%02x",rx_buffer[looper]);
         #endif
     printf("\n");
+    return;
   }
 
 
@@ -72,6 +74,7 @@ namespace SPI
         if(ret != 0) { }
         close(fs);
         exit(EXIT_SUCCESS);
+        return;
     }
 
     void Spi::setBitOrder(const uint16_t _MSBFIRST) {

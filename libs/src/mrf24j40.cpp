@@ -1,30 +1,22 @@
-    #include <cmd_mrf24j40.h>
-    #include <mrf24j40.h>
+#include <cmd_mrf24j40.h>
+#include <mrf24j40.h>
 //#include <mrf24j40ma.h>
 
 namespace MRF24J40{
-    
-                    // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
-            static uint8_t rx_buf[127];
 
-            static int ignoreBytes { 0}; // bytes to ignore, some modules behaviour.
+            // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
+    static uint8_t rx_buf[127];
 
-            static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
-
-
-
-            static rx_info_t rx_info{};
-            static tx_info_t tx_info{};
+    static int ignoreBytes { 0 }; // bytes to ignore, some modules behaviour.
+    static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
+    static rx_info_t rx_info{};
+    static tx_info_t tx_info{};
 
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()}
     {
         std::cout <<"Mrf24j( )\r\n";
     }
-
-    // void Mrf24j::reset(void) {
-
-    // }
 
     uint8_t Mrf24j::read_short(uint8_t address) {
                     // 0 top for short addressing, 0 bottom for read
@@ -315,6 +307,10 @@ namespace MRF24J40{
 
     void Mrf24j::noInterrupts(){
     }
+
+    // void Mrf24j::reset(void) {
+
+    // }
 
     Mrf24j::~Mrf24j( ){
       //  delete prt_spi;
