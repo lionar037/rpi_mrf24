@@ -20,8 +20,8 @@ static bool bufPHY = false; // flag to buffer all bytes in PHY Payload, or not
 volatile uint8_t flag_got_rx;
 volatile uint8_t flag_got_tx;
 
-static rx_info_t rx_info;
-static tx_info_t tx_info;
+static rx_info_t rx_info{};
+static tx_info_t tx_info{};
 
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()}
