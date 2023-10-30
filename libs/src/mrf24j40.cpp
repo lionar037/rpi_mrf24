@@ -1,5 +1,5 @@
-#include <iostream>
-#include <cstring>
+
+
 #include <cmd_mrf24j40.h>
 #include <mrf24j40.h>
 //#include <mrf24j40ma.h>

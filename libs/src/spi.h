@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,6 +12,7 @@
 #include <linux/ioctl.h>
 #include <linux/types.h>
 #include <linux/spi/spidev.h>
+#include <vector>
 
 #define CMD_WRITE 0x2
 #define CMD_READ 0x3

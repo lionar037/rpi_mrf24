@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
+#include <cstring>
 #include <spi.h>
 
 namespace MRF24J40{
