@@ -1,5 +1,8 @@
 
 #include <spi.h>
+#define DBG
+
+
 namespace SPI
 {
  void Spi::msj_fail(){

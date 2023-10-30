@@ -14,6 +14,7 @@
 #include <linux/types.h>
 #include <linux/spi/spidev.h>
 #include <vector>
+#include <memory>
 
 
 namespace SPI{
@@ -64,6 +65,7 @@ namespace SPI{
     int fs{0};
     int ret{0};
     struct spi_ioc_transfer spi{};
+    std::unique_ptr< struct spi_ioc_transfer> _spi2;
     uint8_t looper{0};
     uint32_t scratch32{0};
   };

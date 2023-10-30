@@ -108,7 +108,8 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
         return;
     }
 
-    Spi::Spi(){
+    Spi::Spi()
+    {
       std::cout<<"Spi()\n";
         init();
         settings_spi();
