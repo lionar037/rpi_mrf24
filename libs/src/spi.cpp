@@ -40,19 +40,19 @@ namespace SPI {
     ret = ioctl(fs, SPI_IOC_RD_MODE, &scratch32);
   if(ret != 0) {
         msj_fail();
-        close(fs);
+        if(fs)close(fs);
         exit(EXIT_FAILURE);
     }
     scratch32 |= SPI_MODE_0;
     ret = ioctl(fs, SPI_IOC_WR_MODE, &scratch32);   //SPI_IOC_WR_MODE32
   if(ret != 0) {
       msj_fail();
-      close(fs);
+      if(fs)close(fs);
       exit(EXIT_FAILURE);
     }
     ret = ioctl(fs, SPI_IOC_RD_MAX_SPEED_HZ, &scratch32);
   if(ret != 0) {
-      close(fs);
+      if(fs)close(fs);
       exit(EXIT_FAILURE);
     }
       scratch32 = spi_speed;
@@ -60,7 +60,7 @@ namespace SPI {
 
       if(ret != 0) {
           msj_fail();
-          close(fs);
+          if(fs)close(fs);
           exit(EXIT_FAILURE);
       }
       return;
@@ -74,7 +74,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     rx_buffer[0]=rx_buffer[1]=0xff;
     rx_buffer[2]=rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
-    ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi.get());
+    ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
       if(ret != 0) { 
           printDBGSpi();
         return rx_buffer[2];
@@ -90,7 +90,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
-    ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi.get());
+    ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
         if(ret != 0) {
             printDBGSpi();
           return rx_buffer[2];
