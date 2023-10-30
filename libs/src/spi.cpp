@@ -46,12 +46,12 @@ namespace SPI {
     ret = ioctl(fs, SPI_IOC_WR_MODE, &scratch32);   //SPI_IOC_WR_MODE32
   if(ret != 0) {
       msj_fail();
-      if(fs)close(fs);
+      close(fs);
       exit(EXIT_FAILURE);
     }
     ret = ioctl(fs, SPI_IOC_RD_MAX_SPEED_HZ, &scratch32);
   if(ret != 0) {
-      if(fs)close(fs);
+      close(fs);
       exit(EXIT_FAILURE);
     }
       scratch32 = spi_speed;
@@ -59,7 +59,7 @@ namespace SPI {
 
       if(ret != 0) {
           msj_fail();
-          if(fs)close(fs);
+          close(fs);
           exit(EXIT_FAILURE);
       }
       return;
@@ -105,7 +105,6 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     }
 
     Spi::Spi()
-    //:spi{ std::make_unique< struct spi_ioc_transfer> ()}
     {
           settings_spi();   
           init(); 
