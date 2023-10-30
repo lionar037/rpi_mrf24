@@ -24,7 +24,7 @@ void Run::interrupt_routine() {
 void handle_rx() {
     
     std::cout<<"received a packet ";
-    std::cout<<std::dec << Run::mrf24j40_spi.get_rxinfo()->frame_length;
+    std::cout<<std::dec << mrf24j40_spi.get_rxinfo()->frame_length;
     
     std::cout<<" bytes long";
     /*
