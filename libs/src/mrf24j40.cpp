@@ -4,7 +4,14 @@
 
 namespace MRF24J40{
 
+            static int ignoreBytes { 0}; // bytes to ignore, some modules behaviour.
 
+            static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
+
+
+
+            static rx_info_t rx_info{};
+            static tx_info_t tx_info{};
 
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()}

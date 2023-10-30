@@ -90,15 +90,9 @@ struct Mrf24j : public SPI::Spi
             const int bytes_FCS {2}; // FCS length = 2
             const int bytes_nodata { bytes_MHR + bytes_FCS}; // no_data bytes in PHY payload,  header length + FCS
 
-            static int ignoreBytes { 0}; // bytes to ignore, some modules behaviour.
-
-            static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
 
             volatile uint8_t flag_got_rx{};
             volatile uint8_t flag_got_tx{};
-
-            static rx_info_t rx_info{};
-            static tx_info_t tx_info{};
     };
 }
 
