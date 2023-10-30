@@ -23,23 +23,23 @@ namespace SPI{
     Spi();
     ~Spi();
 
-    void read_write();
+    //void read_write();
     void init();
-    void read_write(size_t,uint32_t);
+    //void read_write(size_t,uint32_t);
     void settings_spi();
     void spi_close();
-    uint8_t read(uint16_t);
-    void write(uint16_t);
+    //uint8_t read(uint16_t);
+    //void write(uint16_t);
   
-    void read_write_dbg();
-    uint16_t transfer(uint16_t);
+    //void read_write_dbg();
+    //uint16_t transfer(uint16_t);
 
     uint8_t Transfer2bytes(uint16_t address);
     uint8_t Transfer3bytes(uint32_t address);
 
-    void setBitOrder(const uint16_t);
-    void setDataMode(const uint16_t);
-    void begin();
+    //void setBitOrder(const uint16_t);
+    //void setDataMode(const uint16_t);
+    //void begin();
     void printDBGSpi();
     void msj_fail();
     
