@@ -45,6 +45,7 @@ static tx_info_t tx_info;
                     // 0 for top short address, 1 bottom for write
     uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
         prt_spi->Transfer2bytes(lsb_tmp);
+        return;
     }
 
     uint8_t Mrf24j::read_long(uint16_t address) {
@@ -60,11 +61,12 @@ static tx_info_t tx_info;
         uint8_t msb_address = (address << 5) & 0xE0;
         uint32_t comp = ( (0x80 | lsb_address) | ( (msb_address | 0x10) << 8 ) | (data<<16) ) & 0xffffff;
         prt_spi->Transfer3bytes(comp);
+        return;
     }
 
     uint16_t Mrf24j::get_pan(void) {
         uint8_t panh = read_short(MRF_PANIDH);
-        return panh << 8 | read_short(MRF_PANIDL);
+        return (panh << 8 | read_short(MRF_PANIDL));
     }
 
     void Mrf24j::set_pan(uint16_t panid) {
@@ -79,7 +81,7 @@ static tx_info_t tx_info;
 
     uint16_t Mrf24j::address16_read(void) {
         uint8_t a16h = read_short(MRF_SADRH);
-        return a16h << 8 | read_short(MRF_SADRL);
+        return (a16h << 8 | read_short(MRF_SADRL));
     }
 
 /**
