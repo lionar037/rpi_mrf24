@@ -90,7 +90,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
-    ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi);
+    ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi);
         if(ret != 0) {
             printDBGSpi();
           return rx_buffer[2];
