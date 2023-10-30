@@ -16,13 +16,13 @@
 namespace SPI {
 
 void Spi::settings_spi(){
-    spi.tx_buf = (unsigned long)tx_buffer;
-    spi.rx_buf = (unsigned long)rx_buffer;
+    spi->tx_buf = (unsigned long)tx_buffer;
+    spi->rx_buf = (unsigned long)rx_buffer;
 
-    spi.bits_per_word = 0;
-    spi.speed_hz = spi_speed;
-    spi.delay_usecs = 0;
-    spi.len = 3;
+    spi->bits_per_word = 0;
+    spi->speed_hz = spi_speed;
+    spi->delay_usecs = 0;
+    spi->len = 3;
   //  for(looper=0; looper<spi.len+1; ++looper) {
   //       tx_buffer[looper] = 0x00;
   //       rx_buffer[looper] = 0xFF;
@@ -70,7 +70,7 @@ if(ret != 0) {
 
 
 const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
-    spi.len = sizeof(cmd);
+    spi->len = sizeof(cmd);
     rx_buffer[0]=rx_buffer[1]=0xff;
     rx_buffer[2]=rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
@@ -85,7 +85,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
   const uint8_t Spi::Transfer3bytes(const uint32_t cmd){
     char buff_tmp[]={"0x00,0x00,0x00"};
-    spi.len = sizeof(buff_tmp);
+    spi->len = sizeof(buff_tmp);
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
@@ -101,14 +101,11 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     void Spi::spi_close(){
         std::cout<<"spi_close()\n";
         close(fs);
-        std::cout<<"spi_close2()\n";
-        
-        std::cout<<"spi_close3()\n";
       return;
     }
 
     Spi::Spi()
-    // :_spi2{ std::make_unique< struct spi_ioc_transfer> ()}
+    :spi{ std::make_unique< struct spi_ioc_transfer> ()}
     {
 
           init();

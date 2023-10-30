@@ -16,9 +16,7 @@
 #include <vector>
 #include <memory>
 
-
 namespace SPI{
-
   struct  Spi{
 
     explicit Spi();
@@ -30,7 +28,6 @@ namespace SPI{
       exit(EXIT_SUCCESS);
     }
 
-
     void init();
     void settings_spi();
     void spi_close();
@@ -39,8 +36,6 @@ namespace SPI{
     void printDBGSpi();
     void msj_fail();
     
-
-
      //void read_write();
     //void read_write(size_t,uint32_t);
    
@@ -49,8 +44,7 @@ namespace SPI{
   
     //void read_write_dbg();
     //uint16_t transfer(uint16_t);
-
-   
+ 
     //void setBitOrder(const uint16_t);
     //void setDataMode(const uint16_t);
     //void begin();
@@ -65,8 +59,8 @@ namespace SPI{
     
     int fs{0};
     int ret{0};
-    struct spi_ioc_transfer spi{};
-    //std::unique_ptr< struct spi_ioc_transfer> _spi2;
+    //struct spi_ioc_transfer spi{};
+    std::unique_ptr< struct spi_ioc_transfer> spi{};
     uint8_t looper{0};
     uint32_t scratch32{0};
   };
