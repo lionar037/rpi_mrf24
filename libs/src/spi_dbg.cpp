@@ -3,8 +3,8 @@
 #define DBG
 
 
-namespace SPI
-{
+namespace SPI{
+    
     void Spi::msj_fail(){
             #ifdef DBG
                 printf("Could not open the Spi device...\r\n");
