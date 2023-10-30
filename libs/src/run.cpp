@@ -11,6 +11,7 @@ Run::Run()
     std::cout<<"Run()\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
+    
     mrf24j40_spi.set_pan(0xcafe);
     mrf24j40_spi.address16_write(0x6001); 
 

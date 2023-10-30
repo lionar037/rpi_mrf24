@@ -90,6 +90,8 @@ namespace MRF24J40{
 
         uint16_t panid = get_pan();
 
+        printf("panid : ox%x\n",panid);
+
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
         write_long(i++, dest16 & 0xff);  // dest16 low
