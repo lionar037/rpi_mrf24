@@ -1,5 +1,5 @@
 CC = g++
-CXXFLAGS = -std=c++17 -Ilibs/src -Isrc -lthread
+CXXFLAGS = -std=c++17 -Ilibs/src -Isrc #-lthread
 SRC_DIR = src
 LIB_DIR = libs/src
 OBJ_DIR = obj
@@ -18,9 +18,9 @@ $(APP): $(OBJS) | $(BIN_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(LIB_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) $(CXXFLAGS) -c $< -o $@
+#-lthread
+#$(OBJ_DIR)/%.o: $(LIB_DIR)/%.cpp | $(OBJ_DIR)
+#	$(CC) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
