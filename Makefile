@@ -1,5 +1,6 @@
 CC = g++
-CXXFLAGS = -std=c++17 -Ilibs/src -Isrc -lthread
+CXXFLAGS = -std=c++17 -Ilibs/src -Isrc 
+LIBRARIES = -lthread
 SRC_DIR = src
 LIB_DIR = libs/src
 OBJ_DIR = obj
@@ -14,7 +15,7 @@ APP = $(BIN_DIR)/app_mrf24_rpi
 all: $(APP)
 
 $(APP): $(OBJS) | $(BIN_DIR)
-	$(CC) $(CXXFLAGS) -o $@ $^
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LIBRARIES)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) 
 	$(CC) $(CXXFLAGS) -c $< -o $@
