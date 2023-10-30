@@ -15,7 +15,7 @@ Run::Run()
     mrf24j40_spi.address16_write(0x6001); 
 
     mrf24j40_spi.Transfer3bytes(0xE0C1);
-    mrf24j40_spi.Transfer3bytes(0xC1E0);
+    //mrf24j40_spi.Transfer3bytes(0xC1E0);
     loop();
 }
 

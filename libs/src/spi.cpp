@@ -18,7 +18,7 @@ namespace SPI {
       spi->rx_buf = (unsigned long)rx_buffer;
       spi->bits_per_word = 0;
       spi->speed_hz = spi_speed;
-      spi->delay_usecs = 0;
+      spi->delay_usecs = 1;
       spi->len = 3;
 
       //for(looper=0; looper<spi->len+1; ++looper) {
