@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <memory>
+//#include <memory>
 
 
 namespace MRF24J40{

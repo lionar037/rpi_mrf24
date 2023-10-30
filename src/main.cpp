@@ -3,11 +3,11 @@ author : amaya
 */
 
 
-//#include <run.h>
-#include<spi.h>
+#include <run.h>
 #include <memory>
+
 int main(){
-std::unique_ptr<SPI::Spi> spi { std::make_unique<SPI::Spi>() };
-spi->Transfer3bytes(0x00E0C1);
-return 0 ;
+    std::unique_ptr<MRF24J40::Run> mrf { std::make_unique<MRF24J40::Run>() };
+
+    return 0 ;
 }
