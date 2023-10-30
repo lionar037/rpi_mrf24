@@ -22,7 +22,7 @@ namespace SPI {
       spi->len = 3;
 
       //for(looper=0; looper<spi->len+1; ++looper) {
-           tx_buffer[0] = 0x00;
+           tx_buffer[0] = tx_buffer[1] = tx_buffer[2] = tx_buffer[3] = 0x00;
            //rx_buffer[looper] = 0xFF;
            rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0xff;
        //}
@@ -103,9 +103,9 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     Spi::Spi()
     :spi{std::make_unique<struct spi_ioc_transfer >()}
     {
+          std::cout<<"Spi()\n";
           settings_spi();   
           init(); 
-          std::cout<<"Spi()\n";
         return;
     }
 
