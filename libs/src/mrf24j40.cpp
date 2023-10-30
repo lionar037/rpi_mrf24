@@ -29,9 +29,9 @@ static tx_info_t tx_info;
         std::cout <<"Mrf24j( )\r\n";
     }
 
-    void Mrf24j::reset(void) {
+    // void Mrf24j::reset(void) {
 
-    }
+    // }
 
     uint8_t Mrf24j::read_short(uint8_t address) {
                     // 0 top for short addressing, 0 bottom for read
@@ -165,6 +165,7 @@ static tx_info_t tx_info;
         write_short(MRF_RFCTL, 0x00); // part 2
         delay(1); // delay at least 192usec
     }
+
 
             /**
              * Call this from within an interrupt handler connected to the MRFs output
