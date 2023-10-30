@@ -21,8 +21,6 @@ typedef struct _tx_info_t{
     uint8_t channel_busy:1;
 } tx_info_t;
 
-//struct SPI::Spi;
-
 struct Mrf24j : public SPI::Spi
 {
     public:

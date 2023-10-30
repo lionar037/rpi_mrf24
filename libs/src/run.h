@@ -1,11 +1,10 @@
 #pragma once
 #include <memory>
-#include <mrf24j40.h>
 
 
 namespace MRF24J40{
 
-//struct Mrf24j;
+struct Mrf24j;
  
 Mrf24j mrf24j40_spi ;
 
