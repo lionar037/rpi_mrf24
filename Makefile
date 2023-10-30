@@ -20,7 +20,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@
 #-lthread
 $(OBJ_DIR)/%.o: $(LIB_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) $(CXXFLAGS) -lthread -c $< -o $@
+	$(CC) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
