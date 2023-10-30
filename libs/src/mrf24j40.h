@@ -59,9 +59,9 @@ struct Mrf24j : public SPI::Spi
         
                     /** If you want to throw away rx data */
         void rx_flush(void);
-        rx_info_t * get_rxinfo(void);
-        tx_info_t * get_txinfo(void);
-        uint8_t * get_rxbuf(void);
+        rx_info_t * get_rxinfo(void) { nullptr };
+        tx_info_t * get_txinfo(void) { nullptr };
+        uint8_t * get_rxbuf(void) { nullptr };
         int rx_datalength(void);
         void set_ignoreBytes(int );
                         /**
