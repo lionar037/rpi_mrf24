@@ -16,7 +16,7 @@ all: $(APP)
 $(APP): $(OBJS) | $(BIN_DIR)
 	$(CC) $(CXXFLAGS) -o $@ $^
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) -lthread
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) 
 	$(CC) $(CXXFLAGS) -c $< -o $@
 #-lthread
 $(OBJ_DIR)/%.o: $(LIB_DIR)/%.cpp | $(OBJ_DIR)
