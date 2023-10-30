@@ -26,7 +26,7 @@ typedef struct _tx_info_t{
 
 //struct SPI::Spi;
 
-struct Mrf24j //: public SPI::Spi
+struct Mrf24j : public SPI::Spi
 {
     public:
         Mrf24j( );
