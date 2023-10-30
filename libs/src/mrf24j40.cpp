@@ -2,7 +2,6 @@
 #include <cstring>
 #include <cmd_mrf24j40.h>
 #include <mrf24j40.h>
-#include <spi.h>
 //#include <mrf24j40ma.h>
 
 namespace MRF24J40{

@@ -1,12 +1,9 @@
 #pragma once
-
+#include <iostream>
 #include <memory>
-//#include <spi.h>
+#include <spi.h>
 
 namespace MRF24J40{
-
-struct SPI::Spi;
-
 
 typedef struct _rx_info_t{
     uint8_t frame_length;
