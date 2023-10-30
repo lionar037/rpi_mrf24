@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+
 #include <spi.h>
 #define SPI_DEVICE  "/dev/spidev0.0"
 

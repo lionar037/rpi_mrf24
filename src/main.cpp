@@ -2,8 +2,7 @@
 author : amaya
 */
 
-#include <iostream>
-#include <memory>
+
 #include <run.h>
 
 int main(){

@@ -1,10 +1,5 @@
-#include <iostream>
-#include <spi.h>
 
-//#define CS 0
-//#define DBG_SPI
-//#define PRINT_BUFFER
-//#define SPI_DEVICE  "/dev/spidev0.0"
+#include <spi.h>
 
 namespace SPI
 {
