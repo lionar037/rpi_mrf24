@@ -71,7 +71,8 @@ uint8_t Spi::Transfer2bytes(uint16_t cmd){
 
 
   uint8_t Spi::Transfer3bytes(uint32_t cmd){
-    char buff_tmp[3];
+    char buff_tmp[3]{"0x00"};
+    
     spi.len = sizeof(buff_tmp);
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0xff;
