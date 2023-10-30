@@ -7,7 +7,6 @@ namespace MRF24J40{
 
 Mrf24j mrf24j40_spi ;
 
-
 Run::Run() {
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();

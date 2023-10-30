@@ -5,9 +5,6 @@
 
 namespace MRF24J40{
 
-//struct Mrf24j;
- 
-
    struct Run {
             explicit Run();
             ~Run();
