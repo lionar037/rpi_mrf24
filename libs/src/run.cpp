@@ -11,8 +11,10 @@ Run::Run()
     std::cout<<"Run()\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
-    
+
     mrf24j40_spi.set_pan(0xcafe);
+    uint32_t panid= mrf24j40_spi.get_pan();
+    printf("panid : 0x%X\n",panid);
     mrf24j40_spi.address16_write(0x6001); 
 
     mrf24j40_spi.Transfer3bytes(0xE0C1);
