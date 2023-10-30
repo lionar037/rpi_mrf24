@@ -1,6 +1,6 @@
 
-#include <mrf24j40.h>
 #include <run.h>
+#include <mrf24j40.h>
 
 namespace MRF24J40{ 
 
@@ -16,7 +16,9 @@ Run::Run()
 
     mrf24j40_spi.Transfer3bytes(0xE0C1);
     mrf24j40_spi.Transfer3bytes(0xC1E0);
+    loop();
 }
+
 void Run::loop() {
 
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
@@ -61,7 +63,7 @@ void handle_rx() {
     
 }
 
-    void handle_tx() {
+void handle_tx() {
          if (mrf24j40_spi.get_txinfo()->tx_ok) {
              std::cout<<"TX went ok, got ack";
          } else {
