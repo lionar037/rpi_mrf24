@@ -20,8 +20,8 @@ namespace SPI{
 
   struct  Spi{
 
-    Spi();
-    ~Spi();
+    explicit Spi();
+    explicit ~Spi();
 
     void init();
     void settings_spi();
