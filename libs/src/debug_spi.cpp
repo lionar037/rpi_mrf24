@@ -15,7 +15,7 @@ namespace SPI
 
   void Spi::write(uint16_t cmd){
     spi.len = 3;
-    tx_buffer[0]= CMD_WRITE;
+    tx_buffer[0] = CMD_WRITE;
     tx_buffer[1]=cmd&0xff;
     tx_buffer[2]=(cmd>>8)&0xff;
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), &spi);

@@ -50,24 +50,23 @@ void handle_rx() {
 }
 
     void handle_tx() {
-        // if (mrf24j40_spi->get_txinfo()->tx_ok) {
+         if (mrf24j40_spi.get_txinfo()->tx_ok) {
              std::cout<<"TX went ok, got ack";
-        // } else {
+         } else {
              std::cout<<"TX failed after ";
-        //     std::cout<<mrf24j40_spi->get_txinfo()->retries;
+             std::cout<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" retries\n";
-        // }
+         }
     }
 
 
 void Run::loop() {
 
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-
     unsigned long current_time = 100000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
-        std::cout<<"txxxing...";
+        std::cout<<"txxxing...\n";
         mrf24j40_spi.send16(0x4202, "abcd");
     }
 }

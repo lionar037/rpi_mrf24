@@ -159,19 +159,19 @@ static tx_info_t tx_info;
         write_short(MRF_BBREG6, 0x40); // – Set appended RSSI value to RXFIFO.
         set_interrupts();
         set_channel(12);
-                    // max power is by default.. just leave it...
-                    // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
+                // max power is by default.. just leave it...
+                // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04); //  – Reset RF state machine.
         write_short(MRF_RFCTL, 0x00); // part 2
         delay(1); // delay at least 192usec
     }
 
-                    /**
-                     * Call this from within an interrupt handler connected to the MRFs output
-                     * interrupt pin.  It handles reading in any data from the module, and letting it
-                     * continue working.
-                     * Only the most recent data is ever kept.
-                     */
+            /**
+             * Call this from within an interrupt handler connected to the MRFs output
+             * interrupt pin.  It handles reading in any data from the module, and letting it
+             * continue working.
+             * Only the most recent data is ever kept.
+             */
     void Mrf24j::interrupt_handler(void) {
         uint8_t last_interrupt = read_short(MRF_INTSTAT);
         if (last_interrupt & MRF_I_RXIF) {
