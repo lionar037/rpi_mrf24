@@ -78,6 +78,27 @@ struct Mrf24j : public SPI::Spi
         void check_flags(void (*rx_handler)(), void (*tx_handler)());
     private:
         std::unique_ptr<SPI::Spi> prt_spi {};
+
+
+
+                    // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
+            static uint8_t rx_buf[127];
+
+            // essential for obtaining the data frame only
+            // bytes_MHR = 2 Frame control + 1 sequence number + 2 panid + 2 shortAddr Destination + 2 shortAddr Source
+            const int bytes_MHR { 9};
+            const int bytes_FCS {2}; // FCS length = 2
+            const int bytes_nodata { bytes_MHR + bytes_FCS}; // no_data bytes in PHY payload,  header length + FCS
+
+            static int ignoreBytes { 0}; // bytes to ignore, some modules behaviour.
+
+            static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
+
+            volatile uint8_t flag_got_rx{};
+            volatile uint8_t flag_got_tx{};
+
+            static rx_info_t rx_info{};
+            static tx_info_t tx_info{};
     };
 }
 
