@@ -6,7 +6,8 @@ namespace MRF24J40{
 
 Mrf24j mrf24j40_spi ;
 
-Run::Run() {
+Run::Run() 
+{
     std::cout<<"Run()\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
@@ -14,6 +15,17 @@ Run::Run() {
     mrf24j40_spi.address16_write(0x6001); 
 
     mrf24j40_spi.Transfer3bytes(0xE0C1);
+    mrf24j40_spi.Transfer3bytes(0xC1E0);
+}
+void Run::loop() {
+
+    mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
+    unsigned long current_time = 100000;
+    if (current_time - last_time > tx_interval) {
+        last_time = current_time;
+        std::cout<<"txxxing...\n";
+        mrf24j40_spi.send16(0x4202, "abcd");
+    }
 }
 
 void Run::interrupt_routine() {
@@ -60,16 +72,7 @@ void handle_rx() {
     }
 
 
-void Run::loop() {
 
-    mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    unsigned long current_time = 100000;
-    if (current_time - last_time > tx_interval) {
-        last_time = current_time;
-        std::cout<<"txxxing...\n";
-        mrf24j40_spi.send16(0x4202, "abcd");
-    }
-}
 
     Run::~Run() {
         std::cout<<"~Run()\n";
