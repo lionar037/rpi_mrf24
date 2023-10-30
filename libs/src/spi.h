@@ -26,8 +26,8 @@ namespace SPI{
     void init();
     void settings_spi();
     void spi_close();
-    uint8_t Transfer2bytes(uint16_t address);
-    uint8_t Transfer3bytes(uint32_t address);
+    uint8_t Transfer2bytes(const uint16_t address);
+    uint8_t Transfer3bytes(const uint32_t address);
     void printDBGSpi();
     void msj_fail();
     

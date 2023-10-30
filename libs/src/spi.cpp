@@ -67,7 +67,7 @@ if(ret != 0) {
 
 
 
-uint8_t Spi::Transfer2bytes(uint16_t cmd){
+uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     spi.len = sizeof(cmd);
     rx_buffer[0]=rx_buffer[1]=0xff;
     rx_buffer[2]=rx_buffer[3]=0xff;
@@ -81,7 +81,7 @@ uint8_t Spi::Transfer2bytes(uint16_t cmd){
   }
 
 
-  uint8_t Spi::Transfer3bytes(uint32_t cmd){
+  uint8_t Spi::Transfer3bytes(const uint32_t cmd){
     char buff_tmp[]={"0x00,0x00,0x00"};
 
     spi.len = sizeof(buff_tmp);
