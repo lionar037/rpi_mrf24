@@ -17,7 +17,7 @@ Run::Run()
 }
 
 void Run::interrupt_routine() {
-    mrf24j40_spi->interrupt_handler(); // mrf24 object interrupt routine
+    mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
 }
 
 
