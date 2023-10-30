@@ -54,7 +54,7 @@ namespace SPI{
     uint8_t rx_buffer[4]{};
 
     const uint32_t len_data { 32 };
-    const uint32_t spi_speed { 1000000 };
+    const uint32_t spi_speed { 100000 };
     
     int fs{0};
     int ret{0};
