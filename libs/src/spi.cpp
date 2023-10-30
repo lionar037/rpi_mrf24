@@ -85,7 +85,6 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
   const uint8_t Spi::Transfer3bytes(const uint32_t cmd){
     char buff_tmp[]={"0x00,0x00,0x00"};
-
     spi.len = sizeof(buff_tmp);
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0x00;
@@ -100,20 +99,20 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
 
     void Spi::spi_close(){
-      std::cout<<"spi_close()\n";
+        std::cout<<"spi_close()\n";
         close(fs);
         std::cout<<"spi_close2()\n";
-        exit(EXIT_SUCCESS);
+        
         std::cout<<"spi_close3()\n";
-        return;
+      return;
     }
 
     Spi::Spi()
      :_spi2{ std::make_unique< struct spi_ioc_transfer> ()}
     {
 
-        init();
-        settings_spi();    
+          init();
+          settings_spi();    
           std::cout<<"Spi()\n";
         return;
     }

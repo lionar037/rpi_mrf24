@@ -27,6 +27,7 @@ namespace SPI{
       if(fs)close(fs);
       spi_close();
       std::cout<<"~Spi()\n";
+      exit(EXIT_SUCCESS);
     }
 
 
