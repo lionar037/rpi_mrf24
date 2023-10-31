@@ -74,7 +74,7 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
       if(ret != 0) { 
           printDBGSpi();
-        return rx_buffer[2];
+        return rx_buffer[1];
       }
   return 0x00;
   }
