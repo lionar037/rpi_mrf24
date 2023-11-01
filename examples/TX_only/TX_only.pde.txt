@@ -52,6 +52,8 @@ void handle_tx() {
     if (mrf.get_txinfo()->tx_ok) {
         Serial.println("TX went ok, got ack");
     } else {
-        Serial.print("TX failed after ");Serial.print(mrf.get_txinfo()->retries);Serial.println(" retries\n");
+        Serial.print("TX failed after ");
+        Serial.print(mrf.get_txinfo()->retries);
+        Serial.println(" retries\n");
     }
 }

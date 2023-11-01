@@ -219,9 +219,9 @@ printf("panid: 0x%X\n",panid);
         }
     }
 
-                    /**
-                     * Set RX mode to promiscuous, or normal
-                     */
+            /**
+             * Set RX mode to promiscuous, or normal
+             */
     void Mrf24j::set_promiscuous(bool enabled) {
         if (enabled) {
             write_short(MRF_RXMCR, 0x01);
