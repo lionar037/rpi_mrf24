@@ -4,11 +4,15 @@
 #define MODULE_0 
 //#define MODULE_1 
 #ifdef MODULE_0
-    #define ADDR_SETTINGS 0xCAFE
-    #define ADDR_SLAVE 0xCAFD
+    #define ADDRESS 0x6001
+    #define ADDR_SETTINGS ADDRESS
+    #define ADDR_SLAVE ADDRESS+1
+    
 #else
-    #define ADDR_SETTINGS 0xCAFD
-    #define ADDR_SLAVE 0xCAFE
+    #define ADDRESS 0x6002
+    #define ADDR_SETTINGS ADDRESS+1
+    #define ADDR_SLAVE ADDRESS
+
 #endif
 
 
