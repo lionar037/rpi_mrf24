@@ -11,8 +11,9 @@ Run::Run()
     std::cout<<"Run()\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
-    mrf24j40_spi.set_pan(ADDR_SETTINGS);
-    mrf24j40_spi.address16_write(0x6001); 
+    mrf24j40_spi.set_pan(ADDR_PAN);
+    // This is _our_ address
+    mrf24j40_spi.address16_write(ADDRESS); 
 
     // uncomment if you want to receive any packet on this channel
   mrf24j40_spi.set_promiscuous(true);
