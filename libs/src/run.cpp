@@ -18,7 +18,7 @@ Run::Run()
   mrf24j40_spi.set_promiscuous(true);
   
   // uncomment if you want to enable PA/LNA external control
-  //mrf24j40_spi.set_palna(true);
+  mrf24j40_spi.set_palna(true);
   
   // uncomment if you want to buffer all PHY Payload
   mrf24j40_spi.set_bufferPHY(true);
