@@ -1,6 +1,5 @@
 #include <cmd_mrf24j40.h>
 #include <mrf24j40.h>
-//#include <mrf24j40ma.h>
 
 namespace MRF24J40{
 
@@ -19,7 +18,7 @@ namespace MRF24J40{
     }
 
     uint8_t Mrf24j::read_short(uint8_t address) {
-                    // 0 top for short addressing, 0 bottom for read
+            // 0 top for short addressing, 0 bottom for read
         uint16_t tmp = (address<<1 & 0b01111110) & 0x00ff;
         uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
 
@@ -27,7 +26,7 @@ namespace MRF24J40{
     }
 
     void Mrf24j::write_short(uint8_t address, uint8_t data) {
-                    // 0 for top short address, 1 bottom for write
+            // 0 for top short address, 1 bottom for write
     uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
         prt_spi->Transfer2bytes(lsb_tmp);
         return;
@@ -69,10 +68,10 @@ namespace MRF24J40{
         return (a16h << 8 | read_short(MRF_SADRL));
     }
 
-/**
- * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
- * @param data
- */
+        /**
+         * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
+         //* @param data
+        */
 
     void Mrf24j::send16(uint16_t dest16, const char * data) {
         uint8_t len = strlen(data); // get the length of the char* array
@@ -114,8 +113,8 @@ printf("panid: 0x%X\n",panid);
         write_short(MRF_INTCON, 0b11110110);
     }
 
-    /** use the 802.15.4 channel numbers..
-     */
+            /** use the 802.15.4 channel numbers..
+            */
     void Mrf24j::set_channel(uint8_t channel) {
         write_long(MRF_RFCON0, (((channel - 11) << 4) | 0x03));
     }
@@ -205,9 +204,9 @@ printf("panid: 0x%X\n",panid);
     }
 
 
-                    /**
-                     * Call this function periodically, it will invoke your nominated handlers
-                     */
+            /**
+             * Call this function periodically, it will invoke your nominated handlers
+             */
     void Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)()){
                     // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (flag_got_rx) {
