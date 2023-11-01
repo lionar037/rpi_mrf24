@@ -76,7 +76,7 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
           printDBGSpi();
         return rx_buffer[1];
       }
-  return 0x00;
+  return rx_buffer[1];
   }
 
 
@@ -91,7 +91,7 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
             printDBGSpi();
           return rx_buffer[2];
           }
-    return 0x00;
+    return rx_buffer[2];
     }
 
 
