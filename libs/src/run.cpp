@@ -38,7 +38,7 @@ void Run::loop() {
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
         std::cout<<"txxxing...\n";
-        mrf24j40_spi.send16(0x1234, "BTCH");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        mrf24j40_spi.send16(0x1234, "@BTCH");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     }
 }
 
