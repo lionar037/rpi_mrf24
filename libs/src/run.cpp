@@ -62,9 +62,10 @@ void handle_rx() {
     }
     
     std::cout<<"\r\nASCII data (relevant data):\n";
-    auto data_length =mrf24j40_spi.rx_datalength();
-    std::cout << "data_length : "<<std::dec<<data_length<<"\n";
-    for (int i = 0; i < data_length; i++) {
+    auto recevive_data_length =mrf24j40_spi.rx_datalength();
+    std::cout << "\t\tdata_length : "<<std::dec<<recevive_data_length<<"\n";
+
+    for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
