@@ -91,6 +91,7 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
             printDBGSpi();
           return rx_buffer[2];
           }
+          printf("0x%x ",rx_buffer[2]);
     return rx_buffer[2];
     }
 
