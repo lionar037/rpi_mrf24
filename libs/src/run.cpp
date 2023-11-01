@@ -64,14 +64,15 @@ void handle_rx() {
     std::cout<<"\r\nASCII data (relevant data):\n";
     for (int i = 0; i < mrf24j40_spi.rx_datalength(); i++) {
 
-        std::cout<<mrf24j40_spi.get_rxinfo()->rx_data[i];
+        std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
+        std::cout<<"/";
     }
     
     std::cout<<"\r\nLQI/RSSI = ...\n";
-    std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
+    std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->lqi;
 
     std::cout<<"/";
-    std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->rssi;
+    std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     
 }
 
