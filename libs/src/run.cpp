@@ -14,17 +14,17 @@ Run::Run()
     mrf24j40_spi.set_pan(ADDR_SETTINGS);
     mrf24j40_spi.address16_write(0x6001); 
 
-  // uncomment if you want to receive any packet on this channel
+    // uncomment if you want to receive any packet on this channel
   mrf24j40_spi.set_promiscuous(true);
   
-  // uncomment if you want to enable PA/LNA external control
+    // uncomment if you want to enable PA/LNA external control
   mrf24j40_spi.set_palna(true);
   
-  // uncomment if you want to buffer all PHY Payload
+    // uncomment if you want to buffer all PHY Payload
   mrf24j40_spi.set_bufferPHY(true);
 
-  //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
-  //last_time = millis();
+    //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
+    //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
 
@@ -32,7 +32,6 @@ Run::Run()
 }
 
 void Run::loop() {
-
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
     unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
@@ -67,7 +66,7 @@ void handle_rx() {
 
     for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
-        printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        printf("0x%x ",*mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
     
