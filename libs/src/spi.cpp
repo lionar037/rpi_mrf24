@@ -73,9 +73,10 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
       if(ret != 0) { 
-          printDBGSpi();
+          printDBGSpi(); printf("0x%x ",rx_buffer[1]);
         return rx_buffer[1];
       }
+     
   return rx_buffer[1];
   }
 
@@ -88,10 +89,10 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
         if(ret != 0) {
-            printDBGSpi();
+            printDBGSpi();printf("0x%x ",rx_buffer[2]);
           return rx_buffer[2];
           }
-          printf("0x%x ",rx_buffer[2]);
+          
     return rx_buffer[2];
     }
 
