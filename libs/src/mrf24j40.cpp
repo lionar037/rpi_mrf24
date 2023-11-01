@@ -263,9 +263,9 @@ printf("panid: 0x%X\n",panid);
         return bufPHY;
     }
 
-/**
- * Set PA/LNA external control
- */
+        /**
+         * Set PA/LNA external control
+         */
     void Mrf24j::set_palna(bool enabled) {
         if (enabled) {
             write_long(MRF_TESTMODE, 0x07); // Enable PA/LNA on MRF24J40MB module.

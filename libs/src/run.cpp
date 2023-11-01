@@ -61,13 +61,13 @@ void handle_rx() {
       }
     }
     
-    std::cout<<"\r\nASCII data (relevant data):";
+    std::cout<<"\r\nASCII data (relevant data):\n";
     for (int i = 0; i < mrf24j40_spi.rx_datalength(); i++) {
 
         std::cout<<mrf24j40_spi.get_rxinfo()->rx_data[i];
     }
     
-    std::cout<<"\r\nLQI/RSSI = ";
+    std::cout<<"\r\nLQI/RSSI = ...\n";
     std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
 
     std::cout<<"/";
@@ -77,9 +77,9 @@ void handle_rx() {
 
 void handle_tx() {
          if (mrf24j40_spi.get_txinfo()->tx_ok) {
-             std::cout<<"TX went ok, got ack ";
+             std::cout<<"TX went ok, got ack ...\n";
          } else {
-             std::cout<<"TX failed after ";
+             std::cout<<"TX failed after ...\n";
              std::cout<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" retries\n";
          }
