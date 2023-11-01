@@ -21,37 +21,37 @@ namespace MRF24J40{
 
     uint8_t Mrf24j::read_short(uint8_t address) {
             // 0 top for short addressing, 0 bottom for read
-        uint16_t tmp = (address<<1 & 0b01111110) & 0x00ff;
-        uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
+        const uint16_t tmp = (address<<1 & 0b01111110) & 0x00ff;
+        const uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
 
         return ret;
     }
 
     void Mrf24j::write_short(uint8_t address, uint8_t data) {
             // 0 for top short address, 1 bottom for write
-    uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
+    const uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
         prt_spi->Transfer2bytes(lsb_tmp);
         return;
     }
 
     uint8_t Mrf24j::read_long(uint16_t address) {
-        uint8_t lsb_adress = (address >> 3 )& 0x7F;
-        uint8_t msb_adress = (address << 5) & 0xE0;
-        uint32_t tmp = (( 0x00 << 16 ) | (0x80 | lsb_adress) | (msb_adress <<8) ) &  0x00ffffff;
-	    uint8_t ret = prt_spi->Transfer3bytes(tmp);
+       const  uint8_t lsb_adress = (address >> 3 )& 0x7F;
+       const  uint8_t msb_adress = (address << 5) & 0xE0;
+     const   uint32_t tmp = (( 0x00 << 16 ) | (0x80 | lsb_adress) | (msb_adress <<8) ) &  0x00ffffff;
+	   const uint8_t ret = prt_spi->Transfer3bytes(tmp);
     return ret;
     }
 
     void Mrf24j::write_long(const uint16_t address,const uint8_t data) {
-        uint8_t lsb_address = (address >> 3) & 0x7F;
-        uint8_t msb_address = (address << 5) & 0xE0;
-        uint32_t comp = ( (0x80 | lsb_address) | ( (msb_address | 0x10) << 8 ) | (data<<16) ) & 0xffffff;
+        const uint8_t lsb_address = (address >> 3) & 0x7F;
+        const uint8_t msb_address = (address << 5) & 0xE0;
+        const uint32_t comp = ( (0x80 | lsb_address) | ( (msb_address | 0x10) << 8 ) | (data<<16) ) & 0xffffff;
         prt_spi->Transfer3bytes(comp);
         return;
     }
 
     uint16_t Mrf24j::get_pan(void) {
-        uint8_t panh = read_short(MRF_PANIDH);
+        const uint8_t panh = read_short(MRF_PANIDH);
         return (panh << 8 | read_short(MRF_PANIDL));
     }
 
@@ -61,12 +61,12 @@ namespace MRF24J40{
     }
 
     void Mrf24j::address16_write(uint16_t address16) {
-        write_short(MRF_SADRH, address16 >> 8);
+        write_short(MRF_SADRH, (address16 >> 8)& 0xff);
         write_short(MRF_SADRL, address16 & 0xff);
     }
 
     uint16_t Mrf24j::address16_read(void) {
-        uint8_t a16h = read_short(MRF_SADRH);
+        const uint8_t a16h = read_short(MRF_SADRH);
         return (a16h << 8 | read_short(MRF_SADRL));
     }
 
@@ -76,7 +76,7 @@ namespace MRF24J40{
         */
 
     void Mrf24j::send16(uint16_t dest16, const char * data) {
-        uint8_t len = strlen(data); // get the length of the char* array
+        const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, bytes_MHR); // header length
                         // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
