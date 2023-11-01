@@ -89,14 +89,14 @@ namespace MRF24J40{
         write_long(i++, 0b10001000); // second byte of frame control
         write_long(i++, 1);  // sequence number 1
 
-        uint16_t panid = get_pan();
+        const uint16_t panid = get_pan();
 printf("panid: 0x%X\n",panid);
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
         write_long(i++, dest16 & 0xff);  // dest16 low
         write_long(i++, dest16 >> 8); // dest16 high
 
-        uint16_t src16 = address16_read();
+        const uint16_t src16 = address16_read();
         write_long(i++, src16 & 0xff); // src16 low
         write_long(i++, src16 >> 8); // src16 high
 
@@ -162,14 +162,14 @@ printf("panid: 0x%X\n",panid);
              */
             
     void Mrf24j::interrupt_handler(void) {
-        uint8_t last_interrupt = read_short(MRF_INTSTAT);
+        const uint8_t last_interrupt = read_short(MRF_INTSTAT);
         if (last_interrupt & MRF_I_RXIF) {
             flag_got_rx++;
                 // read out the packet data...
             noInterrupts();
             rx_disable();
                 // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
-            uint8_t frame_length = read_long(0x300);
+            const uint8_t frame_length = read_long(0x300);
 
                 // buffer all bytes in PHY Payload
             if(bufPHY){
