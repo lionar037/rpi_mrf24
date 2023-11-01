@@ -55,14 +55,14 @@ void handle_rx() {
     std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-      std::cout<<"Packet data (PHY Payload):";
+      std::cout << " Packet data (PHY Payload):";
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) {
           std::cout<<mrf24j40_spi.get_rxbuf()[i];
       }
     }
     
     std::cout<<"\r\nASCII data (relevant data):\n";
-    auto recevive_data_length =mrf24j40_spi.rx_datalength();
+    auto recevive_data_length = mrf24j40_spi.rx_datalength();
     std::cout << "\t\tdata_length : "<<std::dec<<recevive_data_length<<"\n";
 
     for (int i = 0; i < recevive_data_length; i++) {
