@@ -50,26 +50,28 @@ void Run::interrupt_routine() {
 void handle_rx() {
     
     std::cout << " received a packet ";
-    std::cout << std::dec << mrf24j40_spi.get_rxinfo()->frame_length;
+    std::cout << "\t"<<std::dec << mrf24j40_spi.get_rxinfo()->frame_length;
     std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-      std::cout << " Packet data (PHY Payload):";
+      std::cout << " Packet data (PHY Payload) :";
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) {
           std::cout<<mrf24j40_spi.get_rxbuf()[i];
       }
     }
     
-    std::cout<<"\r\nASCII data (relevant data):\n";
+    std::cout<<"\r\nASCII data (relevant data) :\n";
     auto recevive_data_length = mrf24j40_spi.rx_datalength();
     std::cout << "\t\tdata_length : "<<std::dec<<recevive_data_length<<"\n\t";
 
     for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
-        printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        printf("0x%X ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
-    
+    printf("\n0x%S\n ",mrf24j40_spi.get_rxinfo()->rx_data;
+
+
     std::cout<<"\r\nLQI/RSSI = \n\t";
     //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
     printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
