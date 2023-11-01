@@ -34,7 +34,7 @@ namespace SPI{
     void printDBGSpi();
     void msj_fail();
     
-     //void read_write();
+    //void read_write();
     //void read_write(size_t,uint32_t);
    
     //uint8_t read(uint16_t);

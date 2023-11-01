@@ -1,5 +1,7 @@
 #include <cmd_mrf24j40.h>
 #include <mrf24j40.h>
+#include <tyme.h>
+
 
 namespace MRF24J40{
 
@@ -149,7 +151,7 @@ printf("panid: 0x%X\n",panid);
             // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
         write_short(MRF_RFCTL, 0x00);       // part 2
-        delay(1); // delay at least 192usec
+        delay(1);                           // delay at least 192usec
     }
 
             /**
@@ -163,13 +165,13 @@ printf("panid: 0x%X\n",panid);
         uint8_t last_interrupt = read_short(MRF_INTSTAT);
         if (last_interrupt & MRF_I_RXIF) {
             flag_got_rx++;
-            // read out the packet data...
+                // read out the packet data...
             noInterrupts();
             rx_disable();
-            // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
+                // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
             uint8_t frame_length = read_long(0x300);
 
-            // buffer all bytes in PHY Payload
+                // buffer all bytes in PHY Payload
             if(bufPHY){
                 int rb_ptr = 0;
                 for (int i = 0; i < frame_length; i++) { // from 0x301 to (0x301 + frame_length -1)
@@ -177,9 +179,9 @@ printf("panid: 0x%X\n",panid);
                 }
             }
 
-                    // buffer data bytes
+                // buffer data bytes
             int rd_ptr = 0;
-                    // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
+                // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
             for (int i = 0; i < rx_datalength(); i++) {
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
             }
@@ -196,19 +198,18 @@ printf("panid: 0x%X\n",panid);
         if (last_interrupt & MRF_I_TXNIF) {
             flag_got_tx++;
             uint8_t tmp = read_short(MRF_TXSTAT);
-                    // 1 means it failed, we want 1 to mean it worked.
+                // 1 means it failed, we want 1 to mean it worked.
             tx_info.tx_ok = !(tmp & ~(1 << TXNSTAT));
             tx_info.retries = tmp >> 6;
             tx_info.channel_busy = (tmp & (1 << CCAFAIL));
         }
     }
 
-
             /**
              * Call this function periodically, it will invoke your nominated handlers
              */
     void Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)()){
-                    // TODO - we could check whether the flags are > 1 here, indicating data was lost?
+            // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (flag_got_rx) {
             flag_got_rx = 0;
             rx_handler();
@@ -297,6 +298,7 @@ printf("panid: 0x%X\n",panid);
     }
 
     void Mrf24j::delay(uint16_t time){
+
     return;
     }
 

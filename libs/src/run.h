@@ -6,7 +6,7 @@
 namespace MRF24J40{
 
    struct Run {
-      public:
+        public:
             explicit Run();
             ~Run();
 

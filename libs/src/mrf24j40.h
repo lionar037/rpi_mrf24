@@ -31,21 +31,21 @@ struct Mrf24j : public SPI::Spi
        // void reset(void);
         void init(void);
 
-        uint8_t read_short(uint8_t);//address
-        uint8_t read_long(uint16_t);//address
-        void write_short(uint8_t , uint8_t );//address ,data
+        uint8_t read_short(uint8_t);            //address
+        uint8_t read_long(uint16_t);            //address
+        void write_short(uint8_t , uint8_t );   //address ,data
         void write_long(const uint16_t , const uint8_t);//address ,data
         uint16_t get_pan(void);
-        void set_pan(uint16_t);//panid
-        void address16_write(uint16_t);//address16
+        void set_pan(uint16_t);                 //panid
+        void address16_write(uint16_t);         //address16
         uint16_t address16_read(void);
         void set_interrupts(void);
 
                 //void set_promiscuous(__OBJC_BOOL_IS_BOOL );
         void set_promiscuous(bool );  
-                    /**
-                     * Set the channel, using 802.15.4 channel numbers (11..26)
-                     */
+                /**
+                 * Set the channel, using 802.15.4 channel numbers (11..26)
+                 */
         void set_channel(uint8_t);
         void rx_enable(void);
         void rx_disable(void);
@@ -64,14 +64,14 @@ struct Mrf24j : public SPI::Spi
         uint8_t * get_rxbuf(void) ;
         int rx_datalength(void);
         void set_ignoreBytes(int );
-                        /**
-                         * Set bufPHY flag to buffer all bytes in PHY Payload, or not
-                         */
+                    /**
+                     * Set bufPHY flag to buffer all bytes in PHY Payload, or not
+                     */
         void set_bufferPHY(bool);
         bool get_bufferPHY(void);
-                        /**
-                         * Set PA/LNA external control
-                         */
+                    /**
+                     * Set PA/LNA external control
+                     */
         void set_palna(bool);
         void send16(uint16_t ,const char *);
         void interrupt_handler(void);
@@ -85,7 +85,6 @@ struct Mrf24j : public SPI::Spi
             const int bytes_MHR {9};
             const int bytes_FCS {2}; // FCS length = 2
             const int bytes_nodata { bytes_MHR + bytes_FCS}; // no_data bytes in PHY payload,  header length + FCS
-
 
             volatile uint8_t flag_got_rx{};
             volatile uint8_t flag_got_tx{};
