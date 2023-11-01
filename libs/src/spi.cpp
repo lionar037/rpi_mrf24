@@ -81,8 +81,8 @@ uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
 
   uint8_t Spi::Transfer3bytes(const uint32_t cmd){
-    char buff_tmp[]={"0x00,0x00,0x00"};
-    spi->len = 3;//sizeof(buff_tmp);
+    const char buff_tmp[]={"0x00,0x00,0x00"};
+    spi->len = sizeof(buff_tmp);
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
