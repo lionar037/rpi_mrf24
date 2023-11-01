@@ -23,7 +23,7 @@ Run::Run()
   // uncomment if you want to buffer all PHY Payload
   mrf.set_bufferPHY(true);
 
-  attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
+  //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
   //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
