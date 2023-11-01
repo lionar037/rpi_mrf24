@@ -68,7 +68,7 @@ void handle_rx() {
         std::cout<<".";
     }
     
-    std::cout<<"\r\nLQI/RSSI = ...\n";
+    std::cout<<"\r\nLQI/RSSI = \n";
     std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->lqi;
 
     std::cout<<"/";
@@ -78,9 +78,9 @@ void handle_rx() {
 
 void handle_tx() {
          if (mrf24j40_spi.get_txinfo()->tx_ok) {
-             std::cout<<"TX went ok, got ack ...\n";
+             std::cout<<"TX went ok, got ack \n";
          } else {
-             std::cout<<"TX failed after ...\n";
+             std::cout<<"TX failed after \n";
              std::cout<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" retries\n";
          }
