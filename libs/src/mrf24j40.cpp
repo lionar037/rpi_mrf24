@@ -21,7 +21,7 @@ namespace MRF24J40{
     uint8_t Mrf24j::read_short(uint8_t address) {
                     // 0 top for short addressing, 0 bottom for read
         uint16_t tmp = (address<<1 & 0b01111110) & 0x00ff;
-        uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menso significativos envia el comando
+        uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
 
         return ret;
     }
@@ -121,15 +121,15 @@ printf("panid: 0x%X\n",panid);
     }
 
     void Mrf24j::init(void) {
-                    /*
-                    // Seems a bit ridiculous when I use reset pin anyway
-                    write_short(MRF_SOFTRST, 0x7); // from manual
-                    while (read_short(MRF_SOFTRST) & 0x7 != 0) {
-                        ; // wait for soft reset to finish
-                    }
-                    */
-        write_short(MRF_PACON2, 0x98);              // – Initialize FIFOEN = 1 and TXONTS = 0x6.
-        write_short(MRF_TXSTBL, 0x95);                  // – Initialize RFSTBL = 0x9.
+            /*
+            // Seems a bit ridiculous when I use reset pin anyway
+            write_short(MRF_SOFTRST, 0x7); // from manual
+            while (read_short(MRF_SOFTRST) & 0x7 != 0) {
+                ; // wait for soft reset to finish
+            }
+            */
+        write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
+        write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
 
         write_long(MRF_RFCON0, 0x03);   // – Initialize RFOPT = 0x03.
         write_long(MRF_RFCON1, 0x01);   // – Initialize VCOOPT = 0x02.
@@ -139,17 +139,17 @@ printf("panid: 0x%X\n",panid);
         write_long(MRF_RFCON8, 0x10);   // – Initialize RFVCO = 1.
         write_long(MRF_SLPCON1, 0x21);  // – Initialize CLKOUTEN = 1 and SLPCLKDIV = 0x01.
 
-                    //  Configuration for nonbeacon-enabled devices (see Section 3.8 “Beacon-Enabled and
-                    //  Nonbeacon-Enabled Networks”):
-        write_short(MRF_BBREG2, 0x80); // Set CCA mode to ED
-        write_short(MRF_CCAEDTH, 0x60); // – Set CCA ED threshold.
-        write_short(MRF_BBREG6, 0x40); // – Set appended RSSI value to RXFIFO.
+            //  Configuration for nonbeacon-enabled devices (see Section 3.8 “Beacon-Enabled and
+            //  Nonbeacon-Enabled Networks”):
+        write_short(MRF_BBREG2, 0x80);      // Set CCA mode to ED
+        write_short(MRF_CCAEDTH, 0x60);     // – Set CCA ED threshold.
+        write_short(MRF_BBREG6, 0x40);      // – Set appended RSSI value to RXFIFO.
         set_interrupts();
-        set_channel(24);//original 12
-                // max power is by default.. just leave it...
-                // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
-        write_short(MRF_RFCTL, 0x04); //  – Reset RF state machine.
-        write_short(MRF_RFCTL, 0x00); // part 2
+        set_channel(24);                    //original 12
+            // max power is by default.. just leave it...
+            // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
+        write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
+        write_short(MRF_RFCTL, 0x00);       // part 2
         delay(1); // delay at least 192usec
     }
 
@@ -159,6 +159,7 @@ printf("panid: 0x%X\n",panid);
              * continue working.
              * Only the most recent data is ever kept.
              */
+            
     void Mrf24j::interrupt_handler(void) {
         uint8_t last_interrupt = read_short(MRF_INTSTAT);
         if (last_interrupt & MRF_I_RXIF) {
