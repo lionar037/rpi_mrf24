@@ -72,8 +72,8 @@ void handle_rx() {
     
     std::cout<<"\r\nLQI/RSSI = \n";
     //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
-    printf("0x%X.",mrf24j40_spi.get_rxinfo()->lqi);
-    std::cout<<" ";
+    printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
+    //std::cout<<" ";
     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     printf("0x%X.",mrf24j40_spi.get_rxinfo()->rssi);
 }
