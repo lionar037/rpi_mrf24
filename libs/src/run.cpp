@@ -37,7 +37,8 @@ void Run::loop() {
     unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
-        std::cout<<"txxxing...\n";
+        //std::cout<<"txxxing...\n";
+        std::cout<<"send16 () ... \n";
         mrf24j40_spi.send16(0x1234, "@BTCH");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     }
 }
@@ -51,7 +52,6 @@ void handle_rx() {
     
     std::cout<<"received a packet ";
     std::cout<<std::dec << mrf24j40_spi.get_rxinfo()->frame_length;
-    
     std::cout<<" bytes long";
     
     if(mrf24j40_spi.get_bufferPHY()){
@@ -65,7 +65,6 @@ void handle_rx() {
     auto data_length =mrf24j40_spi.rx_datalength();
     std::cout << "data_length : "<<std::dec<<data_length<<"\n";
     for (int i = 0; i < data_length; i++) {
-
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         printf("0x%x.",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
