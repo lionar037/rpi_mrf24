@@ -8,3 +8,6 @@ bin/
 .vscode/
 olds/
 move/
+data.txt
+data1.txt
+examples/
