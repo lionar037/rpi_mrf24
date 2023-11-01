@@ -15,13 +15,13 @@ Run::Run()
     mrf24j40_spi.address16_write(0x6001); 
 
   // uncomment if you want to receive any packet on this channel
-  mrf.set_promiscuous(true);
+  mrf24j40_spi.set_promiscuous(true);
   
   // uncomment if you want to enable PA/LNA external control
   //mrf.set_palna(true);
   
   // uncomment if you want to buffer all PHY Payload
-  mrf.set_bufferPHY(true);
+  mrf24j40_spi.set_bufferPHY(true);
 
   //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
   //last_time = millis();
