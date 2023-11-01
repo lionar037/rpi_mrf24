@@ -66,9 +66,9 @@ void handle_rx() {
     std::cout << "data_length : "<<std::dec<<data_length<<"\n";
     for (int i = 0; i < data_length; i++) {
 
-        std::cout<<std::hex<<mrf24j40_spi.get_rxinfo().rx_data[i];
-        
-        std::cout<<".";
+        //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
+        printf("0x%x.",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        //std::cout<<".";
     }
     
     std::cout<<"\r\nLQI/RSSI = \n";
