@@ -11,7 +11,7 @@ Run::Run()
     std::cout<<"Run()\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
-    mrf24j40_spi.set_pan(0xcafe);
+    mrf24j40_spi.set_pan(ADDR_SETTINGS);
     mrf24j40_spi.address16_write(0x6001); 
 
   // uncomment if you want to receive any packet on this channel
@@ -39,7 +39,7 @@ void Run::loop() {
         last_time = current_time;
         //std::cout<<"txxxing...\n";
         std::cout<<"send16 () ... \n";
-        mrf24j40_spi.send16(0x1234, "@BTCH");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        mrf24j40_spi.send16(ADDR_SLAVE, "@BTCH");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     }
 }
 
