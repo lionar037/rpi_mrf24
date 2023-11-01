@@ -297,9 +297,9 @@ printf("panid: 0x%X\n",panid);
     return;
     }
 
-    void Mrf24j::delay(uint16_t time){
+    void Mrf24j::delay(uint16_t t){
         TYME::Time_t time ;
-        time.delay_ms(10);
+        time.delay_ms(t);
     return;
     }
 
