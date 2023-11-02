@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
+#include <gpio.h>
 
 //#define MODULE_TX 
 #define MODULE_RX 
@@ -21,7 +22,7 @@
 
 
 namespace MRF24J40{
-    struct GPIO::Gpio;
+    //struct GPIO::Gpio;
 
    struct Run :public Gpio{
         public:
