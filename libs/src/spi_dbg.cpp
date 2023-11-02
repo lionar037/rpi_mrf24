@@ -13,8 +13,8 @@ namespace SPI{
 
     void Spi::printDBGSpi(){    
     #ifdef DBG_BUFFER
-            std::cout << " spi.tx_buf   hex : "<< std::hex<< spi->tx_buf <<"\n";
-            std::cout << " spi.rx_buf   hex : "<< std::hex<< spi->rx_buf <<"\n";
+            std::cout << " spi.tx_buf   hex : 0x"<< std::hex<< spi->tx_buf <<"\n";
+            std::cout << " spi.rx_buf   hex : 0x"<< std::hex<< spi->rx_buf <<"\n";
         #else
 
             std::cout << " spi.len  : "<< std::dec<<spi->len <<"\n";
