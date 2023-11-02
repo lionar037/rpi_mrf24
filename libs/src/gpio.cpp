@@ -1,14 +1,14 @@
 extern "C"{
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <poll.h>
-#include <gpio.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <string.h>
+    #include <errno.h>
+    #include <unistd.h>
+    #include <fcntl.h>
+    #include <poll.h>
 }
 #include <iostream>
+#include <gpio.h>
 
 namespace GPIO{
 
@@ -33,7 +33,7 @@ namespace GPIO{
     // GPIO EXPORT
     int Gpio::gpio_export(int gpio_num)
     {
-        char gpio_str[4];
+        const char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_EXPORT_FN, gpio_str);
     }
@@ -41,7 +41,7 @@ namespace GPIO{
     // GPIO UNEXPORT
     int Gpio::gpio_unexport(int gpio_num)
     {
-        char gpio_str[4];
+        const char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, gpio_str);
     }
@@ -49,7 +49,7 @@ namespace GPIO{
     // GPIO DIRECTION
     int Gpio::gpio_set_direction(int gpio_num, const char *dir)
     {
-        char path_str[40];
+        const char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
         return file_open_and_write_value(path_str, dir);
     }
@@ -57,7 +57,7 @@ namespace GPIO{
     // GPIO SET VALUE
     int Gpio::gpio_set_value(int gpio_num, const char *value)
     {
-        char path_str[40];
+        const char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         return file_open_and_write_value(path_str, value);
     }
@@ -65,7 +65,7 @@ namespace GPIO{
     // GPIO SET EDGE
     int Gpio::gpio_set_edge(int gpio_num, const char *edge)
     {
-        char path_str[40];
+        const char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
         return file_open_and_write_value(path_str, edge);
     }
@@ -73,7 +73,7 @@ namespace GPIO{
     int Gpio::gpio_get_fd_to_value(int gpio_num)
     {
         int fd;
-        char fname[40];
+        const char fname[40];
         sprintf(fname, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         fd = open(fname, O_RDONLY | O_NONBLOCK);
         if (fd < 0)
@@ -84,22 +84,14 @@ namespace GPIO{
     }
 
     int Gpio::app(int argc, char **argv) {
-        unsigned int gpio_out;
+        const unsigned int gpio_out = OUT_INTERRUPT;;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
-        int gpio_in, gpio_in_fd;
+        const int gpio_in= IN_INTERRUPT;
+        int gpio_in_fd;
         int res;
         int looper = 0;
         char *buf[64];
-
-        // if(argc<3) {
-        //     printf("Usage: gpio_usage_sysfs <gpio-out> <gpio-in>\r\n");
-        //     exit(-1);
-        // }
-
-        // We reached here so params are OK - not checking for a legal number!
-        gpio_out = 1;//atoi(argv[1]);
-        gpio_in = 23;//atoi(argv[2]);
 
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
