@@ -40,7 +40,7 @@ void Run::loop() {
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
         std::cout<<"send16 () ... \n";
-        mrf24j40_spi.send16(ADDR_SLAVE, "@");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        mrf24j40_spi.send16(ADDR_SLAVE, "@@");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     }
 }
 
