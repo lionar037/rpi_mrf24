@@ -57,7 +57,7 @@ namespace GPIO{
     // GPIO SET VALUE
     int Gpio::gpio_set_value(int gpio_num, const char *value)
     {
-        const char path_str[40];
+        char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         return file_open_and_write_value(path_str, value);
     }
