@@ -73,7 +73,9 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
     //if((cmd>>8&0xff)==0x00)
-    //printDBGSpi(); 
+    #ifdef
+        printDBGSpi(); 
+    #endif
       //if(ret != 0) return rx_buffer[1];  
   return rx_buffer[1];
   }
@@ -86,7 +88,9 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
       //if((cmd>>16&0xff)==0x00) 
-     // printDBGSpi();
+      #ifdef
+        printDBGSpi();
+      #endif
         //if(ret != 0) return rx_buffer[2];       
     return rx_buffer[2];
     }
@@ -100,7 +104,9 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     Spi::Spi()
     :spi{std::make_unique<struct spi_ioc_transfer >()} , spi_speed(SPI_SPEED)
     {
-          std::cout<<"Spi()\n";
+          #ifdef DBG
+              std::cout<<"Spi()\n";
+          #endif
           settings_spi();   
           init(); 
         return;

@@ -1,6 +1,7 @@
 #include <cmd_mrf24j40.h>
 #include <mrf24j40.h>
 #include <tyme.h>
+#include <dbg.h>
 
 
 namespace MRF24J40{
@@ -90,7 +91,9 @@ namespace MRF24J40{
         write_long(i++, 1);  // sequence number 1
 
         const uint16_t panid = get_pan();
-printf("\npanid: 0x%X\n",panid);
+        #ifdef DBG
+            printf("\npanid: 0x%X\n",panid);
+        #endif
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
         write_long(i++, dest16 & 0xff);  // dest16 low
@@ -315,7 +318,9 @@ printf("\npanid: 0x%X\n",panid);
     // }
 
     Mrf24j::~Mrf24j( ){
-        std::cout <<"~Mrf24j( )\r\n";
+        #ifdef DBG
+            std::cout <<"~Mrf24j( )\r\n";
+        #endif
     }
 
 }

@@ -1,7 +1,6 @@
 
 #include <spi.h>
-//#define DBG
-#define DBG_BUFFER
+#include <dbg.h>
 
 namespace SPI{
 
