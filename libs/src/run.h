@@ -24,7 +24,7 @@
 namespace MRF24J40{
     //struct GPIO::Gpio;
 
-   struct Run :public Gpio{
+   struct Run :public GPIO::Gpio{
         public:
             explicit Run();
             ~Run();
