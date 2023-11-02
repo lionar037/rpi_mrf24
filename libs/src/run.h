@@ -1,18 +1,20 @@
 #pragma once
 #include <iostream>
 
+
 #define MODULE_0 
 //#define MODULE_1 
 #ifdef MODULE_0
     #define ADDRESS 0x6001
     #define PAN_ID 0x1234
     #define ADDR_SLAVE 0x6002
+    #define MRF24_RECEIVER_ENABLE
     
 #else
     #define ADDRESS 0x6002
     #define PAN_ID 0xCAFE
     #define ADDR_SLAVE  0x6001
-
+    #define MRF24_TRANSMITER_ENABLE
 #endif
 
 

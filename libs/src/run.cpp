@@ -49,7 +49,7 @@ void Run::interrupt_routine() {
 
 
 void handle_rx() {
-    
+    #ifdef MRF24_RECEIVER_ENABLE
     std::cout << " \nreceived a packet ... ";
     printf("0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
     std::cout << " bytes long " ;
@@ -79,9 +79,11 @@ void handle_rx() {
     //std::cout<<" ";
     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     printf("0x%X ",mrf24j40_spi.get_rxinfo()->rssi);
+    #endif
 }
 
 void handle_tx() {
+    #ifdef MRF24_TRANSMITER_ENABLE
     auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
              std::cout<<"TX went ok, got ack \n";
@@ -90,6 +92,7 @@ void handle_tx() {
              std::cout<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" retries\n";
          }
+    #endif     
     }
 
     Run::~Run() {
