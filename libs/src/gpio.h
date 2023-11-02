@@ -1,5 +1,8 @@
 #pragma once
 
+#define IN_INTERRUPT 23
+#define OUT_INTERRUPT 1
+
 #define SYSFS_GPIO_PATH             "/sys/class/gpio"
 #define SYSFS_GPIO_EXPORT_FN        "/export"
 #define SYSFS_GPIO_UNEXPORT_FN      "/unexport"
@@ -18,8 +21,6 @@
 
 #define POLL_TIMEOUT        10*1000
 
-#define IN_INTERRUPT 23
-#define OUT_INTERRUPT 1
 
 namespace GPIO{
 struct Gpio{

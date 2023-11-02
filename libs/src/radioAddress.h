@@ -1,5 +1,4 @@
 // (c) 2010-2012 nerdfever.com
-
 // Address for IEEE 802.15.4 radio
 
 #pragma once
@@ -18,7 +17,6 @@ bool RFIE;
 bool RADIO_TX ;
 bool RADIO_RX;
 bool RADIO_CLK;
-
 
 #define SPI_INTERRUPTS
 
