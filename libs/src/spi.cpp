@@ -72,24 +72,24 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     rx_buffer[2]=rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
+    printf("0x%x ",rx_buffer[1]);
       if(ret != 0) { 
-          printDBGSpi(); printf("0x%x ",rx_buffer[1]);
+          printDBGSpi(); 
         return rx_buffer[1];
-      }
-     
+      }   
   return rx_buffer[1];
   }
 
 
   const uint8_t Spi::Transfer3bytes(const uint32_t cmd){
-    const char buff_tmp[]={"0x00,0x00,0x00"};
-    spi->len = 3;//sizeof(buff_tmp);
+    spi->len = 3;
     rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
     rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
+    printf("0x%x ",rx_buffer[2]);
         if(ret != 0) {
-            printDBGSpi();printf("0x%x ",rx_buffer[2]);
+            printDBGSpi();
           return rx_buffer[2];
           }
           

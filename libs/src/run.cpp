@@ -37,7 +37,6 @@ void Run::loop() {
     unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
-        //std::cout<<"txxxing...\n";
         std::cout<<"send16 () ... \n";
         mrf24j40_spi.send16(ADDR_SLAVE, "@ABCD");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     }
@@ -47,6 +46,20 @@ void Run::interrupt_routine() {
     mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
 }
 
+
+
+void handle_tx() {
+    #ifdef MRF24_TRANSMITER_ENABLE
+    auto status = mrf24j40_spi.get_txinfo()->tx_ok;
+         if (status) {
+             std::cout<<"TX went ok, got ack \n";
+         } else {
+             std::cout<<"\nTX failed after \n";
+             std::cout<<mrf24j40_spi.get_txinfo()->retries;
+             std::cout<<" retries\n";
+         }
+    #endif     
+    }
 
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
@@ -82,18 +95,6 @@ void handle_rx() {
     #endif
 }
 
-void handle_tx() {
-    #ifdef MRF24_TRANSMITER_ENABLE
-    auto status = mrf24j40_spi.get_txinfo()->tx_ok;
-         if (status) {
-             std::cout<<"TX went ok, got ack \n";
-         } else {
-             std::cout<<"\nTX failed after \n";
-             std::cout<<mrf24j40_spi.get_txinfo()->retries;
-             std::cout<<" retries\n";
-         }
-    #endif     
-    }
 
     Run::~Run() {
         std::cout<<"~Run()\n";
