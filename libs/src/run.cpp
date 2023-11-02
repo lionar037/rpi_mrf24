@@ -97,7 +97,9 @@ void handle_rx() {
 
 
     Run::~Run() {
-        std::cout<<"~Run()\n";
+        #ifdef DBG
+            std::cout<<"~Run()\n";
+        #endif
     }
 }
 

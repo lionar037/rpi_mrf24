@@ -6,12 +6,16 @@
 namespace TYME{
 
     Time_t::Time_t(){
-        std::cout << " Time_t()\n";
+        #ifdef DBG
+            std::cout << " Time_t()\n";
+        #endif
 
     }
 
     Time_t::~Time_t(){
-        std::cout << " ~Time_t()\n";
+        #ifdef DBG
+            std::cout << " ~Time_t()\n";
+        #endif
     }
 
     void Time_t::delay_ms(const uint32_t t){

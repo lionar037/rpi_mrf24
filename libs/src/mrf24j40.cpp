@@ -17,7 +17,9 @@ namespace MRF24J40{
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()}
     {
-        std::cout <<"Mrf24j( )\r\n";
+        #ifdef DBG
+            std::cout <<"Mrf24j( )\r\n";
+        #endif
     }
 
     const uint8_t Mrf24j::read_short(uint8_t address) {
