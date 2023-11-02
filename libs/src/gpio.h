@@ -25,7 +25,7 @@ namespace GPIO{
 struct Gpio{
     Gpio();
     ~Gpio();
-        static int file_open_and_write_value(const char *, const char *);
+         int file_open_and_write_value(const char *, const char *);
         int gpio_export(int );
         int gpio_unexport(int );
         int gpio_set_direction(int , const char *);

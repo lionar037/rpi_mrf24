@@ -15,7 +15,7 @@ namespace GPIO{
     /*      HELPER FUNCTIONS       */
 
     // FILE OPERATION
-    static int Gpio::file_open_and_write_value(const char *fname, const char *wdata)
+     int Gpio::file_open_and_write_value(const char *fname, const char *wdata)
     {
         int fd;
 
