@@ -11,7 +11,7 @@ Run::Run()
     std::cout<<"Run()\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
-    mrf24j40_spi.set_pan(ADDRESS_PAN);
+    mrf24j40_spi.set_pan(PAN_ID);
     // This is _our_ address
     mrf24j40_spi.address16_write(ADDRESS); 
 
