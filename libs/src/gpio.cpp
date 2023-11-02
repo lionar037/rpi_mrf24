@@ -141,13 +141,13 @@ namespace GPIO{
 
 
     Gpio::Gpio(){
-        #fidef DBG
+        #ifdef DBG
             std::cout<<"~Gpio()\n";
         #endif
     }
     
     Gpio::~Gpio(){
-        #fidef DBG
+        #ifdef DBG
             std::cout<<"~Gpio()\n";
         #endif       
     }
