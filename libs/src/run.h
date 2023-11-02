@@ -17,6 +17,7 @@
     #define PAN_ID 0x1234
     #define ADDR_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
+   // #define ENABLE_INTERRUPT_MRF24
     
 #endif
 
@@ -34,7 +35,7 @@ namespace MRF24J40{
         private :
             unsigned long last_time{0};
             unsigned long tx_interval{1000}; 
-        #ifdef MRF24_RECEIVER_ENABLE
+        #ifdef ENABLE_INTERRUPT_MRF24
             std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
         #endif 
       
