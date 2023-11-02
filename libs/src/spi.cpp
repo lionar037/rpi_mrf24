@@ -18,7 +18,6 @@ namespace SPI {
       spi->rx_buf = (unsigned long)rx_buffer;
       spi->bits_per_word = 0;
       spi->speed_hz = spi_speed;
-      printf("speed %d\n",spi->speed_hz);
       spi->delay_usecs = 1;
       spi->len = 3;
 
@@ -73,12 +72,8 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     rx_buffer[2]=rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
-    if((cmd>>8&0xff)==0x00)
-    printf("0x%x ",rx_buffer[1]);
-      if(ret != 0) { 
-          printDBGSpi(); 
-        return rx_buffer[1];
-      }   
+    if((cmd>>8&0xff)==0x00)printDBGSpi(); 
+      //if(ret != 0) return rx_buffer[1];  
   return rx_buffer[1];
   }
 
@@ -89,12 +84,8 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     rx_buffer[3]=0x00;
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
-      if((cmd>>16&0xff)==0x00)printf("0x%x ",rx_buffer[2]);
-        if(ret != 0) {
-            printDBGSpi();
-          return rx_buffer[2];
-          }
-          
+      if((cmd>>16&0xff)==0x00) printDBGSpi();
+        //if(ret != 0) return rx_buffer[2];       
     return rx_buffer[2];
     }
 
