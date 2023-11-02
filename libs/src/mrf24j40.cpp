@@ -23,7 +23,7 @@ namespace MRF24J40{
             // 0 top for short addressing, 0 bottom for read
         const uint16_t tmp = (address<<1 & 0b01111110) & 0x00ff;
         const uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
-
+printf("2:0x%x ",ret);
         return ret;
     }
 
@@ -34,11 +34,12 @@ namespace MRF24J40{
         return;
     }
 
-    uint8_t Mrf24j::read_long(uint16_t address) {
+    uint8_t Mrf24j::read_long(const uint16_t address) {
        const  uint8_t lsb_adress = (address >> 3 )& 0x7F;
        const  uint8_t msb_adress = (address << 5) & 0xE0;
      const   uint32_t tmp = (( 0x00 << 16 ) | (0x80 | lsb_adress) | (msb_adress <<8) ) &  0x00ffffff;
 	   const uint8_t ret = prt_spi->Transfer3bytes(tmp);
+       printf("3:0x%x ",ret);
     return ret;
     }
 

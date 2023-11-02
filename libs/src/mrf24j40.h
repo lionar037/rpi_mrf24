@@ -31,8 +31,8 @@ struct Mrf24j : public SPI::Spi
        // void reset(void);
         void init(void);
 
-        uint8_t read_short(uint8_t);            //address
-        uint8_t read_long(uint16_t);            //address
+        const uint8_t read_short(uint8_t);            //address
+        const uint8_t read_long(uint16_t);            //address
         void write_short(uint8_t , uint8_t );   //address ,data
         void write_long(const uint16_t , const uint8_t);//address ,data
         uint16_t get_pan(void);
