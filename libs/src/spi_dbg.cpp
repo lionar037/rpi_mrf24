@@ -12,11 +12,11 @@ namespace SPI{
         }
 
     void Spi::printDBGSpi(){    
-    #ifdef DBG_BUFFER
+        #ifdef DBG_BUFFER
             std::cout << " spi.tx_buf   hex : 0x"<< std::hex<< spi->tx_buf <<"\n";
             std::cout << " spi.rx_buf   hex : 0x"<< std::hex<< spi->rx_buf <<"\n";
-        #else
-
+        #endif
+        #ifdef DBG
             std::cout << " spi.len  : "<< std::dec<<spi->len <<"\n";
             std::cout << " spi.delay_usecs  : "<< std::dec<<spi->delay_usecs <<"\n";
             std::cout << " spi.speed_hz  : "<< std::dec<<spi->speed_hz <<"\n";
