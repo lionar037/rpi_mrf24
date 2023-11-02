@@ -21,7 +21,7 @@
 
 
 namespace MRF24J40{
-    struct Gpio;
+    struct GPIO::Gpio;
 
    struct Run {
         public:
@@ -34,7 +34,7 @@ namespace MRF24J40{
             unsigned long last_time{0};
             unsigned long tx_interval{1000}; 
         #ifdef MRF24_RECEIVER_ENABLE
-            std::unique_ptr<Gpio>pin_interrupt{}; 
+            std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
         #endif 
       
     };
