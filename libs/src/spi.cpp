@@ -105,7 +105,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     }
 
     Spi::Spi()
-    :spi{std::make_unique<struct spi_ioc_transfer >()}
+    :spi{std::make_unique<struct spi_ioc_transfer >()} , spi_speed(SPI_SPEED)
     {
           std::cout<<"Spi()\n";
           settings_spi();   

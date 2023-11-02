@@ -16,6 +16,8 @@
 #include <vector>
 #include <memory>
 
+#define SPI_SPEED   100000 
+
 namespace SPI{
   struct  Spi{
 
@@ -53,7 +55,7 @@ namespace SPI{
     uint8_t rx_buffer[4]{};
 
     const uint32_t len_data { 32 };
-    const uint32_t spi_speed { 100000 };
+    const uint32_t spi_speed {  };
     
     int fs{0};
     int ret{0};
