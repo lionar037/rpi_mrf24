@@ -91,7 +91,7 @@ namespace MRF24J40{
         write_long(i++, 1);  // sequence number 1
 
         const uint16_t panid = get_pan();
-printf("panid: 0x%X\n",panid);
+printf("\npanid: 0x%X\n",panid);
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
         write_long(i++, dest16 & 0xff);  // dest16 low
@@ -101,8 +101,8 @@ printf("panid: 0x%X\n",panid);
         write_long(i++, src16 & 0xff); // src16 low
         write_long(i++, src16 >> 8); // src16 high
 
-                    // All testing seems to indicate that the next two bytes are ignored.
-                    //2 bytes on FCS appended by TXMAC
+                // All testing seems to indicate that the next two bytes are ignored.
+                //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
         for (int q = 0; q < len; q++) {
             write_long(i++, data[q]);
@@ -112,7 +112,7 @@ printf("panid: 0x%X\n",panid);
     }
 
     void Mrf24j::set_interrupts(void) {
-                    // interrupts for rx and tx normal complete
+            // interrupts for rx and tx normal complete
         write_short(MRF_INTCON, 0b11110110);
     }
 
@@ -253,9 +253,9 @@ printf("panid: 0x%X\n",panid);
         ignoreBytes = ib;
     }
 
-/**
- * Set bufPHY flag to buffer all bytes in PHY Payload, or not
- */
+        /**
+         * Set bufPHY flag to buffer all bytes in PHY Payload, or not
+         */
     void Mrf24j::set_bufferPHY(bool bp) {
         bufPHY = bp;
     }
@@ -316,8 +316,7 @@ printf("panid: 0x%X\n",panid);
     // }
 
     Mrf24j::~Mrf24j( ){
-      //  delete prt_spi;
-    std::cout <<"~Mrf24j( )\r\n";
+        std::cout <<"~Mrf24j( )\r\n";
     }
 
 }
