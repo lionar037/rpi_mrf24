@@ -18,8 +18,8 @@
 
 #define POLL_TIMEOUT        10*1000
 
-#define PIN_INTERRUPT 23
-#define POUT_INTERRUPT 1
+#define IN_INTERRUPT 23
+#define OUT_INTERRUPT 1
 
 namespace GPIO{
 struct Gpio{
