@@ -98,15 +98,15 @@ namespace GPIO{
 
     const int result_input = std::system("echo 23 > /sys/class/gpio/export");
     if (result_input == 0) {
-        std::cout << "Pin GPIO 23 unexported successfully." << std::endl;
+        std::cout << "Pin GPIO 23 exported successfully." << std::endl;
     } else {
-        std::cerr << "Error unexporting GPIO 23." << std::endl;
+        std::cerr << "Error exporting GPIO 23." << std::endl;
         return 0;
     }
 
     const int result_output = std::system("echo 1 > /sys/class/gpio/export");
     if (result_output == 0) {
-        std::cout << "Pin GPIO 1 unexported successfully." << std::endl;
+        std::cout << "Pin GPIO 1 exported successfully." << std::endl;
     } else {
         std::cerr << "Error unexporting GPIO 1." << std::endl;
         //return 0;//continua por que no es necesario el pin de salida
