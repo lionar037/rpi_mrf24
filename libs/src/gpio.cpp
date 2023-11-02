@@ -87,26 +87,29 @@ namespace GPIO{
         unsigned int gpio_out = OUT_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
-        int gpio_in= IN_INTERRUPT;
+        int gpio_in = IN_INTERRUPT;
         int gpio_in_fd;
         int res;
         int looper = 0;
         char *buf[64];
 
-std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
-std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
+    std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
+    std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
+
     const int result_input = std::system("echo 23 > /sys/class/gpio/unexport");
     if (result_input == 0) {
         std::cout << "Pin GPIO 23 unexported successfully." << std::endl;
     } else {
         std::cerr << "Error unexporting GPIO 23." << std::endl;
+        return 0;
     }
 
     const int result_output = std::system("echo 1 > /sys/class/gpio/unexport");
     if (result_output == 0) {
-        std::cout << "Pin GPIO 23 unexported successfully." << std::endl;
+        std::cout << "Pin GPIO 1 unexported successfully." << std::endl;
     } else {
-        std::cerr << "Error unexporting GPIO 23." << std::endl;
+        std::cerr << "Error unexporting GPIO 1." << std::endl;
+        //return 0;//continua por que no es necesario el pin de salida
     }
     
  
@@ -126,7 +129,7 @@ std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
         // We will wait for button press here for 10s or exit anyway
-        while(looper<5) {
+        while(looper<2) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
             fdpoll.events = POLLPRI;
