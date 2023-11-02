@@ -1,15 +1,22 @@
 
 #include <run.h>
 #include <mrf24j40.h>
+#include <gpio.h>
 
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
 
 Run::Run() 
+#ifdef MRF24_RECEIVER_ENABLE
+    : pin_interrupt{std::make_unique<Gpio>()}
+#endif
 {
     #ifdef  DBG
         std::cout<<"Run()\n";
+    #endif
+    #ifdef MRF24_RECEIVER_ENABLE
+    pin_interrupt->app();
     #endif
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();

@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
 
+//#define MODULE_TX 
+#define MODULE_RX 
 
-#define MODULE_0 
-//#define MODULE_1 
-#ifdef MODULE_0
+#ifdef MODULE_TX
     #define ADDRESS 0x6001
     #define PAN_ID 0x1234
     #define ADDR_SLAVE 0x6002
@@ -20,6 +20,7 @@
 
 
 namespace MRF24J40{
+    struct Gpio;
 
    struct Run {
         public:
@@ -30,7 +31,11 @@ namespace MRF24J40{
             void interrupt_routine();
         private :
             unsigned long last_time{0};
-            unsigned long tx_interval{1000};        
+            unsigned long tx_interval{1000}; 
+        #ifdef MRF24_RECEIVER_ENABLE
+            std::unique_ptr<Gpio>pin_interrupt{}; 
+        #endif 
+      
     };
 
             void handle_tx();

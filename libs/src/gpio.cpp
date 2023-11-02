@@ -83,7 +83,7 @@ namespace GPIO{
         return fd;
     }
 
-    int Gpio::app(int argc, char **argv) {
+    int Gpio::app() {
         const unsigned int gpio_out = OUT_INTERRUPT;;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
@@ -144,6 +144,7 @@ namespace GPIO{
         #ifdef DBG
             std::cout<<"~Gpio()\n";
         #endif
+        //app();
     }
     
     Gpio::~Gpio(){
