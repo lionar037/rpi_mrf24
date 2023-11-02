@@ -93,8 +93,8 @@ namespace GPIO{
         int looper = 0;
         char *buf[64];
 
-std::cout << "Pin GPIO inp : "<< gpio_in"\n";
-std::cout << "Pin GPIO out : "<< gpio_out"\n";
+std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
+std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
     const int result_input = std::system("echo 23 > /sys/class/gpio/unexport");
     if (result_input == 0) {
         std::cout << "Pin GPIO 23 unexported successfully." << std::endl;
