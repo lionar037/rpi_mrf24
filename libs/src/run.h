@@ -17,7 +17,7 @@
     #define PAN_ID 0x1234
     #define ADDR_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
-   // #define ENABLE_INTERRUPT_MRF24
+    #define ENABLE_INTERRUPT_MRF24
     
 #endif
 
