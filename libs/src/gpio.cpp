@@ -96,7 +96,7 @@ namespace GPIO{
     std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 
-    const int result_input = std::system("echo 23 > /sys/class/gpio/unexport");
+    const int result_input = std::system("echo 23 > /sys/class/gpio/export");
     if (result_input == 0) {
         std::cout << "Pin GPIO 23 unexported successfully." << std::endl;
     } else {
@@ -104,7 +104,7 @@ namespace GPIO{
         return 0;
     }
 
-    const int result_output = std::system("echo 1 > /sys/class/gpio/unexport");
+    const int result_output = std::system("echo 1 > /sys/class/gpio/export");
     if (result_output == 0) {
         std::cout << "Pin GPIO 1 unexported successfully." << std::endl;
     } else {
@@ -112,7 +112,6 @@ namespace GPIO{
         //return 0;//continua por que no es necesario el pin de salida
     }
     
- 
 
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
