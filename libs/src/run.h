@@ -5,12 +5,12 @@
 //#define MODULE_1 
 #ifdef MODULE_0
     #define ADDRESS 0x6001
-    #define ADDRESS_PAN 0xCAFE
+    #define PAN_ID 0xCAFE
     #define ADDR_SLAVE 0x6002
     
 #else
     #define ADDRESS 0x6002
-    #define ADDRESS_PAN 0xCAFE
+    #define PAN_ID 0xCAFE
     #define ADDR_SLAVE  0x6001
 
 #endif
