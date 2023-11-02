@@ -121,11 +121,11 @@ unsigned char spiGet(void)							// read 1 byte from SPI
 }
 
 // reads byte from radio at long "address"
-uint8_t_t highRead(uint16_t address)
+uint8_t_t highRead(uint16_t_t address)
 {
 	uint8_t_t toReturn;
 
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	uint8_t_t tmpRFIE = RFIE;
 
 	RFIE = 0;
@@ -134,7 +134,7 @@ uint8_t_t highRead(uint16_t address)
 	spiPut(((address>>3)&0x7F)|0x80);
 	spiPut(((address<<5)&0xE0));
 	toReturn = spiGet();
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	RADIO_CS = 1;
 	RFIE = tmpRFIE;
 #endif
@@ -143,9 +143,9 @@ uint8_t_t highRead(uint16_t address)
 }
 
 // writes "value" to radio at long "address"
-void highWrite(uint16_t address, uint8_t_t value)
+void highWrite(uint16_t_t address, uint8_t_t value)
 {
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	uint8_t_t tmpRFIE = RFIE;
 
 	RFIE = 0;										// disable radio ints during communication
@@ -154,7 +154,7 @@ void highWrite(uint16_t address, uint8_t_t value)
 	spiPut((((uint8_t_t)(address>>3))&0x7F)|0x80);
 	spiPut((((uint8_t_t)(address<<5))&0xE0)|0x10);
 	spiPut(value);
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	RADIO_CS = 1;									// de-select radio SPI bus
 	RFIE = tmpRFIE;									// restore interrupt state
 #endif
@@ -165,7 +165,7 @@ uint8_t_t lowRead(uint8_t_t address)
 {
 	uint8_t_t toReturn;
 
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	uint8_t_t tmpRFIE = RFIE;
 
 	RFIE = 0;										// disable radio ints during communication
@@ -173,7 +173,7 @@ uint8_t_t lowRead(uint8_t_t address)
 #endif
 	spiPut(address);
 	toReturn = spiGet();
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	RADIO_CS = 1;									// de-select radio SPI bus
 	RFIE = tmpRFIE;									// restore interrupt state
 #endif
@@ -183,7 +183,7 @@ uint8_t_t lowRead(uint8_t_t address)
 // writes "value" to radio at short "address"
 void lowWrite(uint8_t_t address, uint8_t_t value)
 {
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	uint8_t_t tmpRFIE = RFIE;
 
 	RFIE = 0;
@@ -191,14 +191,14 @@ void lowWrite(uint8_t_t address, uint8_t_t value)
 #endif
 	spiPut(address);
 	spiPut(value);
-#ifndef SPI_INTERRUPTS
+#ifdef SPI_INTERRUPTS
 	RADIO_CS = 1;
 	RFIE = tmpRFIE;
 #endif
 }
 
 // writes count consecutive bytes from source into consecutive FIFO slots starting at "register".  Returns next empty register #.
-uint8_t_t toTXfifo(uint16_t reg, uint8_t_t* source, uint8_t_t count)
+uint8_t_t toTXfifo(uint16_t_t reg, uint8_t_t* source, uint8_t_t count)
 {
 	while(count--)
 		highWrite(reg++,*source++);
@@ -304,7 +304,7 @@ bool RadioInit(void)					// cold start radio init
 }
 
 // set short address and PANID
-void RadioSetAddress(UINT16 shortAddress, UINT64 longAddress, UINT16 panID)
+void RadioSetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID)
 {
 	uint8_t_t i;
 

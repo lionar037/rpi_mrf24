@@ -127,13 +127,14 @@ namespace MRF24J40{
     }
 
     void Mrf24j::init(void) {
-            /*
+            
             // Seems a bit ridiculous when I use reset pin anyway
             write_short(MRF_SOFTRST, 0x7); // from manual
             while (read_short(MRF_SOFTRST) & 0x7 != 0) {
                 ; // wait for soft reset to finish
             }
-            */
+            
+           delay(192); 
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
         write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
 
