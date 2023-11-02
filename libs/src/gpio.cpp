@@ -33,7 +33,7 @@ namespace GPIO{
     // GPIO EXPORT
     int Gpio::gpio_export(int gpio_num)
     {
-        const char gpio_str[4];
+        char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_EXPORT_FN, gpio_str);
     }
@@ -41,7 +41,7 @@ namespace GPIO{
     // GPIO UNEXPORT
     int Gpio::gpio_unexport(int gpio_num)
     {
-        const char gpio_str[4];
+        char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, gpio_str);
     }
@@ -49,7 +49,7 @@ namespace GPIO{
     // GPIO DIRECTION
     int Gpio::gpio_set_direction(int gpio_num, const char *dir)
     {
-        const char path_str[40];
+        char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
         return file_open_and_write_value(path_str, dir);
     }
@@ -65,7 +65,7 @@ namespace GPIO{
     // GPIO SET EDGE
     int Gpio::gpio_set_edge(int gpio_num, const char *edge)
     {
-        const char path_str[40];
+        char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
         return file_open_and_write_value(path_str, edge);
     }
@@ -73,7 +73,7 @@ namespace GPIO{
     int Gpio::gpio_get_fd_to_value(int gpio_num)
     {
         int fd;
-        const char fname[40];
+        char fname[40];
         sprintf(fname, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         fd = open(fname, O_RDONLY | O_NONBLOCK);
         if (fd < 0)
