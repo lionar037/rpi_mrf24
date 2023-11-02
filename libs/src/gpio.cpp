@@ -108,7 +108,7 @@ namespace GPIO{
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
         // We will wait for button press here for 10s or exit anyway
-        while(looper<10) {
+        while(looper<5) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
             fdpoll.events = POLLPRI;
@@ -119,7 +119,8 @@ namespace GPIO{
                 printf("Poll failed...%d\r\n",res);            
             }
             if(res == 0) {
-                printf("Poll success...timed out or received button press...\r\n");
+                //printf("Poll success...timed out or received button press...\r\n");
+                std::cout<<"Esperando msj mrf24j40...\n";
             }
             if(fdpoll.revents & POLLPRI) {
                 lseek(fdpoll.fd, 0, SEEK_SET);
@@ -136,5 +137,18 @@ namespace GPIO{
         gpio_unexport(gpio_in);
 
         return 0;
+    }
+
+
+    Gpio::Gpio(){
+        #fidef DBG
+            std::cout<<"~Gpio()\n";
+        #endif
+    }
+    
+    Gpio::~Gpio(){
+        #fidef DBG
+            std::cout<<"~Gpio()\n";
+        #endif       
     }
 }
