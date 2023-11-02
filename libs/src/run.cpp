@@ -8,7 +8,9 @@ Mrf24j mrf24j40_spi ;
 
 Run::Run() 
 {
-    std::cout<<"Run()\n";
+    #ifdef  DBG
+        std::cout<<"Run()\n";
+    #endif
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);

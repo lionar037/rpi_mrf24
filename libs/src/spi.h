@@ -22,11 +22,7 @@ namespace SPI{
   struct  Spi{
 
     explicit Spi();
-      ~Spi(){
-      spi_close();
-      std::cout<<"~Spi()\n";
-      exit(EXIT_SUCCESS);
-    }
+      ~Spi();
 
     void init();
     void settings_spi();

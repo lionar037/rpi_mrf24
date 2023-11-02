@@ -109,7 +109,13 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
         return;
     }
 
-
+      Spi~Spi(){
+      spi_close();
+      #ifdef DBG
+          std::cout<<"~Spi()\n";
+      #endif
+      exit(EXIT_SUCCESS);
+    }
 
 
 }//end namespace SPI_H
