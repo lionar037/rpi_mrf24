@@ -109,7 +109,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
         return;
     }
 
-      Spi~Spi(){
+      Spi::~Spi(){
       spi_close();
       #ifdef DBG
           std::cout<<"~Spi()\n";
