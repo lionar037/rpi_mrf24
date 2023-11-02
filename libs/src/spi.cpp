@@ -21,11 +21,8 @@ namespace SPI {
       spi->delay_usecs = 1;
       spi->len = 3;
 
-      //for(looper=0; looper<spi->len+1; ++looper) {
            tx_buffer[0] = tx_buffer[1] = tx_buffer[2] = tx_buffer[3] = 0x00;
-           //rx_buffer[looper] = 0xFF;
            rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0xff;
-       //}
     return;
   }
 
@@ -73,7 +70,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     memcpy(tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
     //if((cmd>>8&0xff)==0x00)
-    #ifdef
+    #ifdef DBG
         printDBGSpi(); 
     #endif
       //if(ret != 0) return rx_buffer[1];  
