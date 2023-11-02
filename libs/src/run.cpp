@@ -16,7 +16,7 @@ Run::Run()
         std::cout<<"Run()\n";
     #endif
     #ifdef MRF24_RECEIVER_ENABLE
-    pin_interrupt->app();
+    //pin_interrupt->app();
     #endif
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
