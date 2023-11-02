@@ -119,13 +119,14 @@ namespace GPIO{
                 printf("Poll failed...%d\r\n",res);            
             }
             if(res == 0) {
-                //printf("Poll success...timed out or received button press...\r\n");
-                std::cout<<"Esperando msj mrf24j40...\n";
+                printf("Poll success...timed out or received button press...\r\n");
+               // std::cout<<"Esperando msj mrf24j40...\n";
             }
             if(fdpoll.revents & POLLPRI) {
                 lseek(fdpoll.fd, 0, SEEK_SET);
                 read(fdpoll.fd, buf, 64);
-                printf("Received a button press...%d\r\n",looper);
+                //printf("Received a button press...%d\r\n",looper);
+                 std::cout<<"Esperando msj mrf24j40...\n";
             }
             ++looper;
             fflush(stdout);
