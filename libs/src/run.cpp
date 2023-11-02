@@ -39,7 +39,7 @@ void Run::loop() {
         last_time = current_time;
         //std::cout<<"txxxing...\n";
         std::cout<<"send16 () ... \n";
-        mrf24j40_spi.send16(ADDR_SLAVE, "@aA");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        mrf24j40_spi.send16(ADDR_SLAVE, "@ABCD");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     }
 }
 
