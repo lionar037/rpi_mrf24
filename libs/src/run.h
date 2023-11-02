@@ -8,13 +8,14 @@
     #define ADDRESS 0x6001
     #define PAN_ID 0x1234
     #define ADDR_SLAVE 0x6002
-    #define MRF24_RECEIVER_ENABLE
+    #define MRF24_TRANSMITER_ENABLE
     
 #else
     #define ADDRESS 0x6002
     #define PAN_ID 0xCAFE
     #define ADDR_SLAVE  0x6001
-    #define MRF24_TRANSMITER_ENABLE
+    #define MRF24_RECEIVER_ENABLE
+    
 #endif
 
 
