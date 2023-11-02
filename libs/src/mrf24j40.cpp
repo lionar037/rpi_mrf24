@@ -151,7 +151,7 @@ printf("\npanid: 0x%X\n",panid);
             // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
         write_short(MRF_RFCTL, 0x00);       // part 2
-        delay(1);                           // delay at least 192usec
+        delay(192);                           // delay at least 192usec
     }
 
             /**
