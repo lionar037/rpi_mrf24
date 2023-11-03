@@ -41,9 +41,10 @@ namespace MRF24J40{
 
         const uint8_t lsb_address = (address >> 3 )& 0x7F;//0x7f
         const uint8_t msb_address = (address << 5) & 0xE0;//0xe0
-        
+
         const uint32_t tmp = ( (0x80 | lsb_address) | (msb_address <<8) ) &  0x0000ffff;
 	    const uint8_t ret = prt_spi->Transfer3bytes(tmp);
+        printf("read_long : 0x%x\n",tmp);
     return ret;
     }
 
