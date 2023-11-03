@@ -294,7 +294,6 @@ namespace MRF24J40{
     }
 
 
-
     void Mrf24j::pinMode(int i, bool b){
     return;
     }

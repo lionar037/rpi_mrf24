@@ -512,7 +512,7 @@ uint8_t RadioWaitTXResult(void)
 // Note this gives you ALL received packets (not just ones addressed to you).   Check the addressing yourself if you care.
 // Also be aware that sucessive identical packets (same frame number) will be received if the far-end misses your ACK (it
 // will re-transmit).  Check for that if you care.
-uint8_t Radio::RadioRXPacket(void)
+uint8_t Radio::RXPacket(void)
 {
 	if (!RadioStatus.RXPacketCount)
 		return 0;														// no packets to process
@@ -566,7 +566,7 @@ uint8_t Radio::RadioRXPacket(void)
 	return RadioStatus.RXPacketCount;
 }
 
-void Radio::RadioDiscardPacket(void)
+void Radio::DiscardPacket(void)
 {
 	if (RadioStatus.RXPacketCount)										// just in case we get called more than we ought
 	{
