@@ -15,7 +15,7 @@ namespace MRF24J40{
     static tx_info_t tx_info{};
 
     Mrf24j::Mrf24j()
-    : prt_spi {std::make_unique<SPI::Spi>()}
+    : prt_spi {std::make_unique<SPI::Spi>()} , bytes_nodata { bytes_MHR + bytes_FCS}
     {
         #ifdef DBG
             std::cout <<"Mrf24j( )\r\n";
