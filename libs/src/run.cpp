@@ -37,8 +37,9 @@ Run::Run()
     //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
-
-    loop();
+   
+        loop();
+ 
 }
 
 void Run::loop() {
@@ -46,8 +47,10 @@ void Run::loop() {
     unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
+    #ifdef MRF24_TRANSMITER_ENABLE
         std::cout<<"send16 () ... \n";
         mrf24j40_spi.send16(ADDR_SLAVE, "@@@@@@@@@@");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+    #endif
     }
 }
 
