@@ -81,7 +81,8 @@ void handle_rx() {
     
     if(mrf24j40_spi.get_bufferPHY()){
       std::cout << " Packet data (PHY Payload) :";
-      for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) {
+      for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
+      {
           std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];
       }
     }
