@@ -83,7 +83,7 @@ namespace GPIO{
         return fd;
     }
 
-    int Gpio::app() {
+    const bool Gpio::app() {
         unsigned int gpio_out = OUT_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
@@ -96,12 +96,12 @@ namespace GPIO{
     std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 
-    const int result_input = std::system("echo 23 > /sys/class/gpio/export");
+    const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
     if (result_input == 0) {
         std::cout << "Pin GPIO 23 exported successfully." << std::endl;
     } else {
         std::cerr << "Error exporting GPIO 23." << std::endl;
-        return 0;
+        return false;
     }
 
     const int result_output = std::system("echo 1 > /sys/class/gpio/export");
@@ -157,7 +157,7 @@ namespace GPIO{
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
 
-        return 0;
+        return true;
     }
 
 
