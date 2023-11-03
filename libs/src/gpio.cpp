@@ -135,7 +135,7 @@ namespace GPIO{
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
         // We will wait for button press here for 10s or exit anyway
-        while(looper<2) {
+        while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
             fdpoll.events = POLLPRI;
