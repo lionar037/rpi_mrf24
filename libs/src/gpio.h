@@ -2,7 +2,7 @@
 
 #define IN_INTERRUPT 23
 #define OUT_INTERRUPT 12
-#define READING_STEPS 2//10 originalmente
+#define READING_STEPS 6//10 originalmente
 
 #define SYSFS_GPIO_PATH             "/sys/class/gpio"
 #define SYSFS_GPIO_EXPORT_FN        "/export"
