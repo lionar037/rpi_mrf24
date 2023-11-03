@@ -27,15 +27,15 @@ namespace GPIO{
 struct Gpio{
     Gpio();
     ~Gpio();
-         int file_open_and_write_value(const char *, const char *);
-        int gpio_export(int );
-        int gpio_unexport(int );
-        int gpio_set_direction(int , const char *);
-        int gpio_set_value(int , const char *);
-        int gpio_set_edge(int , const char *);
-        int gpio_get_fd_to_value(int );
-        const bool app() ;
+            int file_open_and_write_value(const char *, const char *);
+            int gpio_export(int );
+            int gpio_unexport(int );
+            int gpio_set_direction(int , const char *);
+            int gpio_set_value(int , const char *);
+            int gpio_set_edge(int , const char *);
+            int gpio_get_fd_to_value(int );
+            const bool app() ;
         private :
-        static inline int static_file_open_and_write_value{0};
+            static inline int static_file_open_and_write_value{0};
     };
 }
