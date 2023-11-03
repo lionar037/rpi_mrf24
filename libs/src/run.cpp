@@ -82,7 +82,7 @@ void handle_rx() {
     if(mrf24j40_spi.get_bufferPHY()){
       std::cout << " Packet data (PHY Payload) :";
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) {
-          std::cout<<mrf24j40_spi.get_rxbuf()[i];
+          std::cout << mrf24j40_spi.get_rxbuf()[i];
       }
     }
     
@@ -97,13 +97,12 @@ void handle_rx() {
     }
     printf("\nSIZEOF : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
-
     std::cout<<"\r\nLQI/RSSI = \n\t";
     //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
     printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
     //std::cout<<" ";
     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
-    printf("0x%X ",mrf24j40_spi.get_rxinfo()->rssi);
+    printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
     #endif
 }
 
