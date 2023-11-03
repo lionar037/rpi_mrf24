@@ -49,7 +49,7 @@ void Run::loop() {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
         std::cout<<"send16 () ... \n";
-        mrf24j40_spi.send16(ADDR_SLAVE, "@@@@@@@@@@@@@@@@@@@@@@@@@@");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        mrf24j40_spi.send16(ADDR_SLAVE, "@ABCDEFGHIJKLMKNOPQRST");//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
     #endif
     }
 }
