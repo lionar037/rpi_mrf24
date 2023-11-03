@@ -62,7 +62,7 @@ struct Mrf24j : public SPI::Spi
         rx_info_t * get_rxinfo(void) ;
         tx_info_t * get_txinfo(void) ;
         uint8_t * get_rxbuf(void) ;
-        static inline int rx_datalength(void);
+        int rx_datalength(void);
         void set_ignoreBytes(int );
                     /**
                      * Set bufPHY flag to buffer all bytes in PHY Payload, or not
