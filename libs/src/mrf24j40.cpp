@@ -192,20 +192,17 @@ namespace MRF24J40{
                 // buffer data bytes
             int rd_ptr = 0;
                 // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
-            uint8_t rx_tmp[128];
-            printf(" frame_length : %d \n",frame_length);
+           
+            //printf(" frame_length : %d \n",frame_length);
 
-             printf(" rx_datalength : %d \n",rx_datalength());
+             //printf(" rx_datalength : %d \n",rx_datalength());
 
-            //for (int i = 0; i < rx_datalength(); i++) {
-            for (int i = 0; i < 128; i++) {
-                rx_tmp[i]=rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
+
+            for (int i = 0; i < frame_length + rx_datalength(); i++) {
+                rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
             }
 
-            //printf(" buffer :\n");
-            for (int i = 0; i < rx_datalength(); i++) {
-            //   printf(" 0x%x\n" , rx_tmp[i]);
-            }
+        
 
             rx_info.frame_length = frame_length;
                     // same as datasheet 0x301 + (m + n + 2) <-- frame_length
