@@ -8,6 +8,7 @@ extern "C"{
     #include <poll.h>
 }
 #include <iostream>
+#include <fstream>
 #include <gpio.h>
 
 namespace GPIO{
@@ -96,22 +97,28 @@ namespace GPIO{
     std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 
-    const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
-    if (result_input == 0) {
-        std::cout << "Pin GPIO 23 exported successfully." << std::endl;
-    } else {
-        std::cerr << "Error exporting GPIO 23." << std::endl;
-        return false;
+   const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
+    std::ifstream fileGpio23(filePathGpio23);
+    if(!fileGpio23){
+        const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
+        if (result_input == 0) {
+            std::cout << "Pin GPIO 23 exported successfully." << std::endl;
+        } else {
+            std::cerr << "Error exporting GPIO 23." << std::endl;
+            return false;
+        }
     }
-
-    const int result_output = std::system("echo 1 > /sys/class/gpio/export");
-    if (result_output == 0) {
-        std::cout << "Pin GPIO 1 exported successfully." << std::endl;
-    } else {
-        std::cerr << "Error unexporting GPIO 1." << std::endl;
-        //return 0;//continua por que no es necesario el pin de salida
+   const std::string filePathGpio1 = "/sys/class/gpio/gpio23/direction";
+    std::ifstream fileGpio1(filePathGpio1);
+    if(!fileGpio1){
+        const int result_output = std::system("echo 1 > /sys/class/gpio/export");
+        if (result_output == 0) {
+            std::cout << "Pin GPIO 1 exported successfully." << std::endl;
+        } else {
+            std::cerr << "Error unexporting GPIO 1." << std::endl;
+            //return 0;//continua por que no es necesario el pin de salida
+        }
     }
-    
 
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
