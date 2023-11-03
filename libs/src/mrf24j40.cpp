@@ -262,8 +262,6 @@ namespace MRF24J40{
     }
 
     int Mrf24j::rx_datalength(void) {
-
-        printf("rx_info.frame_length  : %d\n",rx_info.frame_length );
         return rx_info.frame_length - bytes_nodata;
     }
 
