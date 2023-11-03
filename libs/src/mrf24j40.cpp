@@ -188,8 +188,14 @@ namespace MRF24J40{
                 // buffer data bytes
             int rd_ptr = 0;
                 // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
+            uint8_t rx_tmp[128];
             for (int i = 0; i < rx_datalength(); i++) {
-                rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
+                rx_tmp[i]=rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
+            }
+
+ printf(" buffer :\n");
+            for (int i = 0; i < rx_datalength(); i++) {
+               printf(" 0x%x\n" , rx_tmp[i]);
             }
 
             rx_info.frame_length = frame_length;
