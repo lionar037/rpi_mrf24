@@ -213,12 +213,12 @@ uint8_t_t initMRF24J40(void)
 	uint8_t_t i;
 	uint32_t radioReset = ReadCoreTimer();	// record time we started the reset procedure
 
-	RadioStatus.ResetCount++;
+	Status.ResetCount++;
 
-	RadioStatus.TX_BUSY = 0;			// tx is not busy after reset
-	RadioStatus.TX_FAIL = 1;			// if we had to reset, consider last packet (if any) as failed
-	RadioStatus.TX_PENDING_ACK = 0;		// not pending an ack after reset
-	RadioStatus.SLEEPING = 0;			// radio is not sleeping
+	Status.TX_BUSY = 0;			// tx is not busy after reset
+	Status.TX_FAIL = 1;			// if we had to reset, consider last packet (if any) as failed
+	Status.TX_PENDING_ACK = 0;		// not pending an ack after reset
+	Status.SLEEPING = 0;			// radio is not sleeping
 
 	/* do a soft reset */
 	lowWrite(WRITE_SOFTRST,0x07);		// reset everything (power, baseband, MAC) (also does wakeup if in sleep)
@@ -233,7 +233,7 @@ uint8_t_t initMRF24J40(void)
 
 	lowWrite(WRITE_RXFLUSH,0x01);		// flush the RX fifo, leave WAKE pin disabled
 
-	RadioSetAddress(RadioStatus.MyShortAddress, RadioStatus.MyLongAddress, RadioStatus.MyPANID);
+	RadioSetAddress(Status.MyShortAddress, Status.MyLongAddress, Status.MyPANID);
 
 	highWrite(RFCTRL0,0x03);			// RFOPT=0x03
 	highWrite(RFCTRL1,0x02);			// VCOOPT=0x02, per datasheet
@@ -266,7 +266,7 @@ uint8_t_t initMRF24J40(void)
 	highWrite(RFCTRL0, 0x03);			// this was previously done above
 	highWrite(RFCTRL1, 0x02);			// VCCOPT - whatever that does...
 
-	RadioSetChannel(RadioStatus.Channel);	// tune to current radio channel
+	SetChannel(RadioStatus.Channel);	// tune to current radio channel
 
 	#ifdef TURBO_MODE					// propriatary TURBO_MODE runs at 625 kbps (vs. 802.15.4 compliant 250 kbps)
 		lowWrite(WRITE_BBREG0, 0x01);	// TURBO mode enable
@@ -283,7 +283,7 @@ uint8_t_t initMRF24J40(void)
 }
 
 // on return, 1=radio is setup, 0=there is no radio
-bool RadioInit(void)					// cold start radio init
+bool Radio::Init(void)					// cold start radio init
 {
 	bool
  radio;
@@ -304,7 +304,7 @@ bool RadioInit(void)					// cold start radio init
 }
 
 // set short address and PANID
-void RadioSetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID)
+void Radio::SetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID)
 {
 	uint8_t_t i;
 
@@ -323,7 +323,7 @@ void RadioSetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID
 }
 
 // Set radio channel.  Returns with success/fail flag.
-bool RadioSetChannel(uint8_t channel)
+bool Radio::SetChannel(uint8_t channel)
 {
 	if( channel < 11 || channel > 26)
 		return FALSE;
@@ -347,7 +347,7 @@ bool RadioSetChannel(uint8_t channel)
 //	TX: 	65.8 mA (as fast as I can xmit; nominal peak 130 mA)
 //	Sleep:	0.245 mA (spec is 5 uA with 'sleep clock disabled'; setting register 0x211 to 0x01 doesn't seem to help)
 // Note that you can in practice turn the radio power off completely for short periods (with a MOSFET) and then do a warm start.
-void RadioSetSleep(uint8_t_t powerState)
+void Radio::SetSleep(uint8_t_t powerState)
 {
 	if (powerState)
 	{
@@ -368,7 +368,7 @@ void RadioSetSleep(uint8_t_t powerState)
 }
 
 // Do a single (128 us) energy scan on current channel.  Return RSSI.
-uint8_t RadioEnergyDetect(void)
+uint8_t Radio::EnergyDetect(void)
 {
 	uint8_t_t RSSIcheck;
 
@@ -409,7 +409,7 @@ uint8_t RadioEnergyDetect(void)
 // 103		127		Payload (from TxBuffer)
 
 // sends raw packet per already setup Tx structure.  No error checking here.
-void RadioTXRaw(void)
+void Radio::TXRaw(void)
 {
 	uint8_t_t wReg;													// radio write register (into TX FIFO starting at long addr 0)
 
@@ -458,7 +458,7 @@ void RadioTXRaw(void)
 // ths until RadioStatus.TX_BUSY == 0.  
 //
 // This automatically sets frame number and source address for you
-void RadioTXPacket(void)
+void Radio::TXPacket(void)
 {
 	if (Tx.srcAddrMode == SHORT_ADDR_FIELD)
 		Tx.srcAddr = RadioStatus.MyShortAddress;
@@ -476,7 +476,7 @@ void RadioTXPacket(void)
 
 
 // returns status of last transmitted packet: TX_SUCCESS (1), TX_FAILED (2), or 0 = no result yet because TX busy
-uint8_t RadioTXResult(void)
+uint8_t Radio::RadioTXResult(void)
 {
 	if (RadioStatus.TX_BUSY)									// if TX not done yet
 		return TX_RESULT_BUSY;
@@ -512,7 +512,7 @@ uint8_t RadioWaitTXResult(void)
 // Note this gives you ALL received packets (not just ones addressed to you).   Check the addressing yourself if you care.
 // Also be aware that sucessive identical packets (same frame number) will be received if the far-end misses your ACK (it
 // will re-transmit).  Check for that if you care.
-uint8_t RadioRXPacket(void)
+uint8_t Radio::RadioRXPacket(void)
 {
 	if (!RadioStatus.RXPacketCount)
 		return 0;														// no packets to process
@@ -566,7 +566,7 @@ uint8_t RadioRXPacket(void)
 	return RadioStatus.RXPacketCount;
 }
 
-void RadioDiscardPacket(void)
+void Radio::RadioDiscardPacket(void)
 {
 	if (RadioStatus.RXPacketCount)										// just in case we get called more than we ought
 	{

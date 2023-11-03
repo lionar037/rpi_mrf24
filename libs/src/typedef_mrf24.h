@@ -103,19 +103,19 @@ typedef struct
 
 
 // function prototypes
-
-bool   RadioInit(void);
-void   RadioSetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID);
-bool   RadioSetChannel(uint8_t channel);
-void   RadioSetSleep(uint8_t powerState);
-uint8_t  RadioEnergyDetect(void);
-void   RadioTXRaw(void);
-void   RadioTXPacket(void);
-uint8_t  RadioRXPacket(void);
-uint8_t  RadioTXResult(void);
-uint8_t  RadioWaitTXResult(void);
-void   RadioDiscardPacket(void);
-
+struct Radio{
+	bool   		Init			(void);
+	void   		SetAddress		(uint16_t shortAddress, uint64_t longAddress, uint16_t panID);
+	bool   		SetChannel		(uint8_t channel);
+	void   		SetSleep		(uint8_t powerState);
+	uint8_t  	EnergyDetect	(void);
+	void   		TXRaw			(void);
+	void   		TXPacket		(void);
+	uint8_t  	RXPacket		(void);
+	uint8_t  	TXResult		(void);
+	uint8_t  	WaitTXResult	(void);
+	void   		DiscardPacket	(void);
+};
 // public variables
 
 //extern MRF24J40_STATUS volatile RadioStatus;						// radio state
