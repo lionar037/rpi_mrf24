@@ -6,6 +6,7 @@
 //#define MODULE_TX 
 #define MODULE_RX 
 
+#define MSJ "@ABCDEFGHIJKLMKNOPQRST" 
 #ifdef MODULE_TX
     #define ADDRESS 0x6001
     #define PAN_ID 0x1234
