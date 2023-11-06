@@ -5,7 +5,7 @@ node_modules/
 build/
 obj/
 bin/
-.vscode/
+.vscode
 olds/
 move/
 data.txt
