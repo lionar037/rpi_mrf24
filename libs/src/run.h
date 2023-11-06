@@ -6,21 +6,21 @@
 //#define MODULE_TX 
 #define MODULE_RX 
 
-#define MSJ " \
-@ABCDEFGHI \
-JKLMKNOPQR \
-STUVWXYZ01 \
-23456789ab \
-cdefghijklm \
-nopqrstuvw \
-xyz|#¢∞¬÷( \
-@ABCDEFGHI \
-JKLMKNOPQR \
-STUVWXYZ01 \
-23456789ab \
-cdefghijklm \
-nopqrstuvw \
-xyz|#¢∞¬÷( \
+#define MSJ "\
+@ABCDEFGHI\
+JKLMKNOPQR\
+STUVWXYZ01\
+23456789ab\
+cdefghijklm\
+nopqrstuvw\
+xyz|#¢∞¬÷(\
+@ABCDEFGHI\
+JKLMKNOPQR\
+STUVWXYZ01\
+23456789ab\
+cdefghijklm\
+nopqrstuvw\
+xyz|#¢∞¬÷(\
 " 
 
 #ifdef MODULE_TX
