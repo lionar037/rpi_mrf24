@@ -7,19 +7,19 @@
 #define MODULE_RX 
 
 #define MSJ "   \
-@ABCDEFGHI  \
-JKLMKNOPQR  \
-STUVWXYZ01  \
-23456789ab  \
+@ABCDEFGHI \
+JKLMKNOPQR \
+STUVWXYZ01 \
+23456789ab \
 cdefghijklm \
-nopqrstuvw  \
+nopqrstuvw \
 xyz|#¢∞¬÷( \
-@ABCDEFGHI  \
-JKLMKNOPQR  \
-STUVWXYZ01  \
-23456789ab  \
+@ABCDEFGHI \
+JKLMKNOPQR \
+STUVWXYZ01 \
+23456789ab \
 cdefghijklm \
-nopqrstuvw  \
+nopqrstuvw \
 xyz|#¢∞¬÷( \
 " 
 
