@@ -6,7 +6,7 @@
 //#define MODULE_TX 
 #define MODULE_RX 
 
-#define MSJ "   \
+#define MSJ " \
 @ABCDEFGHI \
 JKLMKNOPQR \
 STUVWXYZ01 \
