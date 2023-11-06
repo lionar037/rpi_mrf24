@@ -19,7 +19,7 @@ Run::Run()
         pin_interrupt->app();
     #endif
 
-    std::cout << "size msj : "<<std:dec<<sizeof(MSJ)<<"\n";
+    std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
