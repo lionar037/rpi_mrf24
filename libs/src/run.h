@@ -14,7 +14,8 @@
     #define ADDR_SLAVE 0x6002
     #define MRF24_TRANSMITER_ENABLE
 #endif    
-##ifdef MODULE_RX
+
+#ifdef MODULE_RX
     #define ADDRESS 0x6002
     #define PAN_ID 0x1234
     #define ADDR_SLAVE  0x6001
