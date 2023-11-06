@@ -7,21 +7,7 @@
 #define MODULE_RX 
 
 #define MSJ "\
-@ABCDEFGHI\
-JKLMKNOPQR\
-STUVWXYZ01\
-23456789ab\
-cdefghijklm\
-nopqrstuvw\
-xyz|#¢∞¬÷(\
-@ABCDEFGHI\
-JKLMKNOPQR\
-STUVWXYZ01\
-23456789ab\
-cdefghijklm\
-nopqrstuvw\
-xyz|#¢∞¬÷(\
-" 
+@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz|#¢∞¬÷(@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvw" 
 
 #ifdef MODULE_TX
     #define ADDRESS 0x6001
