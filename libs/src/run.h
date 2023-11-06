@@ -6,7 +6,22 @@
 //#define MODULE_TX 
 #define MODULE_RX 
 
-#define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz" 
+#define MSJ "   \
+@ABCDEFGHI  \
+JKLMKNOPQR  \
+STUVWXYZ01  \
+23456789ab  \
+cdefghijklm \
+nopqrstuvw  \
+xyz|#¢∞¬÷( \
+@ABCDEFGHI  \
+JKLMKNOPQR  \
+STUVWXYZ01  \
+23456789ab  \
+cdefghijklm \
+nopqrstuvw  \
+xyz|#¢∞¬÷( \
+" 
 
 #ifdef MODULE_TX
     #define ADDRESS 0x6001
