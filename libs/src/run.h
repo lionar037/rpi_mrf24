@@ -3,8 +3,8 @@
 #include <memory>
 #include <gpio.h>
 
-//#define MODULE_TX 
-#define MODULE_RX 
+#define MODULE_TX 
+//#define MODULE_RX 
 
 #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz|#¢∞¬÷(@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789ABC" 
 
