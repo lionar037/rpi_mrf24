@@ -7,15 +7,16 @@
 #define MODULE_RX 
 
 #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz" 
+
 #ifdef MODULE_TX
     #define ADDRESS 0x6001
-    #define PAN_ID 0x1233
+    #define PAN_ID 0x1234
     #define ADDR_SLAVE 0x6002
     #define MRF24_TRANSMITER_ENABLE
-    
-#else
+#endif    
+##ifdef MODULE_RX
     #define ADDRESS 0x6002
-    #define PAN_ID 0x1235
+    #define PAN_ID 0x1234
     #define ADDR_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
