@@ -92,7 +92,7 @@ void handle_rx() {
     }
     
     std::cout<<"\r\nASCII data (relevant data) :\n";
-    //const int recevive_data_length = mrf24j40_spi.rx_datalength();
+    const int recevive_data_length = mrf24j40_spi.rx_datalength();
     //std::cout << "\t\tdata_length : "<< recevive_data_length<<"\n\t";
 
     for (int i = 0; i < recevive_data_length; i++) {
