@@ -76,6 +76,7 @@ struct Mrf24j : public SPI::Spi
                      */
         void set_palna(bool);
         void send16(uint16_t ,const char *);
+        void send64(uint64_t ,const char *);
         void interrupt_handler(void);
         void check_flags(void (*rx_handler)(), void (*tx_handler)());
     private:
