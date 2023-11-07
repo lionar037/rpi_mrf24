@@ -38,7 +38,9 @@ struct Mrf24j : public SPI::Spi
         uint16_t get_pan(void);
         void set_pan(uint16_t);                 //panid
         void address16_write(uint16_t);         //address16
+        void address64_write(uint64_t);
         uint16_t address16_read(void);
+        uint64_t address64_read(void);
         void set_interrupts(void);
 
                 //void set_promiscuous(__OBJC_BOOL_IS_BOOL );

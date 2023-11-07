@@ -72,11 +72,36 @@ namespace MRF24J40{
         write_short(MRF_SADRL, address16 & 0xff);
     }
 
-    uint16_t Mrf24j::address16_read(void) {
-        const uint8_t a16h = read_short(MRF_SADRH);
-        return (a16h << 8 | read_short(MRF_SADRL));
-    }
+void Mrf24j::address64_write(uint64_t addressLong){
+    write_short(MRF_EADR0,(addressLong>>0)&0xff);
+    write_short(MRF_EADR1,(addressLong>>1)&0xff);
+    write_short(MRF_EADR2,(addressLong>>2)&0xff);
+    write_short(MRF_EADR3,(addressLong>>3)&0xff);
+    write_short(MRF_EADR4,(addressLong>>4)&0xff);
+    write_short(MRF_EADR5,(addressLong>>5)&0xff);
+    write_short(MRF_EADR6,(addressLong>>6)&0xff);
+    write_short(MRF_EADR7,(addressLong>>7)&0xff);
+}
 
+uint16_t Mrf24j::address16_read(void) {
+    const uint8_t a16h = read_short(MRF_SADRH);
+    return (a16h << 8 | read_short(MRF_SADRL));
+}
+
+
+uint64_t Mrf24j::address64_read(void){
+uint64_t address64 {0x0};
+address64 |= read_short(MRF_EADR0) << 0 ;
+address64 |= read_short(MRF_EADR1) << 1 ;
+address64 |= read_short(MRF_EADR2) << 2 ;
+address64 |= read_short(MRF_EADR3) << 3 ;
+address64 |= read_short(MRF_EADR4) << 4 ;
+address64 |= read_short(MRF_EADR5) << 5 ;
+address64 |= read_short(MRF_EADR6) << 6 ;
+address64 |= read_short(MRF_EADR7) << 7 ;
+
+return  address64;
+}
         /**
          * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
          //* @param data

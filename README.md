@@ -12,3 +12,7 @@ gpio RESET //
 helps:
 
 	http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en535967
+
+commands :
+
+git add . && git commit -m "update" && git push -u origin master
