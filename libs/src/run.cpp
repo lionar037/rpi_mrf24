@@ -92,15 +92,15 @@ void handle_rx() {
     }
     
     std::cout<<"\r\nASCII data (relevant data) :\n";
-    const int recevive_data_length = mrf24j40_spi.rx_datalength();
-    std::cout << "\t\tdata_length : "<< recevive_data_length<<"\n\t";
+    //const int recevive_data_length = mrf24j40_spi.rx_datalength();
+    //std::cout << "\t\tdata_length : "<< recevive_data_length<<"\n\t";
 
     for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         printf("%c",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
-    printf("\nSIZEOF : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
+    printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
     std::cout<<"\r\nLQI/RSSI = \n\t";
     //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
@@ -108,6 +108,7 @@ void handle_rx() {
     //std::cout<<" ";
     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
+    std::cout<<"\r\n";
     #endif
 }
 
