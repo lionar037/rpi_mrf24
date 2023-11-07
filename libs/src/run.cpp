@@ -24,7 +24,7 @@ Run::Run()
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
     // This is _our_ address
-    mrf24j40_spi.address16_write(ADDRESS); 
+    //mrf24j40_spi.address16_write(ADDRESS); 
     mrf24j40_spi.address64_write(ADDRESS_LONG);
 
     // uncomment if you want to receive any packet on this channel
