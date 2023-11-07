@@ -9,6 +9,7 @@
 #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456" 
 
 #ifdef MODULE_TX
+    #define ADDRESS_LONG 0x1122334455667701
     #define ADDRESS 0x6001
     #define PAN_ID 0x1234
     #define ADDR_SLAVE 0x6002
@@ -16,6 +17,7 @@
 #endif    
 
 #ifdef MODULE_RX
+    #define ADDRESS_LONG 0x1122334455667702
     #define ADDRESS 0x6002
     #define PAN_ID 0x1234
     #define ADDR_SLAVE  0x6001

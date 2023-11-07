@@ -144,6 +144,58 @@ return  address64;
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
 
+
+
+    void Mrf24j::send64(uint64_t dest64, const char * data) {
+        const uint8_t len = strlen(data); // get the length of the char* array
+        int i = 0;
+        write_long(i++, bytes_MHR); // header length
+                        // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
+                        // default: ignoreBytes = 0;
+        write_long(i++, bytes_MHR+ignoreBytes+len);
+
+                        // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
+        write_long(i++, 0b01100001); // first byte of Frame Control
+                        // 16 bit source, 802.15.4 (2003), 16 bit dest,
+        write_long(i++, 0b10001000); // second byte of frame control
+        write_long(i++, 1);  // sequence number 1
+
+        const uint16_t panid = get_pan();
+        #ifdef DBG
+            printf("\npanid: 0x%X\n",panid);
+        #endif
+        write_long(i++, panid & 0xff);  // dest panid
+        write_long(i++, panid >> 8);
+
+        write_long(i++, (dest64 >> 0  ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 8  ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 16 ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 24 ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 32 ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 40 ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 48 ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 56 ) & 0xff); // uint64_t
+
+        const uint64_t src64 = address64_read();
+        write_long(i++, (src64 >> 0  ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 8  ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 16 ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 24 ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 32 ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 40 ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 48 ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 56 ) & 0xff); // uint64_t
+
+                // All testing seems to indicate that the next two bytes are ignored.
+                //2 bytes on FCS appended by TXMAC
+        i+=ignoreBytes;
+        for (int q = 0; q < len; q++) {
+            write_long(i++,data[q]);
+        }
+        // ack on, and go!
+        write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+    }
+
     void Mrf24j::set_interrupts(void) {
             // interrupts for rx and tx normal complete
         write_short(MRF_INTCON, 0b11110110);
