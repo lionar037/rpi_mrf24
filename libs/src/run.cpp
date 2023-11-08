@@ -97,7 +97,7 @@ void handle_rx() {
 
     for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
-        printf("%c",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
     printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
