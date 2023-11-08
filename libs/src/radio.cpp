@@ -1,9 +1,9 @@
 
 #include <string>			// memset()
-#include <radio.h>
-#include <radioAddress.h>
-#include <mrf24j40.h>
-#include <radio_cmd.h>
+#include "radio.h"
+#include "radioAddress.h"
+#include "mrf24j40.h"
+#include "radio_cmd.h"
 // globals
 
 
@@ -29,7 +29,7 @@ PACKET Tx, Rx;
 
 
 	// writes count consecutive bytes from source into consecutive FIFO slots starting at "register".  Returns next empty register #.
-	uint8_t_t toTXfifo(uint16_t_t reg, uint8_t_t* source, uint8_t_t count)
+	uint8_t toTXfifo(uint16_t reg, uint8_t* source, uint8_t count)
 	{
 		while(count--)
 			write_long(reg++,*source++);
@@ -151,7 +151,7 @@ void Radio::SetAddress(const uint16_t shortAddress, const uint64_t longAddress, 
 }
 
 // Set radio channel.  Returns with success/fail flag.
-bool Radio::SetChannel(uint8_t channel)
+bool Radio::SetChannel(const uint8_t channel)
 {
 	if( channel < 11 || channel > 26)
 		return FALSE;
@@ -175,7 +175,7 @@ bool Radio::SetChannel(uint8_t channel)
 //	TX: 	65.8 mA (as fast as I can xmit; nominal peak 130 mA)
 //	Sleep:	0.245 mA (spec is 5 uA with 'sleep clock disabled'; setting register 0x211 to 0x01 doesn't seem to help)
 // Note that you can in practice turn the radio power off completely for short periods (with a MOSFET) and then do a warm start.
-void Radio::SetSleep(uint8_t_t powerState)
+void Radio::SetSleep(uint8_t powerState)
 {
 	if (powerState)
 	{
