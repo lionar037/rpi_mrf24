@@ -36,7 +36,7 @@
 // typedefs
 
 
-namespace {
+namespace MRF24J40{
 typedef union					// interrupt mask for radio
 {
 	uint8_t Val;
