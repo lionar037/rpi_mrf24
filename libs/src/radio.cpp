@@ -1,281 +1,110 @@
-// Driver for Microchip MRF24J40 802.15.4 radio hardware
-// New parts (c) 2010-2012 nerdfever.com
-// Originally based on Microchip MiWi DE v.3.1.3, 5/28/2010 (c) Microchip
 
 #include <string>			// memset()
-//#include "debug.h"			// debug status
-//#include "hardware.h"
-//#include "MRF24J40.h"
-//#include "radioAddress.h"	// addr for radio
-#include <typedef_mrf24.h>
+#include <radio.h>
 #include <radioAddress.h>
+#include <mrf24j40.h>
+#include <radio_cmd.h>
 // globals
-
 
 
 namespace MRF24{
 
 
-
 MRF24J40_STATUS volatile RadioStatus;						// radio state
-uint8_t_t volatile RXBuffer[PACKET_BUFFERS][RX_BUFFER_SIZE];	// rx packet buffers 
+uint8_t volatile RXBuffer[PACKET_BUFFERS][RX_BUFFER_SIZE];	// rx packet buffers 
 
 PACKET Tx, Rx;	
-											// structures describing transmitted and received packets
+				// structures describing transmitted and received packets
 
-// this combines memcpy with incrementing the source point.  It copies bytewise, allowing it to copy to/from unaligned addresses
-unsigned char* readBytes(unsigned char* dstPtr, unsigned char* srcPtr, unsigned int count)
-{
-	while(count--)
-		*dstPtr++ = *srcPtr++;
+	// this combines memcpy with incrementing the source point.  It copies bytewise, allowing it to copy to/from unaligned addresses
+	
+	unsigned char* readBytes(unsigned char* dstPtr, unsigned char* srcPtr, unsigned int count)
+	{
+		while(count--)
+			*dstPtr++ = *srcPtr++;
 
-	return srcPtr;
-}
+		return srcPtr;
+	}
 
-/* The key to understanding SPI is that there is only 1 clock line, and so all transfers
-   are always bidirectional - you send one bit for each you receive and vice-versa.  And the CLK
-   only runs (in Master mode) when you transmit.
 
-   So to transmit, you store to the TX buffer, wait for it to clock out, flush away the bogus received byte.
 
-   And to receive, you send, wait for the byte to clock in, then read it.
+	// writes count consecutive bytes from source into consecutive FIFO slots starting at "register".  Returns next empty register #.
+	uint8_t_t toTXfifo(uint16_t_t reg, uint8_t_t* source, uint8_t_t count)
+	{
+		while(count--)
+			write_long(reg++,*source++);
 
-*/
- 
-void spiPut(unsigned char v)				// write 1 byte to SPI
-{
-	unsigned char i;
-
-    #ifdef HARDWARE_SPI
-
-		#ifdef SPI_INTERRUPTS
-
-			ByteQueueStore(&SPITxQueue, v);
-
-			if (SPI2STATbits.SPITBE) 		// if SPI tx is not busy
-				INTSetFlag(INT_SPI2TX);		// kick it
-		#else
-
-			while(!SPI2STATbits.SPITBE); 	// wait for TX buffer to empty (should already be)
-			SPI2BUF=v;						// write byte to TX buffer
-
-			while(!SPI2STATbits.SPIRBF);	// wait for RX buffer to fill
-			i=SPI2BUF;						// read RX buffer (don't know why we need to do this here, but we do)
-
-		#endif 
-	#else
-        RADIO_CLK = 0;
-
-        for(i = 0; i < 8; i++)
-        {
-            RADIO_TX = (v >> (7-i));
-            RADIO_CLK = 1;
-            RADIO_CLK = 0;
-        }
-    #endif
-}
-
-unsigned char spiGet(void)							// read 1 byte from SPI
-{
-    #ifdef HARDWARE_SPI
-		
-		#ifdef SPI_INTERRUPTS 
-
-			while(!SPI2STATbits.SPITBE); 			// wait for SPI to go idle
-			SPIRxQueue.read = 0;
-			SPIRxQueue.write = 0;					// empty RX queue
-
-			ByteQueueStore(&SPITxQueue, 0);			// force clock to run
-
-			if (SPI2STATbits.SPITBE) 				// if SPI tx is not buxy
-				INTSetFlag(INT_SPI2TX);				// kick it
-
-			while (ByteQueueEmpty(&SPIRxQueue));	// wait for RX byte to come in
-			
-			return ByteQueueFetch(&SPIRxQueue);
-					
-
-		#else
-			while(!SPI2STATbits.SPITBE); 			// wait for TX buffer to empty
-			SPI2BUF=0x00;							// write to TX buffer (force CLK to run for TX transfer)
-
-			while(!SPI2STATbits.SPIRBF);			// wait for RX buffer to fill
-			return(SPI2BUF);						// read RX buffer
-		#endif
-	#else
-        unsigned char i;
-        unsigned char spidata = 0;
-
-        RADIO_TX = 0;
-        RADIO_CLK = 0;
-
-        for(i = 0; i < 8; i++)
-        {
-            spidata = (spidata << 1) | RADIO_RX;
-            RADIO_CLK = 1;
-            RADIO_CLK = 0;
-        }
-
-        return spidata;
-    #endif
-}
-
-// reads byte from radio at long "address"
-uint8_t_t highRead(uint16_t_t address)
-{
-	uint8_t_t toReturn;
-
-#ifdef SPI_INTERRUPTS
-	uint8_t_t tmpRFIE = RFIE;
-
-	RFIE = 0;
-	RADIO_CS = 0;
-#endif
-	spiPut(((address>>3)&0x7F)|0x80);
-	spiPut(((address<<5)&0xE0));
-	toReturn = spiGet();
-#ifdef SPI_INTERRUPTS
-	RADIO_CS = 1;
-	RFIE = tmpRFIE;
-#endif
-
-	return toReturn;
-}
-
-// writes "value" to radio at long "address"
-void highWrite(uint16_t_t address, uint8_t_t value)
-{
-#ifdef SPI_INTERRUPTS
-	uint8_t_t tmpRFIE = RFIE;
-
-	RFIE = 0;										// disable radio ints during communication
-	RADIO_CS = 0;									// select radio SPI bus
-#endif
-	spiPut((((uint8_t_t)(address>>3))&0x7F)|0x80);
-	spiPut((((uint8_t_t)(address<<5))&0xE0)|0x10);
-	spiPut(value);
-#ifdef SPI_INTERRUPTS
-	RADIO_CS = 1;									// de-select radio SPI bus
-	RFIE = tmpRFIE;									// restore interrupt state
-#endif
-}
-
-// reads byte from radio at short "address"
-uint8_t_t lowRead(uint8_t_t address)
-{
-	uint8_t_t toReturn;
-
-#ifdef SPI_INTERRUPTS
-	uint8_t_t tmpRFIE = RFIE;
-
-	RFIE = 0;										// disable radio ints during communication
-	RADIO_CS = 0;									// select radio SPI bus
-#endif
-	spiPut(address);
-	toReturn = spiGet();
-#ifdef SPI_INTERRUPTS
-	RADIO_CS = 1;									// de-select radio SPI bus
-	RFIE = tmpRFIE;									// restore interrupt state
-#endif
-	return toReturn;
-}
-
-// writes "value" to radio at short "address"
-void lowWrite(uint8_t_t address, uint8_t_t value)
-{
-#ifdef SPI_INTERRUPTS
-	uint8_t_t tmpRFIE = RFIE;
-
-	RFIE = 0;
-	RADIO_CS = 0;
-#endif
-	spiPut(address);
-	spiPut(value);
-#ifdef SPI_INTERRUPTS
-	RADIO_CS = 1;
-	RFIE = tmpRFIE;
-#endif
-}
-
-// writes count consecutive bytes from source into consecutive FIFO slots starting at "register".  Returns next empty register #.
-uint8_t_t toTXfifo(uint16_t_t reg, uint8_t_t* source, uint8_t_t count)
-{
-	while(count--)
-		highWrite(reg++,*source++);
-
-	return reg;
-}
+		return reg;
+	}
 
 // warm start radio hardware, tunes to Channel.  Takes about 0.37 ms on PIC32 at 20 MHz, 10 MHz SPI hardware clock
 // on return, 0=no radio hardare, 1=radio is reset
-uint8_t_t initMRF24J40(void)
+uint8_t Radio::initMRF24J40(void)
 {
-	uint8_t_t i;
+	uint8_t i;
 	uint32_t radioReset = ReadCoreTimer();	// record time we started the reset procedure
 
-	Status.ResetCount++;
+	RadioStatus.ResetCount++;
 
-	Status.TX_BUSY = 0;			// tx is not busy after reset
-	Status.TX_FAIL = 1;			// if we had to reset, consider last packet (if any) as failed
-	Status.TX_PENDING_ACK = 0;		// not pending an ack after reset
-	Status.SLEEPING = 0;			// radio is not sleeping
+	RadioStatus.TX_BUSY = 0;			// tx is not busy after reset
+	RadioStatus.TX_FAIL = 1;			// if we had to reset, consider last packet (if any) as failed
+	RadioStatus.TX_PENDING_ACK = 0;		// not pending an ack after reset
+	RadioStatus.SLEEPING = 0;			// radio is not sleeping
 
 	/* do a soft reset */
-	lowWrite(WRITE_SOFTRST,0x07);		// reset everything (power, baseband, MAC) (also does wakeup if in sleep)
+	write_short(WRITE_SOFTRST,0x07);		// reset everything (power, baseband, MAC) (also does wakeup if in sleep)
 	do
 	{
-		i = lowRead(READ_SOFTRST);
+		i = read_short(READ_SOFTRST);
 
 		if (CT_TICKS_SINCE(radioReset) > MS_TO_CORE_TICKS(50))		// if no reset in a reasonable time
 			return 0;												// then there is no radio hardware
 	}
-	while((i&0x07) != (uint8_t_t)0x00);   	// wait for hardware to clear reset bits
+	while((i&0x07) != (uint8_t)0x00);   	// wait for hardware to clear reset bits
 
-	lowWrite(WRITE_RXFLUSH,0x01);		// flush the RX fifo, leave WAKE pin disabled
+	write_short(WRITE_RXFLUSH,0x01);		// flush the RX fifo, leave WAKE pin disabled
 
-	RadioSetAddress(Status.MyShortAddress, Status.MyLongAddress, Status.MyPANID);
+	RadioSetAddress(RadioStatus.MyShortAddress, RadioStatus.MyLongAddress, RadioStatus.MyPANID);
 
-	highWrite(RFCTRL0,0x03);			// RFOPT=0x03
-	highWrite(RFCTRL1,0x02);			// VCOOPT=0x02, per datasheet
-	highWrite(RFCTRL2,0x80);			// PLL enable
-	highWrite(RFCTRL3, TX_POWER);		// set transmit power
-	highWrite(RFCTRL6,0x90);			// TXFILter on, 20MRECVR set to < 3 mS
-	highWrite(RFCTRL7,0x80);			// sleep clock 100 kHz internal
-	highWrite(RFCTRL8,0x10);			// RFVCO to 1
+	write_long(RFCTRL0,0x03);			// RFOPT=0x03
+	write_long(RFCTRL1,0x02);			// VCOOPT=0x02, per datasheet
+	write_long(RFCTRL2,0x80);			// PLL enable
+	write_long(RFCTRL3, TX_POWER);		// set transmit power
+	write_long(RFCTRL6,0x90);			// TXFILter on, 20MRECVR set to < 3 mS
+	write_long(RFCTRL7,0x80);			// sleep clock 100 kHz internal
+	write_long(RFCTRL8,0x10);			// RFVCO to 1
 
-	highWrite(SCLKDIV, 0x21);			// CLKOUT disabled, sleep clock divisor is 2
+	write_long(SCLKDIV, 0x21);			// CLKOUT disabled, sleep clock divisor is 2
 
-	lowWrite(WRITE_BBREG2,0x80);		// CCA energy threshold mode
-	lowWrite(WRITE_BBREG6,0x40);		// RSSI on every packet
-	lowWrite(WRITE_RSSITHCCA,0x60);		// CCA threshold ~ -69 dBm
+	write_short(WRITE_BBREG2,0x80);		// CCA energy threshold mode
+	write_short(WRITE_BBREG6,0x40);		// RSSI on every packet
+	write_short(WRITE_RSSITHCCA,0x60);		// CCA threshold ~ -69 dBm
 
 	#if defined(ENABLE_PA_LNA)
-		highWrite(TESTMODE, 0x0F);		// setup for PA_LNA mode control
+		write_long(TESTMODE, 0x0F);		// setup for PA_LNA mode control
 	#endif
 
+	write_short(WRITE_FFOEN, 0x98);		// PACON2, per datasheet init
+	write_short(WRITE_TXPEMISP, 0x95);  	// TXSTBL; RFSTBL=9, MSIFS-5
 
+	while((read_long(RFSTATE)&0xA0) != 0xA0);	// wait till RF state machine in RX mode
 
-	lowWrite(WRITE_FFOEN, 0x98);		// PACON2, per datasheet init
-	lowWrite(WRITE_TXPEMISP, 0x95);  	// TXSTBL; RFSTBL=9, MSIFS-5
-
-	while((highRead(RFSTATE)&0xA0) != 0xA0);	// wait till RF state machine in RX mode
-
-	lowWrite(WRITE_INTMSK,0b11110110);	// INTCON, enabled=0. RXIE and TXNIE only enabled.
+	write_short(WRITE_INTMSK,0b11110110);	// INTCON, enabled=0. RXIE and TXNIE only enabled.
 
 	// Make RF communication stable under extreme temperatures
-	highWrite(RFCTRL0, 0x03);			// this was previously done above
-	highWrite(RFCTRL1, 0x02);			// VCCOPT - whatever that does...
+	write_long(RFCTRL0, 0x03);			// this was previously done above
+	write_long(RFCTRL1, 0x02);			// VCCOPT - whatever that does...
 
 	SetChannel(RadioStatus.Channel);	// tune to current radio channel
 
 	#ifdef TURBO_MODE					// propriatary TURBO_MODE runs at 625 kbps (vs. 802.15.4 compliant 250 kbps)
-		lowWrite(WRITE_BBREG0, 0x01);	// TURBO mode enable
-		lowWrite(WRITE_BBREG3, 0x38);	// PREVALIDTH to turbo optimized setting
-		lowWrite(WRITE_BBREG4, 0x5C);	// CSTH carrier sense threshold to turbo optimal
+		write_short(WRITE_BBREG0, 0x01);	// TURBO mode enable
+		write_short(WRITE_BBREG3, 0x38);	// PREVALIDTH to turbo optimized setting
+		write_short(WRITE_BBREG4, 0x5C);	// CSTH carrier sense threshold to turbo optimal
 	#endif
 
-	lowWrite(WRITE_RFCTL,0x04);			// reset RF state machine
-	lowWrite(WRITE_RFCTL,0x00);			// back to normal operation
+	write_short(WRITE_RFCTL,0x04);			// reset RF state machine
+	write_short(WRITE_RFCTL,0x00);			// back to normal operation
 
 	// now delay at least 192 uS per datasheet init
 
@@ -285,8 +114,7 @@ uint8_t_t initMRF24J40(void)
 // on return, 1=radio is setup, 0=there is no radio
 bool Radio::Init(void)					// cold start radio init
 {
-	bool
- radio;
+	bool radio;
 
 	memset((void*)&RadioStatus, 0, sizeof(RadioStatus));
 
@@ -294,7 +122,7 @@ bool Radio::Init(void)					// cold start radio init
 	RadioStatus.MyShortAddress 	= MY_SHORT_ADDRESS;
 	RadioStatus.MyLongAddress  	= MY_LONG_ADDRESS;
 
-	RadioStatus.Channel = 11;			// start at channel 11
+	RadioStatus.Channel = 24;			// start at channel 11
 
 	radio = initMRF24J40();				// init radio hardware, tune to RadioStatus.Channel
 
@@ -304,18 +132,18 @@ bool Radio::Init(void)					// cold start radio init
 }
 
 // set short address and PANID
-void Radio::SetAddress(uint16_t shortAddress, uint64_t longAddress, uint16_t panID)
+void Radio::SetAddress(const uint16_t shortAddress, const uint64_t longAddress, const uint16_t panID)
 {
-	uint8_t_t i;
+        write_short(WRITE_SADRH, (shortAddress >> 8)& 0xff);
+        write_short(WRITE_SADRL, shortAddress & 0xff);
 
-	lowWrite(WRITE_SADRL,BYTEPTR(shortAddress)[0]);
-	lowWrite(WRITE_SADRH,BYTEPTR(shortAddress)[1]);
+		write_short(WRITE_PANIDH, (panid >> 8)& 0xff);
+		write_short(WRITE_PANIDL, panid & 0xff);
 
-	lowWrite(WRITE_PANIDL,BYTEPTR(panID)[0]);
-	lowWrite(WRITE_PANIDH,BYTEPTR(panID)[1]);
 
-	for(i=0;i<sizeof(longAddress);i++)	// program long MAC address
-		lowWrite(WRITE_EADR0+i*2,BYTEPTR(longAddress)[i]);
+
+	for(uint8_t i = 0 ; i<sizeof(longAddress) ; i++)	// program long MAC address
+		write_short(WRITE_EADR0+i*2,(longAddress>>i)&0xff);
 
 	RadioStatus.MyPANID 		= panID;
 	RadioStatus.MyShortAddress 	= shortAddress;
@@ -334,9 +162,9 @@ bool Radio::SetChannel(uint8_t channel)
 	#endif						// rolloff is not steep enough to avoid 2483.5 from channel 26 center of 2480 MHz at full MB power
 
 	RadioStatus.Channel = channel;
-	highWrite(RFCTRL0,((channel-11)<<4)|0x03);
-	lowWrite(WRITE_RFCTL,0x04);	// reset RF state machine
-	lowWrite(WRITE_RFCTL,0x00);	// back to normal
+	write_long(RFCTRL0,((channel-11)<<4)|0x03);
+	write_short(WRITE_RFCTL,0x04);	// reset RF state machine
+	write_short(WRITE_RFCTL,0x00);	// back to normal
 
 	return true;
 }
@@ -352,14 +180,14 @@ void Radio::SetSleep(uint8_t_t powerState)
 	if (powerState)
 	{
 		#if defined(ENABLE_PA_LNA)
-			highWrite(TESTMODE, 0x08);      // Disable automatic switch on PA/LNA
-			lowWrite(WRITE_GPIODIR, 0x0F);	// Set GPIO direction to OUTPUT (control PA/LNA)
-			lowWrite(WRITE_GPIO, 0x00);     // Disable PA and LNA
+			write_long(TESTMODE, 0x08);      // Disable automatic switch on PA/LNA
+			write_short(WRITE_GPIODIR, 0x0F);	// Set GPIO direction to OUTPUT (control PA/LNA)
+			write_short(WRITE_GPIO, 0x00);     // Disable PA and LNA
 		#endif
 
-		lowWrite(WRITE_SOFTRST, 0x04);		// power management reset to ensure device goes to sleep
-		lowWrite(WRITE_WAKECON,0x80);		// WAKECON; enable immediate wakeup
-		lowWrite(WRITE_SLPACK,0x80);		// SLPACK; force radio to sleep now
+		write_short(WRITE_SOFTRST, 0x04);		// power management reset to ensure device goes to sleep
+		write_short(WRITE_WAKECON,0x80);		// WAKECON; enable immediate wakeup
+		write_short(WRITE_SLPACK,0x80);		// SLPACK; force radio to sleep now
 
 		RadioStatus.SLEEPING = 1;			// radio is sleeping
 	}	
@@ -373,24 +201,24 @@ uint8_t Radio::EnergyDetect(void)
 	uint8_t_t RSSIcheck;
 
 	#if defined(ENABLE_PA_LNA)
-		highWrite(TESTMODE, 0x08);          // Disable automatic switch on PA/LNA
-		lowWrite(WRITE_GPIODIR, 0x0F);      // Set GPIO direction to OUTPUT (control PA/LNA)
-		lowWrite(WRITE_GPIO, 0x0C);         // Enable LNA, disable PA
+		write_long(TESTMODE, 0x08);          // Disable automatic switch on PA/LNA
+		write_short(WRITE_GPIODIR, 0x0F);      // Set GPIO direction to OUTPUT (control PA/LNA)
+		write_short(WRITE_GPIO, 0x0C);         // Enable LNA, disable PA
 	#endif
 
-	lowWrite(WRITE_BBREG6, 0x80);			// set RSSIMODE1 to initiate RSSI measurement
+	write_short(WRITE_BBREG6, 0x80);			// set RSSIMODE1 to initiate RSSI measurement
 
-	RSSIcheck = lowRead (READ_BBREG6);		// Read RSSIRDY
+	RSSIcheck = read_short (READ_BBREG6);		// Read RSSIRDY
 	while ((RSSIcheck & 0x01) != 0x01)		// Wait until RSSIRDY goes to 1; this indicates result is ready
-		RSSIcheck = lowRead (READ_BBREG6);	// this takes max 8 symbol periods (16 uS each = 128 uS)
+		RSSIcheck = read_short (READ_BBREG6);	// this takes max 8 symbol periods (16 uS each = 128 uS)
 
-	RSSIcheck = highRead(0x210);			// read the RSSI
+	RSSIcheck = read_long(0x210);			// read the RSSI
 
-	lowWrite(WRITE_BBREG6, 0x40);			// enable RSSI on received packets again after energy scan is finished
+	write_short(WRITE_BBREG6, 0x40);			// enable RSSI on received packets again after energy scan is finished
 
 	#if defined(ENABLE_PA_LNA)
-		lowWrite(WRITE_GPIO, 0);
-		lowWrite(WRITE_GPIODIR, 0x00);		// Set GPIO direction to INPUT
+		write_short(WRITE_GPIO, 0);
+		write_short(WRITE_GPIODIR, 0x00);		// Set GPIO direction to INPUT
 		highWrite(TESTMODE, 0x0F);			// setup for automatic PA/LNA control
 	#endif
 
@@ -449,7 +277,7 @@ void Radio::TXRaw(void)
 	RadioStatus.TX_BUSY = 1;									// mark TX as busy TXing
 	RadioStatus.TX_PENDING_ACK = Tx.ackRequest;
 
-	lowWrite(WRITE_TXNMTRIG, Tx.ackRequest << 2 | 1);			// kick off transmit with above parameters
+	write_short(WRITE_TXNMTRIG, Tx.ackRequest << 2 | 1);			// kick off transmit with above parameters
 	RadioStatus.LastTXTriggerTick = ReadCoreTimer();			// record time (used to check for locked-up radio or PLL loss)
 }
 
@@ -485,7 +313,7 @@ uint8_t Radio::RadioTXResult(void)
 }
 
 // returns TX_RESULT_SUCCESS or TX_RESULT_FAILED.  Waits up to MRF24J40_TIMEOUT_TICKS.
-uint8_t RadioWaitTXResult(void)
+uint8_t Radio::RadioWaitTXResult(void)
 {
 	while(RadioStatus.TX_BUSY)									// If TX is busy, wait for it to clear (for a resaonable time)
 		if ( CT_TICKS_SINCE(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )		// if not ready in a resonable time
@@ -577,10 +405,13 @@ void Radio::DiscardPacket(void)
 		RadioStatus.RadioExtraDiscard++;
 }
 
+	bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uint16_t MyPANID){
+		return true;
+	}
 
 // Interrupt handler for the MRF24J40 and P2P stack (PIC32 only, no security)
-void __ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on MRF24J40 radio
-{
+void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on MRF24J40 radio
+{/*
 	MRF24J40_IFREG iflags;
 
 	PUSH_DEBUG_STATE();
@@ -588,15 +419,15 @@ void __ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on 
 
 	RFIF = 0;															// clear IF immediately to allow next interrupt
 
-	iflags.Val = lowRead(READ_ISRSTS);									// read ISR to see what caused the interrupt
+	iflags.Val = read_short(READ_ISRSTS);									// read ISR to see what caused the interrupt
 
 	if(iflags.bits.RXIF)												// RX int?
 	{
 		uint8_t_t i, bytes;
 
-		lowWrite(WRITE_BBREG1, 0x04);									// set RXDECINV to disable hw RX while we're reading the FIFO
+		write_short(WRITE_BBREG1, 0x04);									// set RXDECINV to disable hw RX while we're reading the FIFO
 
-		bytes = highRead(0x300) + 2;									// get the size of the packet w/FCS, + 2 more bytes for RSSI and LQI
+		bytes = read_long(0x300) + 2;									// get the size of the packet w/FCS, + 2 more bytes for RSSI and LQI
 
 		if( bytes > RX_BUFFER_SIZE)										// if too big for the RX buffer
 		{
@@ -607,7 +438,7 @@ void __ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on 
 		RXBuffer[RadioStatus.RXWriteBuffer][0] = bytes - 4;				// store length of packet (not counting length byte, FCS, LQI and RSSI)
 
 		for(i=1;i<=bytes;i++)											// copy data from the FIFO into the RX buffer, plus RSSI and LQI
-			RXBuffer[RadioStatus.RXWriteBuffer][i] = highRead(0x300+i);
+			RXBuffer[RadioStatus.RXWriteBuffer][i] = read_long(0x300+i);
 
 		RadioStatus.RXPacketCount++;
 		RadioStatus.RXWriteBuffer = (RadioStatus.RXWriteBuffer+1) & (PACKET_BUFFERS-1);	// mod PACKET_BUFFERS
@@ -615,8 +446,8 @@ void __ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on 
 		if ( (RadioStatus.RXPacketCount > PACKET_BUFFERS) || (RadioStatus.RXWriteBuffer == RadioStatus.RXReadBuffer) )
 			RadioStatus.RXBufferOverruns++;
 
-		lowWrite(WRITE_RXFLUSH,0x01);									// flush RX hw FIFO manually (workaround for silicon errata #1)
-		lowWrite(WRITE_BBREG1, 0x00);									// reset RXDECINV to enable radio to receive next packet
+		write_short(WRITE_RXFLUSH,0x01);									// flush RX hw FIFO manually (workaround for silicon errata #1)
+		write_short(WRITE_BBREG1, 0x00);									// reset RXDECINV to enable radio to receive next packet
 	}
 
 	if(iflags.bits.TXIF)												// TX int?  If so, this means TX is no longer busy, and the result (if any) of the ACK request is in
@@ -625,7 +456,7 @@ void __ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on 
 
 		if(RadioStatus.TX_PENDING_ACK)									// if we were waiting for an ACK
 		{
-			uint8_t_t TXSTAT = lowRead(READ_TXSR);							// read TXSTAT, transmit status register
+			uint8_t_t TXSTAT = read_short(READ_TXSR);							// read TXSTAT, transmit status register
 			RadioStatus.TX_FAIL    = TXSTAT & 1;						// read TXNSTAT (TX failure status)
 			RadioStatus.TX_RETRIES = TXSTAT >> 6;						// read TXNRETRY, number of retries of last sent packet (0..3)
 			RadioStatus.TX_CCAFAIL = TXSTAT & 0b00100000;				// read CCAFAIL
@@ -634,30 +465,30 @@ void __ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on 
 		}
 	}
 
-/*
-#ifdef SPI_INTERRUPTS
-		if (SPI2STATbits.SPITBE) 
-			INTSetFlag(INT_SPI2TX);			
-#endif
-*/
 
-	// POP_DEBUG_STATE();
+	// #ifdef SPI_INTERRUPTS
+	// 		if (SPI2STATbits.SPITBE) 
+	// 			INTSetFlag(INT_SPI2TX);			
+	// #endif
+
+
+	// POP_DEBUG_STATE();*/
 }
 
-// void RadioInitP2P(void)
-// {
-// 	Tx.frameType = PACKET_TYPE_DATA;
-// 	Tx.securityEnabled = 0;
-// 	Tx.framePending = 0;
-// 	Tx.ackRequest = 1;
-// 	Tx.panIDcomp = 1;
-// 	Tx.dstAddrMode = SHORT_ADDR_FIELD;
-// 	Tx.frameVersion = 0;
-// 	Tx.srcAddrMode = NO_ADDR_FIELD;
-// 	Tx.dstPANID = RadioStatus.MyPANID;
-// 	Tx.dstAddr = RadioStatus.MyShortAddress;
-// 	Tx.payload = txPayload;
-// }
+void RadioInitP2P(void)
+{
+	Tx.frameType = PACKET_TYPE_DATA;
+	Tx.securityEnabled = 0;
+	Tx.framePending = 0;
+	Tx.ackRequest = 1;
+	Tx.panIDcomp = 1;
+	Tx.dstAddrMode = SHORT_ADDR_FIELD;
+	Tx.frameVersion = 0;
+	Tx.srcAddrMode = NO_ADDR_FIELD;
+	Tx.dstPANID = RadioStatus.MyPANID;
+	Tx.dstAddr = RadioStatus.MyShortAddress;
+	Tx.payload = txPayload;
+}
 
 
 }//end name space MRF24

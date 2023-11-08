@@ -274,7 +274,7 @@ return  address64;
            
             printf(" frame_length : %d \n",frame_length);
 
-             printf(" rx_datalength : %d \n",rx_datalength());
+            printf(" rx_datalength : %d \n",rx_datalength());
 
 
             for (int i = 0; i < frame_length + rx_datalength(); i++) {
