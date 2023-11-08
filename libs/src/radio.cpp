@@ -136,8 +136,8 @@ void Radio::SetAddress(const uint16_t shortAddress, const uint64_t longAddress, 
         write_short(WRITE_SADRH, (shortAddress >> 8)& 0xff);
         write_short(WRITE_SADRL, shortAddress & 0xff);
 
-		write_short(WRITE_PANIDH, (panid >> 8)& 0xff);
-		write_short(WRITE_PANIDL, panid & 0xff);
+		write_short(WRITE_PANIDH, (panID >> 8)& 0xff);
+		write_short(WRITE_PANIDL, panID & 0xff);
 
 	for(uint8_t i = 0 ; i<sizeof(longAddress) ; i++)	// program long MAC address
 		write_short(WRITE_EADR0+i*2,(longAddress>>i)&0xff);
@@ -301,7 +301,7 @@ void Radio::TXPacket(void)
 
 
 // returns status of last transmitted packet: TX_SUCCESS (1), TX_FAILED (2), or 0 = no result yet because TX busy
-uint8_t Radio::RadioTXResult(void)
+uint8_t Radio::TXResult(void)
 {
 	if (RadioStatus.TX_BUSY)									// if TX not done yet
 		return TX_RESULT_BUSY;
@@ -310,7 +310,7 @@ uint8_t Radio::RadioTXResult(void)
 }
 
 // returns TX_RESULT_SUCCESS or TX_RESULT_FAILED.  Waits up to MRF24J40_TIMEOUT_TICKS.
-uint8_t Radio::RadioWaitTXResult(void)
+uint8_t Radio::WaitTXResult(void)
 {
 	while(RadioStatus.TX_BUSY)									// If TX is busy, wait for it to clear (for a resaonable time)
 		if ( CT_TICKS_SINCE(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )		// if not ready in a resonable time
@@ -402,7 +402,8 @@ void Radio::DiscardPacket(void)
 		RadioStatus.RadioExtraDiscard++;
 }
 
-	bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uint16_t MyPANID){
+
+bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uint16_t MyPANID){
 		return true;
 	}
 

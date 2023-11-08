@@ -108,7 +108,7 @@ typedef struct
 
 	// function prototypes
 	struct Radio:public Mrf24j{
-			uint8_t 	initMRF24J40	(void);//agregado nuevo
+			bool 		initMRF24J40	(void);//agregado nuevo
 			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
 			uint8_t 	toTXfifo		(uint16_t,uint8_t*, uint8_t);
 
@@ -120,7 +120,7 @@ typedef struct
 			void   		TXRaw			(void);
 			void   		TXPacket		(void);
 			uint8_t  	RXPacket		(void);
-			uint8_t  	TXResult		(void);
+			uint8_t  	TXResult		(void);//uint8_t Radio::RadioTXResult(void)
 			uint8_t  	WaitTXResult	(void);
 			void   		DiscardPacket	(void);
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
