@@ -1,9 +1,8 @@
 
 #include <string>			// memset()
-#include "radio.h"
+#include "mrf24j40.h"
 #include "radioAddress.h"
-#include <mrf24j40.h>
-#include "radio_cmd.h"
+#include "radio.h"
 // globals
 
 
