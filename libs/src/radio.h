@@ -124,7 +124,7 @@ typedef struct
 			uint8_t  	WaitTXResult	(void);
 			void   		DiscardPacket	(void);
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
-			void 		BYTEPTR			(uint64_t*);
+			uint64_t*  	BytePtr			(uint64_t*);
 		private:
 			//agregado nuevo
 			bool RFIE{0};
