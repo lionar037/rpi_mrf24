@@ -107,7 +107,7 @@ typedef struct
 
 
 	// function prototypes
-	struct Radio{
+	struct Radio:public Mrf24j{
 			uint8_t 	initMRF24J40	(void);//agregado nuevo
 			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
 
