@@ -216,7 +216,7 @@ uint8_t Radio::EnergyDetect(void)
 	#if defined(ENABLE_PA_LNA)
 		write_short(WRITE_GPIO, 0);
 		write_short(WRITE_GPIODIR, 0x00);		// Set GPIO direction to INPUT
-		highWrite(TESTMODE, 0x0F);			// setup for automatic PA/LNA control
+		write_long(TESTMODE, 0x0F);			// setup for automatic PA/LNA control
 	#endif
 
 	return RSSIcheck;
@@ -265,11 +265,11 @@ void Radio::TXRaw(void)
 	
 	// now wReg is pointing to first wReg after header (m)
 	
-	highWrite(0, wReg-2);										// header length, m (-2 for header & frame lengths)
+	write_long(0, wReg-2);										// header length, m (-2 for header & frame lengths)
 
 	wReg = toTXfifo(wReg,Tx.payload,Tx.payloadLength);
 
-	highWrite(1, wReg-2);										// frame length (m+n)
+	write_long(1, wReg-2);										// frame length (m+n)
 
 	RadioStatus.TX_BUSY = 1;									// mark TX as busy TXing
 	RadioStatus.TX_PENDING_ACK = Tx.ackRequest;
