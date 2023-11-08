@@ -28,7 +28,7 @@ PACKET Tx, Rx;
 
 
 	// writes count consecutive bytes from source into consecutive FIFO slots starting at "register".  Returns next empty register #.
-	uint8_t toTXfifo(uint16_t reg, uint8_t* source, uint8_t count)
+	uint8_t Radio::toTXfifo(uint16_t reg, uint8_t* source, uint8_t count)
 	{
 		while(count--)
 			write_long(reg++,*source++);

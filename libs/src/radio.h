@@ -110,6 +110,7 @@ typedef struct
 	struct Radio:public Mrf24j{
 			uint8_t 	initMRF24J40	(void);//agregado nuevo
 			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
+			uint8_t 	toTXfifo		(uint16_t,uint8_t*, uint8_t);
 
 			bool   		Init			(void);
 			void   		SetAddress		(const uint16_t,const uint64_t,const uint16_t );
