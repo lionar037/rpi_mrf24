@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "radio_cmd.h"
+#include "mrf24j40.h"
 
 // radio config 
 
