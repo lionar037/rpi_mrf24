@@ -492,7 +492,7 @@ void RadioInitP2P(void)
 	Tx.srcAddrMode = NO_ADDR_FIELD;
 	Tx.dstPANID = RadioStatus.MyPANID;
 	Tx.dstAddr = RadioStatus.MyShortAddress;
-	Tx.payload = txPayload;
+	Tx.payload = 0x00;//txPayload;//es un puntero
 }
 
 
