@@ -124,9 +124,11 @@ typedef struct
 			uint8_t  	WaitTXResult	(void);
 			void   		DiscardPacket	(void);
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
-			template <typename T>
-			T *  	BytePtr		(auto *T);
+			
 			uint32_t CtTicksSince(uint32_t);
+			template <typename T>
+			T * BytePtr( T *);
+
 		private:
 			//agregado nuevo
 			bool RFIE{0};
