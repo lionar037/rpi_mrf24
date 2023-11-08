@@ -125,6 +125,7 @@ typedef struct
 			void   		DiscardPacket	(void);
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
 			uint64_t *  	BytePtr		(uint64_t *);
+			uint32_t CtTicksSince(uint32_t);
 		private:
 			//agregado nuevo
 			bool RFIE{0};

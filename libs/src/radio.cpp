@@ -56,7 +56,7 @@ bool Radio::initMRF24J40(void)
 	{
 		i = read_short(READ_SOFTRST);
 
-		if (CT_TICKS_SINCE(radioReset) > MS_TO_CORE_TICKS(50))		// if no reset in a reasonable time
+		if (CtTicksSince(radioReset) > MS_TO_CORE_TICKS(50))		// if no reset in a reasonable time
 			return 0;												// then there is no radio hardware
 	}
 	while((i&0x07) != (uint8_t)0x00);   	// wait for hardware to clear reset bits
@@ -293,7 +293,7 @@ void Radio::TXPacket(void)
 	Tx.frameNumber = RadioStatus.IEEESeqNum++;
 
 	while(RadioStatus.TX_BUSY)									// If TX is busy, wait for it to clear (for a resaonable time)
-		if ( CT_TICKS_SINCE(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )	// if not ready in a resonable time
+		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )	// if not ready in a resonable time
 			initMRF24J40();										// reset radio hardware (stay on same channel)
 
 	RadioTXRaw();
@@ -313,7 +313,7 @@ uint8_t Radio::TXResult(void)
 uint8_t Radio::WaitTXResult(void)
 {
 	while(RadioStatus.TX_BUSY)									// If TX is busy, wait for it to clear (for a resaonable time)
-		if ( CT_TICKS_SINCE(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )		// if not ready in a resonable time
+		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )		// if not ready in a resonable time
 			initMRF24J40();										// reset radio hardware (stay on same channel)
 
 	return TX_RESULT_SUCCESS + RadioStatus.TX_FAIL;				// 1=success, 2=fail
@@ -345,7 +345,7 @@ uint8_t Radio::RXPacket(void)
 	uint8_t* readPoint = (uint8_t*)RXBuffer[RadioStatus.RXReadBuffer];		// recieved packet read point
 
 	if(RadioStatus.TX_BUSY)												// time out and reset radio if we missed interrupts for a long time
-		if ( CT_TICKS_SINCE(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )
+		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )
 				initMRF24J40();											// reset radio hardware (stay on same channel)
 
 	readPoint = readBytes(BytePtr(Rx), readPoint, 1+2+1+2);				// copy frame length (1), frame control (2), frame number (1), PANID (2)
@@ -414,6 +414,26 @@ uint64_t* Radio::BytePtr(uint64_t * ptr){
 	ptr++;
 	return *ptr;
 }
+
+
+
+
+
+
+
+
+
+uint32_t Radio::CtTicksSince(uint32_t value){
+
+return value;
+}
+
+
+
+
+
+
+
 // Interrupt handler for the MRF24J40 and P2P stack (PIC32 only, no security)
 void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on MRF24J40 radio
 {/*
