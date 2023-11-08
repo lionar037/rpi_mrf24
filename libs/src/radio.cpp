@@ -38,7 +38,7 @@ PACKET Tx, Rx;
 
 // warm start radio hardware, tunes to Channel.  Takes about 0.37 ms on PIC32 at 20 MHz, 10 MHz SPI hardware clock
 // on return, 0=no radio hardare, 1=radio is reset
-uint8_t Radio::initMRF24J40(void)
+bool Radio::initMRF24J40(void)
 {
 	uint8_t i;
 	uint32_t radioReset = ReadCoreTimer();	// record time we started the reset procedure
@@ -107,7 +107,7 @@ uint8_t Radio::initMRF24J40(void)
 
 	// now delay at least 192 uS per datasheet init
 
-	return 1;
+	return true ;
 }
 
 // on return, 1=radio is setup, 0=there is no radio
@@ -138,8 +138,6 @@ void Radio::SetAddress(const uint16_t shortAddress, const uint64_t longAddress, 
 
 		write_short(WRITE_PANIDH, (panid >> 8)& 0xff);
 		write_short(WRITE_PANIDL, panid & 0xff);
-
-
 
 	for(uint8_t i = 0 ; i<sizeof(longAddress) ; i++)	// program long MAC address
 		write_short(WRITE_EADR0+i*2,(longAddress>>i)&0xff);
@@ -197,7 +195,7 @@ void Radio::SetSleep(uint8_t powerState)
 // Do a single (128 us) energy scan on current channel.  Return RSSI.
 uint8_t Radio::EnergyDetect(void)
 {
-	uint8_t_t RSSIcheck;
+	uint8_t RSSIcheck;
 
 	#if defined(ENABLE_PA_LNA)
 		write_long(TESTMODE, 0x08);          // Disable automatic switch on PA/LNA
@@ -238,7 +236,7 @@ uint8_t Radio::EnergyDetect(void)
 // sends raw packet per already setup Tx structure.  No error checking here.
 void Radio::TXRaw(void)
 {
-	uint8_t_t wReg;													// radio write register (into TX FIFO starting at long addr 0)
+	uint8_t wReg;													// radio write register (into TX FIFO starting at long addr 0)
 
 	wReg = toTXfifo(2,BYTEPTR(Tx)+1,2+1);						// frame control (2) + sequence number (1) 
 
@@ -422,7 +420,7 @@ void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT 
 
 	if(iflags.bits.RXIF)												// RX int?
 	{
-		uint8_t_t i, bytes;
+		uint8_t i, bytes;
 
 		write_short(WRITE_BBREG1, 0x04);									// set RXDECINV to disable hw RX while we're reading the FIFO
 
@@ -455,7 +453,7 @@ void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT 
 
 		if(RadioStatus.TX_PENDING_ACK)									// if we were waiting for an ACK
 		{
-			uint8_t_t TXSTAT = read_short(READ_TXSR);							// read TXSTAT, transmit status register
+			uint8_t TXSTAT = read_short(READ_TXSR);							// read TXSTAT, transmit status register
 			RadioStatus.TX_FAIL    = TXSTAT & 1;						// read TXNSTAT (TX failure status)
 			RadioStatus.TX_RETRIES = TXSTAT >> 6;						// read TXNRETRY, number of retries of last sent packet (0..3)
 			RadioStatus.TX_CCAFAIL = TXSTAT & 0b00100000;				// read CCAFAIL
