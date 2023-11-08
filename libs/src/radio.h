@@ -5,6 +5,7 @@
 #pragma once
 
 #include <iostream>
+
 #include "radio_cmd.h"
 #include "mrf24j40.h"
 
@@ -126,7 +127,8 @@ typedef struct
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
 			
 			uint32_t CtTicksSince(uint32_t);
-			template <typename T> T* BytePtr( T*);
+			template <typename T> 
+			T* BytePtr( T*);
 
 		private:
 			//agregado nuevo
