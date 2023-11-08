@@ -108,7 +108,7 @@ typedef struct
 
 	// function prototypes
 	struct Radio:public Mrf24j{
-			bool 		initMRF24J40	(void);//agregado nuevo
+			bool 		initMrf24j40	(void);//agregado nuevo
 			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
 			uint8_t 	toTXfifo		(uint16_t,uint8_t*, uint8_t);
 
@@ -124,7 +124,7 @@ typedef struct
 			uint8_t  	WaitTXResult	(void);
 			void   		DiscardPacket	(void);
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
-			uint64_t *  	BytePtr		(uint64_t *);
+			auto *  	BytePtr		(auto *);
 			uint32_t CtTicksSince(uint32_t);
 		private:
 			//agregado nuevo

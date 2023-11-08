@@ -38,7 +38,7 @@ PACKET Tx, Rx;
 
 // warm start radio hardware, tunes to Channel.  Takes about 0.37 ms on PIC32 at 20 MHz, 10 MHz SPI hardware clock
 // on return, 0=no radio hardare, 1=radio is reset
-bool Radio::initMRF24J40(void)
+bool Radio::initMrf24j40(void)
 {
 	uint8_t i;
 	uint32_t radioReset = ReadCoreTimer();	// record time we started the reset procedure
@@ -123,7 +123,7 @@ bool Radio::Init(void)					// cold start radio init
 
 	RadioStatus.Channel = 24;			// start at channel 11
 
-	radio = initMRF24J40();				// init radio hardware, tune to RadioStatus.Channel
+	radio = initMrf24j40();				// init radio hardware, tune to RadioStatus.Channel
 
 	RFIE = 1;							// enable radio interrupts
 
@@ -189,7 +189,7 @@ void Radio::SetSleep(uint8_t powerState)
 		RadioStatus.SLEEPING = 1;			// radio is sleeping
 	}	
 	else
-		initMRF24J40();		// could wakeup with WAKE pin or by toggling REGWAKE (1 then 0), but this is simpler
+		initMrf24j40();		// could wakeup with WAKE pin or by toggling REGWAKE (1 then 0), but this is simpler
 }
 
 // Do a single (128 us) energy scan on current channel.  Return RSSI.
@@ -294,7 +294,7 @@ void Radio::TXPacket(void)
 
 	while(RadioStatus.TX_BUSY)									// If TX is busy, wait for it to clear (for a resaonable time)
 		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )	// if not ready in a resonable time
-			initMRF24J40();										// reset radio hardware (stay on same channel)
+			initMrf24j40();										// reset radio hardware (stay on same channel)
 
 	RadioTXRaw();
 }
@@ -314,7 +314,7 @@ uint8_t Radio::WaitTXResult(void)
 {
 	while(RadioStatus.TX_BUSY)									// If TX is busy, wait for it to clear (for a resaonable time)
 		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )		// if not ready in a resonable time
-			initMRF24J40();										// reset radio hardware (stay on same channel)
+			initMrf24j40();										// reset radio hardware (stay on same channel)
 
 	return TX_RESULT_SUCCESS + RadioStatus.TX_FAIL;				// 1=success, 2=fail
 }
@@ -346,7 +346,7 @@ uint8_t Radio::RXPacket(void)
 
 	if(RadioStatus.TX_BUSY)												// time out and reset radio if we missed interrupts for a long time
 		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )
-				initMRF24J40();											// reset radio hardware (stay on same channel)
+				initMrf24j40();											// reset radio hardware (stay on same channel)
 
 	readPoint = readBytes(BytePtr(Rx), readPoint, 1+2+1+2);				// copy frame length (1), frame control (2), frame number (1), PANID (2)
 	
@@ -410,7 +410,7 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 
 
 
-uint64_t* Radio::BytePtr(uint64_t * ptr){
+auto * Radio::BytePtr(auto * ptr){
 	ptr++;
 	return *ptr;
 }
