@@ -407,6 +407,13 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 		return true;
 	}
 
+
+
+
+void Radio::BYTEPTR(void (*ptr)){
+	ptr++;
+	return;
+}
 // Interrupt handler for the MRF24J40 and P2P stack (PIC32 only, no security)
 void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT pin on MRF24J40 radio
 {/*
