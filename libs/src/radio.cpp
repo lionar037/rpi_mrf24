@@ -409,10 +409,10 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 
 
 
-
-auto * Radio::BytePtr(auto * ptr){
-	ptr++;
-	return *ptr;
+template <typename T>
+T * Radio::BytePtr(auto * T){
+	T++;
+	return *T;
 }
 
 
