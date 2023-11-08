@@ -2,12 +2,12 @@
 #include <string>			// memset()
 #include "radio.h"
 #include "radioAddress.h"
-#include "mrf24j40.h"
+#include <mrf24j40.h>
 #include "radio_cmd.h"
 // globals
 
 
-namespace MRF24{
+namespace MRF24J40{
 
 
 MRF24J40_STATUS volatile RadioStatus;						// radio state

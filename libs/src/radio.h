@@ -35,6 +35,8 @@
 
 // typedefs
 
+
+namespace {
 typedef union					// interrupt mask for radio
 {
 	uint8_t Val;
@@ -103,25 +105,27 @@ typedef struct
 } PACKET;
 
 
-// function prototypes
-struct Radio{
-		uint8_t 	initMRF24J40	(void);//agregado nuevo
-		bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
+	// function prototypes
+	struct Radio{
+			uint8_t 	initMRF24J40	(void);//agregado nuevo
+			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
 
-		bool   		Init			(void);
-		void   		SetAddress		(const uint16_t,const uint64_t,const uint16_t );
-		bool   		SetChannel		(const uint8_t);
-		void   		SetSleep		(const uint8_t);
-		uint8_t  	EnergyDetect	(void);
-		void   		TXRaw			(void);
-		void   		TXPacket		(void);
-		uint8_t  	RXPacket		(void);
-		uint8_t  	TXResult		(void);
-		uint8_t  	WaitTXResult	(void);
-		void   		DiscardPacket	(void);
-		uint32_t 	ReadCoreTimer	(void);//agregado nuevo
-	private:
-		//agregado nuevo
-		bool RFIE{0};
-};
+			bool   		Init			(void);
+			void   		SetAddress		(const uint16_t,const uint64_t,const uint16_t );
+			bool   		SetChannel		(const uint8_t);
+			void   		SetSleep		(const uint8_t);
+			uint8_t  	EnergyDetect	(void);
+			void   		TXRaw			(void);
+			void   		TXPacket		(void);
+			uint8_t  	RXPacket		(void);
+			uint8_t  	TXResult		(void);
+			uint8_t  	WaitTXResult	(void);
+			void   		DiscardPacket	(void);
+			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
+		private:
+			//agregado nuevo
+			bool RFIE{0};
+	};
+
 // public variables
+}
