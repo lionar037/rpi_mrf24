@@ -7,7 +7,7 @@
 #include <iostream>
 
 //#include "radio_cmd.h"
-#include "mrf24j40.h"
+//#include "mrf24j40.h"
 
 // radio config 
 #define MS_TO_CORE_TICKS
@@ -39,6 +39,10 @@
 
 
 namespace MRF24J40{
+
+struct Mrf24j;
+
+
 typedef union					// interrupt mask for radio
 {
 	uint8_t Val;
