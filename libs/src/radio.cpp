@@ -17,7 +17,7 @@ PACKET Tx, Rx;
 
 	// this combines memcpy with incrementing the source point.  It copies bytewise, allowing it to copy to/from unaligned addresses
 	
-	unsigned char* readBytes(unsigned char* dstPtr, unsigned char* srcPtr, unsigned int count)
+	unsigned char* Radio::readBytes(unsigned char* dstPtr, unsigned char* srcPtr, unsigned int count)
 	{
 		while(count--)
 			*dstPtr++ = *srcPtr++;
@@ -411,7 +411,7 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 
 template <typename T>
 T Radio::BytePtr( T valor){
-	valor=(valor)>>8;
+	valor = valor>>8;
 	return static_cast<T>(valor);
 }
 
