@@ -151,11 +151,11 @@ void Radio::SetAddress(const uint16_t shortAddress, const uint64_t longAddress, 
 bool Radio::SetChannel(const uint8_t channel)
 {
 	if( channel < 11 || channel > 26)
-		return FALSE;
+		return false;
 
 	#if defined(ENABLE_PA_LNA)	// Permitted band is 2400 to 2483.5 MHz.
 		if( channel == 26 )		// Center Freq. is 2405+5(k-11) MHz, for k=channel 11 to 26
-			return FALSE;		// max output is 100mW (USA)
+			return false;		// max output is 100mW (USA)
 	#endif						// rolloff is not steep enough to avoid 2483.5 from channel 26 center of 2480 MHz at full MB power
 
 	RadioStatus.Channel = channel;
