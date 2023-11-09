@@ -417,16 +417,11 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 	}
 */
 
-
 uint32_t Radio::CtTicksSince(uint32_t value){
-
 return value;
 }
 
-
-
 uint32_t Radio::ReadCoreTimer(){
-
 return 0x00;	
 }
 
@@ -487,13 +482,10 @@ void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT 
 			RadioStatus.TX_PENDING_ACK = 0;								// TX finished, clear that I am pending an ACK, already got it (if I was gonna get it)
 		}
 	}
-
-
 	// #ifdef SPI_INTERRUPTS
 	// 		if (SPI2STATbits.SPITBE) 
 	// 			INTSetFlag(INT_SPI2TX);			
 	// #endif
-
 
 	// POP_DEBUG_STATE();*/
 }
