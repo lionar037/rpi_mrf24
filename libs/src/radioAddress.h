@@ -13,7 +13,7 @@
 #define READ_SOFTRST 0x00
 */
 bool RADIO_CS ;
-bool RFIE;
+//bool RFIE;
 bool RADIO_TX ;
 bool RADIO_RX;
 bool RADIO_CLK;
