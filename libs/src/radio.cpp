@@ -296,7 +296,7 @@ void Radio::TXPacket(void)
 		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )	// if not ready in a resonable time
 			initMrf24j40();										// reset radio hardware (stay on same channel)
 
-	RadioTXRaw();
+	TXRaw();
 }
 
 
