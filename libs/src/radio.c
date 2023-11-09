@@ -1,6 +1,5 @@
 
 #include <string>			// memset()
-
 #include "radioAddress.h"
 #include "radio.h"
 #include "radio_cmd.h"
@@ -8,7 +7,6 @@
 
 
 namespace MRF24J40{
-
 
 MRF24J40_STATUS volatile RadioStatus;						// radio state
 uint8_t volatile RXBuffer[PACKET_BUFFERS][RX_BUFFER_SIZE];	// rx packet buffers 
@@ -490,7 +488,7 @@ void isr()//__ISR(_EXTERNAL_4_VECTOR, ipl4) _INT4Interrupt(void)				// from INT 
 	// POP_DEBUG_STATE();*/
 }
 
-void RadioInitP2P(void)
+void Radio::initP2P(void)
 {
 	Tx.frameType = PACKET_TYPE_DATA;
 	Tx.securityEnabled = 0;

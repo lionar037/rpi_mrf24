@@ -9,7 +9,7 @@
 //#include "radio_cmd.h"
 #include "mrf24j40.h"
 #define bytePtr(x)			((uint8_t*)&(x))
-
+#define TX_PAYLOAD_SIZE 117
 // radio config 
 #define ONE_SECOND 1
 #define MS_TO_CORE_TICKS(x) ((uint64_t)(x)*ONE_SECOND/1000)
@@ -119,7 +119,7 @@ typedef struct
 			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
 			uint8_t 	toTXfifo		(uint16_t,uint8_t*, uint8_t);
 			unsigned char* readBytes	(unsigned char* , unsigned char* , unsigned int );
-
+			void 		initP2P			(void);
 
 			bool   		Init			(void);
 			void   		SetAddress		(const uint16_t,const uint64_t,const uint16_t );
@@ -142,6 +142,7 @@ typedef struct
 		private:
 			//agregado nuevo
 			bool rfie{0};
+			uint32_t txPayload[TX_PAYLOAD_SIZE];	
 	};
 
 // public variables
