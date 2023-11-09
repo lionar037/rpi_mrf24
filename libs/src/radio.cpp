@@ -57,7 +57,7 @@ bool Radio::initMrf24j40(void)
 		i = read_short(READ_SOFTRST);
 
 		if (CtTicksSince(radioReset) > MS_TO_CORE_TICKS(50))		// if no reset in a reasonable time
-			return 0;												// then there is no radio hardware
+			return false;												// then there is no radio hardware
 	}
 	while((i&0x07) != (uint8_t)0x00);   	// wait for hardware to clear reset bits
 
