@@ -431,7 +431,10 @@ return value;
 
 
 
+uint32_t Radio::ReadCoreTimer(){
 
+return 0x00;	
+}
 
 
 
