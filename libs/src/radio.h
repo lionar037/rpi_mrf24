@@ -110,6 +110,7 @@ typedef struct
 
 	// function prototypes
 	struct Radio:public Mrf24j{
+			Radio& operator>>(int radio){return this*};
 			bool 		initMrf24j40	(void);//agregado nuevo
 			bool 		RadioSetAddress	(const uint16_t,const uint64_t,const uint16_t);//agregado nuevo
 			uint8_t 	toTXfifo		(uint16_t,uint8_t*, uint8_t);
