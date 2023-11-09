@@ -8,6 +8,7 @@
 
 //#include "radio_cmd.h"
 #include "mrf24j40.h"
+#define bytePtr(x)			((uint8_t*)&(x))
 
 // radio config 
 #define MS_TO_CORE_TICKS
@@ -133,10 +134,10 @@ typedef struct
 			uint32_t 	ReadCoreTimer	(void);//agregado nuevo
 			
 			uint32_t CtTicksSince(uint32_t);
-
+/*
 			template <typename T> 
-			unsigned char* BytePtr( T&);
-
+			unsigned char* bytePtr( T&);
+*/
 		private:
 			//agregado nuevo
 			bool rfie{0};

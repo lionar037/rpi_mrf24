@@ -239,17 +239,17 @@ void Radio::TXRaw(void)
 {
 	uint8_t wReg;													// radio write register (into TX FIFO starting at long addr 0)
 
-	wReg = toTXfifo(2,BytePtr(Tx)+1,2+1);						// frame control (2) + sequence number (1) 
+	wReg = toTXfifo(2,bytePtr(Tx)+1,2+1);						// frame control (2) + sequence number (1) 
 
 	if (Tx.dstAddrMode == SHORT_ADDR_FIELD)						// if a short dest addr is present
 	{
-		wReg = toTXfifo(wReg,BytePtr(Tx.dstPANID), 2);			// write dstPANID
-		wReg = toTXfifo(wReg,BytePtr(Tx.dstAddr), 2);			// write short address
+		wReg = toTXfifo(wReg,bytePtr(Tx.dstPANID), 2);			// write dstPANID
+		wReg = toTXfifo(wReg,bytePtr(Tx.dstAddr), 2);			// write short address
 	}
 	else if (Tx.dstAddrMode == LONG_ADDR_FIELD)					// if a long dest addr is present
 	{
-		wReg = toTXfifo(wReg,BytePtr(Tx.dstPANID), 2);			// write dstPANID
-		wReg = toTXfifo(wReg,BytePtr(Tx.dstAddr), 8);			// long addr
+		wReg = toTXfifo(wReg,bytePtr(Tx.dstPANID), 2);			// write dstPANID
+		wReg = toTXfifo(wReg,bytePtr(Tx.dstAddr), 8);			// long addr
 	}
 
 	// now wReg is at start of source PANID (if present)
@@ -257,12 +257,12 @@ void Radio::TXRaw(void)
 	if ( Tx.srcAddrMode != NO_ADDR_FIELD && 					// if source present
 		 Tx.dstAddrMode != NO_ADDR_FIELD && 					// and dest present
 		 !Tx.panIDcomp )										// and no PANID compression
-			wReg = toTXfifo(wReg,BytePtr(Tx.srcPANID), 2);		// then write src PANID
+			wReg = toTXfifo(wReg,bytePtr(Tx.srcPANID), 2);		// then write src PANID
 		
 	if (Tx.srcAddrMode == SHORT_ADDR_FIELD)						// if a short src addr is present
-		wReg = toTXfifo(wReg,BytePtr(Tx.srcAddr), 2);
+		wReg = toTXfifo(wReg,bytePtr(Tx.srcAddr), 2);
 	else if (Tx.srcAddrMode == LONG_ADDR_FIELD)					// if a long src addr is present
-		wReg = toTXfifo(wReg,BytePtr(Tx.srcAddr), 8);
+		wReg = toTXfifo(wReg,bytePtr(Tx.srcAddr), 8);
 	
 	// now wReg is pointing to first wReg after header (m)
 	
@@ -349,7 +349,7 @@ uint8_t Radio::RXPacket(void)
 		if ( CtTicksSince(RadioStatus.LastTXTriggerTick) > MRF24J40_TIMEOUT_TICKS )
 				initMrf24j40();											// reset radio hardware (stay on same channel)
 
-	readPoint = readBytes(BytePtr(Rx), readPoint, 1+2+1+2);				// copy frame length (1), frame control (2), frame number (1), PANID (2)
+	readPoint = readBytes(bytePtr(Rx), readPoint, 1+2+1+2);				// copy frame length (1), frame control (2), frame number (1), PANID (2)
 	
 	if( Rx.securityEnabled )											// if security enabled, toss it (not supported)
 	{
@@ -364,9 +364,9 @@ uint8_t Radio::RXPacket(void)
 	// readPoint now just after first PANID field
 
 	if (Rx.dstAddrMode == SHORT_ADDR_FIELD)								// if a short dest addr is present
-		readPoint = readBytes(BytePtr(Rx.dstAddr), readPoint, 2);
+		readPoint = readBytes(bytePtr(Rx.dstAddr), readPoint, 2);
 	else if (Rx.dstAddrMode == LONG_ADDR_FIELD)							// if a long dest addr is present
-		readPoint = readBytes(BytePtr(Rx.dstAddr), readPoint, 8);
+		readPoint = readBytes(bytePtr(Rx.dstAddr), readPoint, 8);
 
 	Rx.srcPANID = Rx.dstPANID;											// copy first PANID because we don't know if it's src or dst yet
 	Rx.srcAddr = Rx.dstAddr;											// ditto for address
@@ -376,12 +376,12 @@ uint8_t Radio::RXPacket(void)
 	if ( Rx.srcAddrMode != NO_ADDR_FIELD && 							// if source present
 		 Rx.dstAddrMode != NO_ADDR_FIELD && 							// and dest present
 		 !Rx.panIDcomp )												// and no PANID compression
-			readPoint = readBytes(BytePtr(Rx.srcPANID),readPoint, 2);	// then read src PANID
+			readPoint = readBytes(bytePtr(Rx.srcPANID),readPoint, 2);	// then read src PANID
 		
 	if (Rx.srcAddrMode == SHORT_ADDR_FIELD)								// if a short src addr is present
-		readPoint = readBytes(BytePtr(Rx.srcAddr),readPoint, 2);
+		readPoint = readBytes(bytePtr(Rx.srcAddr),readPoint, 2);
 	else if (Rx.srcAddrMode == LONG_ADDR_FIELD)							// if a long src addr is present
-		readPoint = readBytes(BytePtr(Rx.srcAddr),readPoint,8);
+		readPoint = readBytes(bytePtr(Rx.srcAddr),readPoint,8);
 	
 	Rx.payload = readPoint;												// now readPoint points at the start of the payload
 	Rx.payloadLength = Rx.frameLength - (readPoint - RXBuffer[RadioStatus.RXReadBuffer]) + 1;
@@ -408,14 +408,14 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 		return true;
 	}
 
-
+/*
 
 	template <typename T>
-	unsigned char* Radio::BytePtr( T& valor){
+	unsigned char* Radio::bytePtr( T& valor){
 		int tmp ;
 	return static_cast<unsigned char*>(valor);//static_cast<uint8_t*>(valor>>(8*tmp++));
 	}
-
+*/
 
 
 
