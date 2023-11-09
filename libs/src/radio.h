@@ -136,8 +136,7 @@ typedef struct
 
 			template <typename T> 
 			uint8_t* BytePtr( T&);
-			
-			T& operator>>(T val){return *this;}
+
 		private:
 			//agregado nuevo
 			bool rfie{0};
