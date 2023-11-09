@@ -409,11 +409,11 @@ bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uin
 
 
 
-template <typename T>
-T Radio::BytePtr( T valor){
-	valor = valor>>8;
-	return static_cast<T>(valor);
-}
+	template <typename T>
+	T Radio::BytePtr( T & valor){
+		T tmp ;
+	return static_cast<T>(valor>>(8*tmp++));
+	}
 
 
 
