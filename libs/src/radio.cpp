@@ -16,7 +16,8 @@ PACKET Tx, Rx;
 
 	// this combines memcpy with incrementing the source point.  It copies bytewise, allowing it to copy to/from unaligned addresses
 	
-	unsigned char* Radio::readBytes(unsigned char* dstPtr, unsigned char* srcPtr, unsigned int count)
+
+unsigned char* Radio::readBytes(unsigned char* dstPtr, unsigned char* srcPtr, unsigned int count)
 	{
 		while(count--)
 			*dstPtr++ = *srcPtr++;
@@ -27,7 +28,7 @@ PACKET Tx, Rx;
 
 
 	// writes count consecutive bytes from source into consecutive FIFO slots starting at "register".  Returns next empty register #.
-	uint8_t Radio::toTXfifo(uint16_t reg, uint8_t* source, uint8_t count)
+uint8_t Radio::toTXfifo(uint16_t reg, uint8_t* source, uint8_t count)
 	{
 		while(count--)
 			write_long(reg++,*source++);
@@ -62,7 +63,7 @@ bool Radio::initMrf24j40(void)
 
 	write_short(WRITE_RXFLUSH,0x01);		// flush the RX fifo, leave WAKE pin disabled
 
-	RadioSetAddress(RadioStatus.MyShortAddress, RadioStatus.MyLongAddress, RadioStatus.MyPANID);
+	SetAddress(RadioStatus.MyShortAddress, RadioStatus.MyLongAddress, RadioStatus.MyPANID);
 
 	write_long(RFCTRL0,0x03);			// RFOPT=0x03
 	write_long(RFCTRL1,0x02);			// VCOOPT=0x02, per datasheet
@@ -402,9 +403,6 @@ void Radio::DiscardPacket(void)
 }
 
 
-bool Radio::RadioSetAddress( uint16_t MyShortAddress,uint64_t MyLongAddress, uint16_t MyPANID){
-		return true;
-	}
 
 /*
 
@@ -503,5 +501,15 @@ void Radio::initP2P(void)
 	Tx.payload = txPayload;//txPayload;//es un puntero
 }
 
+
+Radio::Radio(){
+//initP2P();
+Init();	
+}
+
+Radio::~Radio(){
+
+	
+}
 
 }//end name space MRF24
