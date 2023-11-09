@@ -11,7 +11,8 @@
 #define bytePtr(x)			((uint8_t*)&(x))
 
 // radio config 
-#define MS_TO_CORE_TICKS
+#define ONE_SECOND 1
+#define MS_TO_CORE_TICKS(x) ((uint64_t)(x)*ONE_SECOND/1000)
 #define	MRF24J40_TIMEOUT_TICKS	MS_TO_CORE_TICKS(19)	// reset radio hardware if no TX_BUSY stays true this long - PLL lock lost or other serious problem
 
 #define PACKET_BUFFERS (2)								// radio RX packet buffers.  Must be a power of 2.
