@@ -126,7 +126,7 @@ bool Radio::Init(void)					// cold start radio init
 
 	radio = initMrf24j40();				// init radio hardware, tune to RadioStatus.Channel
 
-	RFIE = 1;							// enable radio interrupts
+	rfie = 1;							// enable radio interrupts
 
 	return radio;
 }

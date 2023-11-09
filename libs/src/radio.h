@@ -139,7 +139,7 @@ typedef struct
 			T& operator>>(T val){return *this;}
 		private:
 			//agregado nuevo
-			bool RFIE{0};
+			bool rfie{0};
 	};
 
 // public variables
