@@ -9,7 +9,7 @@
 //#include "radio_cmd.h"
 #include "mrf24j40.h"
 #define bytePtr(x)			((uint8_t*)&(x))
-#define TX_PAYLOAD_SIZE 117
+
 // radio config 
 #define ONE_SECOND 1
 #define MS_TO_CORE_TICKS(x) ((uint64_t)(x)*ONE_SECOND/1000)
