@@ -353,8 +353,8 @@ uint8_t Radio::RXPacket(void)
 	if( Rx.securityEnabled )											// if security enabled, toss it (not supported)
 	{
 		RadioStatus.RXSecurityEnabled++;								// log error
-		RadioDiscardPacket();
-		return RadioRXPacket();											// yes I know it's a little recursive, but the RXBuffer is small enough that the stack is unlikely to overflow
+		DiscardPacket();
+		return RXPacket();											// yes I know it's a little recursive, but the RXBuffer is small enough that the stack is unlikely to overflow
 	}
 
 	if (Rx.frameType == PACKET_TYPE_ACK)								// no PANID present on ACK frames [802.15.4 weakness: No way to know if this ACK is really for you]
