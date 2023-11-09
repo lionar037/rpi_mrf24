@@ -135,7 +135,7 @@ typedef struct
 			uint32_t CtTicksSince(uint32_t);
 
 			template <typename T> 
-			uint8_t* BytePtr( T&);
+			T* BytePtr( T&);
 
 		private:
 			//agregado nuevo
