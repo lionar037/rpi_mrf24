@@ -10,7 +10,7 @@
 #include "mrf24j40.h"
 
 // radio config 
-
+#define MS_TO_CORE_TICKS
 #define	MRF24J40_TIMEOUT_TICKS	MS_TO_CORE_TICKS(19)	// reset radio hardware if no TX_BUSY stays true this long - PLL lock lost or other serious problem
 
 #define PACKET_BUFFERS (2)								// radio RX packet buffers.  Must be a power of 2.
