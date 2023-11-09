@@ -142,7 +142,7 @@ typedef struct
 		private:
 			//agregado nuevo
 			bool rfie{0};
-			uint32_t txPayload[TX_PAYLOAD_SIZE];	
+			uint8_t txPayload[TX_PAYLOAD_SIZE];	
 	};
 
 // public variables
