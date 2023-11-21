@@ -9,6 +9,7 @@ namespace MRF24J40{
 #define MRF_PANIDH 0x02
 #define MRF_SADRL 0x03
 #define MRF_SADRH 0x04
+
 #define MRF_EADR0 0x05
 #define MRF_EADR1 0x06
 #define MRF_EADR2 0x07
@@ -17,6 +18,7 @@ namespace MRF24J40{
 #define MRF_EADR5 0x0A
 #define MRF_EADR6 0x0B
 #define MRF_EADR7 0x0C
+
 #define MRF_RXFLUSH 0x0D
 
 //#define MRF_Reserved 0x0E

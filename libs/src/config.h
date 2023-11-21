@@ -73,6 +73,7 @@
     #define READ_PANIDH (0x04)
     #define READ_SADRL (0x06)
     #define READ_SADRH (0x08)
+
     #define READ_EADR0 (0x0A)
     #define READ_EADR1 (0x0C)
     #define READ_EADR2 (0x0E)
@@ -81,6 +82,7 @@
     #define READ_EADR5 (0x14)
     #define READ_EADR6 (0x16)
     #define READ_EADR7 (0x18)
+    
     #define READ_RXFLUSH (0x1a)
     #define READ_TXSTATE0 (0x1c)
     #define READ_TXSTATE1 (0x1e)
@@ -140,6 +142,7 @@
     #define WRITE_PANIDH (0x05)
     #define WRITE_SADRL (0x07)
     #define WRITE_SADRH (0x09)
+
     #define WRITE_EADR0 (0x0B)
     #define WRITE_EADR1 (0x0D)
     #define WRITE_EADR2 (0x0F)
@@ -148,6 +151,7 @@
     #define WRITE_EADR5 (0x15)
     #define WRITE_EADR6 (0x17)
     #define WRITE_EADR7 (0x19)
+
     #define WRITE_RXFLUSH (0x1B)
     #define WRITE_TXSTATE0 (0x1D)
     #define WRITE_TXSTATE1 (0x1F)
