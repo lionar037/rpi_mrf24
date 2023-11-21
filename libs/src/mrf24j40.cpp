@@ -74,14 +74,14 @@ namespace MRF24J40{
 
 void Mrf24j::address64_write(uint64_t addressLong){
 
-    write_short(MRF_EADR7,(addressLong>>7)&0xff);
-    write_short(MRF_EADR6,(addressLong>>6)&0xff);
-    write_short(MRF_EADR5,(addressLong>>5)&0xff);
-    write_short(MRF_EADR4,(addressLong>>4)&0xff);
-    write_short(MRF_EADR3,(addressLong>>3)&0xff);
-    write_short(MRF_EADR2,(addressLong>>2)&0xff);
-    write_short(MRF_EADR1,(addressLong>>1)&0xff);
-    write_short(MRF_EADR0,(addressLong>>0)&0xff);
+    write_short(MRF_EADR7,(addressLong>>(7*8))&0xff);
+    write_short(MRF_EADR6,(addressLong>>(6*8))&0xff);
+    write_short(MRF_EADR5,(addressLong>>(5*8))&0xff);
+    write_short(MRF_EADR4,(addressLong>>(4*8))&0xff);
+    write_short(MRF_EADR3,(addressLong>>(3*8))&0xff);
+    write_short(MRF_EADR2,(addressLong>>(2*8))&0xff);
+    write_short(MRF_EADR1,(addressLong>>(1*8))&0xff);
+    write_short(MRF_EADR0,(addressLong>>(0*8))&0xff);
 
 }
 
@@ -93,14 +93,14 @@ uint16_t Mrf24j::address16_read(void) {
 
 uint64_t Mrf24j::address64_read(void){
 uint64_t address64 ;
-    address64 |= read_short(MRF_EADR0) << 0 ;
-    address64 |= read_short(MRF_EADR1) << 1 ;
-    address64 |= read_short(MRF_EADR2) << 2 ;
-    address64 |= read_short(MRF_EADR3) << 3 ;
-    address64 |= read_short(MRF_EADR4) << 4 ;
-    address64 |= read_short(MRF_EADR5) << 5 ;
-    address64 |= read_short(MRF_EADR6) << 6 ;
-    address64 |= read_short(MRF_EADR7) << 7 ;
+    address64 |= read_short(MRF_EADR0) << (0*8) ;
+    address64 |= read_short(MRF_EADR1) << (1*8) ;
+    address64 |= read_short(MRF_EADR2) << (2*8) ;
+    address64 |= read_short(MRF_EADR3) << (3*8) ;
+    address64 |= read_short(MRF_EADR4) << (4*8) ;
+    address64 |= read_short(MRF_EADR5) << (5*8) ;
+    address64 |= read_short(MRF_EADR6) << (6*8) ;
+    address64 |= read_short(MRF_EADR7) << (7*8) ;
 
 return  address64;
 }
