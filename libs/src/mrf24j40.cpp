@@ -106,7 +106,7 @@ return  address64;
 }
         /**
          * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
-         //* @param data
+         * @param data
         */
 
     void Mrf24j::send16(uint16_t dest16, const char * data) {
