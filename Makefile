@@ -1,4 +1,4 @@
-CC = g++
+CC = clang++
 CXXFLAGS = -std=c++17 -Ilibs/src -Isrc 
 LIBRARIES = -pthread
 SRC_DIR = src
