@@ -26,7 +26,7 @@ Run::Run()
     // This is _our_ address
     #ifdef MACADDR64
         mrf24j40_spi.address64_write(ADDRESS_LONG);
-    #ifdef MACADDR16
+    #elif MACADDR16
         mrf24j40_spi.address16_write(ADDRESS); 
     #endif
 
@@ -57,7 +57,7 @@ void Run::loop() {
         std::cout<<"send16 () ... \n";
         #ifdef MACADDR64
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, MSJ );
-        #elif
+        #elif MACADDR16
             mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
         #endif
     #endif
