@@ -6,7 +6,7 @@
 #define USE_MRF24_TX
 //#define USE_MRF24_RX
 //#define USE_MAC_ADDRESS_LONG
-#defineUSE_MAC_ADDRESS_SHORT
+#define USE_MAC_ADDRESS_SHORT
 
 
 #ifdef USE_MRF24_TX
