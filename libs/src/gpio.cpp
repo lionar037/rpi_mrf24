@@ -168,12 +168,12 @@ namespace GPIO{
     }
 
 
-    Gpio::Gpio(){
-        #ifdef DBG
-            std::cout<<"~Gpio()\n";
-        #endif
-        //app();
-    }
+    //Gpio::Gpio(){
+    //    #ifdef DBG
+    //        std::cout<<"~Gpio()\n";
+    //    #endif
+    //    //app();
+    //}
     
     Gpio::Gpio(bool& status){
         //#ifdef DBG
