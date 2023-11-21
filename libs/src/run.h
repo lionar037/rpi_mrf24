@@ -5,6 +5,7 @@
 
 #define USE_MRF24_TX
 //#define USE_MRF24_RX
+//#define USE_MAC_ADDRESS_LONG
 
 
 #ifdef USE_MRF24_TX
@@ -15,7 +16,7 @@
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
-#else
+#elif defined (USE_MAC_ADDRESS_SHORT)
     #define MACADDR16
 #endif
 
@@ -28,9 +29,8 @@
     #define PAN_ID 0x1234
     #define ADDR_SLAVE 0x6002
     #define MRF24_TRANSMITER_ENABLE
-#endif    
-
-#ifdef MODULE_RX
+//#endif    
+#elif  defined(MODULE_RX)
     #define ADDRESS_LONG 0x1122334455667701
     #define ADDRESS_LONG_SLAVE 0x1122334455667702
     #define ADDRESS 0x6002
