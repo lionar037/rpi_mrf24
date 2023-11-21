@@ -24,8 +24,11 @@ Run::Run()
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
     // This is _our_ address
-    //mrf24j40_spi.address16_write(ADDRESS); 
-    mrf24j40_spi.address64_write(ADDRESS_LONG);
+    #ifdef MACADDR64
+        mrf24j40_spi.address64_write(ADDRESS_LONG);
+    #ifdef MACADDR16
+        mrf24j40_spi.address16_write(ADDRESS); 
+    #endif
 
     // uncomment if you want to receive any packet on this channel
   mrf24j40_spi.set_promiscuous(true);
@@ -52,8 +55,11 @@ void Run::loop() {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
         std::cout<<"send16 () ... \n";
-        mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
-        //mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, MSJ );
+        #ifdef MACADDR64
+            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, MSJ );
+        #elif
+            mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        #endif
     #endif
     }
 }
