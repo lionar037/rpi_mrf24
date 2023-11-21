@@ -74,14 +74,14 @@ namespace MRF24J40{
 
 void Mrf24j::address64_write(uint64_t addressLong){
 
-    write_short(MRF_EADR7,(addressLong>>(7*8))&0xff);
-    write_short(MRF_EADR6,(addressLong>>(6*8))&0xff);
-    write_short(MRF_EADR5,(addressLong>>(5*8))&0xff);
-    write_short(MRF_EADR4,(addressLong>>(4*8))&0xff);
-    write_short(MRF_EADR3,(addressLong>>(3*8))&0xff);
-    write_short(MRF_EADR2,(addressLong>>(2*8))&0xff);
-    write_short(MRF_EADR1,(addressLong>>(1*8))&0xff);
-    write_short(MRF_EADR0,(addressLong>>(0*8))&0xff);
+    write_short(MRF_EADR7,(addressLong>>(56))&0xff);
+    write_short(MRF_EADR6,(addressLong>>(48))&0xff);
+    write_short(MRF_EADR5,(addressLong>>(40))&0xff);
+    write_short(MRF_EADR4,(addressLong>>(32))&0xff);
+    write_short(MRF_EADR3,(addressLong>>(24))&0xff);
+    write_short(MRF_EADR2,(addressLong>>(16))&0xff);
+    write_short(MRF_EADR1,(addressLong>>(8))&0xff);
+    write_short(MRF_EADR0,(addressLong)&0xff);
 
 }
 
