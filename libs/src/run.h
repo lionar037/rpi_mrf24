@@ -3,10 +3,21 @@
 #include <memory>
 #include <gpio.h>
 
-#define MODULE_TX 
-//#define MODULE_RX 
-//#define MACADDR64
-#define MACADDR16
+#define USE_MRF24_TX
+//#define USE_MRF24_RX
+
+
+#ifdef USE_MRF24_TX
+    #define MODULE_TX 
+#else
+    #define MODULE_RX 
+#endif
+
+#ifdef USE_MAC_ADDRESS_LONG 
+    #define MACADDR64
+#else
+    #define MACADDR16
+#endif
 
 //#define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGHIJKLMKNOPQRS" 
 #define MSJ "@ABCDEFGHIJKLMNO"
