@@ -175,11 +175,11 @@ namespace GPIO{
     //    //app();
     //}
     
-    Gpio::Gpio(bool& status){
-        //#ifdef DBG
-            std::cout<<"Gpio(bool)\n";
-        //#endif
-    }
+    // Gpio::Gpio(bool& status){
+        #ifdef DBG
+            // std::cout<<"Gpio(bool)\n";
+        #endif
+    // }
     
 
     Gpio::~Gpio(){
