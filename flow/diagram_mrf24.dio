@@ -8,7 +8,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="init_spi" style="ellipse;shape=doubleEllipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-                    <mxGeometry x="90" y="110" width="80" height="80" as="geometry"/>
+                    <mxGeometry x="90" y="130" width="80" height="80" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="2">
                     <mxGeometry relative="1" as="geometry">
@@ -69,8 +69,7 @@
                         <Array as="points">
                             <mxPoint x="320" y="330"/>
                             <mxPoint x="230" y="330"/>
-                            <mxPoint x="230" y="178"/>
-                            <mxPoint x="230" y="150"/>
+                            <mxPoint x="230" y="170"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
