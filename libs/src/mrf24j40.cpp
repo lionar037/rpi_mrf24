@@ -193,7 +193,7 @@ return  address64;
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
-        for (int q = 0; q < len +sizeof(src64) ; q++) {
+        for (int q = 0; q < len ; q++) {
             write_long(i++,data[q]);
         }
 
