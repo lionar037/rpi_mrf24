@@ -11,7 +11,7 @@ Run::Run()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   pin_interrupt{std::make_unique<GPIO::Gpio>()}
 #else
-:   pin_only_output{std::make_unique<GPIO::Gpio>(status)}
+:   pin_only_output{std::make_unique<GPIO::Gpio>(&status)}
 #endif
 {
     #ifdef  DBG
