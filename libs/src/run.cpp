@@ -59,11 +59,11 @@ void Run::loop() {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
         std::cout<<"send16 () ... \n";
-        #ifdef MACADDR64
+       // #ifdef MACADDR64
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, MSJ );
-        #elif defined(MACADDR16)
+       // #elif defined(MACADDR16)
             mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
-        #endif
+       // #endif
     #endif
     }
 }
