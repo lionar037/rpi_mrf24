@@ -10,6 +10,7 @@ extern "C"{
 #include <iostream>
 #include <fstream>
 #include <gpio.h>
+#include <chrono>
 
 namespace GPIO{
 
@@ -160,6 +161,13 @@ namespace GPIO{
             fflush(stdout);
             }
         }
+        else{
+            gpio_set_value(gpio_out,VALUE_HIGH);
+             std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+           
+
+
 
         close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
