@@ -57,7 +57,7 @@ namespace MRF24J40{
         private :
             unsigned long last_time{0};
             unsigned long tx_interval{1000}; 
-            bool status{1};
+            bool status{false};
 
         #ifdef ENABLE_INTERRUPT_MRF24
             std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
