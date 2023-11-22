@@ -171,7 +171,7 @@ return  address64;
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
 
-        write_long(i++, (dest64 >> 0  ) & 0xff); // uint64_t
+        write_long(i++, dest64  & 0xff); // uint64_t
         write_long(i++, (dest64 >> 8  ) & 0xff); // uint64_t
         write_long(i++, (dest64 >> 16 ) & 0xff); // uint64_t
         write_long(i++, (dest64 >> 24 ) & 0xff); // uint64_t
@@ -181,7 +181,7 @@ return  address64;
         write_long(i++, (dest64 >> 56 ) & 0xff); // uint64_t
 
         const uint64_t src64 = address64_read();
-        write_long(i++, (src64 >> 0  ) & 0xff); // uint64_t
+        write_long(i++, src64  & 0xff ); // uint64_t
         write_long(i++, (src64 >> 8  ) & 0xff); // uint64_t
         write_long(i++, (src64 >> 16 ) & 0xff); // uint64_t
         write_long(i++, (src64 >> 24 ) & 0xff); // uint64_t
