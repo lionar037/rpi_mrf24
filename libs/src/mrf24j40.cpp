@@ -93,7 +93,7 @@ uint16_t Mrf24j::address16_read(void) {
 
 uint64_t Mrf24j::address64_read(void){
 uint64_t address64 ;
-for (int i ;i<8;i++)
+for (int i=0 ;i<8;i++)
     address64 |=  (uint64_t)(read_short(MRF_EADR0+i))<< i*8;
 
    // address64 |= (uint64_t)(read_short(MRF_EADR1))<< 8;
