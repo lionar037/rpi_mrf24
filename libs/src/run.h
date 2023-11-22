@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <memory>
-//#include <gpio.h>
+#include <gpio.h>
 
 #define USE_MRF24_TX
 //#define USE_MRF24_RX
@@ -41,12 +41,11 @@
     #define ENABLE_INTERRUPT_MRF24
     
 #endif
-namespace GPIO{
-   struct Gpio;
-}
+
 
 namespace MRF24J40{
- 
+    //struct GPIO::Gpio;
+
    struct Run //:public GPIO::Gpio
    {
         public:

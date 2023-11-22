@@ -1,7 +1,7 @@
 
 #include <run.h>
 #include <mrf24j40.h>
-#include <gpio.h>
+//#include <gpio.h>
 
 namespace MRF24J40{ 
 
