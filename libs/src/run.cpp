@@ -90,7 +90,7 @@ void handle_tx() {
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     std::cout << " \nreceived a packet ... ";
-    printf("0x%d\n",mrf24j40_spi.get_rxinfo()->frame_length);
+        printf("0x%d\n",mrf24j40_spi.get_rxinfo()->frame_length);
     std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
@@ -98,7 +98,8 @@ void handle_rx() {
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
       {
           //std::cout <<" "<<std::dec<< mrf24j40_spi.get_rxbuf()[i];
-          printf(" 0x%x", mrf24j40_spi.get_rxbuf()[i]);
+          //printf(" 0x%x", mrf24j40_spi.get_rxbuf()[i]);
+          mrf24j40_spi.get_rxbuf()[i];
       }
     }
     
