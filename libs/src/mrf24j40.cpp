@@ -172,23 +172,23 @@ return  address64;
         write_long(i++, panid >> 8);
 
         write_long(i++, dest64  & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 8  ) & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 16 ) & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 24 ) & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 32 ) & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 40 ) & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 48 ) & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 56 ) & 0xff); // uint64_t
+        write_long(i++, (dest64 >> 8  ) & 0xff);
+        write_long(i++, (dest64 >> 16 ) & 0xff);
+        write_long(i++, (dest64 >> 24 ) & 0xff);
+        write_long(i++, (dest64 >> 32 ) & 0xff);
+        write_long(i++, (dest64 >> 40 ) & 0xff);
+        write_long(i++, (dest64 >> 48 ) & 0xff);
+        write_long(i++, (dest64 >> 56 ) & 0xff);
 
         const uint64_t src64 = address64_read();
         write_long(i++, src64  & 0xff ); // uint64_t
-        write_long(i++, (src64 >> 8  ) & 0xff); // uint64_t
-        write_long(i++, (src64 >> 16 ) & 0xff); // uint64_t
-        write_long(i++, (src64 >> 24 ) & 0xff); // uint64_t
-        write_long(i++, (src64 >> 32 ) & 0xff); // uint64_t
-        write_long(i++, (src64 >> 40 ) & 0xff); // uint64_t
-        write_long(i++, (src64 >> 48 ) & 0xff); // uint64_t
-        write_long(i++, (src64 >> 56 ) & 0xff); // uint64_t
+        write_long(i++, (src64 >> 8  ) & 0xff); 
+        write_long(i++, (src64 >> 16 ) & 0xff); 
+        write_long(i++, (src64 >> 24 ) & 0xff); 
+        write_long(i++, (src64 >> 32 ) & 0xff); 
+        write_long(i++, (src64 >> 40 ) & 0xff); 
+        write_long(i++, (src64 >> 48 ) & 0xff); 
+        write_long(i++, (src64 >> 56 ) & 0xff); 
 
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
@@ -229,7 +229,7 @@ return  address64;
         write_long(MRF_RFCON6, 0x90);   // – Initialize TXFIL = 1 and 20MRECVR = 1.
         write_long(MRF_RFCON7, 0x80);   // – Initialize SLPCLKSEL = 0x2 (100 kHz Internal oscillator).
         write_long(MRF_RFCON8, 0x10);   // – Initialize RFVCO = 1.
-        write_long(MRF_SLPCON1, 0x21);  // – Initialize CLKOUTEN = 1 and SLPCLKDIV = 0x01.
+        write_long(MRF_SLPCON1,0x21);  // – Initialize CLKOUTEN = 1 and SLPCLKDIV = 0x01.
 
             //  Configuration for nonbeacon-enabled devices (see Section 3.8 “Beacon-Enabled and
             //  Nonbeacon-Enabled Networks”):
@@ -328,6 +328,7 @@ return  address64;
             write_short(MRF_RXMCR, 0x00);
         }
     }
+
 
     rx_info_t * Mrf24j::get_rxinfo(void) {
         return &rx_info;
