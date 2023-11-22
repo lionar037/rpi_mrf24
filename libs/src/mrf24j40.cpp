@@ -280,7 +280,7 @@ return  address64;
 
 
             //for (int i = frame_length; i < frame_length + rx_datalength(); i++) {//original
-                for (int i = frame_length; i <   rx_datalength(); i++) {
+                for (int i = frame_length; i <   64; i++) {
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
             }
 
