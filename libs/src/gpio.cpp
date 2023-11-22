@@ -135,6 +135,7 @@ namespace GPIO{
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
         // We will wait for button press here for 10s or exit anyway
+        if(state){
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
@@ -153,10 +154,11 @@ namespace GPIO{
                 lseek(fdpoll.fd, 0, SEEK_SET);
                 read(fdpoll.fd, buf, 64);
                 //printf("Received a button press...%d\r\n",looper);
-                 std::cout<<"Esperando msj mrf24j40...\n";
+                 std::cout<<"Reading  msj mrf24j40...\n";
             }
             ++looper;
             fflush(stdout);
+            }
         }
 
         close(gpio_in_fd);
