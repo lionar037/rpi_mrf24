@@ -20,7 +20,7 @@ Run::Run()
     #ifdef ENABLE_INTERRUPT_MRF24
         pin_interrupt->app();
         #else
-        pin_only_output->app();
+        //pin_only_output->
     #endif
 
     std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
@@ -90,26 +90,24 @@ void handle_tx() {
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     std::cout << " \nreceived a packet ... ";
-        printf("\t%d\n",mrf24j40_spi.get_rxinfo()->frame_length);
+    printf("0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
     std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
       std::cout << " Packet data (PHY Payload) :";
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
       {
-          std::cout <<" "<<std::dec<< mrf24j40_spi.get_rxbuf()[i];
-          //printf(" 0x%x", mrf24j40_spi.get_rxbuf()[i]);
-          //mrf24j40_spi.get_rxbuf()[i];
+          std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];
       }
     }
     
     std::cout<<"\r\nASCII data (relevant data) :\n";
     const int recevive_data_length = mrf24j40_spi.rx_datalength();
-    std::cout << "\t\t data_length : "<<std::dec<< recevive_data_length<<"\n\t";
+    std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
-    for (int i = 0; i < data_length+recevive_data_length; i++) {
+    for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
-        printf("%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
     printf("\nSIZEOF rx info : 0x%lx\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
