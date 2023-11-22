@@ -9,9 +9,9 @@ Mrf24j mrf24j40_spi ;
 
 Run::Run() 
 #ifdef ENABLE_INTERRUPT_MRF24
-:   status (false),pin_interrupt{std::make_unique<GPIO::Gpio>(status)}
+:   status (true),pin_interrupt{std::make_unique<GPIO::Gpio>(status)}
 #else
-:  status (true),pin_only_output{std::make_unique<GPIO::Gpio>(status)}
+:  status (false),pin_only_output{std::make_unique<GPIO::Gpio>(status)}
 #endif
 {
     #ifdef  DBG
