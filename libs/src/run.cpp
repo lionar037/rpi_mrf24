@@ -28,11 +28,11 @@ Run::Run()
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
     // This is _our_ address
-    #ifdef MACADDR64
-        mrf24j40_spi.address64_write(ADDRESS_LONG);
-    #elif defined (MACADDR16)
+    //#ifdef MACADDR16
         mrf24j40_spi.address16_write(ADDRESS); 
-    #endif
+    //#elif defined (MACADDR64)
+        mrf24j40_spi.address64_write(ADDRESS_LONG);
+    //#endif
 
     // uncomment if you want to receive any packet on this channel
   mrf24j40_spi.set_promiscuous(true);
