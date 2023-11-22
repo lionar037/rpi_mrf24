@@ -20,7 +20,7 @@ Run::Run()
     #ifdef ENABLE_INTERRUPT_MRF24
         pin_interrupt->app();
         #else
-        //pin_only_output->
+        pin_only_output->app();
     #endif
 
     std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
