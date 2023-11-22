@@ -41,6 +41,6 @@ struct Gpio{
             const bool app() ;
         private :
             static inline int static_file_open_and_write_value{0};
-            bool state{false};
+            const bool state{false};
     };
 }

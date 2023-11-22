@@ -137,7 +137,7 @@ namespace GPIO{
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
         // We will wait for button press here for 10s or exit anyway
-        if(state){
+        if(state==true){
             std::cout<<"pasa\n";
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
