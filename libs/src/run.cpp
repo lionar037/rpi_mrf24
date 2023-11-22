@@ -9,7 +9,7 @@ Mrf24j mrf24j40_spi ;
 
 Run::Run() 
 #ifdef ENABLE_INTERRUPT_MRF24
-:   pin_interrupt{std::make_unique<GPIO::Gpio>()}
+:   pin_interrupt{std::make_unique<GPIO::Gpio>(status)}
 #else
 :  pin_only_output{std::make_unique<GPIO::Gpio>(status)}
 #endif
