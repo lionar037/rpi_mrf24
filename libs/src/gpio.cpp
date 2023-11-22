@@ -11,6 +11,7 @@ extern "C"{
 #include <fstream>
 #include <gpio.h>
 #include <chrono>
+#include <thread>
 
 namespace GPIO{
 
