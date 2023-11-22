@@ -26,7 +26,7 @@
 namespace GPIO{
 struct Gpio{
    // Gpio();
-      Gpio(bool st){std::cout<<"Gpio(bool)\n";}
+      Gpio(bool& st){std::cout<<"Gpio(bool)\n";}
     ~Gpio();
             int file_open_and_write_value(const char *, const char *);
             int gpio_export(int );
