@@ -76,7 +76,7 @@ void Run::interrupt_routine() {
 
 void handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
-    auto status = mrf24j40_spi.get_txinfo()->tx_ok;
+    const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
              std::cout<<"TX went ok, got ack \n";
          } else {
