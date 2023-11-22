@@ -26,9 +26,11 @@
 namespace GPIO{
 struct Gpio{
    // Gpio();
-      Gpio(bool& st){
+      Gpio(bool& st)
+      :state(st)
+      {
                     std::cout<<"Gpio(bool)\n"; 
-                    state =st;
+                    //state =st;
                 }
     ~Gpio();
             int file_open_and_write_value(const char *, const char *);
@@ -41,6 +43,6 @@ struct Gpio{
             const bool app() ;
         private :
             static inline int static_file_open_and_write_value{0};
-            const bool state{false};
+            bool state{false};
     };
 }
