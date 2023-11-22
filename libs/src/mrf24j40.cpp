@@ -274,12 +274,12 @@ return  address64;
             int rd_ptr = 0;
                 // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
            
-            printf(" frame_length : %d \n",frame_length);
+           // printf(" frame length : %d \n",frame_length);
 
-            printf(" rx_datalength : %d \n",rx_datalength());
+            //printf(" rx datalength : %d \n",rx_datalength());
 
 
-            for (int i = 0; i < frame_length + rx_datalength(); i++) {
+            for (int i = frame_length; i < frame_length + rx_datalength(); i++) {
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
             }
 
