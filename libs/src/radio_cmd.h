@@ -4,8 +4,6 @@
 //extern PACKET Rx;													// description of received packet (after parsing)
 //extern uint8_t volatile RXBuffer[PACKET_BUFFERS][RX_BUFFER_SIZE];		// rx packet buffer
 
-// Symbols
-
 	// note these have the same values as Frame Types in Table 79 of 802.15.4-2006
 #define PACKET_TYPE_BEACON     				0b000
 #define PACKET_TYPE_DATA        			0b001
