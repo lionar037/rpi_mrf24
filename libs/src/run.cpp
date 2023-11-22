@@ -97,7 +97,8 @@ void handle_rx() {
       std::cout << " Packet data (PHY Payload) :";
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
       {
-          std::cout <<" "<<std::dec<< *mrf24j40_spi.get_rxbuf()[i];
+          //std::cout <<" "<<std::dec<< mrf24j40_spi.get_rxbuf()[i];
+          printf(" 0x%x", mrf24j40_spi.get_rxbuf()[i]);
       }
     }
     
