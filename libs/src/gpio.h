@@ -28,10 +28,7 @@ struct Gpio{
    // Gpio();
       Gpio(bool& st)
       :state{st}
-      {
-                    std::cout<<"Gpio(bool)\n"; 
-                    //state =st;
-                }
+      {}
     ~Gpio();
             int file_open_and_write_value(const char *, const char *);
             int gpio_export(int );

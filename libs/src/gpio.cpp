@@ -157,7 +157,7 @@ namespace GPIO{
                 lseek(fdpoll.fd, 0, SEEK_SET);
                 read(fdpoll.fd, buf, 64);
                 //printf("Received a button press...%d\r\n",looper);
-                 std::cout<<"Reading  msj mrf24j40...\n";
+                 std::cout<<"Standby reading msj mrf24j40...\n";
             }
             ++looper;
             fflush(stdout);
