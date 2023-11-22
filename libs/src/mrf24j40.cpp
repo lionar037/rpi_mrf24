@@ -279,7 +279,7 @@ return  address64;
            // printf(" rx datalength : %d \n",rx_datalength());
 
 
-            for (int i = 0; i < frame_length + rx_datalength(); i++) {//original
+            for (uint16_t i = 0; i < frame_length + rx_datalength(); i++) {//original
                
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
             }
