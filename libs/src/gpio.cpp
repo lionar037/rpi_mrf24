@@ -138,6 +138,7 @@ namespace GPIO{
 
         // We will wait for button press here for 10s or exit anyway
         if(state){
+            std::cout<<"pasa\n";
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
@@ -165,6 +166,7 @@ namespace GPIO{
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
              std::this_thread::sleep_for(std::chrono::milliseconds(1500));
+             std::cout<<"NO pasa\n";
         }
            
 
