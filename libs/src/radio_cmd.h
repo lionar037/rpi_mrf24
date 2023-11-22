@@ -157,6 +157,7 @@
 #define WRITE_PANIDH (0x05)
 #define WRITE_SADRL (0x07)
 #define WRITE_SADRH (0x09)
+
 #define WRITE_EADR0 (0x0B)
 #define WRITE_EADR1 (0x0D)
 #define WRITE_EADR2 (0x0F)
@@ -165,6 +166,7 @@
 #define WRITE_EADR5 (0x15)
 #define WRITE_EADR6 (0x17)
 #define WRITE_EADR7 (0x19)
+
 #define WRITE_RXFLUSH (0x1B)
 #define WRITE_TXSTATE0 (0x1D)
 #define WRITE_TXSTATE1 (0x1F)
@@ -216,3 +218,34 @@
 #define WRITE_BBREG5 (0x7B)
 #define WRITE_BBREG6 (0x7D)
 #define WRITE_RSSITHCCA (0x7F)
+
+
+    
+    #define CHANNEL_11 0x00
+    #define CHANNEL_12 0x10
+    #define CHANNEL_13 0x20
+    #define CHANNEL_14 0x30
+    #define CHANNEL_15 0x40
+    #define CHANNEL_16 0x50
+    #define CHANNEL_17 0x60
+    #define CHANNEL_18 0x70
+    #define CHANNEL_19 0x80
+    #define CHANNEL_20 0x90
+    #define CHANNEL_21 0xa0
+    #define CHANNEL_22 0xb0
+    #define CHANNEL_23 0xc0
+    #define CHANNEL_24 0xd0
+    #define CHANNEL_25 0xe0
+    #define CHANNEL_26 0xf0
+
+    #define SEC_LEVEL_CBC_MAC_32    7
+    #define SEC_LEVEL_CBC_MAC_64    6
+    #define SEC_LEVEL_CBC_MAC_128   5
+    #define SEC_LEVEL_CCM_32        4
+    #define SEC_LEVEL_CCM_64        3
+    #define SEC_LEVEL_CCM_128       2
+    #define SEC_LEVEL_CTR           1
+
+
+
+    //#define RX_PACKET_SIZE (RX_BUFFER_SIZE+PROTOCOL_HEADER_SIZE+MY_ADDRESS_LENGTH+MY_ADDRESS_LENGTH+MIC_SIZE+17)
