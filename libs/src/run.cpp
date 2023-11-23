@@ -111,7 +111,7 @@ void handle_rx() {
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
-    printf("\nSIZEOF rx info : 0x%lx\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
+   // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
     std::cout<<"\r\nLQI/RSSI = \n\t";
     //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
