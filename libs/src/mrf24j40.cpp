@@ -335,7 +335,7 @@ return  address64;
 void Mrf24j::init_mrf(void){
     rxmcr.PANCOORD=true;
     rxmcr.COORD=false;
-    rxmcr.PROMI=false;
+    rxmcr.PROMI=true;
     //printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
     write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
     return;
