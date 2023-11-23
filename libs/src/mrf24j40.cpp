@@ -2,6 +2,7 @@
 #include <mrf24j40.h>
 #include <tyme.h>
 #include <dbg.h>
+#include<settingsMrf24.h>
 
 
 namespace MRF24J40{
@@ -13,6 +14,7 @@ namespace MRF24J40{
     static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
     static rx_info_t rx_info{};
     static tx_info_t tx_info{};
+    static RXMCR rxmcr{0x00};
 
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()} , bytes_nodata { bytes_MHR + bytes_FCS}
@@ -330,6 +332,14 @@ return  address64;
     }
 
 
+void Mrf24j::init_mrf(void){
+    rxmcr.PANCOORD=true;
+    rxmcr.COORD=false;
+    rxmcr.PROMI=false;
+    printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
+    write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
+    return;
+}
     rx_info_t * Mrf24j::get_rxinfo(void) {
         return &rx_info;
     }
