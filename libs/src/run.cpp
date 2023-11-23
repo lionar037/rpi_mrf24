@@ -35,8 +35,8 @@ Run::Run()
     #endif
 
     // uncomment if you want to receive any packet on this channel
-  //mrf24j40_spi.set_promiscuous(true);
-  mrf24j40_spi.init_mrf();
+  mrf24j40_spi.set_promiscuous(true);
+  //mrf24j40_spi.init_mrf();
   
     // uncomment if you want to enable PA/LNA external control
   mrf24j40_spi.set_palna(true);
