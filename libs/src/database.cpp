@@ -67,7 +67,7 @@ namespace DATABASE{
 
 Database_t::Database_t()
 ://con{std::make_unique<sql::Connection>()} , //driver{std::make_unique<sql::mysql::MySQL_Driver>()}
-    idToRetrieve    { ID_SEARCH }; 
+    idToRetrieve    { ID_SEARCH }
 ,   driver          { sql::mysql::get_mysql_driver_instance() }
 ,   con             { driver->connect("tcp://192.168.1.45:3306", "user1", "passwd") }
  ,  stmt            { con->createStatement() }
