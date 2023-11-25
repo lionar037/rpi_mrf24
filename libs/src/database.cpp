@@ -20,7 +20,8 @@ namespace DATABASE{
         //sql::Connection *con;
 
         // Crear una conexión
-        driver = sql::mysql::get_mysql_driver_instance();
+       // driver = sql::mysql::get_mysql_driver_instance();
+       
        // con = driver->connect("tcp://127.0.0.1:3306", "admin", "passwd");
         con = driver->connect("tcp://192.168.1.45:3306", "user1", "passwd");        
         // Seleccionar la base de datos
@@ -65,7 +66,8 @@ namespace DATABASE{
 
 
 Database_t::Database_t()
-:con{std::make_unique<sql::Connection>()} , driver{std::make_unique<sql::mysql::MySQL_Driver>()}
+:con{std::make_unique<sql::Connection>()} , //driver{std::make_unique<sql::mysql::MySQL_Driver>()}
+driver{sql::mysql::get_mysql_driver_instance()}
 {
   std::cout<<"Database_t()\n";  
 }
