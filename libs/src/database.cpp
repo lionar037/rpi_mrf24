@@ -68,7 +68,7 @@ namespace DATABASE{
 Database_t::Database_t()
 ://con{std::make_unique<sql::Connection>()} , //driver{std::make_unique<sql::mysql::MySQL_Driver>()}
 driver{sql::mysql::get_mysql_driver_instance()}
-, con{driver->connect("tcp://192.168.1.45:3306", "user1", "passwd");    }
+, con{driver->connect("tcp://192.168.1.45:3306", "user1", "passwd") }
 {
   std::cout<<"Database_t()\n";  
 }
