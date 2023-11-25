@@ -59,8 +59,9 @@ namespace MRF24J40{
             unsigned long tx_interval{1000}; 
             bool status{false};
 
-        #ifdef ENABLE_INTERRUPT_MRF24
+        #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
+            std::unique_ptr<DATABASE::Database_t>database{};
         #else
             std::unique_ptr<GPIO::Gpio>pin_only_output{}; 
         #endif 

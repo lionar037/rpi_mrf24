@@ -3,13 +3,16 @@
 #include <mrf24j40.h>
 //#include <gpio.h>
 
+
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
 
 Run::Run() 
 #ifdef ENABLE_INTERRUPT_MRF24
-:   status (true),pin_interrupt{std::make_unique<GPIO::Gpio>(status)}
+:   status (true)
+,   pin_interrupt{std::make_unique<GPIO::Gpio>(status)}
+,   database{std::make_unique<DATABASE::Database_t>()}
 #else
 :  status (false),pin_only_output{std::make_unique<GPIO::Gpio>(status)}
 #endif

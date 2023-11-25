@@ -74,6 +74,9 @@ Database_t::Database_t()
  ,  res             { stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve)) }
  {
   std::cout<<"Database_t()\n";  
+
+
+  database();
 }
 
 Database_t::~Database_t(){
