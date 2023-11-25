@@ -51,8 +51,8 @@ namespace DATABASE{
         } else {
             std::cout << "No se encontró un registro con el ID " << idToRetrieve << "\n";
         }
-        delete res;
-        delete stmt;
+        //delete res;
+        //delete stmt;
         //delete con;
     } catch (sql::SQLException &e) {
         std::cout << "# ERR: SQLException en " << __FILE__;
