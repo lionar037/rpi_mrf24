@@ -27,12 +27,12 @@ namespace DATABASE{
         // Seleccionar la base de datos
         con->setSchema("databaseMDB");
         // Recuperar el valor del ID 64
-        int idToRetrieve = 64;
+        //int idToRetrieve = ID_SEARCH;
        // sql::Statement *stmt    = con->createStatement();
        // sql::ResultSet *res     = stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve));
         // Mostrar resultados
         if (res->next()) {
-            int id = res->getInt("id");
+            int& id = res->getInt("id");
             // Obtener un objeto istream para los datos binarios
             std::istream *hexDataStream = res->getBlob("hex_data");
             // Convertir el istream a una representación hexadecimal
@@ -67,10 +67,11 @@ namespace DATABASE{
 
 Database_t::Database_t()
 ://con{std::make_unique<sql::Connection>()} , //driver{std::make_unique<sql::mysql::MySQL_Driver>()}
-driver{sql::mysql::get_mysql_driver_instance()}
-, con{driver->connect("tcp://192.168.1.45:3306", "user1", "passwd") }
- , stmt    {con->createStatement()}
- , res     {stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve))}
+    idToRetrieve    { ID_SEARCH }; 
+,   driver          { sql::mysql::get_mysql_driver_instance() }
+,   con             { driver->connect("tcp://192.168.1.45:3306", "user1", "passwd") }
+ ,  stmt            { con->createStatement() }
+ ,  res             { stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve)) }
  {
   std::cout<<"Database_t()\n";  
 }
