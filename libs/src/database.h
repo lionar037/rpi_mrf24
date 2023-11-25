@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 namespace DATABASE{
 
@@ -7,5 +8,8 @@ namespace DATABASE{
         Database_t();
         ~Database_t();
         bool database() ;
+        private:
+        std::unique_ptr<sql::mysql::MySQL_Driver> driver{};
+        std::unique_ptr<sql::Connection> con{};
     };
 }
