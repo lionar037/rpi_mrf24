@@ -32,7 +32,7 @@ namespace DATABASE{
        // sql::ResultSet *res     = stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve));
         // Mostrar resultados
         if (res->next()) {
-            int& id = res->getInt("id");
+            auto id = res->getInt("id");
             // Obtener un objeto istream para los datos binarios
             std::istream *hexDataStream = res->getBlob("hex_data");
             // Convertir el istream a una representación hexadecimal
