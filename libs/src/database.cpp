@@ -66,9 +66,7 @@ namespace DATABASE{
 
 
 Database_t::Database_t(){
-  std::cout<<"Database_t(
-
-  )\n";  
+  std::cout<<"Database_t()\n";  
 }
 
 Database_t::~Database_t(){
