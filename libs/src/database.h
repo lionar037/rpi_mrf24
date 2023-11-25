@@ -9,7 +9,9 @@ namespace DATABASE{
         ~Database_t();
         bool database() ;
         private:
-        std::unique_ptr<sql::mysql::MySQL_Driver> driver{};
-        std::unique_ptr<sql::Connection> con{};
+        std::unique_ptr <sql::mysql::MySQL_Driver>  driver  {};
+        std::unique_ptr <sql::Connection>           con     {};
+        std::unique_ptr <sql::Statement>            stmt    {};    
+        std::unique_ptr <sql::ResultSet>            res     {};     
     };
 }

@@ -28,8 +28,8 @@ namespace DATABASE{
         con->setSchema("databaseMDB");
         // Recuperar el valor del ID 64
         int idToRetrieve = 64;
-        sql::Statement *stmt = con->createStatement();
-        sql::ResultSet *res = stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve));
+       // sql::Statement *stmt    = con->createStatement();
+       // sql::ResultSet *res     = stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve));
         // Mostrar resultados
         if (res->next()) {
             int id = res->getInt("id");
@@ -53,7 +53,7 @@ namespace DATABASE{
         }
         delete res;
         delete stmt;
-        delete con;
+        //delete con;
     } catch (sql::SQLException &e) {
         std::cout << "# ERR: SQLException en " << __FILE__;
         std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << "\n";
@@ -69,7 +69,9 @@ Database_t::Database_t()
 ://con{std::make_unique<sql::Connection>()} , //driver{std::make_unique<sql::mysql::MySQL_Driver>()}
 driver{sql::mysql::get_mysql_driver_instance()}
 , con{driver->connect("tcp://192.168.1.45:3306", "user1", "passwd") }
-{
+ , stmt    {con->createStatement()}
+ , res     {stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve))}
+ {
   std::cout<<"Database_t()\n";  
 }
 
