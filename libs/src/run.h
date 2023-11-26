@@ -2,6 +2,7 @@
 #include <iostream>
 #include <memory>
 #include <gpio.h>
+#include <database.h>
 
 #define USE_MRF24_TX
 //#define USE_MRF24_RX
@@ -43,9 +44,9 @@
 #endif
 
 
-namespace DATABASE{
-    struct Database_t;
-}
+// namespace DATABASE{
+    // struct Database_t;
+// }
 
 namespace MRF24J40{
     //struct GPIO::Gpio;
