@@ -86,7 +86,8 @@ namespace GPIO{
         return fd;
     }
 
-    const bool Gpio::app() {
+    const bool Gpio::app() 
+    {
         unsigned int gpio_out = OUT_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
@@ -110,6 +111,7 @@ namespace GPIO{
             return false;
         }
     }
+
    const std::string filePathGpio1 = "/sys/class/gpio/gpio23/direction";
     std::ifstream fileGpio1(filePathGpio1);
     if(!fileGpio1){
@@ -144,15 +146,15 @@ namespace GPIO{
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
             fdpoll.events = POLLPRI;
-
             res = poll(&fdpoll,num_fdpoll,POLL_TIMEOUT);
 
             if(res < 0) {
                 printf("Poll failed...%d\r\n",res);            
             }
             if(res == 0) {
-                printf("\nPoll success...timed out or received button press...\r\n");
+               // printf("\nPoll success...timed out or received button press...\r\n");
                // std::cout<<"Esperando msj mrf24j40...\n";
+               std::cout<<"\nPoll success...timed out or received button press...\r\n";
             }
             if(fdpoll.revents & POLLPRI) {
                 lseek(fdpoll.fd, 0, SEEK_SET);
@@ -166,8 +168,7 @@ namespace GPIO{
         }
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }
 
         close(gpio_in_fd);
