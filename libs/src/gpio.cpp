@@ -137,7 +137,8 @@ namespace GPIO{
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
         // We will wait for button press here for 10s or exit anyway
-        if(state==true){
+        if(state==true)
+        {
 
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
@@ -168,9 +169,6 @@ namespace GPIO{
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             
         }
-           
-
-
 
         close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
