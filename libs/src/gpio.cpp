@@ -169,9 +169,9 @@ namespace GPIO{
         }
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
-            std::this_thread::sleep_for(std::chrono::milliseconds(200));            
+            std::this_thread::sleep_for(std::chrono::milliseconds(300));            
         }
-         std::this_thread::sleep_for(std::chrono::milliseconds(200));            
+         //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
 
         close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
