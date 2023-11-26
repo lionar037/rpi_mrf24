@@ -21,6 +21,7 @@
 
 #ifdef USE_MRF24_TX
     #define MODULE_TX 
+    #define MODULE_TX_RST
 #else
     #define MODULE_RX 
 #endif
