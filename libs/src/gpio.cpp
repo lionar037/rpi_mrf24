@@ -138,6 +138,7 @@ namespace GPIO{
 
         gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
+ 
         // We will wait for button press here for 10s or exit anyway
         if(state==true)
         {
@@ -168,8 +169,9 @@ namespace GPIO{
         }
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));            
+            std::this_thread::sleep_for(std::chrono::milliseconds(200));            
         }
+         std::this_thread::sleep_for(std::chrono::milliseconds(200));            
 
         close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
