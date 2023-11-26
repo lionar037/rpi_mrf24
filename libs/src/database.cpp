@@ -70,11 +70,11 @@ Database_t::Database_t()
     idToRetrieve    { ID_SEARCH }
 ,   driver          { sql::mysql::get_mysql_driver_instance() }
 ,   con             { driver->connect("tcp://192.168.1.45:3306", "user1", "passwd") }
- ,  stmt            { con->createStatement() }
- ,  res             { stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve)) }
+//,   stmt            { con->createStatement() }
+,   res             { stmt->executeQuery("SELECT id, hex_data, NAME, DATA, DATE FROM mrf24Table WHERE id = " + std::to_string(idToRetrieve)) }
  {
   std::cout<<"Database_t()\n";  
-
+   stmt            = con->createStatement() ;
 
   database();
 }
