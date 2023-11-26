@@ -1,19 +1,39 @@
 #pragma once
 #include <memory>
+#include <iostream>
+#include <mysql_driver.h>
+#include <mysql_connection.h>
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+#include <sstream>
+#include <iomanip>
+
 #define ID_SEARCH 64
+
+
 namespace DATABASE{
 
 
-    struct Database_t{
-        Database_t();
-        ~Database_t();
-        bool database() ;
-        private:
-        const int idToRetrieve {0}; //ID_SEARCH;  
-        std::unique_ptr <sql::mysql::MySQL_Driver>  driver  {};
-        std::unique_ptr <sql::Connection>           con     {};
-        std::unique_ptr <sql::Statement>            stmt    {};    
-        std::unique_ptr <sql::ResultSet>            res     {};    
-       
+struct Database_t {
+        Database_t(){
+                init();
+            }
+            
+        Database_t(const std::string& host, const std::string& user, const std::string& password, const std::string& database)
+            : host_(host), user_(user), password_(password), database_(database) {
+               
+            }
+
+        void fetchData(int idToRetrieve) ;    
+        void init();
+
+    private:
+        std::string host_;
+        std::string user_;
+        std::string password_;
+        std::string database_;
     };
+
 }
