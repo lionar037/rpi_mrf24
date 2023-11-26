@@ -3,8 +3,8 @@
     #include <memory>
     #include <cstring>
     #include <spi.h>
-    
-#define CHANNEL 24
+    #include <config.h>
+
 
 namespace MRF24J40{
 
