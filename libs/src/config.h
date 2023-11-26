@@ -8,8 +8,6 @@
 #define USE_MAC_ADDRESS_LONG
 //#define USE_MAC_ADDRESS_SHORT
 
-#define MODULE_TX_RST    
-
 #define CHANNEL 24
 
 #ifdef USE_MRF24_TX
@@ -18,6 +16,7 @@
 
 #else
     #define MODULE_RX 
+    #define MODULE_RX_RST
 #endif
 
 #ifdef USE_MAC_ADDRESS_SHORT
