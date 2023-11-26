@@ -3,6 +3,8 @@
 #include <memory>
 #include <gpio.h>
 #include <database.h>
+#include <mysql_driver.h>
+#include <mysql_connection.h>
 
 #define USE_MRF24_TX
 //#define USE_MRF24_RX
