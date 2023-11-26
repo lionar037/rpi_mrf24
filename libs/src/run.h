@@ -65,7 +65,7 @@ namespace MRF24J40{
 
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
-            std::unique_ptr<Database_t>database{};
+            std::unique_ptr<DATABASE::Database_t>database{};
         #else
             std::unique_ptr<GPIO::Gpio>pin_only_output{}; 
         #endif 
