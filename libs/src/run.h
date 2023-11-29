@@ -59,8 +59,8 @@ namespace MRF24J40{
       
     };
 
-            void handle_tx();
-            void handle_rx();
+           friend void handle_tx();
+           friend void handle_rx();
 
 
 
