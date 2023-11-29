@@ -18,7 +18,7 @@ extern "C"
 namespace FILESYSTEM{
 
     File_t::File_t()
-    : m_filename {"save_mrf24"} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
+    : m_filename {LOG_FILENAME} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
     {
 
     }
@@ -72,13 +72,12 @@ size_t dataSize = packet.size;
 
     bool File_t::create(const char* tmp){
         const std::string name_files = "log/" + m_filename + tyme() +  ".bin";
-       
         std::ofstream file(name_files, std::ios::binary);
         if (file.is_open()) {
 
             const auto bufferSize = strlen(tmp);
-           file.write ( tmp ,  bufferSize);
-            // Cerrar el archivo
+            file.write ( tmp ,  bufferSize);
+                // Cerrar el archivo
             file.close();
 
             std::cout << "\nDatos escritos en el archivo correctamente." << std::endl;

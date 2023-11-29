@@ -49,3 +49,6 @@
     #define ENABLE_INTERRUPT_MRF24
     
 #endif
+
+
+#define LOG_FILENAME "log_mrf24"
