@@ -69,7 +69,7 @@ size_t dataSize = packet.size;
         std::ofstream file(m_filename, std::ios::binary);
         if (file.is_open()) {
 
-           file.write ( tmp , reinterpret_cast<size_t>( strlen(tmp) ));
+           file.write ( tmp ,  strlen(tmp) );
             // Cerrar el archivo
             file.close();
 
