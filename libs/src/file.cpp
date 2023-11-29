@@ -16,11 +16,11 @@ namespace FILESYSTEM{
 
     File_t::File_t(){
 
-    }
+        }
 
     File_t::~File_t(){
 
-    }
+        }
 
 
     unsigned char* File_t::loadFile(const char* filename){
@@ -36,7 +36,6 @@ namespace FILESYSTEM{
     
     file.read(reinterpret_cast<char*>(&packet), sizeof(packet_mrf24));
 
-
     const auto& address_rx = packet.mac_address_rx;
 
     if (address_rx != ADDRESS_LONG_SLAVE) {
@@ -50,6 +49,11 @@ namespace FILESYSTEM{
 
         file.close();
     return 0;
+    }
+
+    void File_t::create(){
+
+
     }
 
 }
