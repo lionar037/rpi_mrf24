@@ -86,7 +86,7 @@ void Run::interrupt_routine() {
 
 
 
-void handle_tx() {
+void Run::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
@@ -99,7 +99,7 @@ void handle_tx() {
     #endif     
     }
 
-void handle_rx() {
+void Run::handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     std::cout << " \nreceived a packet ... ";
     printf("0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
