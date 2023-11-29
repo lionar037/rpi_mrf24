@@ -43,8 +43,6 @@ namespace MRF24J40{
 
             void loop();
             void interrupt_routine();
-            void handle_tx();
-            void handle_rx();
         private :
             unsigned long last_time{0};
             unsigned long tx_interval{1000}; 
@@ -61,7 +59,8 @@ namespace MRF24J40{
       
     };
 
-
+            void handle_tx();
+            void handle_rx();
 
 
 
