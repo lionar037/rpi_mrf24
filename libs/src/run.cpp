@@ -130,6 +130,7 @@ void handle_rx() {
     #endif
     SET_COLOR(SET_COLOR_RESET_BACKGROUND);
     SET_COLOR(SET_COLOR_RESET_TEXT);
+    RESET_COLOR();
 
 }
 
