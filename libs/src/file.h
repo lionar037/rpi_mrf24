@@ -16,6 +16,8 @@ namespace FILESYSTEM{
         uint16_t checksum;
     };
 
+
+
 #pragma pack(pop)
 
     struct File_t
@@ -25,6 +27,8 @@ namespace FILESYSTEM{
         unsigned char* loadFile(const char*);
         bool create(const char*);
 
+        uint64_t tyme();
+        
         private :
             const   std::string     m_filename      {};
             const   std::string     m_buffer          {};

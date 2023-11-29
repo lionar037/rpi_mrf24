@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <cstring>
 extern "C"
 {
   #include <stdio.h>
@@ -68,6 +69,7 @@ size_t dataSize = packet.size;
 
 
     bool File_t::create(const char* tmp){
+        tyme();
         std::ofstream file(m_filename + ".bin", std::ios::binary);
         if (file.is_open()) {
 
@@ -84,6 +86,18 @@ size_t dataSize = packet.size;
         }
 
         return false;
+    }
+
+    uint64_t File_t::tyme(){
+
+        auto now = std::chrono::system_clock::now();
+
+        // Convertir el tiempo actual a una estructura de tiempo local
+        std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+        std::tm localTime = *std::localtime(&currentTime);
+
+        // Formatear la fecha y hora según tu especificación
+        std::cout << std::put_time(&localTime, "%Y%m%d%H%M%S") << std::endl;
 
     }
 
