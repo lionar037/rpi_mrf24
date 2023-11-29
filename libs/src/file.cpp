@@ -23,7 +23,7 @@ namespace FILESYSTEM{
     }
 
 
-    unsigned char* loadFile(const char* filename){
+    unsigned char* File_t::loadFile(const char* filename){
 
             std::ifstream file(filename, std::ios::binary);
 

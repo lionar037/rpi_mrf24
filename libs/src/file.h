@@ -21,8 +21,7 @@ namespace FILESYSTEM{
     {
         File_t();
         ~File_t();
+        unsigned char* loadFile(const char*);
     };
-
-unsigned char* loadFile(const char*);
 
 }
