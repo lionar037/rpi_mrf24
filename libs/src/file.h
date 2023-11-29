@@ -23,8 +23,7 @@ namespace FILESYSTEM{
         File_t();
         ~File_t();
         unsigned char* loadFile(const char*);
-        bool create(const char* tmp);
-
+        bool create(const char*);
 
         private :
             const   std::string     m_filename      {};
