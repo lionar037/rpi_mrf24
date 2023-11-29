@@ -23,7 +23,7 @@
 #define SET_COLOR_WHITE_BACKGROUND "\033[47m" // Set background color to white
 #define SET_COLOR_RESET_BACKGROUND "\033[49m" // Reset background color to default
 
-#define RESET_COLOR SET_COLOR_RESET_BACKGROUND<<SET_COLOR_RESET_TEXT
+#define RESET_COLOR (SET_COLOR_RESET_BACKGROUND)<<(SET_COLOR_RESET_TEXT)
 #define SET_COLOR(x)  std::cout<<(x)
 /*
 
