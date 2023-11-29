@@ -25,7 +25,7 @@
 #define SET_COLOR_RESET_BACKGROUND "\033[49m" // Reset background color to default
 #define SET_COLOR_RESET_TEXT    "\033[39m"
 #define SET_COLOR(x)  std::cout << (x)
-#define RESET_COLOR() SET_COLOR(SET_COLOR_RESET_BACKGROUND + SET_COLOR_RESET_TEXT)  
+#define RST_COLOR() SET_COLOR(SET_COLOR_RESET_BACKGROUND + SET_COLOR_RESET_TEXT)  
 
 
 /*

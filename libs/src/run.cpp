@@ -128,9 +128,9 @@ void handle_rx() {
     printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
     std::cout<<"\r\n";
     #endif
-    SET_COLOR(SET_COLOR_RESET_BACKGROUND);
-    SET_COLOR(SET_COLOR_RESET_TEXT);
-    RESET_COLOR();
+    //SET_COLOR(SET_COLOR_RESET_BACKGROUND);
+    //SET_COLOR(SET_COLOR_RESET_TEXT);
+    RST_COLOR() ;
 
 }
 
