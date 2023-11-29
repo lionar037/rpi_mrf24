@@ -27,9 +27,9 @@ namespace FILESYSTEM{
 
 
         private :
-          const char* nombreArchivo {};
-          const char buffer[128]{};
-            const size_t tamanoDatos{};
+            const   char*   nombreArchivo   {};
+            const   char*   buffer          {};
+            const   size_t  tamanoDatos     {};
     };
 
 }
