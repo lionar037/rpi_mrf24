@@ -49,7 +49,7 @@ size_t dataSize = packet.size;
 
     unsigned char* imgdata = new unsigned char[dataSize];
 
-    file.seekg(packet.data, std::ios::bin);
+    file.seekg(packet.data, std::ios::binary);
 
     file.read(reinterpret_cast<char*>(imgdata), dataSize);
 
