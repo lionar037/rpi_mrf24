@@ -24,6 +24,12 @@ namespace FILESYSTEM{
         ~File_t();
         unsigned char* loadFile(const char*);
         void create();
+
+
+        private :
+          const char* nombreArchivo {};
+          const char buffer[128]{};
+            const size_t tamanoDatos{};
     };
 
 }
