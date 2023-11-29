@@ -28,7 +28,7 @@ Run::Run()
         std::cout<<"Run()\n";
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
-            fs->create("@fs system");
+            //fs->create("@fs system");
             pin_interrupt->app();
         #else
             pin_only_output->app();
@@ -118,12 +118,12 @@ void handle_rx() {
     for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        //std::cout<<".";
+        
     }
-    
+    std::unique_ptr<FILESYSTEM::File_t> fs{std::make_unique<FILESYSTEM::File_t> ()};
 
-
-    FILESYSTEM::File_t::create("@fs");
+    fs->create(mrf24j40_spi.get_rxinfo()->rx_data);
+    //FILESYSTEM::File_t::create("@fs");
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
