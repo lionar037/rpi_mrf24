@@ -12,7 +12,9 @@ Run::Run()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status (true)
 ,   pin_interrupt{std::make_unique<GPIO::Gpio>(status)}
+#ifdef ENABLE_DATABASE
 ,   database{std::make_unique<DATABASE::Database_t>()}
+#endif
 #else
 :  status (false),pin_only_output{std::make_unique<GPIO::Gpio>(status)}
 #endif
