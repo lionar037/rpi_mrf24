@@ -1,6 +1,7 @@
 
 #include <run.h>
 #include <mrf24j40.h>
+#include <color.h>
 //#include <gpio.h>
 
 
@@ -106,7 +107,7 @@ void handle_rx() {
           std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];
       }
     }
-    
+    SET_COLOR(SET_COLOR_CYAN_TEXT);
     std::cout<<"\r\nASCII data (relevant data) :\n";
     const int recevive_data_length = mrf24j40_spi.rx_datalength();
     std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
@@ -116,6 +117,7 @@ void handle_rx() {
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
+    SET_COLOR(SET_COLOR_RESET_TEXT);
    // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
     std::cout<<"\r\nLQI/RSSI = \n\t";
