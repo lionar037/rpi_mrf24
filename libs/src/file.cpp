@@ -71,8 +71,9 @@ size_t dataSize = packet.size;
 
 
     bool File_t::create(const char* tmp){
-        
-        std::ofstream file(m_filename + tyme() +  ".bin", std::ios::binary);
+        const std::string name_files = "log/" + m_filename + tyme() +  ".bin";
+       
+        std::ofstream file(name_files, std::ios::binary);
         if (file.is_open()) {
 
             const auto bufferSize = strlen(tmp);
