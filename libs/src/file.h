@@ -27,9 +27,9 @@ namespace FILESYSTEM{
 
 
         private :
-            const   std::string     nombreArchivo   {};
-            const   std::string     buffer          {};
-            const   size_t          size_data       {};
+            const   std::string     m_filename      {};
+            const   std::string     m_buffer          {};
+            const   size_t          m_size_data       {};
     };
 
 }

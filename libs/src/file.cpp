@@ -17,7 +17,7 @@ extern "C"
 namespace FILESYSTEM{
 
     File_t::File_t()
-    : nombreArchivo {"datos.bin"} , buffer{"@ABCDEF"} , size_data{sizeof(buffer)}
+    : m_filename {"datos.bin"} , m_buffer{"@ABCDEF"} , m_size_data{sizeof(buffer)}
     {
 
         }
@@ -70,11 +70,11 @@ size_t dataSize = packet.size;
 
 
     bool File_t::create(){
-        std::ofstream file(nombreArchivo, std::ios::binary);
+        std::ofstream file(m_filename, std::ios::binary);
         if (file.is_open()) {
         // Escribir los datos en el archivo
-            file.write(reinterpret_cast<char*>(buffer), size_data);
-
+            //file.write(reinterpret_cast<char*>(buffer), size_data);
+            file.write(m_buffer.c_str(), m_size_data);
             // Cerrar el archivo
             file.close();
 
