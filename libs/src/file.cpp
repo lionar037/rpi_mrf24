@@ -76,10 +76,10 @@ size_t dataSize = packet.size;
             // Cerrar el archivo
             file.close();
 
-            std::cout << "Datos escritos en el archivo correctamente." << std::endl;
+            std::cout << "\nDatos escritos en el archivo correctamente." << std::endl;
                   return true;
         } else {
-            std::cerr << "No se pudo abrir el archivo." << std::endl;
+            std::cerr << "\nNo se pudo abrir el archivo." << std::endl;
                   return false;
         }
 
