@@ -69,7 +69,7 @@ size_t dataSize = packet.size;
     }
 
 
-    bool File_t::create(const uint8_t* tmp){
+    bool File_t::create(const char * tmp){
         std::ofstream file(m_filename, std::ios::binary);
         if (file.is_open()) {
         // Escribir los datos en el archivo
