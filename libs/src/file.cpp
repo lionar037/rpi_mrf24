@@ -15,7 +15,7 @@ extern "C"
 namespace FILESYSTEM{
 
     File_t::File_t()
-    : m_filename {"save_mrf24.bin"} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
+    : m_filename {"save_mrf24"} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
     {
 
     }
@@ -68,7 +68,7 @@ size_t dataSize = packet.size;
 
 
     bool File_t::create(const char* tmp){
-        std::ofstream file(m_filename, std::ios::binary);
+        std::ofstream file(m_filename + ".bin", std::ios::binary);
         if (file.is_open()) {
 
             const auto bufferSize = strlen(tmp);
