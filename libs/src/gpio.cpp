@@ -9,16 +9,18 @@ extern "C"{
 }
 #include <iostream>
 #include <fstream>
-#include <gpio.h>
 #include <chrono>
 #include <thread>
+#include <gpio.h>
+#include <dbg.h>
+
 
 namespace GPIO{
 
     /*      HELPER FUNCTIONS       */
 
     // FILE OPERATION
-     int Gpio::file_open_and_write_value(const char *fname, const char *wdata)
+    int Gpio::file_open_and_write_value(const char *fname, const char *wdata)
     {
         int fd;
 
@@ -105,9 +107,13 @@ namespace GPIO{
     if(!fileGpio23){
         const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
         if (result_input == 0) {
-            std::cout << "Pin GPIO 23 exported successfully." << std::endl;
+            #ifdef DBG_GPIO
+                std::cout << "Pin GPIO 23 exported successfully." << std::endl;
+            #endif
         } else {
-            std::cerr << "Error exporting GPIO 23." << std::endl;
+            #ifdef DBG_GPIO
+                std::cerr << "Error exporting GPIO 23." << std::endl;
+            #endif
             return false;
         }
     }
@@ -117,10 +123,14 @@ namespace GPIO{
     if(!fileGpio1){
         const int result_output = std::system("echo 1 > /sys/class/gpio/export");
         if (result_output == 0) {
-            std::cout << "Pin GPIO 1 exported successfully." << std::endl;
+            #ifdef DBG_GPIO
+                std::cout << "Pin GPIO 1 exported successfully." << std::endl;
+            #endif
         } else {
-            std::cerr << "Error unexporting GPIO 1." << std::endl;
-            //return 0;//continua por que no es necesario el pin de salida
+            #ifdef DBG_GPIO
+                std::cerr << "Error unexporting GPIO 1." << std::endl;
+                //return 0;//continua por que no es necesario el pin de salida
+            #endif
         }
     }
 
@@ -150,19 +160,25 @@ namespace GPIO{
             res = poll(&fdpoll,num_fdpoll,POLL_TIMEOUT);
 
             if(res < 0) {
-                printf("Poll failed...%d\r\n",res);            
-            }
+                #ifdef DBG_GPIO
+                printf("Poll failed...%d\r\n",res);   
+                #endif         
+                }
             if(res == 0) {
-               // printf("\nPoll success...timed out or received button press...\r\n");
-               // std::cout<<"Esperando msj mrf24j40...\n";
-               std::cout<<"\nPoll success...timed out or received button press...\r\n";
-            }
+                #ifdef DBG_GPIO
+                    // printf("\nPoll success...timed out or received button press...\r\n");
+                    // std::cout<<"Esperando msj mrf24j40...\n";
+                    std::cout<<"\nPoll success...timed out or received button press...\r\n";
+                #endif
+                }
             if(fdpoll.revents & POLLPRI) {
                 lseek(fdpoll.fd, 0, SEEK_SET);
                 read(fdpoll.fd, buf, 64);
-                //printf("Received a button press...%d\r\n",looper);
-                 std::cout<<"Standby reading msj mrf24j40...\n";
-            }
+                #ifdef DBG_GPIO
+                    //printf("Received a button press...%d\r\n",looper);
+                    //std::cout<<"Standby reading msj mrf24j40...\n";
+                #endif
+                }
             ++looper;
             fflush(stdout);
             }
