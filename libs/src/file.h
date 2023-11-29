@@ -11,7 +11,7 @@ namespace FILESYSTEM{
         uint32_t ignore;    
         uint64_t mac_address_rx;
         uint16_t size;
-        uint8_t data;
+        uint8_t* data;
         uint16_t checksum;
     };
 
