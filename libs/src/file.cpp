@@ -37,9 +37,9 @@ namespace FILESYSTEM{
     file.read(reinterpret_cast<char*>(&packet), sizeof(packet_mrf24));
 
 
- auto head_file = packet.head;
+    const auto& mac_address_rx = packet.head;
 
-    if (head_file != ADDRESS_LONG_SLAVE) {
+    if (mac_address_rx != ADDRESS_LONG_SLAVE) {
 
         std::cerr << "Es un MRF24 no  válido." << std::endl;
         file.close();
