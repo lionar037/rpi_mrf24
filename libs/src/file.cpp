@@ -1,5 +1,6 @@
 #include <file.h>
 #include <iostream>
+#include <fstream>
 
 
 namespace FILESYSTEM{
