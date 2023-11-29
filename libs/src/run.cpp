@@ -117,7 +117,7 @@ void handle_rx() {
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
-    SET_COLOR(SET_COLOR_GREEN_BACKGROUND);
+    SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
    // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
     std::cout<<"\r\nLQI/RSSI = \n\t";
@@ -126,11 +126,12 @@ void handle_rx() {
     //std::cout<<" ";
     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
+     RST_COLOR() ;
     std::cout<<"\r\n";
     #endif
     //SET_COLOR(SET_COLOR_RESET_BACKGROUND);
     //SET_COLOR(SET_COLOR_RESET_TEXT);
-    RST_COLOR() ;
+   
 
 }
 
