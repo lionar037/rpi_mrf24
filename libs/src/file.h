@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#
+#include <string>
 
 namespace FILESYSTEM{
 
@@ -27,8 +27,8 @@ namespace FILESYSTEM{
 
 
         private :
-            const   char*   nombreArchivo   {};
-            const   char*   buffer          {};
+            const   std::string   nombreArchivo   {};
+            const   std::string  buffer          {};
             const   size_t  tamanoDatos     {};
     };
 
