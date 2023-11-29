@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <cstring>
 
 namespace FILESYSTEM{
 
@@ -27,7 +28,7 @@ namespace FILESYSTEM{
         unsigned char* loadFile(const char*);
         bool create(const char*);
 
-        uint64_t tyme();
+        const std::string  tyme();
         
         private :
             const   std::string     m_filename      {};

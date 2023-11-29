@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <cstring>
+
 #include <iomanip>
 #include <chrono>
 #include <sstream>
@@ -90,7 +90,7 @@ size_t dataSize = packet.size;
         return false;
     }
 
-    uint64_t File_t::tyme()
+    const std::string  File_t::tyme()
     {
 
         auto now = std::chrono::system_clock::now();
