@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 extern "C"
 {
   #include <stdio.h>
@@ -9,6 +10,7 @@ extern "C"
 #include <file.h>
 #include <config.h>
 #include <color.h>
+
 
 namespace FILESYSTEM{
 
