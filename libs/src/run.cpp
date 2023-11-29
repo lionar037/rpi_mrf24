@@ -134,6 +134,7 @@ void handle_rx() {
     //std::cout<<" ";
     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
+    SET_COLOR(SET_COLOR_RED_TEXT);
     printf("LQI : %d ",mrf24j40_spi.get_rxinfo()->lqi);
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
