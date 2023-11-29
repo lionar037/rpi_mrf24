@@ -4,6 +4,12 @@
 
 namespace FILESYSTEM{
 
+    File_t::File_t(){
 
-    
+    }
+
+    File_t::~File_t(){
+
+    }
+
 }

@@ -2,6 +2,11 @@
 
 namespace FILESYSTEM{
 
+struct File_t
+{
+    /* data */
+};
+
 
 
 }
