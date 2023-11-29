@@ -10,6 +10,8 @@ extern "C"
 
 #include <file.h>
 #include <config.h>
+#include <color.h>
+
 
 
 namespace FILESYSTEM{
@@ -53,7 +55,12 @@ size_t dataSize = packet.size;
 
     file.read(reinterpret_cast<char*>(imgdata), dataSize);
 
+    if (packet.panid != PAN_ID) {
 
+        std::cerr << SET_COLOR_RED_TEXT << "PAN_ID no  válido." << std::endl;
+        file.close();
+        return nullptr;
+    }
 
         file.close();
     return imgdata;
