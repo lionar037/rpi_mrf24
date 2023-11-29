@@ -32,7 +32,8 @@ namespace FILESYSTEM{
     }
 
     packet_mrf24 packet;
-    file.read(reinterpret_cast<char*>(&packet), sizeof(packet_mrf24));
+
+    file.read(reinterpre t_cast<char*>(&packet), sizeof(packet_mrf24));
 
 
         return 0;
