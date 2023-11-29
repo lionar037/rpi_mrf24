@@ -17,7 +17,7 @@ extern "C"
 namespace FILESYSTEM{
 
     File_t::File_t()
-    : nombreArchivo {"datos.bin"} , buffer[]{"@ABCDEF"} , tamanoDatos{sizeof(buffer)}
+    : nombreArchivo {"datos.bin"} , buffer{"@ABCDEF"} , tamanoDatos{sizeof(buffer)}
     {
 
         }
