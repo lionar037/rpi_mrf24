@@ -23,7 +23,7 @@ namespace FILESYSTEM{
         File_t();
         ~File_t();
         unsigned char* loadFile(const char*);
-        bool create(const uint8_t* tmp);
+        bool create(const char* tmp);
 
 
         private :
