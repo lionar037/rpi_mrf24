@@ -45,10 +45,18 @@ namespace FILESYSTEM{
         return nullptr;
     }
 
+size_t dataSize = packet.size;
+
+    unsigned char* imgdata = new unsigned char[dataSize];
+
+    file.seekg(packet.data, std::ios::bin);
+
+    file.read(reinterpret_cast<char*>(imgdata), dataSize);
+
 
 
         file.close();
-    return 0;
+    return imgdata;
     }
 
     void File_t::create(){
