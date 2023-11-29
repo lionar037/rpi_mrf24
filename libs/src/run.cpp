@@ -31,7 +31,7 @@ Run::Run()
             fs->create("@fs system");
             pin_interrupt->app();
         #else
-        pin_only_output->app();
+            pin_only_output->app();
     #endif
 
     std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
@@ -83,8 +83,6 @@ void Run::loop() {
 void Run::interrupt_routine() {
     mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
 }
-
-
 
 void handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE

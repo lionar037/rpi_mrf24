@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 extern "C"
@@ -7,12 +6,9 @@ extern "C"
   #include <stdlib.h>
   #include <stdint.h>
 }
-
 #include <file.h>
 #include <config.h>
 #include <color.h>
-
-
 
 namespace FILESYSTEM{
 
@@ -72,9 +68,7 @@ size_t dataSize = packet.size;
     bool File_t::create(const char* tmp){
         std::ofstream file(m_filename, std::ios::binary);
         if (file.is_open()) {
-        // Escribir los datos en el archivo
-            //file.write(reinterpret_cast<char*>(buffer), size_data);
-           // file.write(m_buffer.c_str(), m_size_data);
+
            file.write ( tmp , m_size_data);
             // Cerrar el archivo
             file.close();
