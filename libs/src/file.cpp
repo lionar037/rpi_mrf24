@@ -68,7 +68,8 @@ size_t dataSize = packet.size;
     return imgdata;
     }
 
-    void File_t::create(){
+
+    bool File_t::create(){
         std::ofstream file(nombreArchivo, std::ios::binary);
         if (file.is_open()) {
         // Escribir los datos en el archivo
@@ -78,11 +79,13 @@ size_t dataSize = packet.size;
             file.close();
 
             std::cout << "Datos escritos en el archivo correctamente." << std::endl;
+                  return true;
         } else {
             std::cerr << "No se pudo abrir el archivo." << std::endl;
+                  return false;
         }
 
-        return 0;
+        return false;
 
     }
 
