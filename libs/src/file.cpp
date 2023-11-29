@@ -99,7 +99,7 @@ size_t dataSize = packet.size;
         std::tm localTime = *std::localtime(&currentTime);
 
         // Formatear la fecha y hora según tu especificación
-        std::cout << std::put_time(&localTime, "%Y%m%d%H%M%S") << std::endl;
+        std::cout << std::put_time(&localTime, "\n%Y%m%d%H%M%S") << std::endl;
         
         return 0;
     }
