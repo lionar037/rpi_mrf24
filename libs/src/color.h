@@ -11,6 +11,7 @@
 #define SET_COLOR_CYAN_TEXT     "\033[36m" // Set text color to cyan
 #define SET_COLOR_WHITE_TEXT    "\033[37m" // Set text color to white
 #define SET_COLOR_RESET_TEXT    "\033[39m" // Reset text color to default
+#define SET_COLOR_GRAY_TEXT     "\033[90m" // Set text color to black
 
 // Background color
 #define SET_COLOR_BLACK_BACKGROUND "\033[40m" // Set background color to black
@@ -21,11 +22,9 @@
 #define SET_COLOR_MAGENTA_BACKGROUND "\033[45m" // Set background color to magenta
 #define SET_COLOR_CYAN_BACKGROUND "\033[46m" // Set background color to cyan
 #define SET_COLOR_WHITE_BACKGROUND "\033[47m" // Set background color to white
-
 #define SET_COLOR_RESET_BACKGROUND "\033[49m" // Reset background color to default
-#define SET_COLOR_RESET_TEXT    "\033[39m"
+
 #define SET_COLOR(x)  std::cout << (x)
-//#define RST_COLOR() SET_COLOR(SET_COLOR_RESET_BACKGROUND + SET_COLOR_RESET_TEXT)  
 #define RST_COLOR() SET_COLOR(std::string(SET_COLOR_RESET_BACKGROUND) + SET_COLOR_RESET_TEXT)
 
 

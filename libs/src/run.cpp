@@ -117,6 +117,7 @@ void handle_rx() {
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         //std::cout<<".";
     }
+    SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
    // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
