@@ -9,7 +9,7 @@ namespace FILESYSTEM{
 
     struct packet_mrf24 {
         uint32_t ignore;    
-        uint64_t head;
+        uint64_t mac_address_rx;
         uint32_t size;
         uint8_t* data;
         uint32_t checksum;
