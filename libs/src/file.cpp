@@ -13,7 +13,7 @@ extern "C"
 namespace FILESYSTEM{
 
     File_t::File_t()
-    : m_filename {"datos.bin"} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
+    : m_filename {"save_mrf24.bin"} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
     {
 
     }
