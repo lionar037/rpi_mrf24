@@ -75,7 +75,7 @@ size_t dataSize = packet.size;
         // Escribir los datos en el archivo
             //file.write(reinterpret_cast<char*>(buffer), size_data);
            // file.write(m_buffer.c_str(), m_size_data);
-           file.write ( tmp , m_size_data);
+           file.write ( &tmp , m_size_data);
             // Cerrar el archivo
             file.close();
 
