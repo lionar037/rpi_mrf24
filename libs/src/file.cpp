@@ -9,6 +9,7 @@ extern "C"
 }
 
 #include <file.h>
+#include <config.h>
 
 
 namespace FILESYSTEM{
@@ -36,7 +37,19 @@ namespace FILESYSTEM{
     file.read(reinterpret_cast<char*>(&packet), sizeof(packet_mrf24));
 
 
-        return 0;
+ auto head_file = packet.head;
+
+    if (head_file != ADDRESS_LONG_SLAVE) {
+
+        std::cerr << "Es un MRF24 no  válido." << std::endl;
+        file.close();
+        return nullptr;
+    }
+
+
+
+        file.close();
+    return 0;
     }
 
 }
