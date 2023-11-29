@@ -14,7 +14,7 @@ Run::Run()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
 ,   pin_interrupt   {std::make_unique<GPIO::Gpio>(status)}
-,   fs              { std::make_unique<FILESYSTEM::File_t>()};
+,   fs              { std::make_unique<FILESYSTEM::File_t>()}
 #ifdef ENABLE_DATABASE
 ,   database{std::make_unique<DATABASE::Database_t>()}
 #endif
