@@ -51,4 +51,4 @@
 #endif
 
 
-#define LOG_FILENAME "log_mrf24"
+#define LOG_FILENAME "log_mrf_"
