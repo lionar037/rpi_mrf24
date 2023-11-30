@@ -34,13 +34,13 @@ $(APP): $(OBJS) | $(BIN_DIR)
 
 # Regla de compilación para los archivos de código fuente en SRC_DIR
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) 
-	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
+	$(CC) $(CXXFLAGS) -c $< -o $@ #-MMD -MP
 
 # Regla de compilación para los archivos de código fuente en LIB_DIR y sus subdirectorios
 define compile_template
 $(info Compiling files in folder: $(LIB_DIR)/$(1))
 $(OBJ_DIR)/%.o: $(LIB_DIR)/$(1)/%.cpp | $(OBJ_DIR)
-	$(CC) $(CXXFLAGS) -c $$< -o $$@ -MMD -MP
+	$(CC) $(CXXFLAGS) -c $$< -o $$@ #-MMD -MP
 endef
 
 # Construir reglas de compilación para archivos en carpetas específicas de LIB_DIR
