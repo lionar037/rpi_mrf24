@@ -3,7 +3,7 @@
 
 namespace OLED{
 
-        bool Oled_t::create()
+        bool Oled_t::create(const char* tmp)
         {
             return true;
         }
