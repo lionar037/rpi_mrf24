@@ -12,8 +12,9 @@ extern "C"{
 #include <fstream>
 #include <chrono>
 #include <thread>
-#include <gpio.h>
-#include <config.h>
+
+#include <spi/gpio.h>
+#include <spi/config.h>
 
 
 namespace GPIO{
