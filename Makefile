@@ -52,9 +52,12 @@ $(BIN_DIR) $(OBJ_DIR):
 
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -f log/*
 
 run: $(APP)
 	sudo $<
+
+
 
 # Incluir las dependencias generadas automáticamente
 -include $(OBJS:.o=.d)
