@@ -14,8 +14,7 @@
 #include <files/database.h>
 #include <app/config.h>
 #include <app/work.h>
-#include <files/file.h>
-#include <qr/qr.h>
+
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -23,19 +22,19 @@
     #define MACADDR16
 #endif
 
-namespace FILESYSTEM{
-    struct File_t;
-
-}
-
-namespace QR{
-    struct Qr_t;
-    struct Qr_t;
-}
-
-namespace WORK{
-    struct Work_t;
-}
+// namespace FILESYSTEM{
+    // struct File_t;
+// 
+// }
+// 
+// namespace QR{
+    // struct Qr_t;
+    // struct Qr_t;
+// }
+// 
+// namespace WORK{
+    // struct Work_t;
+// }
 
 
 namespace MRF24J40{
