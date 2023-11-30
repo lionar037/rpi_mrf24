@@ -7,7 +7,7 @@ OBJ_DIR = obj
 BIN_DIR = bin
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 LIB_SRCS = $(wildcard $(LIB_DIR)/*.cpp) $(wildcard $(LIB_DIR)/mrf/*.cpp) $(wildcard $(LIB_DIR)/spi/*.cpp) $(wildcard $(LIB_DIR)/commands/*.cpp)
-OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o)))
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
 
 # Nombre predeterminado para el binario
 DEFAULT_TARGET = mrf24_rpi
