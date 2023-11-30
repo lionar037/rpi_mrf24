@@ -13,7 +13,7 @@
 #include <others/gpio.h>
 #include <files/database.h>
 #include <app/config.h>
-
+#include <app/work.h>
 
 
 #ifdef USE_MAC_ADDRESS_LONG 
@@ -21,6 +21,7 @@
 #elif defined (USE_MAC_ADDRESS_SHORT)
     #define MACADDR16
 #endif
+
 /*
 namespace FILESYSTEM{
     struct File_t;
@@ -34,9 +35,9 @@ namespace QR{
 
 */
 
-namespace WORK{
-struct Work_t;
-}
+// namespace WORK{
+    // struct Work_t;
+// }
 
 
 namespace MRF24J40{
