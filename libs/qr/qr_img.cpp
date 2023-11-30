@@ -85,7 +85,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     bool Qr_img_t::create(const char* data) {
         // Configuración del código QR
         QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
-
+        SET_COLOR(SET_COLOR_WHITE_TEXT);
         // Imprime el código QR en la consola
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
@@ -104,7 +104,15 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     }
 
 
-    Qr_img_t::Qr_img_t()    {   std::cout<<"Qr_img_t()\n";  }
-    Qr_img_t::~Qr_img_t()   {   std::cout<<"~Qr_img_t()\n"; }
+    Qr_img_t::Qr_img_t()    {   
+        #ifdef DBG
+            std::cout<<"Qr_img_t()\n"; 
+        #endif 
+        }
+    Qr_img_t::~Qr_img_t()   {  
+        #ifdef DBG
+            std::cout<<"~Qr_img_t()\n";
+        #endif 
+        }
 
 }
