@@ -1,7 +1,7 @@
 #pragma once
 #include <qrencode.h>
 
-namespace QR_IMG{
+namespace QR{
 
 
     struct Qr_img_t{

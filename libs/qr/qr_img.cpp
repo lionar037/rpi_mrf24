@@ -5,7 +5,7 @@
 #include <zlib.h>
 #include <qr/qr_img.h>
 
-namespace QR_IMG {
+namespace QR{
 
 
 void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
