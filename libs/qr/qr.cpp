@@ -28,6 +28,6 @@ bool Qr_t::create(const char* data ) {
 }
 
 
-    Qr_t::Qr_t()    {   std::cout<<"Qr_t()\n";  }
+    //Qr_t::Qr_t()    {   std::cout<<"Qr_t()\n";  }
     Qr_t::~Qr_t()   {   std::cout<<"~Qr_t()\n"; }
 }
