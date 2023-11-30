@@ -50,5 +50,5 @@ clean:
 -include $(OBJS:.o=.d)
 
 
-print-%:
-    @echo $* = $($*)
+#print-%:
+#    @echo $* = $($*)
