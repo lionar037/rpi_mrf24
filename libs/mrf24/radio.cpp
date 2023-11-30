@@ -14,19 +14,16 @@ Mrf24j mrf24j40_spi ;
 Radio_t::Radio_t() 
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
-,   fs              { std::make_unique<FILESYSTEM::File_t>()}
+,   fs              { std::make_unique<FILESYSTEM::File_t>() }
     #ifdef ENABLE_DATABASE
-,   database        {std::make_unique<DATABASE::Database_t>()}
+,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
 #else
 :   status          (false)
-,   qr              { std::make_unique<QR::Qr_t>()}
+,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
-,   gpio            {std::make_unique<GPIO::Gpio>(status)}
+,   gpio            { std::make_unique<GPIO::Gpio>(status) }
 {
-    #ifdef  DBG
-        std::cout<<"Radio_t()\n";
-    #endif
     #ifdef ENABLE_INTERRUPT_MRF24
     
     #else
@@ -34,7 +31,7 @@ Radio_t::Radio_t()
     #endif
             gpio->app();
 
-    std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
+    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
