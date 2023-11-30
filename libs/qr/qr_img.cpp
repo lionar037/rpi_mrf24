@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
-#include <qrencode.h>
+
 #include <png.h>
 #include <zlib.h>
 
 namespace QR_IMG {
 
 
-void saveQRCodeImage(const QRcode* qr, const char* filename) {
+void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     // Abre el archivo para escritura en formato binario
     std::ofstream file(filename, std::ios::binary);
 
