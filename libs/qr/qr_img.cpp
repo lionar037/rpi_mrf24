@@ -98,7 +98,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
 
         // Guarda el código QR como imagen PNG
         //tyme->get_tyme() 
-        const auto file_tmp =reinterpret_cast<char*>( "text "+ "log/qr.png");
+        const auto file_tmp =reinterpret_cast<char*>( "text " + "log/qr.png");
         saveQRCodeImage(qr, file_tmp);
 
         // Libera la memoria
