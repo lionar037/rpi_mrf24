@@ -2,7 +2,7 @@ CC = clang++
 CXXFLAGS = -std=c++17 -Ilibs -Isrc 
 LIBRARIES = -pthread -lmysqlcppconn
 SRC_DIR = src
-LIB_DIR = libs/mrf24
+LIB_DIR = libs
 OBJ_DIR = obj
 BIN_DIR = bin
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
