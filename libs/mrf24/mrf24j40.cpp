@@ -223,7 +223,7 @@ return  address64;
             }*/
             
            delay(192); 
-           #include <config.h>
+           #include <spi/config.h>
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
            #endif
