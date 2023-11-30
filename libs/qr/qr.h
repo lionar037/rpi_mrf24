@@ -16,7 +16,7 @@ namespace QR{
         Qr_img_t();
         ~Qr_img_t();
         void saveQRCodeImage(const QRcode* , const char* );
-        bool create();
+        bool create(const char*);
 
     };
 
