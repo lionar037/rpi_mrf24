@@ -1,5 +1,5 @@
 CC = clang++
-CXXFLAGS = -std=c++17 -Ilibs -Isrc 
+CXXFLAGS = -std=c++17 -Ilibs -Isrc  -Ilibs/mrf24
 LIBRARIES = -pthread -lmysqlcppconn
 SRC_DIR = src
 LIB_DIR = libs
