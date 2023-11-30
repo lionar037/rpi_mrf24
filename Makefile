@@ -10,16 +10,16 @@ LIB_SRCS = $(wildcard $(LIB_DIR)/*.cpp)
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
 
 # Nombre predeterminado para el binario
-DEFAULT_TARGET = app_mrf24_rpi
+DEFAULT_TARGET = mrf24_rpi
 
 # Obtener el nombre del objetivo desde la línea de comandos
 TARGET ?= $(DEFAULT_TARGET)
 
 # Cambiar el nombre del binario según el objetivo
 ifeq ($(TARGET), tx)
-    APP = $(BIN_DIR)/app_mrf24_rpi_tx
+    APP = $(BIN_DIR)/mrf24_rpi_tx
 else ifeq ($(TARGET), rx)
-    APP = $(BIN_DIR)/app_mrf24_rpi_rx
+    APP = $(BIN_DIR)/mrf24_rpi_rx
 else
     APP = $(BIN_DIR)/$(DEFAULT_TARGET)
 endif
