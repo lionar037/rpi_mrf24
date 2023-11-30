@@ -13,7 +13,6 @@
 #ifdef USE_MRF24_TX
     #define MODULE_TX 
     #define MODULE_TX_RST
-
 #else
     #define MODULE_RX 
     #define MODULE_RX_RST
@@ -23,7 +22,7 @@
     #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGHIJKLMKNOPQRS" 
 #else
     //#define MSJ "@ABCDEFGHIJKLMNO"
-      #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGHIJKLMKNOPQRS" 
+      #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGH" 
 #endif
 
 
