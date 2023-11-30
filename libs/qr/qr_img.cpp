@@ -7,6 +7,7 @@
 #include <qr/qr.h>
 #include <others/color.h>
 #include <app/config.h>
+#include <others/tyme.h>
 
 namespace QR{
 
@@ -94,8 +95,9 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
             std::cout << std::endl;
         }
 
+
         // Guarda el código QR como imagen PNG
-        saveQRCodeImage(qr, "log/qr.png");
+        saveQRCodeImage(qr, tyme->get_tyme() + "log/qr.png");
 
         // Libera la memoria
         QRcode_free(qr);
@@ -104,7 +106,9 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     }
 
 
-    Qr_img_t::Qr_img_t()    {   
+    Qr_img_t::Qr_img_t()    
+    :   tyme { std::make_unique<TYME::Time_t>()}
+    {   
         #ifdef DBG
             std::cout<<"Qr_img_t()\n"; 
         #endif 

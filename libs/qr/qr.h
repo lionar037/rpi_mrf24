@@ -1,5 +1,10 @@
 #pragma once
+#include <memory>
 #include <qrencode.h>
+
+namespace TYME{
+    struct Time_t;
+}
 
 namespace QR{
 
@@ -17,6 +22,8 @@ namespace QR{
 
         void saveQRCodeImage(const QRcode* , const char* );
         bool create(const char*);
+        private :
+        std::unique_ptr<TYME::Time_t>tyme{};
     };
 
 }
