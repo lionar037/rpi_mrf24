@@ -87,7 +87,7 @@ DEFAULT, PNG_FILTER_TYPE_DEFAULT);
     delete[] row;
 }
 
-bool create(const char* data) {
+bool Qr_img_t::create(const char* data) {
     // Datos que deseas codificar en el QR
     //const char* data = " Mi QR ";
 
