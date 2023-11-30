@@ -9,12 +9,6 @@
 
 namespace QR{
 
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <qrencode.h>
-#include <png.h>
-#include <zlib.h>
 
 void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     // Tamaño del borde blanco (en píxeles)
@@ -41,8 +35,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     }, nullptr);
 
     // Configura la información de la imagen PNG
-    png_set_IHDR(png, info, imageSize, imageSize, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_
-DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+    png_set_IHDR(png, info, imageSize, imageSize, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
     // Configura el método de filtro
     png_set_filter(png, 0, PNG_FILTER_NONE);
