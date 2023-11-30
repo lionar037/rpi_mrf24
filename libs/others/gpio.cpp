@@ -13,8 +13,8 @@ extern "C"{
 #include <chrono>
 #include <thread>
 
-#include <spi/gpio.h>
-#include <spi/config.h>
+#include <others/gpio.h>
+#include <app/config.h>
 
 
 namespace GPIO{

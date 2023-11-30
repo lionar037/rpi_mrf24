@@ -1,8 +1,7 @@
 
-#include <spi/run.h>
-//#include "mrf24/mrf24j40.h
-#include <spi/color.h>
-#include <spi/file.h>
+#include <app/run.h>
+#include <others/color.h>
+#include <files/file.h>
 #include <mrf24/mrf24j40.h>
 
 namespace MRF24J40{ 

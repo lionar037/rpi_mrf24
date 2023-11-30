@@ -2,7 +2,7 @@
 #include <mrf24/mrf24j40.h>
 #include <mrf24/mrf24_settings.h>
 
-#include <spi/tyme.h>
+#include <others/tyme.h>
 
 
 
