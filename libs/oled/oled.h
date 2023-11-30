@@ -7,7 +7,7 @@ namespace OLED{
     {
         Oled_t  ()=default;
         ~Oled_t ()=default;
-        void create(const char*)override;
+        bool create(const char*)override;
     };
 
 }
