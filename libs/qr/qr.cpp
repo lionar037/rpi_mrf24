@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstring>
+#include <qrencode.h>
 #include <qr/qr.h>
 
 namespace QR{
