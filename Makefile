@@ -1,6 +1,6 @@
 CC = clang++
 CXXFLAGS = -std=c++17 -Ilibs -Isrc
-LIBRARIES = -pthread -lmysqlcppconn -lqrencode
+LIBRARIES = -pthread -lmysqlcppconn -lqrencode -lpng
 SRC_DIR = src
 LIB_DIR = libs
 OBJ_DIR = obj
