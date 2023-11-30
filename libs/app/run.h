@@ -52,6 +52,7 @@ namespace MRF24J40{
             std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
             std::unique_ptr<DATABASE::Database_t>database{};
             std::unique_ptr<FILESYSTEM::File_t>fs{};
+        #else    
             std::unique_ptr<QR::Qr_t>qr{};
         
         #endif
