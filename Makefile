@@ -8,7 +8,7 @@ BIN_DIR = bin
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 LIB_DIRS = $(wildcard $(LIB_DIR)/*)
 LIB_SRCS = $(foreach dir,$(LIB_DIRS),$(wildcard $(dir)/*.cpp))
-OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o)))
 
 # Nombre predeterminado para el binario
 DEFAULT_TARGET = mrf24_rpi
@@ -38,6 +38,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 
 # Regla de compilación para los archivos de código fuente en LIB_DIR y sus subdirectorios
 define compile_template
+$(info Compiling files in folder: $(LIB_DIR)/$(1))
 $(OBJ_DIR)/%.o: $(LIB_DIR)/$(1)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $$< -o $$@ -MMD -MP
 endef
