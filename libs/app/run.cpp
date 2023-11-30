@@ -12,21 +12,21 @@ Mrf24j mrf24j40_spi ;
 Run::Run() 
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
-,   pin_interrupt   {std::make_unique<GPIO::Gpio>(status)}
 ,   fs              { std::make_unique<FILESYSTEM::File_t>()}
 ,   qr              { std::make_unique<QR::Qr_t>()}
 #ifdef ENABLE_DATABASE
 ,   database{std::make_unique<DATABASE::Database_t>()}
 #endif
 #else
-:  status (false),pin_only_output{std::make_unique<GPIO::Gpio>(status)}
+:   status          (false)
 #endif
+,   gpio            {std::make_unique<GPIO::Gpio>(status)}
 {
     #ifdef  DBG
         std::cout<<"Run()\n";
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
-            pin_interrupt->app();
+            gpio->app();
             qr->create(QR_CODE_SRT);
         #else
             pin_only_output->app();

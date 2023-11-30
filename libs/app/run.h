@@ -54,10 +54,8 @@ namespace MRF24J40{
             std::unique_ptr<FILESYSTEM::File_t>fs{};
             std::unique_ptr<QR::Qr_t>qr{};
         
-        #else
-            std::unique_ptr<GPIO::Gpio>pin_only_output{}; 
-        #endif 
-      
+        #endif
+            std::unique_ptr<GPIO::Gpio>gpio{}; 
     };
 
             void handle_tx();
