@@ -3,7 +3,7 @@
 #include <fstream>
 #include <png.h>
 #include <zlib.h>
-#include <qr/qr_img.h>
+#include <qr/qr.h>
 
 namespace QR{
 
