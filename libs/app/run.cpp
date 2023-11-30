@@ -4,6 +4,7 @@
 #include <files/file.h>
 #include <mrf24/mrf24j40.h>
 #include <qr/qr.h>
+#include <app/work.h>
 
 namespace MRF24J40{ 
 
@@ -120,8 +121,13 @@ void handle_rx() {
         
     }
 
-    std::unique_ptr<FILESYSTEM::File_t> fs{std::make_unique<FILESYSTEM::File_t> ()};
-    std::unique_ptr<QR::Qr_img_t> qr_img{std::make_unique<QR::Qr_img_t>()};
+    // std::unique_ptr<FILESYSTEM::File_t> fs{std::make_unique<FILESYSTEM::File_t> ()};
+    // std::unique_ptr<QR::Qr_img_t> qr_img{std::make_unique<QR::Qr_img_t>()};
+
+    auto fs{std::make_unique<FILESYSTEM::File_t> ()};
+    auto qr_img{std::make_unique<QR::Qr_img_t>()};
+
+
 
     fs->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
     qr_img->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
