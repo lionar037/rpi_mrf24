@@ -5,6 +5,7 @@
 #include <zlib.h>
 #include <qr/qr.h>
 #include <others/color.h>
+#include <app/config.h>
 
 namespace QR{
 
@@ -79,12 +80,12 @@ bool Qr_img_t::create(const char* data ) {
 
 
 Qr_img_t::Qr_img_t(){
-    #ifdef QR
+    #ifdef DBG
     std::cout<<"Qr_img_t()\n";
     #endif
     }
 Qr_img_t::~Qr_img_t(){
-    #ifdef QR
+    #ifdef DBG
     std::cout<<"~Qr_img_t()\n";
     #endif    
     }
