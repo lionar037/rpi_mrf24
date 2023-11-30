@@ -1,5 +1,5 @@
 #pragma once
-
+#include <qrencode.h>
 
 namespace QR{
 
