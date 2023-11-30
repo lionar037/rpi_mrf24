@@ -57,5 +57,5 @@
 
 
 //config QR string 
-#define QR_CODE_SRT "WIFI:T:WPA;S:MiRedWiFi;P:MiContraseña123;;";
-    
+//#define QR_CODE_SRT "WIFI:T:WPA;S:MiRedWiFi;P:MiContraseña123;;";
+#define QR_CODE_SRT MSJ   
