@@ -118,11 +118,12 @@ void handle_rx() {
         printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         
     }
+
     std::unique_ptr<FILESYSTEM::File_t> fs{std::make_unique<FILESYSTEM::File_t> ()};
-    //std::unique_ptr<QR::Qr_img_t> qr{std::make_unique<QR::Qr_img_t>()};
+    std::unique_ptr<QR::Qr_img_t> qr_img{std::make_unique<QR::Qr_img_t>()};
 
     fs->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
-   // qr->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
+   // qr_img->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
