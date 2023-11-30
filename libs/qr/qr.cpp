@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include <qrencode.h>
+//#include <qrencode.h>
 #include <qr/qr.h>
 #include <others/color.h>
 

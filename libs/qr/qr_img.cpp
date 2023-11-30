@@ -3,6 +3,7 @@
 #include <fstream>
 #include <png.h>
 #include <zlib.h>
+
 #include <qr/qr.h>
 #include <others/color.h>
 #include <app/config.h>
@@ -80,28 +81,28 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     delete[] row;
 }
 
-bool Qr_img_t::create(const char* data) {
-    // Datos que deseas codificar en el QR
-    //const char* data = " Mi QR ";
+    bool Qr_img_t::create(const char* data) {
+        // Datos que deseas codificar en el QR
+        //const char* data = " Mi QR ";
 
-    // Configuración del código QR
-    QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+        // Configuración del código QR
+        QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
 
-    // Imprime el código QR en la consola
-    for (int y = 0; y < qr->width; y++) {
-        for (int x = 0; x < qr->width; x++) {
-            std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+        // Imprime el código QR en la consola
+        for (int y = 0; y < qr->width; y++) {
+            for (int x = 0; x < qr->width; x++) {
+                std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
+
+        // Guarda el código QR como imagen PNG
+        saveQRCodeImage(qr, "mi_qr.png");
+
+        // Libera la memoria
+        QRcode_free(qr);
+
+        return true;
     }
-
-    // Guarda el código QR como imagen PNG
-    saveQRCodeImage(qr, "mi_qr.png");
-
-    // Libera la memoria
-    QRcode_free(qr);
-
-    return true;
-}
 
 }
