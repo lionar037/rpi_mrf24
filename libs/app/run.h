@@ -12,8 +12,6 @@
 
 #include <others/gpio.h>
 #include <files/database.h>
-#include <app/config.h>
-
 
 
 #ifdef USE_MAC_ADDRESS_LONG 
