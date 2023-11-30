@@ -30,3 +30,9 @@ git add . && git commit -m "$commit_message" && git push -u origin master
 
 sudo apt-get install qrencode libqrencode-dev -y
 # pip install qrcode
+
+# Library PNG
+sudo apt-get install libpng-dev -y
+
+sudo apt-get install zlib1g-dev -y
+
