@@ -4,6 +4,7 @@
 #include <png.h>
 #include <zlib.h>
 #include <qr/qr.h>
+#include <others/color.h>
 
 namespace QR{
 
@@ -55,7 +56,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
 bool Qr_img_t::create(const char* data ) {
     // Datos que deseas codificar en el QR
     //const char* data = " Mi QR ";
-
+        SET_COLOR(SET_COLOR_WHITE_TEXT);
     // Configuración del código QR
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
 
