@@ -26,12 +26,12 @@ Run::Run()
         std::cout<<"Run()\n";
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
-            //fs->create("@fs system");
             pin_interrupt->app();
+            qr->createQr();
         #else
             pin_only_output->app();
     #endif
-    qr->createQr();
+   
 
     std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
     mrf24j40_spi.init();
