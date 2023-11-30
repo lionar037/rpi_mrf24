@@ -1,7 +1,7 @@
-#include <tyme.h>
 #include <chrono>
 #include <thread>
 #include <spi/config.h>
+#include <spi/tyme.h>
 //#include <unistd.h> // Libreria para usleep
 
 namespace TYME{
