@@ -120,18 +120,20 @@ void handle_rx() {
         
     }
     std::unique_ptr<FILESYSTEM::File_t> fs{std::make_unique<FILESYSTEM::File_t> ()};
+    std::unique_ptr<QR::Qr_t> qr{std::make_unique<QR::Qr_t> ()};
 
     fs->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
+    qr->gen_qr(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
    // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
 
     std::cout<<"\r\nLQI/RSSI = \n\t";
-    //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
+        //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
     printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
-    //std::cout<<" ";
-    //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
+        //std::cout<<" ";
+        //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
     printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
     SET_COLOR(SET_COLOR_RED_TEXT);
     printf("LQI : %d ",mrf24j40_spi.get_rxinfo()->lqi);
@@ -139,10 +141,6 @@ void handle_rx() {
     RST_COLOR() ;
     std::cout<<"\r\n";
     #endif
-    //SET_COLOR(SET_COLOR_RESET_BACKGROUND);
-    //SET_COLOR(SET_COLOR_RESET_TEXT);
-   
-
 }
 
 
