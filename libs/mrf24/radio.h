@@ -22,7 +22,7 @@
     #define MACADDR16
 #endif
 
-/*
+
 namespace FILESYSTEM{
     struct File_t;
 
@@ -33,7 +33,6 @@ namespace QR{
     struct Qr_t;
 }
 
-*/
 
 // namespace WORK{
     // struct Work_t;
