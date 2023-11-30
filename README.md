@@ -9,7 +9,7 @@ gpio WAKE //Wake
 gpio INT //Interrupt
 gpio RESET //
 
-helps:
+# helps:
 
 	http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en535967
 
@@ -26,3 +26,7 @@ commit_message="update $timestamp"
 # Ejecutar los comandos git
 git add . && git commit -m "$commit_message" && git push -u origin master
 
+# Dependencias & Librerias
+
+sudo apt-get install qrencode libqrencode-dev -y
+# pip install qrcode
