@@ -10,9 +10,9 @@
 #include <sstream>
 #include <iomanip>
 
-#include <spi/gpio.h>
-#include <spi/database.h>
-#include <spi/config.h>
+#include <others/gpio.h>
+#include <files/database.h>
+#include <app/config.h>
 
 
 
