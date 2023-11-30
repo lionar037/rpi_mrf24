@@ -29,7 +29,7 @@ namespace FILESYSTEM{
 
 namespace QR{
     struct Qr_t;
-
+    struct Qr_t;
 }
 
 
