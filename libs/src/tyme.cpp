@@ -1,7 +1,7 @@
 #include <tyme.h>
 #include <chrono>
 #include <thread>
-#include <dbg.h>
+#include <config.h>
 //#include <unistd.h> // Para usleep
 
 namespace TYME{
