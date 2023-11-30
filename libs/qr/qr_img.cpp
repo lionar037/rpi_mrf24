@@ -4,14 +4,13 @@
 #include <png.h>
 #include <zlib.h>
 
-#include <qr/qr.h>
 #include <others/color.h>
 #include <app/config.h>
 #include <others/tyme.h>
+#include <qr/qr.h>
 
 namespace QR{
-
-
+    
 void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     // Tamaño del borde blanco (en píxeles)
     const int borderSize = 10;

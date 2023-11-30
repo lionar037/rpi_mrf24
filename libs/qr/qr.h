@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <qrencode.h>
+
 #include <app/work.h>
 
 namespace TYME{
