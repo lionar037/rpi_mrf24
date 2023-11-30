@@ -13,12 +13,12 @@ Run::Run()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>()}
-,   qr              { std::make_unique<QR::Qr_t>()}
     #ifdef ENABLE_DATABASE
 ,   database{std::make_unique<DATABASE::Database_t>()}
     #endif
 #else
 :   status          (false)
+,   qr              { std::make_unique<QR::Qr_t>()}
 #endif
 ,   gpio            {std::make_unique<GPIO::Gpio>(status)}
 {
@@ -26,6 +26,8 @@ Run::Run()
         std::cout<<"Run()\n";
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
+    
+    #else
             qr->create(QR_CODE_SRT);
     #endif
             gpio->app();
