@@ -48,3 +48,7 @@ clean:
 
 # Incluir las dependencias generadas automáticamente
 -include $(OBJS:.o=.d)
+
+
+print-%:
+    @echo $* = $($*)
