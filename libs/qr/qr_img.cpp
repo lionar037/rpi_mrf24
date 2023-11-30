@@ -78,7 +78,15 @@ bool Qr_img_t::create(const char* data ) {
 }
 
 
-Qr_img_t::Qr_img_t(){std::cout<<"Qr_img_t()\n";}
-Qr_img_t::~Qr_img_t(){std::cout<<"~Qr_img_t()\n";}
+Qr_img_t::Qr_img_t(){
+    #ifdef QR
+    std::cout<<"Qr_img_t()\n";
+    #endif
+    }
+Qr_img_t::~Qr_img_t(){
+    #ifdef QR
+    std::cout<<"~Qr_img_t()\n";
+    #endif    
+    }
 
 }
