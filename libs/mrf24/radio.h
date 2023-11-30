@@ -35,11 +35,11 @@ namespace QR{
 
 namespace MRF24J40{
 
-   struct Run //:public GPIO::Gpio
+   struct Radio_t //:public GPIO::Gpio
    {
         public:
-            explicit Run();
-            ~Run();
+            explicit Radio_t();
+            ~Radio_t();
 
             void loop();
             void interrupt_routine();

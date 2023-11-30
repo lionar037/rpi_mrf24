@@ -1,5 +1,5 @@
 
-#include <app/run.h>
+#include <mrf24/radio.h>
 #include <others/color.h>
 #include <files/file.h>
 #include <mrf24/mrf24j40.h>
@@ -10,7 +10,7 @@ namespace MRF24J40{
 
 Mrf24j mrf24j40_spi ;
 
-Run::Run() 
+Radio_t::Radio_t() 
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>()}
@@ -24,7 +24,7 @@ Run::Run()
 ,   gpio            {std::make_unique<GPIO::Gpio>(status)}
 {
     #ifdef  DBG
-        std::cout<<"Run()\n";
+        std::cout<<"Radio_t()\n";
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
     
@@ -63,7 +63,7 @@ Run::Run()
  
 }
 
-void Run::loop() {
+void Radio_t::loop() {
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
     unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
@@ -79,7 +79,7 @@ void Run::loop() {
     }
 }
 
-void Run::interrupt_routine() {
+void Radio_t::interrupt_routine() {
     mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
 }
 
@@ -151,9 +151,9 @@ void handle_rx() {
 }
 
 
-    Run::~Run() {
+    Radio_t::~Radio_t() {
         #ifdef DBG
-            std::cout<<"~Run()\n";
+            std::cout<<"~Radio_t()\n";
         #endif
     }
 }

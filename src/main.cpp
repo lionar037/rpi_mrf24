@@ -5,10 +5,10 @@ author : amaya
 
 //#include <run.h>
 #include <memory>
-#include <app/run.h>
+#include <mrf24/radio.h>
 
 int main(){
-    std::unique_ptr<MRF24J40::Run> mrf { std::make_unique<MRF24J40::Run>() };
+    auto mrf { std::make_unique<MRF24J40::Radio_t>() };
 
     return 0 ;
 }
