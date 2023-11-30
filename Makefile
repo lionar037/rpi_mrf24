@@ -1,11 +1,11 @@
 CC = clang++
-CXXFLAGS = -std=c++17 -Ilibs -Isrc
+CXXFLAGS = -std=c++17 -Ilibs -Isrc -Ilibs/mrf24
 LIBRARIES = -pthread -lmysqlcppconn
 SRC_DIR = src
 LIB_DIR = libs
 OBJ_DIR = obj
 BIN_DIR = bin
-SRCS = $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_DIR)/mrf24/*.cpp)
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 LIB_SRCS = $(wildcard $(LIB_DIR)/*.cpp) $(wildcard $(LIB_DIR)/mrf24/*.cpp) 
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
 
@@ -39,6 +39,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 $(OBJ_DIR)/%.o: $(LIB_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
 
+# Regla de compilación para los archivos de código fuente en LIB_DIR/mrf24
+$(OBJ_DIR)/%.o: $(LIB_DIR)/mrf24/%.cpp | $(OBJ_DIR)
+	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
+
 # Crear directorios si no existen
 $(BIN_DIR) $(OBJ_DIR):
 	mkdir -p $@
@@ -48,7 +52,3 @@ clean:
 
 # Incluir las dependencias generadas automáticamente
 -include $(OBJS:.o=.d)
-
-
-#print-%:
-#    @echo $* = $($*)
