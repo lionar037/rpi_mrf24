@@ -63,7 +63,7 @@ Radio_t::Radio_t()
 
 void Radio_t::loop() {
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    unsigned long current_time = 1000000;
+    const unsigned long current_time = 1000000;
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
@@ -127,12 +127,13 @@ void handle_rx() {
 
 
     const auto& buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+
     fs->create(buff);
     qr_img->create(buff);
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
-   // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(mrf24j40_spi.get_rxinfo()->rx_data));
+   // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(buff));
 
     std::cout<<"\r\nLQI/RSSI = \n\t";
         //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
