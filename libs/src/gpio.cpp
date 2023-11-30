@@ -165,8 +165,6 @@ namespace GPIO{
                 }
             if(res == 0) {
                 #ifdef DBG_GPIO
-                    // printf("\nPoll success...timed out or received button press...\r\n");
-                    // std::cout<<"Esperando msj mrf24j40...\n";
                     std::cout<<"\nPoll success...timed out or received button press...\r\n";
                 #endif
                 }
@@ -174,8 +172,7 @@ namespace GPIO{
                 lseek(fdpoll.fd, 0, SEEK_SET);
                 read(fdpoll.fd, buf, 64);
                 #ifdef DBG_GPIO
-                    //printf("Received a button press...%d\r\n",looper);
-                    //std::cout<<"Standby reading msj mrf24j40...\n";
+                    std::cout<<"Standby reading msj mrf24j40...\n";
                 #endif
                 }
             ++looper;
