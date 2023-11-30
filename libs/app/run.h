@@ -27,6 +27,12 @@ namespace FILESYSTEM{
 
 }
 
+namespace QR{
+    struct Qr_t;
+
+}
+
+
 namespace MRF24J40{
 
    struct Run //:public GPIO::Gpio
@@ -46,6 +52,7 @@ namespace MRF24J40{
             std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
             std::unique_ptr<DATABASE::Database_t>database{};
             std::unique_ptr<FILESYSTEM::File_t>fs{};
+            std::unique_ptr<QR::Qr_t>qr{};
         
         #else
             std::unique_ptr<GPIO::Gpio>pin_only_output{}; 

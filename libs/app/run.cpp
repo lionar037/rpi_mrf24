@@ -3,6 +3,7 @@
 #include <others/color.h>
 #include <files/file.h>
 #include <mrf24/mrf24j40.h>
+#include <qr/qr.h>
 
 namespace MRF24J40{ 
 
@@ -13,6 +14,7 @@ Run::Run()
 :   status          (true)
 ,   pin_interrupt   {std::make_unique<GPIO::Gpio>(status)}
 ,   fs              { std::make_unique<FILESYSTEM::File_t>()}
+,   qr              { std::make_unique<QR::Qr_t>()}
 #ifdef ENABLE_DATABASE
 ,   database{std::make_unique<DATABASE::Database_t>()}
 #endif
