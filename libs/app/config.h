@@ -1,13 +1,11 @@
 #pragma once
 
-
-
 //#define USE_MRF24_TX
 #define USE_MRF24_RX
 
 #define USE_MAC_ADDRESS_LONG
 //#define USE_MAC_ADDRESS_SHORT
-
+    //Enable database 
 //#define ENABLE_DATABASE
 
 #define CHANNEL 24
@@ -27,8 +25,6 @@
     //#define MSJ "@ABCDEFGHIJKLMNO"
       #define MSJ "@ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGHIJKLMKNOPQRS" 
 #endif
-
-
 
 
 #ifdef MODULE_TX
