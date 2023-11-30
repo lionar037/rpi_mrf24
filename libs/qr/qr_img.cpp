@@ -9,8 +9,20 @@
 
 namespace QR{
 
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <qrencode.h>
+#include <png.h>
+#include <zlib.h>
 
 void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
+    // Tamaño del borde blanco (en píxeles)
+    const int borderSize = 10;
+
+    // Tamaño total de la imagen (incluyendo el borde)
+    const int imageSize = qr->width + 2 * borderSize;
+
     // Abre el archivo para escritura en formato binario
     std::ofstream file(filename, std::ios::binary);
 
@@ -29,20 +41,41 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     }, nullptr);
 
     // Configura la información de la imagen PNG
-    png_set_IHDR(png, info, qr->width, qr->width, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+    png_set_IHDR(png, info, imageSize, imageSize, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_
+DEFAULT, PNG_FILTER_TYPE_DEFAULT);
 
     // Configura el método de filtro
     png_set_filter(png, 0, PNG_FILTER_NONE);
 
-    // Escribir datos del código QR en la imagen PNG
+    // Escribir datos del código QR en la imagen PNG con borde blanco
     png_write_info(png, info);
     png_bytep row = new png_byte[png_get_rowbytes(png, info)];
+
+    // Rellena el fondo con blanco
+    memset(row, 255, png_get_rowbytes(png, info));
+
+    // Rellena la parte superior con blanco
+    for (int i = 0; i < borderSize; ++i) {
+        png_write_row(png, row);
+    }
+
     for (int y = 0; y < qr->width; ++y) {
+        // Rellena el borde izquierdo con blanco
+        memset(row, 255, borderSize * 4);
         for (int x = 0; x < qr->width; ++x) {
-            png_bytep pixel = &row[x * 4];
+            // Píxeles del código QR
+            png_bytep pixel = &row[(borderSize + x) * 4];
             pixel[0] = pixel[1] = pixel[2] = (qr->data[y * qr->width + x] & 1) ? 0 : 255;
             pixel[3] = 255;
         }
+        // Rellena el borde derecho con blanco
+        memset(&row[(borderSize + qr->width) * 4], 255, borderSize * 4);
+        png_write_row(png, row);
+    }
+
+    // Rellena la parte inferior con blanco
+    memset(row, 255, png_get_rowbytes(png, info));
+    for (int i = 0; i < borderSize; ++i) {
         png_write_row(png, row);
     }
 
@@ -54,10 +87,10 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     delete[] row;
 }
 
-bool Qr_img_t::create(const char* data ) {
+bool create(const char* data) {
     // Datos que deseas codificar en el QR
     //const char* data = " Mi QR ";
-        SET_COLOR(SET_COLOR_WHITE_TEXT);
+
     // Configuración del código QR
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
 
@@ -77,17 +110,5 @@ bool Qr_img_t::create(const char* data ) {
 
     return true;
 }
-
-
-Qr_img_t::Qr_img_t(){
-    #ifdef DBG
-    std::cout<<"Qr_img_t()\n";
-    #endif
-    }
-Qr_img_t::~Qr_img_t(){
-    #ifdef DBG
-    std::cout<<"~Qr_img_t()\n";
-    #endif    
-    }
 
 }
