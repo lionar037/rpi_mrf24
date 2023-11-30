@@ -34,9 +34,9 @@ namespace QR{
 }
 
 
-// namespace WORK{
-    // struct Work_t;
-// }
+namespace WORK{
+    struct Work_t;
+}
 
 
 namespace MRF24J40{
