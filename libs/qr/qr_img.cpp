@@ -103,4 +103,8 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         return true;
     }
 
+
+    Qr_img_t::Qr_img_t()    {   std::cout<<"Qr_img_t()\n";  }
+    Qr_img_t::~Qr_img_t()   {   std::cout<<"~Qr_img_t()\n"; }
+
 }
