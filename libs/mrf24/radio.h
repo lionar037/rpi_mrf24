@@ -22,24 +22,9 @@
     #define MACADDR16
 #endif
 
-// namespace FILESYSTEM{
-    // struct File_t;
-// 
-// }
-// 
-// namespace QR{
-    // struct Qr_t;
-    // struct Qr_t;
-// }
-// 
-// namespace WORK{
-    // struct Work_t;
-// }
-
-
 namespace MRF24J40{
 
-   struct Radio_t //:public GPIO::Gpio
+   struct Radio_t
    {
         public:
             explicit Radio_t();

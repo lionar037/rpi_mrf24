@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <app/work.h>
 
 namespace FILESYSTEM{
 
@@ -21,7 +22,7 @@ namespace FILESYSTEM{
 
 #pragma pack(pop)
 
-    struct File_t
+    struct File_t : public Work_t
     {
         File_t();
         ~File_t();

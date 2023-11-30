@@ -1,13 +1,14 @@
 #pragma once
 #include <memory>
 #include <qrencode.h>
+#include <app/work.h>
 
 namespace TYME{
     struct Time_t;
 }
 
 namespace QR{
-    struct Qr_t
+    struct Qr_t : public Work_t
     {
             Qr_t()=default;
             ~Qr_t()=default;
@@ -15,7 +16,7 @@ namespace QR{
         private:
     };
 
-    struct Qr_img_t
+    struct Qr_img_t : public Work_t
     {
             Qr_img_t();
             ~Qr_img_t();
