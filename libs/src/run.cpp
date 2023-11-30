@@ -4,9 +4,6 @@
 #include <color.h>
 #include <file.h>
 
-//#include <gpio.h>
-
-
 
 namespace MRF24J40{ 
 

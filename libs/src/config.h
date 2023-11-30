@@ -54,7 +54,7 @@
 #define LOG_FILENAME "log_mrf_"
 
 
-// Prints
+// Prints Debugger
 
 //#define DBG
 //#define DBG_BUFFER

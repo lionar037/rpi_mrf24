@@ -2,7 +2,7 @@
 #include <mrf24j40.h>
 #include <tyme.h>
 #include <dbg.h>
-#include<settingsMrf24.h>
+#include <settingsMrf24.h>
 
 
 namespace MRF24J40{
