@@ -12,7 +12,7 @@ extern "C"{
 #include <chrono>
 #include <thread>
 #include <gpio.h>
-#include <dbg.h>
+#include <config.h>
 
 
 namespace GPIO{

@@ -52,3 +52,10 @@
 
 
 #define LOG_FILENAME "log_mrf_"
+
+
+// Prints
+
+//#define DBG
+//#define DBG_BUFFER
+//#define DBG_GPIO
