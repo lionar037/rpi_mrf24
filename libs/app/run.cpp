@@ -4,8 +4,6 @@
 #include <files/file.h>
 #include <mrf24/mrf24j40.h>
 #include <qr/qr.h>
-#include <app/config.h>
-
 
 namespace MRF24J40{ 
 
