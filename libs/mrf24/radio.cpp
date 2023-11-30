@@ -16,7 +16,7 @@ Radio_t::Radio_t()
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>()}
     #ifdef ENABLE_DATABASE
-,   database{std::make_unique<DATABASE::Database_t>()}
+,   database        {std::make_unique<DATABASE::Database_t>()}
     #endif
 #else
 :   status          (false)

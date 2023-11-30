@@ -1,6 +1,7 @@
 #pragma once
-#include <files/file.h>
-#include <qr/qr.h>
+
+//#include <files/file.h>
+//#include <qr/qr.h>
 
 namespace FILESYSTEM{
         struct File_t;
