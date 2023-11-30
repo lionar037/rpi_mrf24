@@ -2,14 +2,14 @@
 #include <cstring>
 #include <qrencode.h>
 #include <qr/qr.h>
+#include <others/color.h>
 
 
 namespace QR{
 
 bool Qr_t::create(const char* data ) {
-    // Datos que deseas codificar en el QR
-    //const char* data = QR_CODE_SRT ;
     
+    SET_COLOR(SET_COLOR_WHITE_TEXT);
     // Configuración del código QR
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     
