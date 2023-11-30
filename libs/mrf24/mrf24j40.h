@@ -2,7 +2,7 @@
     #include <iostream>
     #include <memory>
     #include <cstring>
-    #include <spi.h>
+    #include <spi/spi.h>
     #include <config.h>
 
 
