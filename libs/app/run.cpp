@@ -27,7 +27,7 @@ Run::Run()
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
             pin_interrupt->app();
-            qr->createQr();
+            qr->gen_qr(QR_CODE_SRT);
         #else
             pin_only_output->app();
     #endif

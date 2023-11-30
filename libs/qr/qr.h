@@ -7,7 +7,7 @@ namespace QR{
     struct Qr_t{
             Qr_t();
             ~Qr_t();
-            bool createQr();
+            bool gen_qr(const char* );
         private:
     };
 

@@ -2,15 +2,15 @@
 #include <cstring>
 #include <qrencode.h>
 #include <qr/qr.h>
-#include <app/config.h>
+
 
 namespace QR{
 
 
 
-bool Qr_t::createQr() {
+bool Qr_t::gen_qr(const char* data ) {
     // Datos que deseas codificar en el QR
-    const char* data = QR_CODE_SRT ;
+    //const char* data = QR_CODE_SRT ;
     
     // Configuración del código QR
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
