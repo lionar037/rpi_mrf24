@@ -126,9 +126,9 @@ void handle_rx() {
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
 
 
-
-    fs->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
-    qr_img->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
+    const auto& buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+    fs->create(buff);
+    qr_img->create(buff);
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
