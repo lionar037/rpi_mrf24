@@ -27,7 +27,7 @@ Run::Run()
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
             pin_interrupt->app();
-            qr->gen_qr(QR_CODE_SRT);
+            qr->create(QR_CODE_SRT);
         #else
             pin_only_output->app();
     #endif
@@ -123,7 +123,7 @@ void handle_rx() {
     std::unique_ptr<QR::Qr_t> qr{std::make_unique<QR::Qr_t> ()};
 
     fs->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
-    qr->gen_qr(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
+    qr->create(reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data));
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);

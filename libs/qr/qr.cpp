@@ -6,9 +6,7 @@
 
 namespace QR{
 
-
-
-bool Qr_t::gen_qr(const char* data ) {
+bool Qr_t::create(const char* data ) {
     // Datos que deseas codificar en el QR
     //const char* data = QR_CODE_SRT ;
     
