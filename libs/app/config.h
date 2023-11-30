@@ -54,3 +54,8 @@
 //#define DBG
 //#define DBG_BUFFER
 //#define DBG_GPIO
+
+
+//config QR string 
+#define QR_CODE_SRT "WIFI:T:WPA;S:MiRedWiFi;P:MiContraseña123;;";
+    

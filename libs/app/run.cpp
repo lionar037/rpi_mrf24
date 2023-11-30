@@ -31,6 +31,7 @@ Run::Run()
         #else
             pin_only_output->app();
     #endif
+    qr->createQr();
 
     std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
     mrf24j40_spi.init();
