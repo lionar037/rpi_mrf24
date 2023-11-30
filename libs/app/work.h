@@ -1,5 +1,5 @@
 #pragma once
-#include <cstring.h>
+#include <cstring>
 
 namespace WORK{
 
