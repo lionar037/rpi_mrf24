@@ -22,7 +22,7 @@ namespace FILESYSTEM{
 
 #pragma pack(pop)
 
-    struct File_t : public Work_t
+    struct File_t : public WORK::Work_t
     {
         File_t();
         ~File_t();

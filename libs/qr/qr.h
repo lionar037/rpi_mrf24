@@ -8,7 +8,7 @@ namespace TYME{
 }
 
 namespace QR{
-    struct Qr_t : public Work_t
+    struct Qr_t : public WORK::Work_t
     {
             Qr_t()=default;
             ~Qr_t()=default;
@@ -16,7 +16,7 @@ namespace QR{
         private:
     };
 
-    struct Qr_img_t : public Work_t
+    struct Qr_img_t : public WORK::Work_t
     {
             Qr_img_t();
             ~Qr_img_t();
