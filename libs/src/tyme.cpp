@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 #include <config.h>
-//#include <unistd.h> // Para usleep
+//#include <unistd.h> // Libreria para usleep
 
 namespace TYME{
 

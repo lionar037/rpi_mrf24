@@ -7,6 +7,7 @@ extern "C"{
     #include <fcntl.h>
     #include <poll.h>
 }
+
 #include <iostream>
 #include <fstream>
 #include <chrono>
@@ -16,9 +17,7 @@ extern "C"{
 
 
 namespace GPIO{
-
     /*      HELPER FUNCTIONS       */
-
     // FILE OPERATION
     int Gpio::file_open_and_write_value(const char *fname, const char *wdata)
     {

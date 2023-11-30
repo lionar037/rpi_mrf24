@@ -1,7 +1,8 @@
-#include <cmd_mrf24j40.h>
+#include <mrf24j40_cmd.h>
 #include <mrf24j40.h>
+#include <mrf24_settings.h>
 #include <tyme.h>
-#include <settings_mrf24.h>
+
 
 
 namespace MRF24J40{
