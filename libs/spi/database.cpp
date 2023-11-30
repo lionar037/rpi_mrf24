@@ -1,7 +1,7 @@
 //# sudo apt-get install libmysqlcppconn-dev -y
 
 
-#include <spi/database.h>
+#include <database.h>
 
 namespace DATABASE{
 
