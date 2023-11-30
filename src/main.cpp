@@ -9,6 +9,5 @@ author : amaya
 
 int main(){
     auto mrf { std::make_unique<MRF24J40::Radio_t>() };
-
     return 0 ;
 }

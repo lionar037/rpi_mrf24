@@ -21,7 +21,7 @@
 #elif defined (USE_MAC_ADDRESS_SHORT)
     #define MACADDR16
 #endif
-
+/*
 namespace FILESYSTEM{
     struct File_t;
 
@@ -30,6 +30,12 @@ namespace FILESYSTEM{
 namespace QR{
     struct Qr_t;
     struct Qr_t;
+}
+
+*/
+
+namespace WORK{
+struct Work_t;
 }
 
 
@@ -49,11 +55,13 @@ namespace MRF24J40{
             bool status{false};
 
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
-            std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
+            //std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
             std::unique_ptr<DATABASE::Database_t>database{};
-            std::unique_ptr<FILESYSTEM::File_t>fs{};
+            //std::unique_ptr<FILESYSTEM::File_t>fs{};
+            std::unique_ptr<WORK::Work_t>fs{};
         #else    
-            std::unique_ptr<QR::Qr_t>qr{};
+            //std::unique_ptr<QR::Qr_t>qr{};
+            std::unique_ptr<WORK::Work_t>qr{};
         
         #endif
             std::unique_ptr<GPIO::Gpio>gpio{}; 
