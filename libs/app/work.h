@@ -1,15 +1,15 @@
 #pragma once
 
-//#include <files/file.h>
-//#include <qr/qr.h>
+#include <files/file.h>
+#include <qr/qr.h>
 
-namespace FILESYSTEM{
-        struct File_t;
-    }
-
-    namespace QR{
-        struct Qr_img_t;
-    }
+// namespace FILESYSTEM{
+        // struct File_t;
+    // }
+// 
+// namespace QR{
+        // struct Qr_img_t;
+    // }
 
 namespace WORK{
 
