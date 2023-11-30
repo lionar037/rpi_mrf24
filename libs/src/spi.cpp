@@ -1,5 +1,6 @@
 #include <spi.h>
-#include <dbg.h>
+#include <config.h>
+
 #define SPI_DEVICE  "/dev/spidev0.0"
 
 #define CMD_WRITE 0x2
