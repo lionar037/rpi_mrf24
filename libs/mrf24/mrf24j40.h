@@ -3,7 +3,7 @@
     #include <memory>
     #include <cstring>
     #include <spi/spi.h>
-    #include <config.h>
+    #include <spi/config.h>
 
 
 namespace MRF24J40{
