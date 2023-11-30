@@ -14,9 +14,9 @@ Run::Run()
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>()}
 ,   qr              { std::make_unique<QR::Qr_t>()}
-#ifdef ENABLE_DATABASE
+    #ifdef ENABLE_DATABASE
 ,   database{std::make_unique<DATABASE::Database_t>()}
-#endif
+    #endif
 #else
 :   status          (false)
 #endif
@@ -26,12 +26,9 @@ Run::Run()
         std::cout<<"Run()\n";
     #endif
     #ifdef ENABLE_INTERRUPT_MRF24
-            gpio->app();
             qr->create(QR_CODE_SRT);
-        #else
-            pin_only_output->app();
     #endif
-   
+            gpio->app();
 
     std::cout << "size msj : "<<std::dec<<sizeof(MSJ)<<"\n";
     mrf24j40_spi.init();
