@@ -90,7 +90,7 @@ namespace GPIO{
 
     const bool Gpio::app() 
     {
-        unsigned int gpio_out = OUT_INTERRUPT;
+        const unsigned int gpio_out = OUT_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
         int gpio_in = IN_INTERRUPT;
