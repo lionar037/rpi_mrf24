@@ -15,7 +15,7 @@ case $config in
         echo "Ejecutando con rx..."
         # Agrega aquí las acciones específicas para config1
         echo "Configuring as a receiver"
-        cp libs/app/config.22h libs/app/config.h.bkp 
+        cp libs/app/config.h libs/app/config.h.bkp 
 
         sed -i 's,//#define USE_MRF24_TX,#define USE_MRF24_TX,g' libs/app/config.h
         sed -i 's,#define USE_MRF24_RX,//#define USE_MRF24_RX,g' libs/app/config.h
@@ -23,7 +23,7 @@ case $config in
         echo "Configure as receiver Rx ..."
         ;;
     tx)
-        echo "Ejecutando con tx..."
+        #echo "Ejecutando con tx..."
         echo "Configuring as a transmitter"
         # Agrega aquí las acciones específicas para config2
         sed -i 's,#define USE_MRF24_TX,//#define USE_MRF24_TX,g' libs/app/config.h
