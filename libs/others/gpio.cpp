@@ -94,7 +94,7 @@ namespace GPIO{
         struct pollfd fdpoll;
         int num_fdpoll = 1;
         const int gpio_in = IN_INTERRUPT;
-        int gpio_in_fd;
+      //  int gpio_in_fd;
         int res;
         int looper = 0;
         char *buf[64];
@@ -146,7 +146,7 @@ namespace GPIO{
         gpio_set_value(gpio_out,VALUE_HIGH);
         gpio_set_edge(gpio_in,EDGE_FALLING);
 
-        gpio_in_fd = gpio_get_fd_to_value(gpio_in);
+        const int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
  
         // We will wait for button press here for 10s or exit anyway
@@ -186,10 +186,10 @@ namespace GPIO{
         }
          //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
 
-        close(gpio_in_fd);
+        //close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
-        gpio_unexport(gpio_out);
-        gpio_unexport(gpio_in);
+        //gpio_unexport(gpio_out);
+        //gpio_unexport(gpio_in);
 //state=false;
         return true;
     }
