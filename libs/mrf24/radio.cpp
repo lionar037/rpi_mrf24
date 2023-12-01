@@ -65,7 +65,7 @@ Radio_t::Radio_t()
 
 void Radio_t::loop() {
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    const unsigned long current_time = 100000;//1000000 original
+    const unsigned long current_time = 1000000;//1000000 original
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
