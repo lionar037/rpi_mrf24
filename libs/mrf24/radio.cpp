@@ -42,7 +42,7 @@ Radio_t::Radio_t()
 
     // uncomment if you want to receive any packet on this channel
   //mrf24j40_spi.set_promiscuous(true);
-  mrf24j40_spi.init_mrf();
+  mrf24j40_spi.settings_mrf();
   
     // uncomment if you want to enable PA/LNA external control
   mrf24j40_spi.set_palna(true);
@@ -60,6 +60,7 @@ Radio_t::Radio_t()
     {
         gpio->app();
         loop();
+        mrf24j40_spi.interrupt_handler();
     }
 }
 

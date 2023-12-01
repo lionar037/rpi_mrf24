@@ -338,7 +338,7 @@ namespace MRF24J40{
     }
 
 
-void Mrf24j::init_mrf(void){
+void Mrf24j::settings_mrf(void){
         rxmcr.PANCOORD=true;
         rxmcr.COORD=false;
         rxmcr.PROMI=true;

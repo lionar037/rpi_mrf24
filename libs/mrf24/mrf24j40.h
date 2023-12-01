@@ -81,7 +81,7 @@ struct Mrf24j : public SPI::Spi
         void                 send64(uint64_t ,const char *);
         void                 interrupt_handler(void);
         void                 check_flags(void (*rx_handler)(), void (*tx_handler)());
-        void                 init_mrf(void);
+        void                 settings_mrf(void);
 
     private:
         std::unique_ptr<SPI::Spi> prt_spi {};
