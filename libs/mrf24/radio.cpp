@@ -79,7 +79,7 @@ void Radio_t::loop() {
         #endif
     #endif
     }
-       std::cout<<"loop()\n";
+       //std::cout<<"loop()\n";
 }
 
 void Radio_t::interrupt_routine() {
@@ -148,9 +148,8 @@ void handle_rx() {
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
     std::cout<<"\r\n";
-    
     #endif
-     std::cout<<"no recibio paquete parece ...\r\n";
+    
 }
 
 

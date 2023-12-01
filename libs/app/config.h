@@ -53,7 +53,7 @@
 
 //#define DBG
 //#define DBG_BUFFER
-#define DBG_GPIO
+//#define DBG_GPIO
 
 
 //config QR string 
