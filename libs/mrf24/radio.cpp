@@ -64,6 +64,7 @@ Radio_t::Radio_t()
 }
 
 void Radio_t::loop() {
+
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
     const unsigned long current_time = 1000000;//1000000 original
     if (current_time - last_time > tx_interval) {
@@ -77,6 +78,7 @@ void Radio_t::loop() {
         #endif
     #endif
     }
+       std::cout<<"loop()\n";
 }
 
 void Radio_t::interrupt_routine() {
