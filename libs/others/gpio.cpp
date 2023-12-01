@@ -118,7 +118,7 @@ namespace GPIO{
         }
     }
 
-   const std::string filePathGpio1 = "/sys/class/gpio/gpio23/direction";
+   const std::string filePathGpio1 = "/sys/class/gpio/gpio1/direction";
     std::ifstream fileGpio1(filePathGpio1);
     if(!fileGpio1){
         const int result_output = std::system("echo 1 > /sys/class/gpio/export");
