@@ -55,17 +55,18 @@ Radio_t::Radio_t()
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     #ifdef MRF24_RECEIVER_ENABLE
+    flag=true;
         while(true)
     #endif
     {
-        gpio->app();
-        loop();
-        mrf24j40_spi.interrupt_handler();
+        gpio->app(flag);
+        Run(flag);
+        flag = mrf24j40_spi.interrupt_handler();
     }
 }
 
-void Radio_t::loop() {
-    mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
+void Radio_t::Run(bool* flag) {
+    *flag=mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
     const unsigned long current_time = 1000000;//1000000 original
     if (current_time - last_time > tx_interval) {
         last_time = current_time;

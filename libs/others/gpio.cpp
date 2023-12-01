@@ -88,7 +88,7 @@ namespace GPIO{
         return fd;
     }
 
-    const bool Gpio::app() 
+    const bool Gpio::app(bool* flag) 
     {
         const unsigned int gpio_out = OUT_INTERRUPT;
         struct pollfd fdpoll;
@@ -101,7 +101,8 @@ namespace GPIO{
 
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
-
+if(*flag){
+    *flag=false;
    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
     std::ifstream fileGpio23(filePathGpio23);
     if(!fileGpio23){
@@ -191,7 +192,8 @@ namespace GPIO{
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
 //state=false;
-        return true;
+    }
+        return false;
     }
 
 

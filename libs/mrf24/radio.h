@@ -30,12 +30,13 @@ namespace MRF24J40{
             explicit Radio_t();
             ~Radio_t();
 
-            void loop();
+            void Run(bool*);
             void interrupt_routine();
         private :
             unsigned long last_time{0};
             unsigned long tx_interval{1000}; 
             bool status{false};
+            bool flag {false};
 
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             //std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
