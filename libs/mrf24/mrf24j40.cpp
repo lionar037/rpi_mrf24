@@ -18,7 +18,7 @@ namespace MRF24J40{
     static RXMCR rxmcr{0x00};
 
     Mrf24j::Mrf24j()
-    : prt_spi {std::make_unique<SPI::Spi>()} , bytes_nodata { m_bytes_MHR + m_bytes_FCS}
+    : prt_spi {std::make_unique<SPI::Spi>()} , m_bytes_nodata { m_bytes_MHR + m_bytes_FCS}
     {
         #ifdef DBG
             std::cout <<"Mrf24j( )\r\n";
@@ -358,7 +358,7 @@ void Mrf24j::init_mrf(void){
     }
 
     int Mrf24j::rx_datalength(void) {
-        return rx_info.frame_length - bytes_nodata;
+        return rx_info.frame_length - m_bytes_nodata;
     }
 
     void Mrf24j::set_ignoreBytes(int ib) {
