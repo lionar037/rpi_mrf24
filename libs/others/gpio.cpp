@@ -93,14 +93,14 @@ namespace GPIO{
         const unsigned int gpio_out = OUT_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
-        int gpio_in = IN_INTERRUPT;
+        const int gpio_in = IN_INTERRUPT;
         int gpio_in_fd;
         int res;
         int looper = 0;
         char *buf[64];
 
-    std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
-    std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
+    // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
+    // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 
    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
     std::ifstream fileGpio23(filePathGpio23);
@@ -117,7 +117,7 @@ namespace GPIO{
             return false;
         }
     }
-
+        //Led Debugger
    const std::string filePathGpio1 = "/sys/class/gpio/gpio1/direction";
     std::ifstream fileGpio1(filePathGpio1);
     if(!fileGpio1){

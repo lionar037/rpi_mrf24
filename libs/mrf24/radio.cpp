@@ -65,7 +65,7 @@ Radio_t::Radio_t()
 
 void Radio_t::loop() {
     mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    const unsigned long current_time = 1000000;
+    const unsigned long current_time = 100000;//1000000 original
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
@@ -120,9 +120,6 @@ void handle_rx() {
         printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         
     }
-
-    // std::unique_ptr<FILESYSTEM::File_t> fs{std::make_unique<FILESYSTEM::File_t> ()};
-    // std::unique_ptr<QR::Qr_img_t> qr_img{std::make_unique<QR::Qr_img_t>()};
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
