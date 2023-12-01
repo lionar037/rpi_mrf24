@@ -3,8 +3,8 @@
 //#define USE_MRF24_TX
 #define USE_MRF24_RX
 
-//#define USE_MAC_ADDRESS_LONG
-#define USE_MAC_ADDRESS_SHORT
+#define USE_MAC_ADDRESS_LONG
+//#define USE_MAC_ADDRESS_SHORT
     //Enable database 
 //#define ENABLE_DATABASE
 
