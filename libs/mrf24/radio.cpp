@@ -62,6 +62,7 @@ Radio_t::Radio_t()
     {
         gpio->app(flag);
         Run(flag);
+        std::cout << "flag : "<< flag<<"\n";
         mrf24j40_spi.interrupt_handler();
     }
 }
