@@ -33,12 +33,15 @@ Radio_t::Radio_t()
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
     // This is _our_ address
+
+
+
     #ifdef MACADDR16
         mrf24j40_spi.address16_write(ADDRESS); 
     #elif defined (MACADDR64)
         mrf24j40_spi.address64_write(ADDRESS_LONG);
     #endif
-
+gpio->app();
     // uncomment if you want to receive any packet on this channel
   //mrf24j40_spi.set_promiscuous(true);
   mrf24j40_spi.init_mrf();
@@ -53,7 +56,7 @@ Radio_t::Radio_t()
     //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
-    gpio->app();
+    
         loop();
  
 }
