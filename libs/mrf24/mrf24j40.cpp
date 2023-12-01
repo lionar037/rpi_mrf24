@@ -225,7 +225,7 @@ namespace MRF24J40{
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else
-            //write_short(MRF_SOFTRST, 0x7); 
+            write_short(MRF_SOFTRST, 0x7); 
            #endif
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
         write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
