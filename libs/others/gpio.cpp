@@ -99,8 +99,8 @@ namespace GPIO{
         int looper = 0;
         char *buf[64];
 
-    //std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
-    //std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
+    std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
+    std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 
    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
     std::ifstream fileGpio23(filePathGpio23);
