@@ -58,7 +58,7 @@ Radio_t::Radio_t()
         while(true)
     #endif
     {
-      //gpio->app();
+        gpio->app();
         loop();
     }
 }
