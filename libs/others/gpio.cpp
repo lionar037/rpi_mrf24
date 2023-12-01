@@ -190,7 +190,7 @@ namespace GPIO{
         gpio_set_value(gpio_out,VALUE_LOW);
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
-state=false;
+//state=false;
         return true;
     }
 
