@@ -18,7 +18,7 @@ namespace MRF24J40{
     static RXMCR rxmcr{0x00};
 
     Mrf24j::Mrf24j()
-    : prt_spi {std::make_unique<SPI::Spi>()} , bytes_nodata { bytes_MHR + bytes_FCS}
+    : prt_spi {std::make_unique<SPI::Spi>()} , bytes_nodata { m_bytes_MHR + m_bytes_FCS}
     {
         #ifdef DBG
             std::cout <<"Mrf24j( )\r\n";
@@ -75,40 +75,38 @@ namespace MRF24J40{
         write_short(MRF_SADRL, address16 & 0xff);
     }
 
-void Mrf24j::address64_write(uint64_t addressLong){
+    void Mrf24j::address64_write(uint64_t addressLong){
+        write_short(MRF_EADR7,(addressLong>>56)&0xff);
+        write_short(MRF_EADR6,(addressLong>>48)&0xff);
+        write_short(MRF_EADR5,(addressLong>>40)&0xff);
+        write_short(MRF_EADR4,(addressLong>>32)&0xff);
+        write_short(MRF_EADR3,(addressLong>>24)&0xff);
+        write_short(MRF_EADR2,(addressLong>>16)&0xff);
+        write_short(MRF_EADR1,(addressLong>>8 )&0xff);
+        write_short(MRF_EADR0,(addressLong)&0xff);
+    return ;
+    }
 
-    write_short(MRF_EADR7,(addressLong>>56)&0xff);
-    write_short(MRF_EADR6,(addressLong>>48)&0xff);
-    write_short(MRF_EADR5,(addressLong>>40)&0xff);
-    write_short(MRF_EADR4,(addressLong>>32)&0xff);
-    write_short(MRF_EADR3,(addressLong>>24)&0xff);
-    write_short(MRF_EADR2,(addressLong>>16)&0xff);
-    write_short(MRF_EADR1,(addressLong>>8 )&0xff);
-    write_short(MRF_EADR0,(addressLong)&0xff);
-
-return ;
-}
-
-uint16_t Mrf24j::address16_read(void) {
-    const uint8_t a16h = read_short(MRF_SADRH);
-    return (a16h << 8 | read_short(MRF_SADRL));
-}
+    uint16_t Mrf24j::address16_read(void) {
+        const uint8_t a16h = read_short(MRF_SADRH);
+        return (a16h << 8 | read_short(MRF_SADRL));
+    }
 
 
-uint64_t Mrf24j::address64_read(void){
-uint64_t address64 ;
+    uint64_t Mrf24j::address64_read(void){
+        uint64_t address64 ;
 
- address64  = (read_short(MRF_EADR0));
- address64 |= (read_short(MRF_EADR1))<< 8;
- address64 |= static_cast<uint64_t>(read_short(MRF_EADR2))<<16;
- address64 |= static_cast<uint64_t>(read_short(MRF_EADR3))<<24;
- address64 |= static_cast<uint64_t>(read_short(MRF_EADR4))<<32;
- address64 |= static_cast<uint64_t>(read_short(MRF_EADR5))<<40;
- address64 |= static_cast<uint64_t>(read_short(MRF_EADR6))<<48;
- address64 |= static_cast<uint64_t>(read_short(MRF_EADR7))<<56;
+        address64  = (read_short(MRF_EADR0));
+        address64 |= (read_short(MRF_EADR1))<< 8;
+        address64 |= static_cast<uint64_t>(read_short(MRF_EADR2))<<16;
+        address64 |= static_cast<uint64_t>(read_short(MRF_EADR3))<<24;
+        address64 |= static_cast<uint64_t>(read_short(MRF_EADR4))<<32;
+        address64 |= static_cast<uint64_t>(read_short(MRF_EADR5))<<40;
+        address64 |= static_cast<uint64_t>(read_short(MRF_EADR6))<<48;
+        address64 |= static_cast<uint64_t>(read_short(MRF_EADR7))<<56;
 
-return  address64;
-}
+    return  address64;
+    }
         /**
          * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
          * @param data
@@ -117,10 +115,10 @@ return  address64;
     void Mrf24j::send16(uint16_t dest16, const char * data) {
         const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
-        write_long(i++, bytes_MHR); // header length
+        write_long(i++, m_bytes_MHR); // header length
                         // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
                         // default: ignoreBytes = 0;
-        write_long(i++, bytes_MHR+ignoreBytes+len);
+        write_long(i++, m_bytes_MHR+ignoreBytes+len);
 
                         // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
         write_long(i++, 0b01100001); // first byte of Frame Control
@@ -156,10 +154,10 @@ return  address64;
     void Mrf24j::send64(uint64_t dest64, const char * data) {
         const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
-        write_long(i++, bytes_MHR); // header length
+        write_long(i++, m_bytes_MHR); // header length
                         // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
                         // default: ignoreBytes = 0;
-        write_long(i++, bytes_MHR+ignoreBytes+len);
+        write_long(i++, m_bytes_MHR+ignoreBytes+len);
 
                         // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
         write_long(i++, 0b01100001); // first byte of Frame Control
@@ -254,6 +252,8 @@ return  address64;
         delay(192);                           // delay at least 192usec
     }
 
+
+
             /**
              * Call this from within an interrupt handler connected to the MRFs output
              * interrupt pin.  It handles reading in any data from the module, and letting it
@@ -263,8 +263,8 @@ return  address64;
             
     void Mrf24j::interrupt_handler(void) {
         const uint8_t last_interrupt = read_short(MRF_INTSTAT);
-        if (last_interrupt & MRF_I_RXIF) {
-            flag_got_rx++;
+        if(last_interrupt & MRF_I_RXIF) {
+            m_flag_got_rx++;
                 // read out the packet data...
             noInterrupts();
             rx_disable();
@@ -288,11 +288,8 @@ return  address64;
 
  for (uint16_t i = 0; i < frame_length ; i++) {//original
            // for (uint16_t i = 0; i < frame_length + rx_datalength(); i++) {//original
-                rx_info.rx_data[rd_ptr++] = read_long(0x301 + bytes_MHR + i);
+                rx_info.rx_data[rd_ptr++] = read_long(0x301 + m_bytes_MHR + i);
             }
-
-        
-
             rx_info.frame_length = frame_length;
                     // same as datasheet 0x301 + (m + n + 2) <-- frame_length
             rx_info.lqi = read_long(0x301 + frame_length);
@@ -303,7 +300,7 @@ return  address64;
             interrupts();
         }
         if (last_interrupt & MRF_I_TXNIF) {
-            flag_got_tx++;
+            m_flag_got_tx++;
             uint8_t tmp = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
             tx_info.tx_ok = !(tmp & ~(1 << TXNSTAT));
@@ -317,12 +314,12 @@ return  address64;
              */
     void Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)()){
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
-        if (flag_got_rx) {
-            flag_got_rx = 0;
+        if (m_flag_got_rx) {
+            m_flag_got_rx = 0;
             rx_handler();
         }
-        if (flag_got_tx) {
-            flag_got_tx = 0;
+        if (m_flag_got_tx) {
+            m_flag_got_tx = 0;
             tx_handler();
         }
     }
@@ -340,13 +337,14 @@ return  address64;
 
 
 void Mrf24j::init_mrf(void){
-    rxmcr.PANCOORD=true;
-    rxmcr.COORD=false;
-    rxmcr.PROMI=true;
-    //printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
-    write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
-    return;
-}
+        rxmcr.PANCOORD=true;
+        rxmcr.COORD=false;
+        rxmcr.PROMI=true;
+        //printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
+        write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
+        return;
+    }
+
     rx_info_t * Mrf24j::get_rxinfo(void) {
         return &rx_info;
     }

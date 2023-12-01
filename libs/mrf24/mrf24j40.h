@@ -88,12 +88,12 @@ struct Mrf24j : public SPI::Spi
 
             // essential for obtaining the data frame only
             // bytes_MHR = 2 Frame control + 1 sequence number + 2 panid + 2 shortAddr Destination + 2 shortAddr Source
-            const int bytes_MHR {9};
-            const int bytes_FCS {2}; // FCS length = 2
+            const int m_bytes_MHR {9};
+            const int m_bytes_FCS {2}; // FCS length = 2
             const int bytes_nodata { }; // no_data bytes in PHY payload,  header length + FCS
 
-            volatile uint8_t flag_got_rx{};
-            volatile uint8_t flag_got_tx{};
+            volatile uint8_t m_flag_got_rx{};
+            volatile uint8_t m_flag_got_tx{};
     };
 }
 
