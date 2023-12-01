@@ -38,7 +38,7 @@ struct Gpio{
             int gpio_set_value(int , const char *);
             int gpio_set_edge(int , const char *);
             int gpio_get_fd_to_value(int );
-            const bool app(bool*) ;
+            const bool app(bool&) ;
         private :
             static inline int static_file_open_and_write_value{0};
             bool state{false};
