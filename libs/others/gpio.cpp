@@ -108,9 +108,9 @@ if(flag){
     if(!fileGpio23){
         const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
         if (result_input == 0) {
-            //#ifdef DBG_GPIO
+            #ifdef DBG_GPIO
                 std::cout << "Pin GPIO 23 exported successfully." << std::endl;
-            //#endif
+            #endif
         } else {
             #ifdef DBG_GPIO
                 std::cerr << "Error exporting GPIO 23." << std::endl;
