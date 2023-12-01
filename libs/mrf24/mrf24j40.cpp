@@ -318,13 +318,13 @@ namespace MRF24J40{
             m_flag_got_rx = 0;
             std::cout<< "recibe algo \n";
             rx_handler();
-            return false;
+            return true;
         }
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
             std::cout<< "transmite algo \n";
             tx_handler();
-            return true;
+            return false;
         }
         return false;
     }

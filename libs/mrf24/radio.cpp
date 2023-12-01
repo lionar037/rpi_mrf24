@@ -70,6 +70,7 @@ Radio_t::Radio_t()
 void Radio_t::Run(bool& flag) {
 
     flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
+    //mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
 
     const unsigned long current_time = 1000000;//1000000 original
     if (current_time - last_time > tx_interval) {
