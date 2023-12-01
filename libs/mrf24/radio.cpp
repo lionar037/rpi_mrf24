@@ -26,7 +26,7 @@ Radio_t::Radio_t()
     #else
             qr->create(QR_CODE_SRT);
     #endif
-            gpio->app();
+           // gpio->app();
 
     std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
     mrf24j40_spi.init();
@@ -53,7 +53,7 @@ Radio_t::Radio_t()
     //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
-   
+    gpio->app();
         loop();
  
 }
