@@ -50,7 +50,7 @@ namespace FILESYSTEM{
         return nullptr;
     }
 
-size_t dataSize = packet.size;
+    size_t dataSize = packet.size;
 
     unsigned char* imgdata = new unsigned char[dataSize];
 
@@ -79,8 +79,9 @@ size_t dataSize = packet.size;
             file.write ( tmp ,  bufferSize);
                 // Cerrar el archivo
             file.close();
-
+        #ifdef DBG_FILES
             std::cout << "\nData written to the file successfully." << std::endl;
+        #endif
                   return true;
         } else {
             std::cerr << "\nNot open file." << std::endl;

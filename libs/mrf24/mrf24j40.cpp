@@ -3,6 +3,7 @@
 #include <mrf24/mrf24_settings.h>
 
 #include <others/tyme.h>
+#include <app/config.h>
 
 
 
@@ -316,13 +317,17 @@ namespace MRF24J40{
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_rx) {
             m_flag_got_rx = 0;
-            std::cout<< "recibe algo \n";
+            #ifdef DBG
+                std::cout<< "recibe algo \n";
+            #endif
             rx_handler();
             return true;
         }
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
-            std::cout<< "transmite algo \n";
+            #ifdef DBG
+                std::cout<< "transmite algo \n";
+            #endif
             tx_handler();
             return false;
         }
