@@ -186,10 +186,10 @@ namespace GPIO{
         }
          //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
 
-        //close(gpio_in_fd);
+        close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
-        //gpio_unexport(gpio_out);
-        //gpio_unexport(gpio_in);
+        gpio_unexport(gpio_out);
+        gpio_unexport(gpio_in);
 //state=false;
         return true;
     }

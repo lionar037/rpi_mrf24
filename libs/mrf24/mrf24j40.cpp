@@ -316,10 +316,12 @@ namespace MRF24J40{
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_rx) {
             m_flag_got_rx = 0;
+            std::cout<< "recibe algo \n";
             rx_handler();
         }
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
+            std::cout<< "transmite algo \n";
             tx_handler();
         }
     }

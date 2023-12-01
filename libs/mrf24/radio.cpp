@@ -99,7 +99,7 @@ void handle_tx() {
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     std::cout << " \nreceived a packet ... ";
-    printf("0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
+        printf("0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
     std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
@@ -145,7 +145,9 @@ void handle_rx() {
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
     std::cout<<"\r\n";
+    
     #endif
+     std::cout<<"no recibio paquete parece ...\r\n";
 }
 
 
