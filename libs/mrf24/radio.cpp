@@ -54,9 +54,10 @@ Radio_t::Radio_t()
     //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
+    while(true){
       gpio->app();
         loop();
- 
+    }
 }
 
 void Radio_t::loop() {
