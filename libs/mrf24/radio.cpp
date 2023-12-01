@@ -28,7 +28,7 @@ Radio_t::Radio_t()
     #endif
           
 
-    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
+    std::cout << "Size Msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
@@ -62,7 +62,7 @@ Radio_t::Radio_t()
     {
         gpio->app(flag);
         Run(flag);
-        if (flag)std::cout << "flag : "<< flag<<"\n";
+        //if (flag)std::cout << "flag : "<< flag<<"\n";
         mrf24j40_spi.interrupt_handler();
     }
 }
