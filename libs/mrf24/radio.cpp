@@ -28,7 +28,7 @@ Radio_t::Radio_t()
     #endif
           
 
-    std::cout << "Size Msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
+    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
@@ -62,15 +62,15 @@ Radio_t::Radio_t()
     {
         gpio->app(flag);
         Run(flag);
-        //if (flag)std::cout << "flag : "<< flag<<"\n";
+        if (flag)std::cout << "flag : "<< flag<<"\n";
         mrf24j40_spi.interrupt_handler();
     }
 }
 
 void Radio_t::Run(bool& flag) {
 
-    flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    //mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
+    //flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
+    mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
 
     const unsigned long current_time = 1000000;//1000000 original
     if (current_time - last_time > tx_interval) {
@@ -124,7 +124,7 @@ void handle_rx() {
     for (int i = 0; i < recevive_data_length; i++) {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        printf("%c",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         
     }
 
