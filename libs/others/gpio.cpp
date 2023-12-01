@@ -102,7 +102,7 @@ namespace GPIO{
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 if(flag){
-    flag = false;
+    //flag = false;
    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
     std::ifstream fileGpio23(filePathGpio23);
     if(!fileGpio23){
