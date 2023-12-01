@@ -326,6 +326,7 @@ namespace MRF24J40{
             tx_handler();
             return true;
         }
+        return false;
     }
 
             /**
