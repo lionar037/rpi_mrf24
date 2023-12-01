@@ -26,15 +26,13 @@ Radio_t::Radio_t()
     #else
             qr->create(QR_CODE_SRT);
     #endif
-           // gpio->app();
+            gpio->app();
 
     std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
     // This is _our_ address
-
-gpio->app();
 
     #ifdef MACADDR16
         mrf24j40_spi.address16_write(ADDRESS); 
