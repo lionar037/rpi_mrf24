@@ -72,7 +72,6 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
                         //myOLED.setFontNum(OLEDFontType_Wide);
                 	//myOLED.OLEDInvert(1); // Inverted
             myOLED.setTextColor(WHITE);
-            myOLED
             myOLED.setCursor(0, 0);
             myOLED.print("MRF24J40");
             myOLED.OLEDupdate();
