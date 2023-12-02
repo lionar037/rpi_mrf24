@@ -61,12 +61,12 @@ Radio_t::Radio_t()
     flag=true;
     #ifdef MRF24_RECEIVER_ENABLE
  //   oled->init();
-  oled->Start();
+ // oled->Start();
     while(true)
     #endif
     {
         #ifdef MRF24_RECEIVER_ENABLE
-           // oled->Start();
+            oled->Start();
         #endif
         gpio->app(flag);
         mrf24j40_spi.interrupt_handler();
