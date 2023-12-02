@@ -1,12 +1,13 @@
 #include <bcm2835.h>
 #include <time.h>
 #include <stdio.h>
-#include <SSD1306_OLED.hpp>
+
 #include <oled/oled.h>
 
 
 namespace OLED{
-
+#ifdef USE_MRF24_TX
+#include <SSD1306_OLED.hpp>
 
 SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object 
 
@@ -69,5 +70,5 @@ void Oled_t::Setup()
     Oled_t::Oled_t(){
         init();
     }
-
+#endif
 }

@@ -1,13 +1,14 @@
 #pragma once
 
 #include <app/work.h>
+#include <app/config.h>
 #define DELAY 150
 
 #define myOLEDwidth  128
 #define myOLEDheight 64
 
 namespace OLED{
-
+    #ifdef USE_MRF24_TX
     struct Oled_t : public WORK::Work_t
     {
         explicit Oled_t();
@@ -21,5 +22,6 @@ namespace OLED{
         const uint16_t I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
         const uint8_t I2C_Address   { 0x3C };
     };
+    #endif
 
 }
