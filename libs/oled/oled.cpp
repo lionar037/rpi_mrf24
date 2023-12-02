@@ -55,17 +55,17 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
 
 
 
-     void Oled_t::Start()
-    {
+        void Oled_t::Start()
+        {
             // Define a buffer to cover whole screen 
             uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
             myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
 
             myOLED.OLEDclearBuffer();  
-            	myOLED.setTextSize(2);
+            	myOLED.setTextSize(1);
                 	//myOLED.setFontNum(OLEDFontType_Thick);
-                        myOLED.setFontNum(OLEDFontType_SevenSeg);
-                        //myOLED.setFontNum(OLEDFontType_Wide);
+                        //myOLED.setFontNum(OLEDFontType_SevenSeg);
+                        myOLED.setFontNum(OLEDFontType_Wide);
                         //myOLED.setFontNum(OLEDFontType_Tiny);
                         //myOLED.setFontNum(OLEDFontType_Homespun);
                         //myOLED.setFontNum(OLEDFontType_Default);
