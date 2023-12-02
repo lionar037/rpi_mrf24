@@ -1,11 +1,10 @@
 #include <bcm2835.h>
 #include <time.h>
 #include <stdio.h>
+#include <oled/oled.h>
 #ifdef USE_MRF24_RX
     #include <SSD1306_OLED.hpp>
 #endif
-#include <oled/oled.h>
-
 
 namespace OLED{
 #ifdef USE_MRF24_RX
