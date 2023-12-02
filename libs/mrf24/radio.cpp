@@ -14,6 +14,7 @@ Radio_t::Radio_t()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>() }
+,   oled            {std::make_unique<OLED::Oled_t>()};
     #ifdef ENABLE_DATABASE
 ,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
@@ -134,9 +135,9 @@ void handle_rx() {
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
-    auto oled{std::make_unique<OLED::Oled_t>()};
+    // auto oled{std::make_unique<OLED::Oled_t>()};
 
-oled->init();
+//oled->init();
     const auto& buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
     fs->create(buff);
