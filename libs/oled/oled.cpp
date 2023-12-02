@@ -62,7 +62,7 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
             myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
 
             myOLED.OLEDclearBuffer();  
-            	myOLED.setTextSize(1);
+            	myOLED.setTextSize(2);
                 	//myOLED.setFontNum(OLEDFontType_Thick);
                         //myOLED.setFontNum(OLEDFontType_SevenSeg);
                         myOLED.setFontNum(OLEDFontType_Wide);
