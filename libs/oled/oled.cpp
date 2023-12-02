@@ -57,7 +57,7 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
 
         void Oled_t::Start()
         {
-                static count { 0 };
+                static int count { 0 };
             // Define a buffer to cover whole screen 
             uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
             myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
