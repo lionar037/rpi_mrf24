@@ -57,25 +57,27 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
 
         void Oled_t::Start()
         {
+                static count { 0 };
             // Define a buffer to cover whole screen 
             uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
             myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
 
             myOLED.OLEDclearBuffer();  
-            	myOLED.setTextSize(2);
+            	myOLED.setTextSize(1);
                 	//myOLED.setFontNum(OLEDFontType_Thick);
                         //myOLED.setFontNum(OLEDFontType_SevenSeg);
                         myOLED.setFontNum(OLEDFontType_Wide);
                         //myOLED.setFontNum(OLEDFontType_Tiny);
                         //myOLED.setFontNum(OLEDFontType_Homespun);
                         //myOLED.setFontNum(OLEDFontType_Default);
-                        //myOLED.setFontNum(OLEDFontType_Wide);
                 	//myOLED.OLEDInvert(1); // Inverted
             myOLED.setTextColor(WHITE);
             myOLED.setCursor(0, 0);
             myOLED.print("MRF24J40");
+             myOLED.setCursor(36, 14);
+             myOLED.print(reinterpret_cast<int>(count));
             myOLED.OLEDupdate();
-
+        count++;
 	//myOLED.setRotation(3);
 
 // myOLED.OLEDContrast(0x00);
