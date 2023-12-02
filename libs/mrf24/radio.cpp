@@ -57,13 +57,14 @@ Radio_t::Radio_t()
     //last_time = millis();
 
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
+    
     flag=true;
     #ifdef MRF24_RECEIVER_ENABLE
-    
+    oled->init();
     while(true)
     #endif
     {
-        oled->init();
+
         gpio->app(flag);
         mrf24j40_spi.interrupt_handler();
         Run(flag);
