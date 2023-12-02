@@ -75,6 +75,7 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
             myOLED.setCursor(0, 0);
             myOLED.print("MRF24J40");
              myOLED.setCursor(36, 14);
+             printf(" count : %d\n",count);
              myOLED.print(reinterpret_cast<int>(count));
             myOLED.OLEDupdate();
         count++;
