@@ -60,7 +60,7 @@ Radio_t::Radio_t()
     
     flag=true;
     #ifdef MRF24_RECEIVER_ENABLE
-    oled->init();
+ //   oled->init();
     while(true)
     #endif
     {
