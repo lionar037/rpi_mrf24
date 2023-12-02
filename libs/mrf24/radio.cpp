@@ -3,6 +3,8 @@
 #include <qr/qr.h>
 #include <files/file.h>
 #include <others/color.h>
+#include <oled/oled.h>
+
 
 namespace MRF24J40{ 
 
@@ -132,8 +134,9 @@ void handle_rx() {
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
+    auto oled{std::make_unique<OLED::Oled_t>()};
 
-
+oled->init();
     const auto& buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
     fs->create(buff);

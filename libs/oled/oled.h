@@ -8,6 +8,10 @@ namespace OLED{
         Oled_t  ()=default;
         ~Oled_t ()=default;
         bool create(const char*)override;
+        bool init();
+        void EndTest();
+        void SetupTest(); 
+        void TestLoop();
     };
 
 }

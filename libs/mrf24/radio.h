@@ -15,12 +15,15 @@
 #include <app/config.h>
 #include <app/work.h>
 
-
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
 #elif defined (USE_MAC_ADDRESS_SHORT)
     #define MACADDR16
 #endif
+
+namespace OLED{
+    struct Oled_t;
+}
 
 namespace MRF24J40{
 
@@ -43,6 +46,7 @@ namespace MRF24J40{
             std::unique_ptr<DATABASE::Database_t>database{};
             //std::unique_ptr<FILESYSTEM::File_t>fs{};
             std::unique_ptr<WORK::Work_t>fs{};
+            
         #else    
             //std::unique_ptr<QR::Qr_t>qr{};
             std::unique_ptr<WORK::Work_t>qr{};
