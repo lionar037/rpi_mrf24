@@ -62,9 +62,31 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
             myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
 
             myOLED.OLEDclearBuffer();  
+            	myOLED.setTextSize(1);
+                	myOLED.setFontNum(OLEDFontType_Thick);
+                        //myOLED.setFontNum(OLEDFontType_SevenSeg);
+                        //myOLED.setFontNum(OLEDFontType_Wide);
+                        //myOLED.setFontNum(OLEDFontType_Tiny);
+                        //myOLED.setFontNum(OLEDFontType_Homespun);
+                        //myOLED.setFontNum(OLEDFontType_Default);
+                        //myOLED.setFontNum(OLEDFontType_Wide);
+                	//myOLED.OLEDInvert(1); // Inverted
             myOLED.setTextColor(WHITE);
+            myOLED
             myOLED.setCursor(0, 0);
             myOLED.print("MRF24J40");
+            myOLED.OLEDupdate();
+
+	//myOLED.setRotation(3);
+
+// myOLED.OLEDContrast(0x00);
+// bcm2835_delay(1000);
+// myOLED.OLEDContrast(0x80);
+// bcm2835_delay(1000);
+// myOLED.OLEDContrast(0xFF);
+// bcm2835_delay(1000);
+// myOLED.OLEDContrast(0x81);
+            
             return;
     }
     
