@@ -3,7 +3,7 @@
 #include <qr/qr.h>
 #include <files/file.h>
 #include <others/color.h>
-// #include <oled/oled.h>
+#include <oled/oled.h>
 
 
 namespace MRF24J40{ 

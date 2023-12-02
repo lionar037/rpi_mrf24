@@ -14,7 +14,7 @@
 #include <files/database.h>
 #include <app/config.h>
 #include <app/work.h>
-#include <oled/oled.h>
+//#include <oled/oled.h>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -22,9 +22,9 @@
     #define MACADDR16
 #endif
 
-// namespace OLED{
-    // struct Oled_t;
-// }
+namespace OLED{
+    struct Oled_t;
+}
 
 namespace MRF24J40{
 
