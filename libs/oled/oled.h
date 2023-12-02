@@ -9,13 +9,13 @@ namespace OLED{
 
     struct Oled_t : public WORK::Work_t
     {
-        Oled_t  ()=default;
+        explicit Oled_t();
         ~Oled_t ()=default;
         bool create(const char*)override;
         bool init();
-        void EndTest();
-        void SetupTest(); 
-        void TestLoop();
+        void End();
+        void Setup(); 
+        void Start();
         private :
         const uint16_t I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
         const uint8_t I2C_Address   { 0x3C };
