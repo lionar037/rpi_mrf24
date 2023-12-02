@@ -8,7 +8,7 @@
 #define myOLEDheight 64
 
 namespace OLED{
-    #ifdef USE_MRF24_TX
+    #ifdef USE_MRF24_RX
     struct Oled_t : public WORK::Work_t
     {
         explicit Oled_t();

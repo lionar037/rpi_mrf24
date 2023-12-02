@@ -6,7 +6,7 @@
 
 
 namespace OLED{
-#ifdef USE_MRF24_TX
+#ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
 
 SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object 
