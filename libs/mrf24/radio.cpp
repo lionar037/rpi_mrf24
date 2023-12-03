@@ -162,6 +162,13 @@ void handle_rx() {
     //buffer_receiver = buf
         std::cout<< "\n data_receiver->mac: " << std::hex <<data_receiver->mac<<"\n";
         
+if(ADDRESS_LONG_SLAVE == data_receiver->mac){
+ std::cout<< "\nmac es igual\n" ;
+}
+else{
+std::cout<< "\nmac no es igual\n" ;
+}
+
         printf("data_receiver->mac : 0x%X \n",reinterpret_cast<const uint64_t *>(data_receiver->mac));
 
         std::cout<< "\n buffer_receiver->head : " << data_receiver->head <<"\n";
