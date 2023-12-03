@@ -164,10 +164,10 @@ void handle_rx() {
         
         auto add = (ADDRESS_LONG_SLAVE<<32)& 0xffff00000000| (ADDRESS_LONG_SLAVE>>32)&0xffffffff;
 if(add == data_receiver->mac){
- std::cout<< "\nmac es igual\n" ;
+    std::cout<< "\nmac es igual\n" ;
 }
 else{
-std::cout<< "\nmac no es igual\n" ;
+    std::cout<< "\nmac no es igual\n" ;
 }
 
         //printf("data_receiver->mac : 0x%X \n",reinterpret_cast<const uint64_t *>(data_receiver->mac));
