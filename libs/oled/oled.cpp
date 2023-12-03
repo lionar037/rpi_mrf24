@@ -33,7 +33,7 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
             myOLED.setCursor(0, 0);
             
             myOLED.print(tmp);
-             myOLED.setCursor(36, 14);
+             myOLED.setCursor(128-16, 64-12);
              printf(" count : %d\n",count);
              myOLED.print(reinterpret_cast<int>(count));
             myOLED.OLEDupdate();
