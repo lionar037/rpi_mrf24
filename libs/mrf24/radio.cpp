@@ -149,6 +149,7 @@ void handle_rx() {
     fs->create(buff);
     qr_img->create(buff);
     oled->create(buff);
+std::cout<<"\nbuff: \n"<<buff;
 
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
