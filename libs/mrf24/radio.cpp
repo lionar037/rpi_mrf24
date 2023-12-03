@@ -149,6 +149,7 @@ void handle_rx() {
     fs->create(buff);
     qr_img->create(buff);
     oled->create(buff);
+    buff = buff+9;
 std::cout<<"\nbuff: \n"<<buff;
 
 
