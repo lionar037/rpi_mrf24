@@ -172,7 +172,7 @@ else{
     std::cout<< "\nmac no es igual\n" ;
 }
 
-std::cout<< "\n data_receiver->mac: " << reinterpret_cast<const uint64_t >(add)<<"\n";
+std::cout<< "\n data_receiver->mac: " << add<<"\n";
         //printf("data_receiver->mac : 0x%X \n",reinterpret_cast<const uint64_t *>(data_receiver->mac));
 
         std::cout<< "\n buffer_receiver->head : " << data_receiver->head <<"\n";
