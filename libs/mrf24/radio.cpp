@@ -16,7 +16,7 @@ Radio_t::Radio_t()
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>() }
 //,   oled            {std::make_unique<OLED::Oled_t>()}
-, buffer_receiver { std::make_unique<DATA::BUFFER>() }
+//, buffer_receiver { std::make_unique<DATA::BUFFER>() }
     #ifdef ENABLE_DATABASE
 ,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
@@ -153,14 +153,16 @@ void handle_rx() {
     qr_img->create(buff);
     oled->create(buff);
 
-   auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
+
+  // auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
     //buff+=11;
     //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
-     std::cout<< "\ndata_receiver->head : " <<data_receiver->head<<"\n";
-     std::cout<< "data_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
+    buffer_receiver = buff;
+     std::cout<< "\n buffer_receiver->head : " <<buffer_receiver.head<<"\n";
+     std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(buffer_receiver.size)<<"\n";
     // std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
 
-delete data_receiver;
+//delete data_receiver;
 
 
 
