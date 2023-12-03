@@ -4,9 +4,9 @@ namespace DATA{
 
     typedef struct MacAdress
     {
-        uint8_t ignore[2];
+        uint8_t ignore[3];
         uint64_t mac;
-        uint8_t ignore2;
+        //uint8_t ignore2;
     }MACADDRESS;
 
 
