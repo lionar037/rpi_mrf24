@@ -47,15 +47,18 @@ namespace MRF24J40{
             unsigned long tx_interval{1000}; 
             bool status{false};
             bool flag {false};
-
+            std::unique_ptr<GPIO::Gpio>gpio{}; 
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<DATABASE::Database_t>database{};
             std::unique_ptr<WORK::Work_t>fs{};
+            struct DATA::buffer_rx  buffer_receiver{};
         #else    
             std::unique_ptr<WORK::Work_t>qr{};
+            struct DATA::buffer_tx  buffer_transmiter{};
         #endif
-            std::unique_ptr<GPIO::Gpio>gpio{}; 
-             struct DATA::buffer_tx  buffer_receiver{};
+            
+             
+             
     };
 
             void handle_tx();

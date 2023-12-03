@@ -88,8 +88,15 @@ void Radio_t::Run(bool& flag) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
         std::cout<<"send16 () ... \n";
+        buffer_transmiter.head=HEAD; 
+        buffer_transmiter.size=sizeof(MSJ);
+        strcpy(buffer_transmiter.data , MSJ);  
+
+
+const std::string msj { reinterpret_cast<const std::string >(buffer_transmiter)};
+
         #ifdef MACADDR64
-            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, MSJ );
+            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj.c_str() );
         #elif defined(MACADDR16)
             mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
         #endif
@@ -114,6 +121,12 @@ void handle_tx() {
     #endif     
     }
 
+
+
+//@brief 
+//@params
+//@params
+
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     std::cout << " \nreceived a packet ... ";
@@ -137,32 +150,19 @@ void handle_rx() {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        
     }
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
     auto oled{std::make_unique<OLED::Oled_t>()};
-    //auto& data_receiver{std::make_unique<DATA::BUFFER>()};
-    // auto oled{std::make_unique<OLED::Oled_t>()};
 
-//oled->init();
     const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-
-
 
     fs->create(buff);
     qr_img->create(buff);
     oled->create(buff);
 
-
-  const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
-    //buff+=11;
-    //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
-    //buffer_receiver = buf
-        
-        std::cout<< "\n data_receiver->ignore: " <<reinterpret_cast<const int *>(data_receiver->ignore)<<"\n";
-       // const uint64_t  add { reinterpret_cast<const uint64_t>((data_receiver->mac_msb<<32) | data_receiver->mac_lsb )};
+const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
 const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
 
 if(ADDRESS_LONG_SLAVE == add){
@@ -172,16 +172,10 @@ else{
     std::cout<< "\nmac no es igual\n" ;
 }
 
-std::cout<< "\n data_receiver->mac: " << std::hex<< add<<"\n";
-        //printf("data_receiver->mac : 0x%X \n",reinterpret_cast<const uint64_t *>(data_receiver->mac));
-
-        std::cout<< "\n buffer_receiver->head : " << data_receiver->head <<"\n";
-        std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
-        std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
-
-//delete data_receiver;
-
-
+    std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
+    std::cout<< "buffer_receiver->head : " << data_receiver->head <<"\n";
+    std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
+    std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
 
     
 std::cout<<"\nbuff: \n"<<buff;
