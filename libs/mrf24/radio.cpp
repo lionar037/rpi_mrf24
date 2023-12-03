@@ -162,7 +162,7 @@ void handle_rx() {
     //buffer_receiver = buff;
      std::cout<< "\n buffer_receiver->head : " <<data_receiver->head<<"\n";
      std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
-    // std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
+     std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
 
 //delete data_receiver;
 
