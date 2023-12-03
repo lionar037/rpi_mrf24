@@ -1,7 +1,7 @@
 #pragma once 
 
 namespace DATA{
-
+#pragma pack(push, 1)
     typedef struct MacAdress
     {
         //uint8_t ignore[3];
@@ -12,9 +12,6 @@ namespace DATA{
 
     typedef struct Buffer
     {
-
-    //MACADDRESS ignore;   
-        //uint8_t ignore;
         uint64_t mac;
         uint8_t head;
         uint16_t size;
@@ -22,5 +19,5 @@ namespace DATA{
 
     }BUFFER;
 
-
+#pragma pack(pop)
 }
