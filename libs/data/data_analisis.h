@@ -15,7 +15,7 @@ namespace DATA{
     MACADDRESS mac;   
         uint8_t head;
         uint16_t size;
-        uint8_t char[128];
+        uint8_t char data[128];
 
 
     }BUFFER;
