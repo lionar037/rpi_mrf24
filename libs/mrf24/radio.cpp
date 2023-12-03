@@ -93,7 +93,8 @@ void Radio_t::Run(bool& flag) {
         strcpy(buffer_transmiter.data , MSJ);  
 
 
-const std::string msj { reinterpret_cast<const std::string >(buffer_transmiter)};
+const std::string msj { reinterpret_cast<const char * >(buffer_transmiter)};
+//  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
         #ifdef MACADDR64
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj.c_str() );
