@@ -162,7 +162,7 @@ void handle_rx() {
     //buffer_receiver = buf
         
         std::cout<< "\n data_receiver->ignore: " <<reinterpret_cast<const int *>(data_receiver->ignore)<<"\n";
-        auto add = data_receiver->mac_lsb |data_receiver->mac_msb<<32 ;
+        auto add = reinterpret_cast<const uint64_t> (data_receiver->mac_msb<<32 | data_receiver->mac_lsb  );
 
 if(ADDRESS_LONG_SLAVE == add){
     std::cout<< "\nmac es igual\n" ;
