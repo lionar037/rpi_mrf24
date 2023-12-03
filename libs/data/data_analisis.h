@@ -12,7 +12,8 @@ namespace DATA{
 
     typedef struct Buffer
     {
-        uint64_t mac;
+        uint32_t mac_lsb;
+        uint32_t mac_msb;
         uint8_t ignore[4];
         uint8_t head;
         uint16_t size;
