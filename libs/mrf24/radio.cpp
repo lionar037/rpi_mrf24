@@ -90,7 +90,7 @@ void Radio_t::Run(bool& flag) {
         std::cout<<"send16 () ... \n";
         buffer_transmiter.head=HEAD; 
         buffer_transmiter.size=sizeof(MSJ);
-        strcpy(buffer_transmiter.data , MSJ);  
+        buffer_transmiter.data  =MSJ;  
 
 
 const std::string msj { reinterpret_cast<const char* >(buffer_transmiter)};
