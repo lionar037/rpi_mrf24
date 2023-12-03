@@ -163,7 +163,7 @@ void handle_rx() {
         
         std::cout<< "\n data_receiver->ignore: " <<reinterpret_cast<const int *>(data_receiver->ignore)<<"\n";
        // const uint64_t  add { reinterpret_cast<const uint64_t>((data_receiver->mac_msb<<32) | data_receiver->mac_lsb )};
-const uint64_t add = reinterpret_cast<const uint64_t>((static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb);
+const uint64_t add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
 
 if(ADDRESS_LONG_SLAVE == add){
     std::cout<< "\nmac es igual\n" ;
