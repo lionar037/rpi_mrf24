@@ -160,7 +160,7 @@ void handle_rx() {
     //buff+=11;
     //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
     //buffer_receiver = buf
-        std::cout<< "\n data_receiver->mac: " << std::hex <<data_receiver->mac<<"\n";
+        
         std::cout<< "\n data_receiver->ignore: " <<reinterpret_cast<const int *>(data_receiver->ignore)<<"\n";
         auto add = data_receiver->mac_lsb |data_receiver->mac_msb<<32 ;
 
@@ -171,6 +171,7 @@ else{
     std::cout<< "\nmac no es igual\n" ;
 }
 
+std::cout<< "\n data_receiver->mac: " << std::hex <<add<<"\n";
         //printf("data_receiver->mac : 0x%X \n",reinterpret_cast<const uint64_t *>(data_receiver->mac));
 
         std::cout<< "\n buffer_receiver->head : " << data_receiver->head <<"\n";
