@@ -161,7 +161,7 @@ void handle_rx() {
     //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
     //buffer_receiver = buf
         std::cout<< "\n data_receiver->mac: " << std::hex <<data_receiver->mac<<"\n";
-        
+        std::cout<< "\n data_receiver->ignore: " <<reinterpret_cast<const int *>(data_receiver->ignore)<<"\n";
         auto add = (ADDRESS_LONG_SLAVE<<32)& 0xffff00000000| (ADDRESS_LONG_SLAVE>>32)&0xffffffff;
 if(add == data_receiver->mac){
     std::cout<< "\nmac es igual\n" ;
