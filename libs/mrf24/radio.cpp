@@ -145,11 +145,11 @@ void handle_rx() {
 
 //oled->init();
     const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-
+    buff+=11;
     fs->create(buff);
     qr_img->create(buff);
     oled->create(buff);
-    buff+=9;
+
     
 std::cout<<"\nbuff: \n"<<buff;
 
