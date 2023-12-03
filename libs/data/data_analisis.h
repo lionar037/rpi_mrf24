@@ -5,14 +5,15 @@ namespace DATA{
     typedef struct MacAdress
     {
         //uint8_t ignore[3];
-        uint64_t mac;
-        //uint8_t ignore2;
+
+        uint8_t ignore;
     }MACADDRESS;
 
 
     typedef struct Buffer
     {
-    MACADDRESS mac;   
+    MACADDRESS ignore;   
+        uint64_t mac;
         uint8_t head;
         uint16_t size;
         uint8_t data[107];
