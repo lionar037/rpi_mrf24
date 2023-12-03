@@ -13,7 +13,7 @@ namespace DATA{
     typedef struct Buffer
     {
     //MACADDRESS ignore;   
-        uint8_t ignore;
+        //uint8_t ignore;
         uint64_t mac;
         uint8_t head;
         uint16_t size;
