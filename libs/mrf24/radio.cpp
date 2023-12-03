@@ -149,7 +149,7 @@ void handle_rx() {
 //oled->init();
     const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
-   auto data_receiver = reinterpret_cast<const DATA::BUFFER *>(buff);
+   auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
     buff+=11;
     //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
     // std::cout<< "data_receiver->head : " <<data_receiver->head<<"\n";
