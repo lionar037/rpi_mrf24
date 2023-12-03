@@ -143,12 +143,13 @@ void handle_rx() {
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
     auto oled{std::make_unique<OLED::Oled_t>()};
+    auto data_receiver{std::make_unique<DATA::BUFFER>()};
     // auto oled{std::make_unique<OLED::Oled_t>()};
 
 //oled->init();
     const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
-    buffer_receiver = reinterpret_cast<const uint8_t* >(buff);
+    data_receiver = reinterpret_cast<const uint8_t* >(buff);
     buff+=11;
     fs->create(buff);
     qr_img->create(buff);
