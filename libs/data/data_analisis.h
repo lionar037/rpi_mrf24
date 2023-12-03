@@ -15,7 +15,7 @@ namespace DATA{
     //MACADDRESS ignore;   
         uint64_t ma{0x00};
         uint8_t head{0x00};
-        uint16_t size{0x00}};
+        uint16_t size{0x00};
         uint8_t data[107]{0x00};
 
     }BUFFER;
