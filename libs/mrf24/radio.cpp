@@ -149,17 +149,19 @@ void handle_rx() {
 //oled->init();
     const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
+
+
     fs->create(buff);
     qr_img->create(buff);
     oled->create(buff);
 
 
-  // auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
+  const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
     //buff+=11;
     //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
-    buffer_receiver = buff;
-     std::cout<< "\n buffer_receiver->head : " <<buffer_receiver.head<<"\n";
-     std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(buffer_receiver.size)<<"\n";
+    //buffer_receiver = buff;
+     //std::cout<< "\n buffer_receiver->head : " <<buffer_receiver.head<<"\n";
+     //std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(buffer_receiver.size)<<"\n";
     // std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
 
 //delete data_receiver;
