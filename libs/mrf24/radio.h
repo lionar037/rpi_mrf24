@@ -49,15 +49,10 @@ namespace MRF24J40{
             bool flag {false};
 
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
-            //std::unique_ptr<GPIO::Gpio>pin_interrupt{}; 
             std::unique_ptr<DATABASE::Database_t>database{};
-            //std::unique_ptr<FILESYSTEM::File_t>fs{};
             std::unique_ptr<WORK::Work_t>fs{};
-           // std::unique_ptr<OLED::Oled_t>oled{};
         #else    
-            //std::unique_ptr<QR::Qr_t>qr{};
             std::unique_ptr<WORK::Work_t>qr{};
-        
         #endif
             std::unique_ptr<GPIO::Gpio>gpio{}; 
              struct DATA::buffer_tx  buffer_receiver{};
