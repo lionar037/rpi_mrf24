@@ -162,7 +162,7 @@ void handle_rx() {
     //buffer_receiver = buf
         std::cout<< "\n data_receiver->mac: " << std::hex <<data_receiver->mac<<"\n";
         
-        printf("data_receiver->mac : 0x%x \n",reinterpret_cast<const uint64_t *>data_receiver->mac);
+        printf("data_receiver->mac : 0x%x \n",reinterpret_cast<const uint64_t *>(data_receiver->mac);
 
         std::cout<< "\n buffer_receiver->head : " << data_receiver->head <<"\n";
         std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
