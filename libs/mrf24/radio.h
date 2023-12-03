@@ -60,7 +60,7 @@ namespace MRF24J40{
         
         #endif
             std::unique_ptr<GPIO::Gpio>gpio{}; 
-            BUFFER buffer_receiver{};
+             DATA::BUFFER buffer_receiver{};
     };
 
             void handle_tx();
