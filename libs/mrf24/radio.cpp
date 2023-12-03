@@ -14,7 +14,7 @@ Radio_t::Radio_t()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>() }
-,   oled            {std::make_unique<OLED::Oled_t>()}
+//,   oled            {std::make_unique<OLED::Oled_t>()}
     #ifdef ENABLE_DATABASE
 ,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
@@ -66,7 +66,8 @@ Radio_t::Radio_t()
     #endif
     {
         #ifdef MRF24_RECEIVER_ENABLE
-            oled->Start();
+            //oled->Start();
+        //oled->create(buff);
         #endif
         gpio->app(flag);
         mrf24j40_spi.interrupt_handler();
@@ -139,6 +140,7 @@ void handle_rx() {
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
+    auto oled{std::make_unique<OLED::Oled_t>()};
     // auto oled{std::make_unique<OLED::Oled_t>()};
 
 //oled->init();
@@ -146,6 +148,8 @@ void handle_rx() {
 
     fs->create(buff);
     qr_img->create(buff);
+    oled->create(buff);
+
 
     SET_COLOR(SET_COLOR_GRAY_TEXT);
     SET_COLOR(SET_COLOR_BLUE_BACKGROUND);

@@ -47,7 +47,7 @@ namespace MRF24J40{
             std::unique_ptr<DATABASE::Database_t>database{};
             //std::unique_ptr<FILESYSTEM::File_t>fs{};
             std::unique_ptr<WORK::Work_t>fs{};
-            std::unique_ptr<OLED::Oled_t>oled{};
+           // std::unique_ptr<OLED::Oled_t>oled{};
         #else    
             //std::unique_ptr<QR::Qr_t>qr{};
             std::unique_ptr<WORK::Work_t>qr{};
