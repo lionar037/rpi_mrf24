@@ -153,7 +153,7 @@ void handle_rx() {
     //buff+=11;
     //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
      std::cout<< "\ndata_receiver->head : " <<data_receiver->head<<"\n";
-     std::cout<< "data_receiver->size : " <<reinterpret_cast<const  int>(data_receiver->size)<<"\n";
+     std::cout<< "data_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
     // std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
 
 delete data_receiver;
