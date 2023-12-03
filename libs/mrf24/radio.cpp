@@ -144,7 +144,7 @@ void handle_rx() {
     // auto oled{std::make_unique<OLED::Oled_t>()};
 
 //oled->init();
-    const auto& buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+    const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
     fs->create(buff);
     qr_img->create(buff);
