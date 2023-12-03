@@ -15,12 +15,18 @@
 #include <app/config.h>
 #include <app/work.h>
 //#include <oled/oled.h>
+#include <data/data_analisis.h>
+
+
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
 #elif defined (USE_MAC_ADDRESS_SHORT)
     #define MACADDR16
 #endif
+
+
+
 
 namespace OLED{
     struct Oled_t;
@@ -54,6 +60,7 @@ namespace MRF24J40{
         
         #endif
             std::unique_ptr<GPIO::Gpio>gpio{}; 
+            BUFFER buffer_receiver{};
     };
 
             void handle_tx();
