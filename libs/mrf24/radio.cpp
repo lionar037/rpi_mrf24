@@ -151,11 +151,12 @@ void handle_rx() {
 
    auto data_receiver = reinterpret_cast<const DATA::BUFFER *>(buff);
     buff+=11;
-    std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
+    //std::cout<< "data_receiver->mac : " <<data_receiver->mac<<"\n";
     // std::cout<< "data_receiver->head : " <<data_receiver->head<<"\n";
     // std::cout<< "data_receiver->size : " <<data_receiver->size<<"\n";
     // std::cout<< "data_receiver->data : " <<data_receiver->data<<"\n";
 
+delete data_receiver;
 
     fs->create(buff);
     qr_img->create(buff);
