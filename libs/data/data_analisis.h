@@ -25,7 +25,7 @@ namespace DATA{
     {
         uint8_t head;
         uint16_t size;
-        uint8_t* data;
+        const char* data;
         
     }BUFFER_TX;
 
