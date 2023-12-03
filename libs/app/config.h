@@ -56,7 +56,7 @@
 //#define DBG_BUFFER
 //#define DBG_GPIO
 //#define DBG_FILES //imprime Debugger en files
-
+//#define DBG_DISPLAY_OLED
 
 //config QR string 
 //Linea de configuracion para codigo Qr de una red wifi

@@ -70,7 +70,9 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
 void Oled_t::Setup() 
 {
         bcm2835_delay(100);
-        printf("OLED Begin\r\n");
+        #ifdef DBG_DISPLAY_OLED
+        printf("\nOLED Begin\r\n");
+        #endif
         myOLED.OLEDbegin(I2C_Speed, I2C_Address); // initialize the OLED
 myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
         bcm2835_delay(100);
