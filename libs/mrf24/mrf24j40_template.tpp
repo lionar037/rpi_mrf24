@@ -22,7 +22,7 @@ namespace MRF24J40
     template <typename T>
     void Mrf24j::send(uint64_t dest64, const T& data) 
     {
-
+/*
     if constexpr (std::is_member_function_pointer_v<decltype(&T::size)>)
         {
             const uint8_t len = data.size();
@@ -31,7 +31,7 @@ namespace MRF24J40
 
            const uint8_t len =   sizeof(T);
         }
-/*
+
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
                         // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
