@@ -50,6 +50,23 @@ $(OBJ_DIR)/%.o: $(1)/src/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $$< -o $$@ -MMD -MP
 endef
 
+
+# Ajuste para compilar archivos de src/ en la carpeta spi
+$(OBJ_DIR)/%.o: $(LIB_DIR)/spi/src/%.cpp | $(OBJ_DIR)
+    $(CC) $(CXXFLAGS) -c $$< -o $$@ -MMD -MP
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Construir reglas de compilación para archivos en carpetas específicas de LIB_DIR
 $(foreach libdir,$(LIB_DIR),$(eval $(call compile_template,$(libdir))))
 
