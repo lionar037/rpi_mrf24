@@ -6,7 +6,7 @@
     #include <app/config.h>
 
 namespace DATA{
-        struct BUFFER_TX;
+        struct buffer_tx;
     }
 
 namespace MRF24J40{
