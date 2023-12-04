@@ -2,9 +2,8 @@
 #include <mrf24/src/mrf24j40_settings.h>
 #include <others/src/tyme.h>
 #include <app/src/config.h>
-#include <data/src/data_analisis.h>
+#include <app/src/data_analisis.h>
 #include <mrf24/src/mrf24j40.h>
-//#include <mrf24/mrf24j40_template.tpp>
 #include <spi/src/spi.h>
 
 namespace MRF24J40{
