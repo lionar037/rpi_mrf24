@@ -14,7 +14,6 @@
 #include <files/src/database.h>
 #include <app/src/config.h>
 #include <app/src/work.h>
-//#include <oled/oled.h>
 #include <app/src/data_analisis.h>
 
 
@@ -24,8 +23,6 @@
 #elif defined (USE_MAC_ADDRESS_SHORT)
     #define MACADDR16
 #endif
-
-
 
 
 namespace OLED{
