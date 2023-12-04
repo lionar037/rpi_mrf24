@@ -457,11 +457,11 @@ void Mrf24j::settings_mrf(void){
         }
  
   
-        const uint16_t src = address16_read();
+        const uint64_t src = address64_read();
         write_long(i++, src & 0xff); // src16 low
         write_long(i++, src >> 8); // src16 high
 
-       if(sizeof(dest)>2){
+       if(sizeof(src)>2){
             write_long(i++, (src >> 16 ) & 0xff); 
             write_long(i++, (src >> 24 ) & 0xff); 
             write_long(i++, (src >> 32 ) & 0xff); 
