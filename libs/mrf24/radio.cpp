@@ -188,7 +188,7 @@ void handle_rx() {
     qr_img->create(buff);
     oled->create(buff);
 
-    const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
+    const auto data_receiver {reinterpret_cast<const DATA::PACKET_RX *>(buff)};
     const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
 
     if(ADDRESS_LONG_SLAVE == add){
