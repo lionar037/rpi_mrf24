@@ -5,6 +5,7 @@
 #include <others/color.h>
 #include <oled/oled.h>
 
+#include <mrf24/mrf24j40_template.tpp>
 
 
 namespace MRF24J40{ 
