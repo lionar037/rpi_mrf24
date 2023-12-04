@@ -7,6 +7,18 @@
 #include <data/data_analisis.h>
 #include <mrf24/mrf24j40.h>
 
+
+namespace MRF24J40{
+            // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
+    static uint8_t rx_buf[127];
+
+    static int ignoreBytes { 0 }; // bytes to ignore, some modules behaviour.
+    static bool bufPHY { false }; // flag to buffer all bytes in PHY Payload, or not
+    static rx_info_t rx_info{};
+    static tx_info_t tx_info{};
+    static RXMCR rxmcr{0x00};
+}
+
 namespace MRF24J40{
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()} , m_bytes_nodata { m_bytes_MHR + m_bytes_FCS}
