@@ -5,13 +5,12 @@
 
 namespace MRF24J40{
             // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
-    extern static uint8_t rx_buf[];
-
-    extern static int ignoreBytes ; // bytes to ignore, some modules behaviour.
-    extern static bool bufPHY ; // flag to buffer all bytes in PHY Payload, or not
-    extern static rx_info_t rx_info;
-    extern static tx_info_t tx_info;
-    extern static RXMCR rxmcr;
+    extern uint8_t rx_
+    extern int ignoreBytes ; // bytes to ignore, some modules behaviour.
+    extern bool bufPHY ; // flag to buffer all bytes in PHY Payload, or not
+    extern rx_info_t rx_info;
+    extern tx_info_t tx_info;
+    extern RXMCR rxmcr;
 }
 
 namespace MRF24J40
