@@ -78,8 +78,9 @@ $(BIN_DIR) $(OBJ_DIR) $(LIBRARY_DIR)/oled $(LIBRARY_DIR)/spi:
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR) $(LIBRARY_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
 	rm -f log/*
+	rm -rf  $(LIBRARY_DIR)/lib_spi.a $(LIBRARY_DIR)/lib_oled.a
 
 run: $(APP)
 	sudo $<
