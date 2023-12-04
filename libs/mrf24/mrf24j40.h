@@ -5,6 +5,9 @@
     #include <spi/spi.h>
     #include <app/config.h>
 
+namespace DATA{
+        struct BUFFER_TX;
+    }
 
 namespace MRF24J40{
 
@@ -79,6 +82,7 @@ struct Mrf24j : public SPI::Spi
         void                 set_palna(bool);
         void                 send16(uint16_t ,const char*);
         void                 send64(uint64_t ,const char*);
+        void                 send64(uint64_t , struct DATA::BUFFER_TX&);
         void                 interrupt_handler(void);
         bool                 check_flags(void (*rx_handler)(), void (*tx_handler)());
         void                 settings_mrf(void);
