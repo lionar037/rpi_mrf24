@@ -13,8 +13,8 @@ $(2) : $(3) $(4)
 	$(1) -c -o $(2) $(3) $(5)
 endef
 #$(1)   Source file
-#$(1)   src/tinyPTC/xbcde.cpp
-#$(1)   obj/tinyPTC/xbcde.o
+#$(1)   src/oled/oled.cpp
+#$(1)   obj/oled/oled.o
 define C2O
 $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1))))
 endef
@@ -30,7 +30,7 @@ ARFLAGS 	:= -crs
 RANLIB		:= ranlib
 APP         := liboled.a
 CCFLAGS     := -Wall -pedantic
-CCFLAGS		+= -std=c++14
+CCFLAGS		+= -std=c++17
 CFLAGS     	:= $(CCFLAGS)
 CC          := g++
 C			:= gcc
