@@ -97,7 +97,7 @@ void Radio_t::Run(bool& flag) {
             #endif
         #endif
         buffer_transmiter.head=HEAD; 
-        buffer_transmiter.size=strlen(MSJ) + 0xf100;
+        buffer_transmiter.size=strlen(MSJ) ;//+ 0xf100;
         std::cout<<"\n strlen(MSJ) : "<<  strlen(MSJ)<<"\n";    
         std::strcpy(buffer_transmiter.data , MSJ);
 
