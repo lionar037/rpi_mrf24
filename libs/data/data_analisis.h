@@ -25,8 +25,8 @@ namespace DATA{
         {
             uint8_t head;
             uint16_t size;
-            const char data[];
-            
+            char data[107];
+
         }BUFFER_TX;
 
 #pragma pack(pop)
