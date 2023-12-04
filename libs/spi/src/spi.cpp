@@ -1,4 +1,4 @@
-#include <spi/spi.h>
+#include <spi/src/spi.h>
 #include <app/config.h>
 
 #define SPI_DEVICE  "/dev/spidev0.0"

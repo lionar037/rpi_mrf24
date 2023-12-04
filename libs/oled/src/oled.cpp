@@ -1,7 +1,7 @@
 #include <bcm2835.h>
 #include <time.h>
 #include <stdio.h>
-#include <oled/oled.h>
+#include <oled/src/oled.h>
 #ifdef USE_MRF24_RX
     #include <SSD1306_OLED.hpp>
 #else
