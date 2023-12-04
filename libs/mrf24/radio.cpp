@@ -111,7 +111,7 @@ void Radio_t::Run(bool& flag) {
         std::cout<<"\n" ; 
 
         #ifdef MACADDR64
-            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj );
+            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, reinterpret_cast<const char*>(msj) );
         #elif defined(MACADDR16)
             mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
         #endif
