@@ -147,7 +147,7 @@ namespace MRF24J40{
             // write_long(i++,data[q]);
         // }
 
-for(const auto& byte : msj)
+for(const auto& byte : data)
 {
      write_long(i++,static_cast<int>(byte));
 }
