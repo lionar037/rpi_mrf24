@@ -25,10 +25,10 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
             	myOLED.setTextSize(1);
                 	//myOLED.setFontNum(OLEDFontType_Thick);
                         //myOLED.setFontNum(OLEDFontType_SevenSeg);
-                        //myOLED.setFontNum(OLEDFontType_Wide);
+                        myOLED.setFontNum(OLEDFontType_Wide);
                         //myOLED.setFontNum(OLEDFontType_Tiny);
                         //myOLED.setFontNum(OLEDFontType_Homespun);
-                        myOLED.setFontNum(OLEDFontType_Default);
+                        //myOLED.setFontNum(OLEDFontType_Default);
                 	//myOLED.OLEDInvert(1); // Inverted
             myOLED.setTextColor(WHITE);
             myOLED.setCursor(0, 0);
