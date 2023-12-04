@@ -6,10 +6,10 @@ LIBRARIES += -lSSD1306_OLED_RPI
 SRC_DIR = src
 LIB_DIR = libs
 
-LIBRARY_DIR 	    := lib
-LIBS	    := $(LIBRARY_DIR)/tinyPTC/libtinyptc.a
-LIBS += $(LIBRARY_DIR)/picoPNG/libpicopng.a
-LIBS +=
+LIBRARY_DIR := libs
+LIBS	    := $(LIBRARY_DIR)/spi/lib_spi.a
+LIBS += $(LIBRARY_DIR)/oled/lib_oled.a
+
 
 OBJ_DIR = obj
 BIN_DIR = bin
@@ -35,7 +35,11 @@ endif
 
 .PHONY: all clean
 
-all: $(APP)
+all: $(APP) $(LIBRARY)
+#all: $(APP)
+
+$(LIBRARY): $(OBJS)
+	ar rcs $@ $^
 
 $(APP): $(OBJS) | $(BIN_DIR)
 	$(CC) $(CXXFLAGS) -o $@ $^ $(LIBRARIES)
