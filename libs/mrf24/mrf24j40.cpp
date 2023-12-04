@@ -5,7 +5,7 @@
 #include <others/tyme.h>
 #include <app/config.h>
 
-
+#include <data/data_analisis.h>
 
 namespace MRF24J40{
 
