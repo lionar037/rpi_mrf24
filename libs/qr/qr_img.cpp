@@ -25,7 +25,6 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         std::cerr << "Error al abrir el archivo para escritura." << std::endl;
         return;
     }
-
     // Configuración de la imagen PNG
     png_structp png = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
     png_infop info = png_create_info_struct(png);

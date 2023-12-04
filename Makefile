@@ -59,7 +59,5 @@ clean:
 run: $(APP)
 	sudo $<
 
-
-
 # Incluir las dependencias generadas automáticamente
 -include $(OBJS:.o=.d)
