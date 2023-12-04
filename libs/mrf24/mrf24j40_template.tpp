@@ -4,6 +4,7 @@
 #include <app/config.h>
 #include <mrf24/mrf24j40_cmd.h>
 #include <mrf24/mrf24j40_settings.h>
+#include <iostream>
 
 namespace MRF24J40{
             // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
@@ -21,7 +22,15 @@ namespace MRF24J40
     template <typename T>
     void Mrf24j::send(uint64_t dest64, const T& data) 
     {
-        const uint8_t len = data.size();//data.length();
+
+    if constexpr (std::is_member_function_pointer_v<decltype(&T::size)>)
+        {
+            const uint8_t len = data.size();//data.length();
+        }
+        else{
+
+           const uint8_t len =   sizeof(T);
+        }
 /*
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
