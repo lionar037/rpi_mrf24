@@ -116,7 +116,8 @@ namespace MRF24J40{
     // void Mrf24j::send16(uint16_t dest16, const char* data) 
     void Mrf24j::send16(uint16_t dest16, const std::string& pf) 
     {
-        const uint8_t len = strlen(data); // get the length of the char* array
+        //const uint8_t len = strlen(data); // get the length of the char* array
+        const auto len = pf.length();
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
                         // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
