@@ -1,5 +1,7 @@
-#include <mrf24/mrf24j40.h>
+#pragma once
 
+#include <mrf24/mrf24j40.h>
+#include <app/config>
 
 
 
@@ -49,7 +51,13 @@
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
 
-    for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
+//    for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
+        if(data.head==HEAD)write_long(i++,data.head);
+        // for(const auto& byte : static_cast<const char *>(buf.size) )
+        write_long(i++,data.size&0xff);
+        write_long(i++,(data.size>>8)&0xff);
+
+        for(const auto& byte : data.data )write_long(i++,byte);
 
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
