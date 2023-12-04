@@ -10,7 +10,7 @@ namespace DATA{
     }MACADDRESS;
 
 
-    typedef struct buffer_rx
+    typedef struct packet_rx
     {
         uint32_t mac_msb;
         uint32_t mac_lsb;
@@ -18,17 +18,18 @@ namespace DATA{
         uint8_t head;
         uint16_t size;
         uint8_t data[107];
+        uint16_t checksum;
         
-    }BUFFER;
+    }PACKET_RX;
 
 
-    typedef struct buffer_tx
+    typedef struct packet_tx
         {
             uint8_t head;
             uint16_t size;
             char data[107];
-
-        }BUFFER_TX;
+            uint16_t checksum;
+        }PACKET_TX;
 
 #pragma pack(pop)
 }

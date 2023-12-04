@@ -6,7 +6,7 @@
     #include <app/config.h>
 
 namespace DATA{
-        struct buffer_tx;
+        struct packet_tx;
     }
 
 namespace MRF24J40{
@@ -86,7 +86,7 @@ struct Mrf24j : public SPI::Spi
 
         void                    send(uint64_t ,const std::string& );
         //void                    send64(uint64_t ,const std::string&);
-        void                    send64(uint64_t , const struct DATA::buffer_tx&);
+        void                    send64(uint64_t , const struct DATA::packet_tx&);
         void                    interrupt_handler(void);
         bool                    check_flags(void (*rx_handler)(), void (*tx_handler)());
         void                    settings_mrf(void);

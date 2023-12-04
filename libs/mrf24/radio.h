@@ -54,7 +54,7 @@ namespace MRF24J40{
             struct DATA::buffer_rx  buffer_receiver{};
         #else    
             std::unique_ptr<WORK::Work_t>qr{};
-            struct DATA::buffer_tx  buffer_transmiter{};
+            struct DATA::packet_tx  buffer_transmiter{};
         #endif
             
              

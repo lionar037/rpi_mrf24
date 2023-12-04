@@ -360,7 +360,7 @@ void Mrf24j::settings_mrf(void){
 
 
 
-    void Mrf24j::send64(uint64_t dest64, const struct DATA::buffer_tx& buf) {
+    void Mrf24j::send64(uint64_t dest64, const struct DATA::packet_tx& buf) {
         const uint8_t len = strlen(buf.data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
