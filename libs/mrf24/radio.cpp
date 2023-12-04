@@ -99,7 +99,7 @@ void Radio_t::Run(bool& flag) {
         buffer_transmiter.head=HEAD; 
         buffer_transmiter.size=sizeof(MSJ);
         //buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(MSJ);  
-        buffer_transmiter.data  = reinterpret_cast<const char*>(&MSJ);  
+        buffer_transmiter.data  = reinterpret_cast<const char*>(MSJ);  
 
         const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
         //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
