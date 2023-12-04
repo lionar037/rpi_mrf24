@@ -103,7 +103,7 @@ void Radio_t::Run(bool& flag) {
 std::strcpy(buffer_transmiter.data , MSJ);
         const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
         //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-        std::cout<<"\n MSJ : size ( "<<  strlen(msj) << " )\n" ;
+        std::cout<<"\n MSJ : size ( "<<  strlen(msj) <<" , "<<sizeof(msj) << " )\n" ;
         std::cout<<"\n" ;
         //for(int i= 0;i<strlen(msj);i++)
         for(int i= 0;i<128;i++)
