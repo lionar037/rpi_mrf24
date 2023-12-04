@@ -149,7 +149,7 @@ namespace MRF24J40{
 
 for(const auto& byte : data)
 {
-     write_long(i++,static_cast<int>(byte));
+     write_long(i++,static_cast<char>(byte));
 }
 
 
