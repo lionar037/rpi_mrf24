@@ -14,7 +14,9 @@ LIBS += $(LIBRARY_DIR)/oled/lib_oled.a
 OBJ_DIR = obj
 BIN_DIR = bin
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+
 LIB_DIRS = $(wildcard $(LIB_DIR)/*)
+
 LIB_SRCS = $(foreach dir,$(LIB_DIRS),$(wildcard $(dir)/*.cpp))
 OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
 
