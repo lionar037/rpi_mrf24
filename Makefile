@@ -44,7 +44,7 @@ LIBDIR := libs
 #LIBS += $(LIBDIR)/mrf24/lib_mrf24.a
 
 
-LIBS += -Wall -pedantic
+LIBS := $(CFLAGS)
 INCDIRS := -I$(SRC) -I$(LIBDIR)
 #LIBS		+= -lX11 -lXext
 
