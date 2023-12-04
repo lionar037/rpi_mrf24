@@ -192,8 +192,8 @@ else{
 }
 
     std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
-    std::cout<< "buffer_receiver->head : " << ~data_receiver->head <<"\n";
-    std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(data_receiver->size)<<"\n";
+    std::cout<< "buffer_receiver->head : " << data_receiver->head <<"\n";
+    std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(~(data_receiver->size|0xffff))<<"\n";
     std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
 
     
