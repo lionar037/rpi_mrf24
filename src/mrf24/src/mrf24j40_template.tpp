@@ -1,7 +1,7 @@
 #pragma once
 
 #include <mrf24/src/mrf24j40.h>
-#include <app/csrc/onfig.h>
+#include <app/src/config.h>
 #include <mrf24/src/mrf24j40_cmd.h>
 #include <mrf24/src/mrf24j40_settings.h>
 #include <iostream>
