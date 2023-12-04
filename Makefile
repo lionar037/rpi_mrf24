@@ -45,7 +45,10 @@ LIBS += $(LIBDIR)/mrf24/lib_mrf24.a
 
 LIBS += -Wall -pedantic
 INCDIRS := -I$(SRC) -I$(LIBDIR)
-LIBS		+= -lX11 -lXext
+#LIBS		+= -lX11 -lXext
+
+LIBS += LIBRARIES = -pthread -lmysqlcppconn -lqrencode -lpng -lbcm2835 -lrt 
+LIBS += -lSSD1306_OLED_RPI 
 
 
 #para el uso commando es make DEBUG=1
