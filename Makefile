@@ -38,7 +38,7 @@ $(LIBRARY_DIR)/oled/lib_oled.a: $(OBJ_DIR)/oled.o | $(LIBRARY_DIR)/oled
 #$(LIBRARY_DIR)/spi/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/spi
 #	ar rcs $@ $<
 
-$(LIBRARY_DIR)/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/
+$(LIBRARY_DIR)/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/spi
 	ar rcs $@ $<
 
 $(APP): $(OBJS) $(LIBS) | $(BIN_DIR)
