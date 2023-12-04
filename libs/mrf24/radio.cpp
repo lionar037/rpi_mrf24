@@ -89,7 +89,7 @@ void Radio_t::Run(bool& flag) {
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
-        ifdef DBG
+        #ifdef DBG
             #ifdef MACADDR64
                 std::cout<<"send msj 64() ... \n";
             #else
