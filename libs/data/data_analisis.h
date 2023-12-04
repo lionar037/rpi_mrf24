@@ -21,13 +21,13 @@ namespace DATA{
         
     }BUFFER;
 
-        typedef struct buffer_tx
-    {
-        uint8_t head;
-        uint16_t size;
-        const char* data;
-        
-    }BUFFER_TX;
+    typedef struct buffer_tx
+        {
+            uint8_t head;
+            uint16_t size;
+            const char data[];
+            
+        }BUFFER_TX;
 
 #pragma pack(pop)
 }
