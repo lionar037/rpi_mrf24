@@ -210,7 +210,7 @@ namespace MRF24J40{
        //     write_long(i++,data[q]);
        // }
 
-for(const auto& byte : pf) write_long(i++,static_cast<char>(byte));
+for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
 
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
