@@ -21,11 +21,11 @@ DEFAULT_TARGET = mrf24_rpi
 TARGET ?= $(DEFAULT_TARGET)
 
 ifeq ($(TARGET), tx)
-	APP = $(BIN_DIR)/mrf24_rpi_tx
+    APP = $(BIN_DIR)/mrf24_rpi_tx
 else ifeq ($(TARGET), rx)
-	APP = $(BIN_DIR)/mrf24_rpi_rx
+    APP = $(BIN_DIR)/mrf24_rpi_rx
 else
-	APP = $(BIN_DIR)/$(DEFAULT_TARGET)
+    APP = $(BIN_DIR)/$(DEFAULT_TARGET)
 endif
 
 .PHONY: all clean
@@ -33,8 +33,8 @@ endif
 all: $(APP) $(LIBS)
 
 # Reglas para construir bibliotecas
-$(LIBRARY_DIR)/%/lib%.a: $(OBJS)
-	ar rcs $@ $^
+$(LIBRARY_DIR)/%/lib%.a: $(OBJ_DIR)/%.o | $(LIBRARY_DIR)/%
+	ar rcs $@ $<
 
 # Reglas de compilación para los archivos fuente en SRC_DIR
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) 
@@ -50,7 +50,7 @@ endef
 $(foreach libdir,$(LIB_DIRS),$(eval $(call compile_template,$(notdir $(libdir)))))
 
 # Crear directorios si no existen
-$(BIN_DIR) $(OBJ_DIR) $(foreach libdir,$(LIB_DIRS),$(OBJ_DIR)/$(notdir $(libdir))) $(foreach libdir,$(LIB_DIRS),$(LIBRARY_DIR)/$(notdir $(libdir))):
+$(BIN_DIR) $(OBJ_DIR) $(LIBRARY_DIR) $(foreach libdir,$(LIB_DIRS),$(OBJ_DIR)/$(notdir $(libdir))) $(foreach libdir,$(LIB_DIRS),$(LIBRARY_DIR)/$(notdir $(libdir))):
 	mkdir -p $@
 
 clean:
