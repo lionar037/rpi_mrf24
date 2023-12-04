@@ -97,7 +97,8 @@ void Radio_t::Run(bool& flag) {
             #endif
         #endif
         buffer_transmiter.head=HEAD; 
-        buffer_transmiter.size=sizeof(MSJ);
+        buffer_transmiter.size=strlen(MSJ);
+        std::cout<<"\n strlen(MSJ) : "<<  strlen(MSJ)<<"\n";
         //buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(MSJ);  
     //    buffer_transmiter.data  = reinterpret_cast<const char*>(MSJ);  
 std::strcpy(buffer_transmiter.data , MSJ);
@@ -107,7 +108,7 @@ std::strcpy(buffer_transmiter.data , MSJ);
         std::cout<<"\n" ;
         //for(int i= 0;i<strlen(msj);i++)
         for(int i= 0;i<128;i++)
-        std::cout << ","<<std::hex<< msj[i] ; 
+        std::cout <<std::hex<< msj[i] ; 
         std::cout<<"\n" ; 
 
         #ifdef MACADDR64
