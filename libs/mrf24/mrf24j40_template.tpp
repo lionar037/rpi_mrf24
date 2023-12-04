@@ -3,7 +3,8 @@
 #include <mrf24/mrf24j40.h>
 #include <app/config.h>
 
-
+namespace MRF24J40
+{
 
     template <typename T>
     void Mrf24j::send(uint64_t dest64, const T& data) 
@@ -51,7 +52,7 @@
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
 
-//    for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
+        //for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
         if(data.head==HEAD)write_long(i++,data.head);
         // for(const auto& byte : static_cast<const char *>(buf.size) )
         write_long(i++,data.size&0xff);
