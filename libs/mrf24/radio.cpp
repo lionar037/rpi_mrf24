@@ -182,14 +182,16 @@ void handle_rx() {
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
     auto oled{std::make_unique<OLED::Oled_t>()};
 
-    const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+    const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
-    fs->create(buff);
-    qr_img->create(buff);
-    oled->create(buff);
+    fs->create(packet_data);
+    packet_data+=9;
+    qr_img->create(packet_data);
+    
+    oled->create(packet_data);
 
-    const auto data_receiver {reinterpret_cast<const DATA::PACKET_RX *>(buff)};
-    const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
+    const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
+    const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
 
     if(ADDRESS_LONG_SLAVE == add){
         std::cout<< "\nmac es igual\n" ;
@@ -199,10 +201,10 @@ void handle_rx() {
     }
 
     std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
-    std::cout<< "buffer_receiver->head : " << data_receiver->head <<"\n";
-    auto bs = (~data_receiver->size)&0xffff;
+    std::cout<< "buffer_receiver->head : " << packet_data_tmp->head <<"\n";
+    auto bs = (~packet_data_tmp->size)&0xffff;
     std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
-    std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
+    std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
     
     //std::cout<<"\nbuff: \n"<<buff;
 
