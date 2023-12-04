@@ -1,3 +1,27 @@
+##
+## This file is part of tinyPTC, UA version 2019
+## Copyright (C) 2000-2002 Alessandro Gatti <a.gatti@tiscali.it>
+## Copyright (C) 2002      Fred Howell <foohoo@shaw.ca>
+## Copyright (C) 2000-2001 Glenn Fiedler <gaffer@gaffer.org>
+## Copyright (C) 2019 by Francisco J. Gallego-Durán (@FranGallegoBR)
+## 
+## This program is free software; you can redistribute it and/or
+## modify it under the terms of the GNU General Public License
+## as published by the Free Software Foundation; either version 2
+## of the License, or (at your option) any later version.
+## 
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+## 
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+##
+###########################################
+### MACROS
+###########################################
 
 # $(1) : Compiler
 # $(2) : Object file to generate
@@ -7,6 +31,7 @@
 define COMPILE
 $(2) : $(3) $(4)
 	$(1) -c -o $(2) $(3) $(5)
+
 endef
 
 # $(1) : Source file
@@ -23,7 +48,7 @@ endef
 ### CONFIG
 ###########################################
 UNAME   := $(shell uname)
-APP     := lib_oled.a
+APP     := lib_spi.a
 CCFLAGS := -Wall -pedantic
 CFLAGS  := $(CCFLAGS)
 CC 	  := g++
@@ -35,18 +60,25 @@ MKDIR   := mkdir -p
 SRC     := src
 OBJ     := obj
 
+ifeq ($(UNAME),Darwin)
+	OS := macOS
 ifeq ($(UNAME),Linux)
 	OS := linux
-else 
-   OS := windows
+else ifeq ($(UNAME),Windows)
+	OS := windows
 endif
 
+#ifdef APPLE
+#	CC := clang
+#	C := gcc
+#endif
+
 ifdef CROSSWIN
-	C:=x86_64-w64-mingw32-gcc
-	CC:=x86_64-w64-mingw32-g++
-	AR:=x86_64-w64-mingw32-ar
-	RANLIB:=x86_64-w64-mingw32-ranlib
-	OS:=windows
+	C := x86_64-w64-mingw32-gcc
+	CC := x86_64-w64-mingw32-g++
+	AR := x86_64-w64-mingw32-ar
+	RANLIB := x86_64-w64-mingw32-ranlib
+	OS := windows
 endif
 
 ifdef DEBUG
