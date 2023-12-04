@@ -7,26 +7,19 @@ SRC_DIR = src
 LIB_DIR = libs
 
 LIBRARY_DIR := libs
-LIBS	    := $(LIBRARY_DIR)/spi/lib_spi.a
+LIBS := $(LIBRARY_DIR)/spi/lib_spi.a
 LIBS += $(LIBRARY_DIR)/oled/lib_oled.a
-
-
 OBJ_DIR = obj
 BIN_DIR = bin
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 
-LIB_DIRS = $(wildcard $(LIB_DIR)/*)
+# Buscar archivos fuente en SRC_DIR y en todas las carpetas src/ de los subdirectorios de LIB_DIR
+SRCS = $(wildcard $(SRC_DIR)/*.cpp) $(foreach dir,$(LIB_DIR),$(wildcard $(dir)/src/*.cpp))
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
-LIB_SRCS = $(foreach dir,$(LIB_DIRS),$(wildcard $(dir)/*.cpp))
-OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.cpp=.o) $(notdir $(LIB_SRCS:.cpp=.o))))
-
-# Nombre predeterminado para el binario
 DEFAULT_TARGET = mrf24_rpi
 
-# Obtener el nombre del objetivo desde la línea de comandos
 TARGET ?= $(DEFAULT_TARGET)
 
-# Cambiar el nombre del binario según el objetivo
 ifeq ($(TARGET), tx)
     APP = $(BIN_DIR)/mrf24_rpi_tx
 else ifeq ($(TARGET), rx)
@@ -37,41 +30,37 @@ endif
 
 .PHONY: all clean
 
-all: $(APP) $(LIBRARY)
-#all: $(APP)
+all: $(APP) $(LIBS)
 
-$(LIBRARY): $(OBJS)
-	ar rcs $@ $^
+$(LIBRARY_DIR)/oled/lib_oled.a: $(OBJ_DIR)/oled.o | $(LIBRARY_DIR)/oled
+	ar rcs $@ $<
 
-$(APP): $(OBJS) | $(BIN_DIR)
+$(LIBRARY_DIR)/spi/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/spi
+	ar rcs $@ $<
+
+$(APP): $(OBJS) $(LIBS) | $(BIN_DIR)
 	$(CC) $(CXXFLAGS) -o $@ $^ $(LIBRARIES)
 
-# Regla de compilación para los archivos de código fuente en SRC_DIR
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) 
 	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
 
-# Regla de compilación para los archivos de código fuente en LIB_DIR y sus subdirectorios
 define compile_template
-$(info Compiling files in folder: $(LIB_DIR)/$(1))
-$(OBJ_DIR)/%.o: $(LIB_DIR)/$(1)/%.cpp | $(OBJ_DIR)
+$(info Compiling files in folder: $(1)/src)
+$(OBJ_DIR)/%.o: $(1)/src/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $$< -o $$@ -MMD -MP
 endef
 
 # Construir reglas de compilación para archivos en carpetas específicas de LIB_DIR
-$(foreach libdir,$(LIB_DIRS),$(eval $(call compile_template,$(notdir $(libdir)))))
+$(foreach libdir,$(LIB_DIR),$(eval $(call compile_template,$(libdir))))
 
-# Crear directorios si no existen
-$(BIN_DIR) $(OBJ_DIR):
+$(BIN_DIR) $(OBJ_DIR) $(LIBRARY_DIR)/oled $(LIBRARY_DIR)/spi:
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR) $(LIBRARY_DIR)
 	rm -f log/*
 
 run: $(APP)
 	sudo $<
 
-
-
-# Incluir las dependencias generadas automáticamente
 -include $(OBJS:.o=.d)
