@@ -1,9 +1,9 @@
-#include <mrf24/radio.h>
-#include <mrf24/mrf24j40.h>
-#include <qr/qr.h>
-#include <files/file.h>
-#include <others/color.h>
-#include <mrf24/mrf24j40_template.tpp>
+#include <mrf24/src/radio.h>
+#include <mrf24/src/mrf24j40.h>
+#include <qr/src/qr.h>
+#include <files/src/file.h>
+#include <others/src/color.h>
+#include <mrf24/src/mrf24j40_template.tpp>
 
 #include <oled/src/oled.h>
 

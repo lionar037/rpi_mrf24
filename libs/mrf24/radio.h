@@ -10,12 +10,12 @@
 #include <sstream>
 #include <iomanip>
 
-#include <others/gpio.h>
-#include <files/database.h>
-#include <app/config.h>
-#include <app/work.h>
+#include <others/src/gpio.h>
+#include <files/src/database.h>
+#include <app/src/config.h>
+#include <app/src/work.h>
 //#include <oled/oled.h>
-#include <data/data_analisis.h>
+#include <data/src/data_analisis.h>
 
 
 

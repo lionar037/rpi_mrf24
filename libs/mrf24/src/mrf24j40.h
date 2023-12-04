@@ -3,7 +3,7 @@
     #include <memory>
     #include <cstring>
 
-    #include <app/config.h>
+    #include <app/src/config.h>
     #include <spi/src/spi.h>
 namespace DATA{
         struct packet_tx;

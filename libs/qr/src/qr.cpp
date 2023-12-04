@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstring>
 //#include <qrencode.h>
-#include <qr/qr.h>
-#include <others/color.h>
+#include <qr/src/qr.h>
+#include <others/src/color.h>
 
 
 namespace QR{

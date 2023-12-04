@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <qrencode.h>
-#include <app/work.h>
+#include <app/src/work.h>
 
 namespace TYME{
     struct Time_t;

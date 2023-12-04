@@ -1,9 +1,9 @@
-#include <mrf24/mrf24j40_cmd.h>
-#include <mrf24/mrf24j40_settings.h>
-#include <others/tyme.h>
-#include <app/config.h>
-#include <data/data_analisis.h>
-#include <mrf24/mrf24j40.h>
+#include <mrf24/src/mrf24j40_cmd.h>
+#include <mrf24/src/mrf24j40_settings.h>
+#include <others/src/tyme.h>
+#include <app/src/config.h>
+#include <data/src/data_analisis.h>
+#include <mrf24/src/mrf24j40.h>
 //#include <mrf24/mrf24j40_template.tpp>
 #include <spi/src/spi.h>
 
