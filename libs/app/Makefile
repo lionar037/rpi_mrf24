@@ -38,7 +38,7 @@ OBJ     := obj
 ifeq ($(UNAME),Linux)
 	OS := linux
 else 
-   OS := windows
+   	OS := windows
 endif
 
 ifdef CROSSWIN

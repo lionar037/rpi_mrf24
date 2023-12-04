@@ -12,8 +12,8 @@ $(2) : $(3) $(4)
 	$(1) -c -o $(2) $(3) $(5)
 endef
 #$(1)   Source file
-#$(1)   src/oled/oled.cpp
-#$(1)   obj/oled/oled.o
+#$(1)   src/tinyPTC/xbcde.cpp
+#$(1)   obj/tinyPTC/xbcde.o
 define C2O
 $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1))))
 endef
@@ -25,27 +25,26 @@ endef
 ################################################################################################
 ################################################################################################v
 APP         := app
-CFLAGS      := -Wall -pedantic
-CCFLAGS     := $(CFLAGS) -std=c++17
+CFLAGS     := -Wall -pedantic
+CCFLAGS     	:= $(CFLAGS) -std=c++17
 CC          := g++
-C	    := gcc
+C			:= gcc
 MKDIR       := mkdir -p
 SRC         := src
 OBJ         := obj
-LIBDIR 	    := libs
-LIBS	    := $(LIBDIR)/spi/lib_spi.a 
-LIBS += $(LIBDIR)/oled/lib_oled.a
+LIBDIR := lib
+LIBS	:= $(LIBDIR)/tinyPTC/libtinyptc.a
+LIBS += $(LIBDIR)/picoPNG/libpicopng.a
 LIBS += -Wall -pedantic
 INCDIRS := -I$(SRC) -I$(LIBDIR)
-#LIBS		+= -lX11 -lXext
-LIBS = -pthread -lmysqlcppconn -lqrencode -lpng -lbcm2835 -lrt 
-LIBS += -lSSD1306_OLED_RPI 
+LIBS		+= -lX11 -lXext
+
 
 #para el uso commando es make DEBUG=1
 ifdef DEBUG 
-	CFLAGS += -g
+	CCFLAGS += -g
 else
-	CFLAGS += -O3
+	CCFLAGS += -O3
 endif
 
 
@@ -63,8 +62,13 @@ $(APP) : $(OBJSUBDIRS) $(ALLOBJ)
 	$(CC) -o $(APP) $(ALLOBJ) $(LIBS)
 
 #Generate rules for all objects
+
+
+
 $(foreach F,$(ALLCPPS),$(eval $(call COMPILE,$(CC),$(call C2O,$(F)),$(F),$(call C2H$(F)),$(CCFLAGS) $(INCDIRS))))
 $(foreach F,$(ALLCS),$(eval $(call COMPILE,$(C),$(call C2O,$(F)),$(F),$(call C2H$(F)),$(CFLAGS) $(INCDIRS))))
+
+
 
 #%.o : %.c
 #	$(C) -o $(patsubst $(SRC)%,$(OBJ)%,$@) -c $^ $(CFLAGS)
@@ -76,9 +80,8 @@ info:
 	$(info $(SUBDIRS))
 	$(info $(OBJSUBDIRS))
 
-
 $(OBJSUBDIRS):
-	$(MKDIR) $(OBJSUBDIRS)
+	$(MKDIR) $(OBJSUBDIRS) 
 
 clean:
 	$(RM) -r "./$(OBJ)"
@@ -91,3 +94,4 @@ libs-clean:
 	$(MAKE) -C $(LIBDIR) clean
 libs-cleanall:
 	$(MAKE) -C $(LIBDIR) cleanall
+

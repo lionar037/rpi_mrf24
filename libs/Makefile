@@ -10,8 +10,8 @@ all:
 	$(MAKE) -C qr
 	$(MAKE) -C spi
 
-clear:
-	$(MAKE) -C spi all
+clean:
+	$(MAKE) -C spi clean
 	$(MAKE) -C oled clean
 	$(MAKE) -C app clean
 	$(MAKE) -C files clean
