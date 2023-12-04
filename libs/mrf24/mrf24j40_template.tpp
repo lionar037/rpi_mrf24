@@ -20,7 +20,7 @@ namespace MRF24J40
 {
 
     template <typename T>
-    void Mrf24j::send(uint64_t dest64, const T& data) 
+    void Mrf24j::send_template(uint64_t dest64, const T& data) 
     {
 /*
     if constexpr (std::is_member_function_pointer_v<decltype(&T::size)>)
