@@ -5,7 +5,7 @@
 #include <data/data_analisis.h>
 #include <mrf24/mrf24j40.h>
 //#include <mrf24/mrf24j40_template.tpp>
-
+#include <spi/src/spi.h>
 
 namespace MRF24J40{
             // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
