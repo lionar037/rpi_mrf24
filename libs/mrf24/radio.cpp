@@ -111,7 +111,7 @@ std::strcpy(buffer_transmiter.data , MSJ);
         std::cout<<"\n" ; 
 
         #ifdef MACADDR64
-            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, reinterpret_cast<const char*>(msj) );
+            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj);
         #elif defined(MACADDR16)
             mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
         #endif
