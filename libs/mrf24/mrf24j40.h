@@ -85,7 +85,7 @@ struct Mrf24j : public SPI::Spi
         void                    send(uint64_t, const T&) ;
 
         void                    send16(uint16_t ,const std::string& );
-        void                    send64(uint64_t ,const std::string&);
+        //void                    send64(uint64_t ,const std::string&);
         void                    send64(uint64_t , const struct DATA::buffer_tx&);
         void                    interrupt_handler(void);
         bool                    check_flags(void (*rx_handler)(), void (*tx_handler)());

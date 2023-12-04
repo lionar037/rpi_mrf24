@@ -416,7 +416,7 @@ void Mrf24j::settings_mrf(void){
 
 
     // void Mrf24j::send16(uint16_t dest16, const char* data) 
-    void Mrf24j::send16(uint16_t dest16, const std::string& pf) 
+    void Mrf24j::send16(uint64_t dest, const std::string& pf) 
     {
         //const uint8_t len = strlen(data); // get the length of the char* array
         const auto len = pf.length();
@@ -439,12 +439,32 @@ void Mrf24j::settings_mrf(void){
 
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
-        write_long(i++, dest16 & 0xff);  // dest16 low
-        write_long(i++, dest16 >> 8); // dest16 high
 
-        const uint16_t src16 = address16_read();
-        write_long(i++, src16 & 0xff); // src16 low
-        write_long(i++, src16 >> 8); // src16 high
+        write_long(i++, dest & 0xff);  // dest16 low
+        write_long(i++, dest >> 8); // dest16 high
+
+        if(sizeof(dest)>2){
+        write_long(i++, (dest >> 16 ) & 0xff);
+        write_long(i++, (dest >> 24 ) & 0xff);
+        write_long(i++, (dest >> 32 ) & 0xff);
+        write_long(i++, (dest >> 40 ) & 0xff);
+        write_long(i++, (dest >> 48 ) & 0xff);
+        write_long(i++, (dest >> 56 ) & 0xff);
+        }
+ 
+  
+        const uint16_t src = address16_read();
+        write_long(i++, src & 0xff); // src16 low
+        write_long(i++, src >> 8); // src16 high
+
+       if(sizeof(dest)>2){
+            write_long(i++, (src >> 16 ) & 0xff); 
+            write_long(i++, (src >> 24 ) & 0xff); 
+            write_long(i++, (src >> 32 ) & 0xff); 
+            write_long(i++, (src >> 40 ) & 0xff); 
+            write_long(i++, (src >> 48 ) & 0xff); 
+            write_long(i++, (src >> 56 ) & 0xff); 
+        }
 
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
@@ -459,6 +479,8 @@ void Mrf24j::settings_mrf(void){
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
 
+
+/*
     //void Mrf24j::send64(uint64_t dest64, const char* data) 
     void Mrf24j::send64(uint64_t dest64, const std::string& data) 
     {
@@ -509,7 +531,7 @@ void Mrf24j::settings_mrf(void){
 
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
-    }
+    }*/
 
 
 }

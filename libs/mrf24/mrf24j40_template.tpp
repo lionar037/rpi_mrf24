@@ -25,7 +25,7 @@ namespace MRF24J40
 
     if constexpr (std::is_member_function_pointer_v<decltype(&T::size)>)
         {
-            const uint8_t len = data.size();//data.length();
+            const uint8_t len = data.size();
         }
         else{
 
