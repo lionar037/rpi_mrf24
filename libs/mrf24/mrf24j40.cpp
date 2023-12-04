@@ -445,7 +445,7 @@ void Mrf24j::settings_mrf(void){
 
 
 
-    void Mrf24j::send64(uint64_t dest64, struct DATA::BUFFER_TX&) {
+    void Mrf24j::send64(uint64_t dest64, struct DATA::BUFFER_TX&) {/*
         const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
@@ -493,11 +493,8 @@ void Mrf24j::settings_mrf(void){
         }
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+        */
     }
 
-    void Mrf24j::set_interrupts(void) {
-            // interrupts for rx and tx normal complete
-        write_short(MRF_INTCON, 0b11110110);
-    }
 
 }
