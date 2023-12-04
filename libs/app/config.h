@@ -1,10 +1,11 @@
 #pragma once
 
-//#define USE_MRF24_TX
-#define USE_MRF24_RX
+#define USE_MRF24_TX
+//#define USE_MRF24_RX
 
 #define USE_MAC_ADDRESS_LONG
 //#define USE_MAC_ADDRESS_SHORT
+
     //Enable database 
 //#define ENABLE_DATABASE
 
@@ -44,7 +45,6 @@
     #define ADDR_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
-    
 #endif
 
 

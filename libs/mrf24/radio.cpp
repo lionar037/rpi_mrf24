@@ -95,7 +95,10 @@ buffer_transmiter.data  = MSJ;
 
 const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
 //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-
+std::cout<<"\n" ;
+for(int i= 0;i<strlen(msj);i++)
+std::cout<<msj[] ; 
+std::cout<<"\n" ; 
         #ifdef MACADDR64
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj );
         #elif defined(MACADDR16)
@@ -164,7 +167,7 @@ void handle_rx() {
     oled->create(buff);
 
 const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
-const auto add = (static_cast<uint64_t>(data_receiver->mac_lsb) << 32) | data_receiver->mac_msb;
+const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
 
 if(ADDRESS_LONG_SLAVE == add){
     std::cout<< "\nmac es igual\n" ;
