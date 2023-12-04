@@ -15,7 +15,7 @@
 #include <app/src/config.h>
 #include <app/src/work.h>
 //#include <oled/oled.h>
-#include <data/src/data_analisis.h>
+#include <app/src/data_analisis.h>
 
 
 
