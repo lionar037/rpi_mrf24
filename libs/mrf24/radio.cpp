@@ -3,7 +3,7 @@
 #include <qr/qr.h>
 #include <files/file.h>
 #include <others/color.h>
-#include <oled/oled.h>
+#include <oled/src/oled.h>
 #include <mrf24/mrf24j40_template.tpp>
 
 
