@@ -136,7 +136,7 @@ namespace MRF24J40{
             }*/
             
            delay(192); 
-           #include <app/config.h>
+           #include <app/src/config.h>
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else
