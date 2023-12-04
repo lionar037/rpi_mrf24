@@ -106,17 +106,23 @@ void Radio_t::Run(bool& flag) {
         //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
         std::cout<<"\n MSJ : size ( "<<  strlen(msj) <<" , "<<sizeof(msj) << " )\n" ;
         std::cout<<"\n" ;
+      
+      const std::string pf(msj);
         //for(int i= 0;i<strlen(msj);i++)
-        for(int i= 0;i<128;i++)
-        std::cout <<std::hex<< msj[i] ; 
+      //  for(int i= 0;i<128;i++)
+
+
+      for(const auto& byte : pf) std::cout << byte ; 
+       // std::cout <<std::hex<< msj[i] ; 
         std::cout<<"\n" ; 
         
-        const std::string pf(msj);
+        
         #ifdef MACADDR64
         
-            //mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
+            
             mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
            // mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, buffer_transmiter);
+           //mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
         #elif defined(MACADDR16)
         mrf24j40_spi.send16(ADDR_SLAVE, pf );
             //mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
