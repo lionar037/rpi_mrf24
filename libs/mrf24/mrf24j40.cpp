@@ -445,7 +445,7 @@ void Mrf24j::settings_mrf(void){
 
 
 
-    void Mrf24j::send128(uint64_t dest64, const struct DATA::BUFFER_TX& buf) {/*
+    void Mrf24j::send128(uint64_t dest64, const struct DATA::buffer_tx& buf) {/*
         const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
