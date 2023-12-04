@@ -109,12 +109,15 @@ void Radio_t::Run(bool& flag) {
         for(int i= 0;i<128;i++)
         std::cout <<std::hex<< msj[i] ; 
         std::cout<<"\n" ; 
-
+        
+        const std::string pf(msj);
         #ifdef MACADDR64
+        
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj);
            // mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, buffer_transmiter);
         #elif defined(MACADDR16)
-            mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        mrf24j40_spi.send16(ADDR_SLAVE, pf );
+            //mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
         #endif
     #endif
     }

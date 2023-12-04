@@ -80,7 +80,8 @@ struct Mrf24j : public SPI::Spi
                     * Set PA/LNA external control
                     */
         void                 set_palna(bool);
-        void                 send16(uint16_t ,const char*);
+       // void                 send16(uint16_t ,const char*);
+        void                 send16(uint16_t ,const std::string& );
         void                 send64(uint64_t ,const char*);
         void                 send64(uint64_t , const struct DATA::buffer_tx&);
         void                 interrupt_handler(void);

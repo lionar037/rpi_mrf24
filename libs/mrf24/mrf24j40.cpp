@@ -113,7 +113,9 @@ namespace MRF24J40{
          * @param data
         */
 
-    void Mrf24j::send16(uint16_t dest16, const char* data) {
+    // void Mrf24j::send16(uint16_t dest16, const char* data) 
+    void Mrf24j::send16(uint16_t dest16, const std::string& pf) 
+    {
         const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
@@ -147,7 +149,7 @@ namespace MRF24J40{
             // write_long(i++,data[q]);
         // }
 
-for(const auto& byte : data)
+for(const auto& byte : pf)
 {
      write_long(i++,static_cast<char>(byte));
 }
