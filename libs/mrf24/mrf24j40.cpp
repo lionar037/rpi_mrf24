@@ -152,7 +152,7 @@ namespace MRF24J40{
 
 
 
-    void Mrf24j::send64(uint64_t dest64, const char * data) {
+    void Mrf24j::send64(uint64_t dest64, const char* data) {
         const uint8_t len = strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
