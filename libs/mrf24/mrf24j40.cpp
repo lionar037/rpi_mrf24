@@ -444,12 +444,16 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, dest >> 8); // dest16 high
 
         if(sizeof(dest)>2){
+            std::cout <<"es un mac de 64 bytes\n";
         write_long(i++, (dest >> 16 ) & 0xff);
         write_long(i++, (dest >> 24 ) & 0xff);
         write_long(i++, (dest >> 32 ) & 0xff);
         write_long(i++, (dest >> 40 ) & 0xff);
         write_long(i++, (dest >> 48 ) & 0xff);
         write_long(i++, (dest >> 56 ) & 0xff);
+        }
+        else{
+            std::cout <<"es un mac de 16 bytes\n";
         }
  
   
