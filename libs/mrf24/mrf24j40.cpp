@@ -1,7 +1,5 @@
 #include <mrf24/mrf24j40_cmd.h>
-
-#include <mrf24/mrf24_settings.h>
-
+#include <mrf24/mrf24j40_settings.h>
 #include <others/tyme.h>
 #include <app/config.h>
 #include <data/data_analisis.h>
