@@ -189,7 +189,7 @@ void handle_rx() {
     fs->create(packet_data);
     qr_img->create(packet_data);
     //packet_data=9;
-    auto tmp =     packet_data+9;
+    auto tmp =     packet_data+15;
     oled->create(tmp);
   
   
