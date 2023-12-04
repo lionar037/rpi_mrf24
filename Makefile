@@ -32,7 +32,7 @@ endif
 
 all: $(APP) $(LIBS)
 
-$(LIBRARY_DIR)/oled/lib_oled.a: $(OBJ_DIR)/oled.o | $(LIBRARY_DIR)/oled
+$(LIBRARY_DIR)/lib_oled.a: $(OBJ_DIR)/oled.o | $(LIBRARY_DIR)/oled
 	ar rcs $@ $<
 
 #$(LIBRARY_DIR)/spi/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/spi
@@ -58,7 +58,7 @@ $(OBJ_DIR)/%.o: $(LIB_DIR)/spi/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
 
 # Ajuste para compilar archivos de src/ en la carpeta oled
-$(OBJ_DIR)/%.o: $(LIB_DIR)/oled/src/%.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(LIB_DIR)/oled/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
 
 
