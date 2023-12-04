@@ -190,7 +190,7 @@ void handle_rx() {
     qr_img->create(packet_data);
     //packet_data=9;
     auto tmp =     packet_data+9;
-    oled->create(packet_data);
+    oled->create(tmp);
   
   
     if(ADDRESS_LONG_SLAVE == add){
