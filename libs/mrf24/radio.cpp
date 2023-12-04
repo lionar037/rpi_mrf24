@@ -190,7 +190,7 @@ void handle_rx() {
     qr_img->create(packet_data);
     //packet_data=9;
     std::string  tmp (packet_data+15);
-    tmp.resize(26));
+    tmp.resize(26);
     oled->create(tmp);
   
   
