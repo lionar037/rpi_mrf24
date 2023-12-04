@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 namespace MRF24J40{
     typedef struct rxmcr{
