@@ -97,7 +97,7 @@ const std::string msj { reinterpret_cast<const std::string >(buffer_transmiter)}
 //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
         #ifdef MACADDR64
-            mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj.c_str() );
+            //mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj.c_str() );
         #elif defined(MACADDR16)
             mrf24j40_spi.send16(ADDR_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
         #endif
