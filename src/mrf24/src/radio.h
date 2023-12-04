@@ -17,7 +17,6 @@
 #include <app/src/data_analisis.h>
 
 
-
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
 #elif defined (USE_MAC_ADDRESS_SHORT)
