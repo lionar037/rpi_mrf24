@@ -33,14 +33,15 @@ MKDIR       := mkdir -p
 SRC         := src
 OBJ         := obj
 LIBDIR := libs
-LIBS	:= $(LIBDIR)/spi/lib_spi.a
-LIBS += $(LIBDIR)/oled/lib_oled.a
 
-LIBS += $(LIBDIR)/others/lib_others.a
-LIBS += $(LIBDIR)/files/lib_files.a
-LIBS += $(LIBDIR)/app/lib_app.a
-LIBS += $(LIBDIR)/qr/lib_qr.a
-LIBS += $(LIBDIR)/mrf24/lib_mrf24.a
+#LIBS	:= $(LIBDIR)/spi/lib_spi.a
+#LIBS += $(LIBDIR)/oled/lib_oled.a
+#
+#LIBS += $(LIBDIR)/others/lib_others.a
+#LIBS += $(LIBDIR)/files/lib_files.a
+#LIBS += $(LIBDIR)/app/lib_app.a
+#LIBS += $(LIBDIR)/qr/lib_qr.a
+#LIBS += $(LIBDIR)/mrf24/lib_mrf24.a
 
 
 LIBS += -Wall -pedantic
