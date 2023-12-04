@@ -51,11 +51,11 @@ namespace SPI{
     uint8_t rx_buffer[4]{};
 
     const uint32_t len_data { 32 };
-    const uint32_t spi_speed {  };
+    const uint32_t spi_speed { 0 };
     
     int fs{0};
     int ret{0};
-    std::unique_ptr<struct spi_ioc_transfer >spi{};
+    std::unique_ptr<struct spi_ioc_transfer >spi{nullptr};
     uint8_t looper{0};
     uint32_t scratch32{0};
   };
