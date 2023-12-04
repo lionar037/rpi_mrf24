@@ -191,7 +191,7 @@ void handle_rx() {
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(26);
-    oled->create(tmp);
+    oled->create(tmp.c_str());
   
   
     if(ADDRESS_LONG_SLAVE == add){
