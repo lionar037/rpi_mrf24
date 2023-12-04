@@ -21,14 +21,13 @@ TARGET ?= $(DEFAULT_TARGET)
 
 APP = $(BIN_DIR)/$(DEFAULT_TARGET)
 
-
 .PHONY: all clean
 
-all: $(APP) $(LIBS)
+all: $(LIBS) $(APP)
 
 # Reglas para construir bibliotecas
-$(LIBRARY_DIR)/%/lib%.a: $(OBJ_DIR)/%.o | $(LIBRARY_DIR)/%
-	ar rcs $@ $<
+$(LIBRARY_DIR)/%/lib%.a: $(OBJS)
+	ar rcs $@ $^
 
 # Reglas de compilación para los archivos fuente en SRC_DIR
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR) 
@@ -42,6 +41,10 @@ endef
 
 # Construir reglas de compilación para archivos en carpetas específicas de LIB_DIR
 $(foreach libdir,$(LIB_DIRS),$(eval $(call compile_template,$(notdir $(libdir)))))
+
+# Regla de compilación para el ejecutable principal
+$(APP): $(OBJS) | $(BIN_DIR)
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LIBRARIES)
 
 # Crear directorios si no existen
 $(BIN_DIR) $(OBJ_DIR) $(LIBRARY_DIR) $(foreach libdir,$(LIB_DIRS),$(OBJ_DIR)/$(notdir $(libdir))) $(foreach libdir,$(LIB_DIRS),$(LIBRARY_DIR)/$(notdir $(libdir))):
