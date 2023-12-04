@@ -19,13 +19,8 @@ OBJS = $(foreach libdir,$(LIB_DIRS),$(addprefix $(OBJ_DIR)/$(notdir $(libdir))/,
 DEFAULT_TARGET = mrf24_rpi
 TARGET ?= $(DEFAULT_TARGET)
 
-ifeq ($(TARGET), tx)
-    APP = $(BIN_DIR)/mrf24_rpi_tx
-else ifeq ($(TARGET), rx)
-    APP = $(BIN_DIR)/mrf24_rpi_rx
-else
-    APP = $(BIN_DIR)/$(DEFAULT_TARGET)
-endif
+APP = $(BIN_DIR)/$(DEFAULT_TARGET)
+
 
 .PHONY: all clean
 
