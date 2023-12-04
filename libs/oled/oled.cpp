@@ -97,10 +97,10 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
                 static int count { 0 };
             // Define a buffer to cover whole screen 
             uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
-            myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
-
-            myOLED.OLEDclearBuffer();  
-            	myOLED.setTextSize(1);
+                        myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
+                
+                        myOLED.OLEDclearBuffer();  
+            	        myOLED.setTextSize(1);
                 	//myOLED.setFontNum(OLEDFontType_Thick);
                         //myOLED.setFontNum(OLEDFontType_SevenSeg);
                         myOLED.setFontNum(OLEDFontType_Wide);
@@ -108,24 +108,24 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
                         //myOLED.setFontNum(OLEDFontType_Homespun);
                         //myOLED.setFontNum(OLEDFontType_Default);
                 	//myOLED.OLEDInvert(1); // Inverted
-            myOLED.setTextColor(WHITE);
-            myOLED.setCursor(0, 0);
-            
-            myOLED.print("MRF24J40");
-             myOLED.setCursor(36, 14);
-             printf(" count : %d\n",count);
-             myOLED.print(reinterpret_cast<int>(count));
-            myOLED.OLEDupdate();
-        count++;
-	//myOLED.setRotation(3);
+                        myOLED.setTextColor(WHITE);
+                        myOLED.setCursor(0, 0);
 
-// myOLED.OLEDContrast(0x00);
-// bcm2835_delay(1000);
-// myOLED.OLEDContrast(0x80);
-// bcm2835_delay(1000);
-// myOLED.OLEDContrast(0xFF);
-// bcm2835_delay(1000);
-// myOLED.OLEDContrast(0x81);
+                        myOLED.print("MRF24J40");
+                        myOLED.setCursor(36, 14);
+                        printf(" count : %d\n",count);
+                        myOLED.print(reinterpret_cast<int>(count));
+                        myOLED.OLEDupdate();
+                        count++;
+                        //myOLED.setRotation(3);
+
+                        // myOLED.OLEDContrast(0x00);
+                        // bcm2835_delay(1000);
+                        // myOLED.OLEDContrast(0x80);
+                        // bcm2835_delay(1000);
+                        // myOLED.OLEDContrast(0xFF);
+                        // bcm2835_delay(1000);
+                        // myOLED.OLEDContrast(0x81);
             
             return;
     }

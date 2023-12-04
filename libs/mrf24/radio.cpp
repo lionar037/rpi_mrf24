@@ -4,7 +4,6 @@
 #include <files/file.h>
 #include <others/color.h>
 #include <oled/oled.h>
-
 #include <mrf24/mrf24j40_template.tpp>
 
 
@@ -65,20 +64,12 @@ Radio_t::Radio_t()
     
     flag=true;
     #ifdef MRF24_RECEIVER_ENABLE
- //   oled->init();
- // oled->Start();
-    while(true)
+        while(true)
     #endif
     {
-        #ifdef MRF24_RECEIVER_ENABLE
-            //oled->Start();
-        //oled->create(buff);
-        #endif
         gpio->app(flag);
         mrf24j40_spi.interrupt_handler();
         Run(flag);
-        
-
     }
 }
 
