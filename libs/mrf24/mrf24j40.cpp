@@ -499,8 +499,11 @@ void Mrf24j::settings_mrf(void){
         i+=ignoreBytes;
         //for (int q = 0; q < len; q++) write_long(i++,buf.data[q]);
             //write_long(i++,data[q]);
-        for(const auto& byte : static_cast<const char *>(buf.head) )write_long(i++,byte);
-        for(const auto& byte : static_cast<const char *>(buf.size) )write_long(i++,byte);
+        //for(const auto& byte : static_cast<const char *>(buf.head) )
+        write_long(i++,buf.head);
+       // for(const auto& byte : static_cast<const char *>(buf.size) )
+       write_long(i++,buf.head&0xff);
+       write_long(i++,(buf.head>>8)&0xff);
         for(const auto& byte : buf.data )    write_long(i++,byte);
         
         // ack on, and go!
