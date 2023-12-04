@@ -87,21 +87,24 @@ void Radio_t::Run(bool& flag) {
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
-        std::cout<<"send16 () ... \n";
+        #ifdef MACADDR64
+            std::cout<<"send msj 64() ... \n";
+        #else
+            std::cout<<"send msj 16() ... \n";
+        #endif
         buffer_transmiter.head=HEAD; 
         buffer_transmiter.size=sizeof(MSJ);
-//buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(MSJ);  
-buffer_transmiter.data  = MSJ;  
+        //buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(MSJ);  
+        buffer_transmiter.data  = MSJ;  
 
-const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
-//  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-std::cout<<"\n MSJ : \n" ;
-std::cout<<"\n" ;
-//for(int i= 0;i<strlen(msj);i++)
-for(int i= 0;i<128;i++)
-std::cout << ","<<std::hex<< msj[i] ; 
-std::cout<<"\n" ; 
-
+        const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
+        //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+        std::cout<<"\n MSJ : size"<<  strlen(msj) << "\n" ;
+        std::cout<<"\n" ;
+        //for(int i= 0;i<strlen(msj);i++)
+        for(int i= 0;i<128;i++)
+        std::cout << ","<<std::hex<< msj[i] ; 
+        std::cout<<"\n" ; 
 
         #ifdef MACADDR64
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj );
