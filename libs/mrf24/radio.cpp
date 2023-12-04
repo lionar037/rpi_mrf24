@@ -181,38 +181,32 @@ void handle_rx() {
     qr_img->create(buff);
     oled->create(buff);
 
-const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
-const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
+    const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
+    const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
 
-if(ADDRESS_LONG_SLAVE == add){
-    std::cout<< "\nmac es igual\n" ;
-}
-else{
-    std::cout<< "\nmac no es igual\n" ;
-}
+    if(ADDRESS_LONG_SLAVE == add){
+        std::cout<< "\nmac es igual\n" ;
+    }
+    else{
+        std::cout<< "\nmac no es igual\n" ;
+    }
 
     std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
     std::cout<< "buffer_receiver->head : " << data_receiver->head <<"\n";
     auto bs = (~data_receiver->size)&0xffff;
     std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
     std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(data_receiver->data)<<"\n";
-
     
-std::cout<<"\nbuff: \n"<<buff;
+    //std::cout<<"\nbuff: \n"<<buff;
 
+        SET_COLOR(SET_COLOR_GRAY_TEXT);
+        SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
 
-    SET_COLOR(SET_COLOR_GRAY_TEXT);
-    SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
-   // printf("\nSIZEOF rx info : 0x%x\n ",sizeof(buff));
-
-    std::cout<<"\r\nLQI/RSSI = \n\t";
-        //std::cout<<std::dec<<mrf24j40_spi.get_rxinfo()->lqi;
-    printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
-        //std::cout<<" ";
-        //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rssi;
-    printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
-    SET_COLOR(SET_COLOR_RED_TEXT);
-    printf("LQI : %d ",mrf24j40_spi.get_rxinfo()->lqi);
+    //std::cout<<"\r\nLQI/RSSI = \n\t";
+    //printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
+    ///printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
+    //SET_COLOR(SET_COLOR_RED_TEXT);
+    printf("LQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
     std::cout<<"\r\n";
