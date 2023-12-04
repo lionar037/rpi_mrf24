@@ -164,7 +164,7 @@ void handle_rx() {
     oled->create(buff);
 
 const auto data_receiver {reinterpret_cast<const DATA::BUFFER *>(buff)};
-const auto add = (static_cast<uint64_t>(data_receiver->mac_msb) << 32) | data_receiver->mac_lsb;
+const auto add = (static_cast<uint64_t>(data_receiver->mac_lsb) << 32) | data_receiver->mac_msb;
 
 if(ADDRESS_LONG_SLAVE == add){
     std::cout<< "\nmac es igual\n" ;
