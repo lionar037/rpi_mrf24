@@ -32,8 +32,10 @@ Radio_t::Radio_t()
             qr->create(QR_CODE_SRT);
     #endif
           
-
+    #ifdef DBG
     std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
+    #endif
+
     mrf24j40_spi.init();
     mrf24j40_spi.interrupt_handler();
     mrf24j40_spi.set_pan(PAN_ID);
@@ -87,19 +89,21 @@ void Radio_t::Run(bool& flag) {
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
-        #ifdef MACADDR64
-            std::cout<<"send msj 64() ... \n";
-        #else
-            std::cout<<"send msj 16() ... \n";
+        ifdef DBG
+            #ifdef MACADDR64
+                std::cout<<"send msj 64() ... \n";
+            #else
+                std::cout<<"send msj 16() ... \n";
+            #endif
         #endif
         buffer_transmiter.head=HEAD; 
         buffer_transmiter.size=sizeof(MSJ);
         //buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(MSJ);  
-        buffer_transmiter.data  = MSJ;  
+        buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(&MSJ);  
 
         const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
         //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-        std::cout<<"\n MSJ : size"<<  strlen(msj) << "\n" ;
+        std::cout<<"\n MSJ : size ( "<<  strlen(msj) << " )\n" ;
         std::cout<<"\n" ;
         //for(int i= 0;i<strlen(msj);i++)
         for(int i= 0;i<128;i++)
