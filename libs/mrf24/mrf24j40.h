@@ -2,7 +2,7 @@
     #include <iostream>
     #include <memory>
     #include <cstring>
-    #include <spi/spi.h>
+    #include <spi/src/spi.h>
     #include <app/config.h>
 
 namespace DATA{
