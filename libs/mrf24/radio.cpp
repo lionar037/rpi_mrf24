@@ -93,7 +93,7 @@ void Radio_t::Run(bool& flag) {
 //buffer_transmiter.data  = reinterpret_cast<const uint8_t*>(MSJ);  
 buffer_transmiter.data  = MSJ;  
 
-const std::string msj { reinterpret_cast<const std::string* >(buffer_transmiter)};
+const std::string msj { reinterpret_cast<const std::string >(buffer_transmiter)};
 //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 
         #ifdef MACADDR64
