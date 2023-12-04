@@ -8,7 +8,7 @@ LIB_DIR = libs
 
 LIBRARY_DIR := libs
 LIBS := $(LIBRARY_DIR)/lib_spi.a
-LIBS += $(LIBRARY_DIR)/oled/lib_oled.a
+LIBS += $(LIBRARY_DIR)/lib_oled.a
 OBJ_DIR = obj
 BIN_DIR = bin
 
@@ -32,13 +32,13 @@ endif
 
 all: $(APP) $(LIBS)
 
-$(LIBRARY_DIR)/lib_oled.a: $(OBJ_DIR)/oled.o | $(LIBRARY_DIR)/oled
+$(LIBRARY_DIR)/lib_oled.a: $(OBJ_DIR)/oled.o | $(LIBRARY_DIR)
 	ar rcs $@ $<
 
 #$(LIBRARY_DIR)/spi/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/spi
 #	ar rcs $@ $<
 
-$(LIBRARY_DIR)/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)/spi
+$(LIBRARY_DIR)/lib_spi.a: $(OBJ_DIR)/spi.o | $(LIBRARY_DIR)
 	ar rcs $@ $<
 
 $(APP): $(OBJS) $(LIBS) | $(BIN_DIR)
