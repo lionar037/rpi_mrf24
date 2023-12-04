@@ -183,16 +183,15 @@ void handle_rx() {
     auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
-
-    fs->create(packet_data);
-    packet_data+=9;
-    qr_img->create(packet_data);
-    
-    oled->create(packet_data);
-
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
     const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
-
+  
+    fs->create(packet_data);
+    qr_img->create(packet_data);
+    packet_data+=9;    
+    oled->create(packet_data);
+  
+  
     if(ADDRESS_LONG_SLAVE == add){
         std::cout<< "\nmac es igual\n" ;
     }
