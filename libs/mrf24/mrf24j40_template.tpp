@@ -8,7 +8,7 @@ namespace MRF24J40
 
     template <typename T>
     void Mrf24j::send(uint64_t dest64, const T& data) 
-    {
+    {/*
         const uint8_t len = data.length();//strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
@@ -62,6 +62,7 @@ namespace MRF24J40
 
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+        */
     }
 
 
