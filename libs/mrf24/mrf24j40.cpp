@@ -4,7 +4,7 @@
 #include <app/config.h>
 #include <data/data_analisis.h>
 #include <mrf24/mrf24j40.h>
-#include <mrf24/mrf24j40_template.tpp>
+//#include <mrf24/mrf24j40_template.tpp>
 
 
 namespace MRF24J40{
