@@ -4,6 +4,7 @@
 #include <files/src/file.h>
 #include <others/src/color.h>
 #include <mrf24/src/mrf24j40_template.tpp>
+#include <app/src/config.h>
 #ifdef USE_MRF24_RX
     #include <oled/src/oled.h>
 #endif
@@ -171,6 +172,7 @@ void handle_rx() {
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
+   
     auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
