@@ -416,7 +416,7 @@ void Mrf24j::settings_mrf(void){
 
 
     // void Mrf24j::send16(uint16_t dest16, const char* data) 
-    void Mrf24j::send16(uint64_t dest, const std::string& pf) 
+    void Mrf24j::send(uint64_t dest, const std::string& pf) 
     {
         //const uint8_t len = strlen(data); // get the length of the char* array
         const auto len = pf.length();

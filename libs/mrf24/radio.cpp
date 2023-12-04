@@ -115,7 +115,7 @@ void Radio_t::Run(bool& flag) {
         #ifdef MACADDR64
         
             //mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
-            mrf24j40_spi.send16(ADDRESS_LONG_SLAVE, msj);
+            mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
            // mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, buffer_transmiter);
         #elif defined(MACADDR16)
         mrf24j40_spi.send16(ADDR_SLAVE, pf );
