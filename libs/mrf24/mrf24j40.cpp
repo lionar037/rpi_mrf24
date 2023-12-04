@@ -1,14 +1,11 @@
 #include <mrf24/mrf24j40_cmd.h>
-#include <mrf24/mrf24j40.h>
+
 #include <mrf24/mrf24_settings.h>
 
 #include <others/tyme.h>
 #include <app/config.h>
 #include <data/data_analisis.h>
-
-
-
-
+#include <mrf24/mrf24j40.h>
 
 namespace MRF24J40{
     Mrf24j::Mrf24j()
