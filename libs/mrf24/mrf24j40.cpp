@@ -134,6 +134,7 @@ namespace MRF24J40{
         #ifdef DBG
             printf("\npanid: 0x%X\n",panid);
         #endif
+
         write_long(i++, panid & 0xff);  // dest panid
         write_long(i++, panid >> 8);
         write_long(i++, dest16 & 0xff);  // dest16 low
@@ -150,10 +151,8 @@ namespace MRF24J40{
             // write_long(i++,data[q]);
         // }
 
-        for(const auto& byte : pf)
-        {
-             write_long(i++,static_cast<char>(byte));
-        }
+        for(const auto& byte : pf) write_long(i++,static_cast<char>(byte));
+        
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
@@ -205,12 +204,8 @@ namespace MRF24J40{
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
-       
-       // for (int q = 0; q < len; q++) {
-       //     write_long(i++,data[q]);
-       // }
 
-for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
+    for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
 
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
@@ -502,13 +497,14 @@ void Mrf24j::settings_mrf(void){
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
-        for (int q = 0; q < len; q++) {
+        //for (int q = 0; q < len; q++) write_long(i++,buf.data[q]);
             //write_long(i++,data[q]);
-            write_long(i++,buf.data[q]);
-        }
-        // ack on, and go!
-        write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
+        for(const auto& byte : buf.head )    write_long(i++,byte);
+        for(const auto& byte : buf.size )    write_long(i++,byte);
+        for(const auto& byte : buf.data )    write_long(i++,byte);
         
+        // ack on, and go!
+        write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));        
     }
 
 
