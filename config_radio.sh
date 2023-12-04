@@ -15,15 +15,15 @@ case $config in
         # Agrega aquí las acciones específicas para config1
         echo "Configuring as a transmitter"
         #cp libs/app/src/config.h libs/app/src/config.h.bkp 
-        sed -i 's,//#define USE_MRF24_TX,#define USE_MRF24_TX,g' libs/app/src/config.h
-        sed -i 's,#define USE_MRF24_RX,//#define USE_MRF24_RX,g' libs/app/src/config.h
+        sed -i 's,//#define USE_MRF24_TX,#define USE_MRF24_TX,g' src/app/src/config.h
+        sed -i 's,#define USE_MRF24_RX,//#define USE_MRF24_RX,g' src/app/src/config.h
         echo "Configure as transmitter Rx ..."
         ;;
     rx)
         echo "Configuring as a receiver"
         # Agrega aquí las acciones específicas para config2
-        sed -i 's,#define USE_MRF24_TX,//#define USE_MRF24_TX,g' libs/app/src/config.h
-        sed -i 's,//#define USE_MRF24_RX,#define USE_MRF24_RX,g' libs/app/src/config.h
+        sed -i 's,#define USE_MRF24_TX,//#define USE_MRF24_TX,g' src/app/src/config.h
+        sed -i 's,//#define USE_MRF24_RX,#define USE_MRF24_RX,g' src/app/src/config.h
         echo "Configure as receiver Tx ..."
         ;;
     *)
