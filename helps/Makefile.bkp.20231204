@@ -1,16 +1,8 @@
 CC = clang++
 CXXFLAGS = -std=c++17 -Ilibs -Isrc
-LIBRARIES = -pthread -lmysqlcppconn -lqrencode -lpng -lbcm2835 -lrt 
-LIBRARIES += -Wall -pedantic
-LIBRARIES += -lSSD1306_OLED_RPI  
+LIBRARIES = -pthread -lmysqlcppconn -lqrencode -lpng -lbcm2835 -lrt -lSSD1306_OLED_RPI 
 SRC_DIR = src
 LIB_DIR = libs
-
-LIBRARY_DIR 	    := lib
-LIBS	    := $(LIBRARY_DIR)/tinyPTC/libtinyptc.a
-LIBS += $(LIBRARY_DIR)/picoPNG/libpicopng.a
-LIBS +=
-
 OBJ_DIR = obj
 BIN_DIR = bin
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
