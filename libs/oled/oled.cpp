@@ -4,6 +4,7 @@
 #include <oled/oled.h>
 #ifdef USE_MRF24_RX
     #include <SSD1306_OLED.hpp>
+#else
 #endif
 
 namespace OLED{

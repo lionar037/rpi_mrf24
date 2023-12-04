@@ -97,7 +97,7 @@ const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
 //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
 std::cout<<"\n" ;
 for(int i= 0;i<strlen(msj);i++)
-std::cout<<msj[] ; 
+std::cout<<msj[i] ; 
 std::cout<<"\n" ; 
         #ifdef MACADDR64
             mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, msj );
