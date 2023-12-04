@@ -2,12 +2,12 @@
 
 
 all:
-	$(MAKE) -C tinyPTC
-	$(MAKE) -C picoPNG
+	$(MAKE) -C spi
+	$(MAKE) -C oled
 
 clear:
-	$(MAKE) -C tinyPTC all
-	$(MAKE) -C picoPNG clean
+	$(MAKE) -C spi all
+	$(MAKE) -C oled clean
 clearall:
-	$(MAKE) -C tinyPTC cleanall
-	$(MAKE) -C picoPNG cleanall
+	$(MAKE) -C spi cleanall
+	$(MAKE) -C oled cleanall

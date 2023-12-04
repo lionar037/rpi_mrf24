@@ -28,7 +28,7 @@ endef
 AR	:=	ar
 ARFLAGS 	:= -crs
 RANLIB		:= ranlib
-APP         := libpicopng.a
+APP         := liboled.a
 CCFLAGS     := -Wall -pedantic
 CCFLAGS		+= -std=c++14
 CFLAGS     	:= $(CCFLAGS)

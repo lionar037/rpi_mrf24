@@ -48,7 +48,7 @@ endef
 ### CONFIG
 ###########################################
 UNAME   := $(shell uname)
-APP     := libtinyptc.a
+APP     := libspi.a
 CCFLAGS := -Wall -pedantic
 CFLAGS  := $(CCFLAGS)
 CC 	  := g++
