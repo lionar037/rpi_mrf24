@@ -84,6 +84,7 @@
         "codecvt": "cpp",
         "fstream": "cpp",
         "stack": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "*.tpp": "cpp"
     }
 }

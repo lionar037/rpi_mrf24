@@ -3,9 +3,8 @@
 #include <qr/qr.h>
 #include <files/file.h>
 #include <others/color.h>
-#include <oled/src/oled.h>
 #include <mrf24/mrf24j40_template.tpp>
-
+#include <oled/src/oled.h>
 
 namespace MRF24J40{ 
 

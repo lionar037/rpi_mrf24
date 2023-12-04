@@ -2,9 +2,9 @@
     #include <iostream>
     #include <memory>
     #include <cstring>
-    #include <spi/src/spi.h>
-    #include <app/config.h>
 
+    #include <app/config.h>
+    #include <spi/src/spi.h>
 namespace DATA{
         struct packet_tx;
     }
