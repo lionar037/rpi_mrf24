@@ -1,5 +1,5 @@
 
-#include <spi/src/spi.h>
+#include <spi/spi.h>
 #include <app/config.h>
 
 namespace SPI{

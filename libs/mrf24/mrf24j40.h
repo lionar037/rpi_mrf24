@@ -4,7 +4,7 @@
     #include <cstring>
 
     #include <app/config.h>
-    #include <spi/src/spi.h>
+    #include <spi/spi.h>
 namespace DATA{
         struct packet_tx;
     }
