@@ -54,7 +54,8 @@ $(BIN_DIR) $(OBJ_DIR) $(LIBRARY_DIR) $(foreach libdir,$(LIB_DIRS),$(OBJ_DIR)/$(n
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR) $(LIBRARY_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf  $(LIBRARY_DIR)/*
 	rm -f log/*
 
 run: $(APP)
