@@ -150,20 +150,20 @@ namespace MRF24J40{
             // write_long(i++,data[q]);
         // }
 
-for(const auto& byte : pf)
-{
-     write_long(i++,static_cast<char>(byte));
-}
-
-
+        for(const auto& byte : pf)
+        {
+             write_long(i++,static_cast<char>(byte));
+        }
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
 
 
 
-    void Mrf24j::send64(uint64_t dest64, const char* data) {
-        const uint8_t len = strlen(data); // get the length of the char* array
+    //void Mrf24j::send64(uint64_t dest64, const char* data) 
+    void Mrf24j::send64(uint64_t dest64, const std::string& data) 
+    {
+        const uint8_t len = data.length();//strlen(data); // get the length of the char* array
         int i = 0;
         write_long(i++, m_bytes_MHR); // header length
                         // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
@@ -205,9 +205,13 @@ for(const auto& byte : pf)
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
-        for (int q = 0; q < len; q++) {
-            write_long(i++,data[q]);
-        }
+       
+       // for (int q = 0; q < len; q++) {
+       //     write_long(i++,data[q]);
+       // }
+
+for(const auto& byte : pf) write_long(i++,static_cast<char>(byte));
+
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
