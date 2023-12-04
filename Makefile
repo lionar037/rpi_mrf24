@@ -59,10 +59,6 @@ $(OBJ_DIR)/%.o: $(LIB_DIR)/oled/src/%.cpp | $(OBJ_DIR)
 	$(CC) $(CXXFLAGS) -c $< -o $@ -MMD -MP
 
 
-
-
-
-
 # Construir reglas de compilación para archivos en carpetas específicas de LIB_DIR
 $(foreach libdir,$(LIB_DIR),$(eval $(call compile_template,$(libdir))))
 
@@ -72,7 +68,7 @@ $(BIN_DIR) $(OBJ_DIR) $(LIBRARY_DIR)/oled $(LIBRARY_DIR)/spi:
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 	rm -f log/*
-	rm -rf  $(LIBRARY_DIR)/lib_spi.a $(LIBRARY_DIR)/lib_oled.a
+	rm -rf  $(LIBRARY_DIR)/*.a 
 
 run: $(APP)
 	sudo $<
