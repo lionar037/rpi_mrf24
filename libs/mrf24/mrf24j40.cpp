@@ -489,7 +489,8 @@ void Mrf24j::settings_mrf(void){
                 //2 bytes on FCS appended by TXMAC
         i+=ignoreBytes;
         for (int q = 0; q < len; q++) {
-            write_long(i++,data[q]);
+            //write_long(i++,data[q]);
+            write_long(i++,buf.data[q]);
         }
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
