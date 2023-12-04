@@ -30,16 +30,16 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
                         //myOLED.setFontNum(OLEDFontType_Homespun);
                         //myOLED.setFontNum(OLEDFontType_Default);
                 	//myOLED.OLEDInvert(1); // Inverted
-            myOLED.setTextColor(WHITE);
-            myOLED.setCursor(0, 0);
-            
-            myOLED.print(tmp);
-            myOLED.setFontNum(OLEDFontType_Default);
-             myOLED.setCursor(128-24, 64-9);
-             //printf(" count : %d\n",count);
-             myOLED.print(reinterpret_cast<int>(count));
-            myOLED.OLEDupdate();
-        count++;
+                        myOLED.setTextColor(WHITE);
+                        myOLED.setCursor(0, 0);
+
+                        myOLED.print(tmp);
+                        myOLED.setFontNum(OLEDFontType_Default);
+                        myOLED.setCursor(128-24, 64-9);
+                        //printf(" count : %d\n",count);
+                        myOLED.print(reinterpret_cast<int>(count));
+                        myOLED.OLEDupdate();
+                        count++;
                         //myOLED.setRotation(3);
 
                         // myOLED.OLEDContrast(0x00);
