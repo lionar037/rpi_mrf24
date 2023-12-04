@@ -1,6 +1,6 @@
 CC = clang++
 CXXFLAGS = -std=c++17 -Ilibs -Isrc
-LIBRARIES = -pthread -lmysqlcppconn
+LIBRARIES = -pthread -lmysqlcppconn -lqrencode -lpng -lbcm2835 -lrt -lSSD1306_OLED_RPI 
 SRC_DIR = src
 LIB_DIR = libs
 OBJ_DIR = obj
@@ -52,9 +52,12 @@ $(BIN_DIR) $(OBJ_DIR):
 
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -f log/*
 
 run: $(APP)
 	sudo $<
+
+
 
 # Incluir las dependencias generadas automáticamente
 -include $(OBJS:.o=.d)
