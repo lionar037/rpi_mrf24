@@ -31,13 +31,12 @@ namespace QR{
             
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
-            std::vector<unsigned char>vs{};
-           
+            std::vector<unsigned char>vs;  
             std::unique_ptr<qr_oled> QrOled;
     };
 
 
-      struct QrOled_t 
+    struct QrOled_t 
     {
             QrOled_t()=default;
             ~QrOled_t()=default;
@@ -46,8 +45,7 @@ namespace QR{
             const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;
             
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
-        private:
-                   
+            
             
     };
 
