@@ -15,7 +15,7 @@
 #include <app/src/config.h>
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
-#include <oled/src/oled.h>
+
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
