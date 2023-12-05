@@ -20,8 +20,9 @@ namespace QR{
     {
             Qr_img_t();
             ~Qr_img_t();
-            void saveQRCodeImage(const QRcode* , const char* );
-            bool create(const char*);
+            void    saveQRCodeImage     (const QRcode* , const char* );
+            bool    create              (const char*);
+            bool    create              (const char*, unsigned char buffer[64][64]) ;
         private :
             std::unique_ptr<TYME::Time_t>tyme{};
     };
