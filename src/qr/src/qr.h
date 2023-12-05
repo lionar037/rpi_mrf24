@@ -8,10 +8,13 @@
 namespace TYME{
     struct Time_t;
 }
+namespace QR{
+    struct qr_oled;
+}
 
 namespace QR{
 
-//struct qr_oled;
+
 
 
     struct Qr_t : public WORK::Work_t
