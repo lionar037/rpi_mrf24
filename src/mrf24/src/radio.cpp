@@ -169,7 +169,7 @@ void handle_rx() {
     {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        printf("%c",mrf24j40_spi.get_rxinfo()->rx_data[i]);
     }
 
         for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data) 
