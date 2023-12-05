@@ -184,19 +184,10 @@ void handle_rx() {
     std::vector<unsigned char >bf_tmp;
     const auto* tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
 
-    oled->create(reinterpret_cast<const char*>(tmp_s));
-   // fs->create(reinterpret_cast<const char*>(bf_tmp));
+    oled->create(reinterpret_cast<const char*>(packet_data));
+    fs->create(reinterpret_cast<const char*>(packet_data));
 
-std::cout<<"\ngrafico : \n";
 
-const std::string rv  (tmp_s);
-
-for (const auto& byt_r : rv )
-{
-
-std::cout<<std::hex<<byt_r ;
-
-}
 std::cout<<"\r\n";
     #ifdef DBG_PRINT_GET_INFO 
       

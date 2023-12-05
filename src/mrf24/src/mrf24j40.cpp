@@ -15,8 +15,7 @@ namespace MRF24J40{
     static rx_info_t rx_info{};
     static tx_info_t tx_info{};
     static RXMCR rxmcr{0x00};
-//}
-//namespace MRF24J40{
+
     Mrf24j::Mrf24j()
     : prt_spi {std::make_unique<SPI::Spi>()} , m_bytes_nodata { m_bytes_MHR + m_bytes_FCS}
     {
@@ -48,7 +47,6 @@ namespace MRF24J40{
         const uint32_t tmp = ( (0x80 | lsb_address) | (msb_address <<8) ) &  0x0000ffff;
 	    const uint8_t ret = prt_spi->Transfer3bytes(tmp);
         
-        //printf("read_long : 0x%x\n",tmp);
     return ret;
     }
 
@@ -107,14 +105,11 @@ namespace MRF24J40{
 
     return  address64;
     }
-        /**
-         * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
-         * @param data
-        */
 
-
-
-
+    /**
+     * Simple send 16, with acks, not much of anything.. assumes src16 and local pan only.
+        * @param data
+    */
 
     void Mrf24j::set_interrupts(void) {
             // interrupts for rx and tx normal complete
@@ -128,13 +123,11 @@ namespace MRF24J40{
     }
 
     void Mrf24j::init(void) {
-            /*
-            // Seems a bit ridiculous when I use reset pin anyway
-            write_short(MRF_SOFTRST, 0x7); // from manual
-            while (read_short(MRF_SOFTRST) & 0x7 != 0) {
-                ; // wait for soft reset to finish
-            }*/
-            
+    // //Seems a bit ridiculous when I use reset pin anyway
+    // write_short(MRF_SOFTRST, 0x7); // from manual
+    // while (read_short(MRF_SOFTRST) & 0x7 != 0) {
+        // ; // wait for soft reset to finish
+    // }
            delay(192); 
            #include <app/src/config.h>
            #ifdef MODULE_TX_RST
@@ -153,28 +146,26 @@ namespace MRF24J40{
         write_long(MRF_RFCON8, 0x10);   // – Initialize RFVCO = 1.
         write_long(MRF_SLPCON1,0x21);  // – Initialize CLKOUTEN = 1 and SLPCLKDIV = 0x01.
 
-            //  Configuration for nonbeacon-enabled devices (see Section 3.8 “Beacon-Enabled and
-            //  Nonbeacon-Enabled Networks”):
+        //  Configuration for nonbeacon-enabled devices (see Section 3.8 “Beacon-Enabled and
+        //  Nonbeacon-Enabled Networks”):
         write_short(MRF_BBREG2, 0x80);      // Set CCA mode to ED
         write_short(MRF_CCAEDTH, 0x60);     // – Set CCA ED threshold.
         write_short(MRF_BBREG6, 0x40);      // – Set appended RSSI value to RXFIFO.
         set_interrupts();
         set_channel(CHANNEL);                    //original 12
-            // max power is by default.. just leave it...
-            // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
+        // max power is by default.. just leave it...
+        // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
         write_short(MRF_RFCTL, 0x00);       // part 2
         delay(192);                           // delay at least 192usec
     }
 
-
-
-            /**
-             * Call this from within an interrupt handler connected to the MRFs output
-             * interrupt pin.  It handles reading in any data from the module, and letting it
-             * continue working.
-             * Only the most recent data is ever kept.
-             */
+    /**
+     * Call this from within an interrupt handler connected to the MRFs output
+     * interrupt pin.  It handles reading in any data from the module, and letting it
+     * continue working.
+     * Only the most recent data is ever kept.
+     */
             
     void Mrf24j::interrupt_handler(void) {
         const uint8_t last_interrupt = read_short(MRF_INTSTAT);
@@ -194,14 +185,14 @@ namespace MRF24J40{
                 }
             }
 
-                // buffer data bytes
+            // buffer data bytes
             int rd_ptr = 0;
-                // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
-           
-           // printf(" frame length : %d \n",frame_length);
-           // printf(" rx datalength : %d \n",rx_datalength());
+            // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
 
- for (uint16_t i = 0; i < frame_length ; i++) {//original
+            // printf(" frame length : %d \n",frame_length);
+            // printf(" rx datalength : %d \n",rx_datalength());
+
+        for (uint16_t i = 0; i < frame_length ; i++) {//original
            // for (uint16_t i = 0; i < frame_length + rx_datalength(); i++) {//original
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + m_bytes_MHR + i);
             }
@@ -224,9 +215,9 @@ namespace MRF24J40{
         }
     }
 
-            /**
-             * Call this function periodically, it will invoke your nominated handlers
-             */
+    /**
+     * Call this function periodically, it will invoke your nominated handlers
+     */
     bool Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)()){
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_rx) {
@@ -248,9 +239,9 @@ namespace MRF24J40{
         return false;
     }
 
-            /**
-             * Set RX mode to promiscuous, or normal
-             */
+    /**
+     * Set RX mode to promiscuous, or normal
+     */
     void Mrf24j::set_promiscuous(bool enabled) {
         if (enabled) {
             write_short(MRF_RXMCR, 0x01);
@@ -290,9 +281,9 @@ void Mrf24j::settings_mrf(void){
         ignoreBytes = ib;
     }
 
-        /**
-         * Set bufPHY flag to buffer all bytes in PHY Payload, or not
-         */
+    /**
+     * Set bufPHY flag to buffer all bytes in PHY Payload, or not
+     */
     void Mrf24j::set_bufferPHY(bool bp) {
         bufPHY = bp;
     }
@@ -302,9 +293,9 @@ void Mrf24j::settings_mrf(void){
         return bufPHY;
     }
 
-        /**
-         * Set PA/LNA external control
-         */
+    /**
+     * Set PA/LNA external control
+     */
     void Mrf24j::set_palna(bool enabled) {
         if (enabled) {
             write_long(MRF_TESTMODE, 0x07); // Enable PA/LNA on MRF24J40MB module.
@@ -347,10 +338,6 @@ void Mrf24j::settings_mrf(void){
     void Mrf24j::noInterrupts(){
     }
 
-    // void Mrf24j::reset(void) {
-
-    // }
-
     Mrf24j::~Mrf24j( ){
         #ifdef DBG
             std::cout <<"~Mrf24j( )\r\n";
@@ -358,7 +345,7 @@ void Mrf24j::settings_mrf(void){
     }
 
 
-
+/*
     void Mrf24j::send64(uint64_t dest64, const struct DATA::packet_tx& buf) {
         const uint8_t len = strlen(buf.data); // get the length of the char* array
         int i = 0;
@@ -412,9 +399,8 @@ void Mrf24j::settings_mrf(void){
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));        
     }
+*/
 
-
-    // void Mrf24j::send16(uint16_t dest16, const char* data) 
     void Mrf24j::send(uint64_t dest, const std::string& pf) 
     {
         //const uint8_t len = strlen(data); // get the length of the char* array
@@ -455,7 +441,6 @@ void Mrf24j::settings_mrf(void){
             std::cout <<"es un mac de 16 bytes\n";
         }
  
-  
         const uint64_t src = address64_read();
         write_long(i++, src & 0xff); // src16 low
         write_long(i++, src >> 8); // src16 high
@@ -468,13 +453,9 @@ void Mrf24j::settings_mrf(void){
             write_long(i++, (src >> 48 ) & 0xff); 
             write_long(i++, (src >> 56 ) & 0xff); 
         }
-
                 // All testing seems to indicate that the next two bytes are ignored.
                 //2 bytes on FCS appended by TXMAC
          i+=ignoreBytes;
-        // for (int q = 0; q < len; q++) {
-            // write_long(i++,data[q]);
-        // }
 
         for(const auto& byte : pf) write_long(i++,static_cast<char>(byte));
         
@@ -482,59 +463,4 @@ void Mrf24j::settings_mrf(void){
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
 
-
-/*
-    //void Mrf24j::send64(uint64_t dest64, const char* data) 
-    void Mrf24j::send64(uint64_t dest64, const std::string& data) 
-    {
-        const uint8_t len = data.length();//strlen(data); // get the length of the char* array
-        int i = 0;
-        write_long(i++, m_bytes_MHR); // header length
-                        // +ignoreBytes is because some module seems to ignore 2 bytes after the header?!.
-                        // default: ignoreBytes = 0;
-        write_long(i++, m_bytes_MHR+ignoreBytes+len);
-
-                        // 0 | pan compression | ack | no security | no data pending | data frame[3 bits]
-        write_long(i++, 0b01100001); // first byte of Frame Control
-                        // 16 bit source, 802.15.4 (2003), 16 bit dest,
-        write_long(i++, 0b10001000); // second byte of frame control
-        write_long(i++, 1);  // sequence number 1
-
-        const uint16_t panid = get_pan();
-        #ifdef DBG
-            printf("\npanid: 0x%X\n",panid);
-        #endif
-        write_long(i++, panid & 0xff);  // dest panid
-        write_long(i++, panid >> 8);
-
-        write_long(i++, dest64  & 0xff); // uint64_t
-        write_long(i++, (dest64 >> 8  ) & 0xff);
-        write_long(i++, (dest64 >> 16 ) & 0xff);
-        write_long(i++, (dest64 >> 24 ) & 0xff);
-        write_long(i++, (dest64 >> 32 ) & 0xff);
-        write_long(i++, (dest64 >> 40 ) & 0xff);
-        write_long(i++, (dest64 >> 48 ) & 0xff);
-        write_long(i++, (dest64 >> 56 ) & 0xff);
-
-        const uint64_t src64 = address64_read();
-        write_long(i++, src64  & 0xff ); // uint64_t
-        write_long(i++, (src64 >> 8  ) & 0xff); 
-        write_long(i++, (src64 >> 16 ) & 0xff); 
-        write_long(i++, (src64 >> 24 ) & 0xff); 
-        write_long(i++, (src64 >> 32 ) & 0xff); 
-        write_long(i++, (src64 >> 40 ) & 0xff); 
-        write_long(i++, (src64 >> 48 ) & 0xff); 
-        write_long(i++, (src64 >> 56 ) & 0xff); 
-
-                // All testing seems to indicate that the next two bytes are ignored.
-                //2 bytes on FCS appended by TXMAC
-        i+=ignoreBytes;
-
-    for(const auto& byte : data) write_long(i++,static_cast<char>(byte));
-
-        // ack on, and go!
-        write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
-    }*/
-
-
-}
+}//END NAMESPACE MRF24
