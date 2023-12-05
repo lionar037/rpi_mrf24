@@ -177,20 +177,21 @@ void handle_rx() {
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
   
-    qr_img->create(packet_data);
-    std::string  tmp (packet_data+15);
-    tmp.resize(43);
+   // qr_img->create(packet_data);
+   // std::string  tmp (packet_data+15);
+    //tmp.resize(43);
     //oled->create(tmp.c_str());
   
-    std::vector<unsigned char>bf_tmp;
+    //std::vector<unsigned char>bf_tmp;
     //const auto* r_c = reinterpret_cast<const char*>(packet_data);
      //std::unique_ptr<QR::qr_oled> m_qr;
-    const auto& df = qr_tmp->create_qr<uint8_t>( packet_data/* tmp.c_str() , bf_tmp*/);
+    //const auto& df = qr_tmp->create_qr<uint8_t>( packet_data/* tmp.c_str() , bf_tmp*/);
 
-    packet_data += 11;
+    //packet_data += 11;
     //std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
-    oled->create(packet_data);
-    fs->create(reinterpret_cast<const char*>(packet_data));
+    
+    //oled->create(packet_data);
+    //fs->create(reinterpret_cast<const char*>(packet_data));
 
 
 std::cout<<"\r\n";
