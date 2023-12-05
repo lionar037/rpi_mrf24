@@ -33,7 +33,5 @@ namespace DATA{
 
 
 
-using QrCode_t =  QR_OLED;
-
 #pragma pack(pop)
 }
