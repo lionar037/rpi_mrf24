@@ -13,8 +13,6 @@ namespace TYME{
 
 namespace QR{
 
-using QrCode_t =  DATA::QR_OLED;
-
     struct Qr_t : public WORK::Work_t
     {
             Qr_t()=default;

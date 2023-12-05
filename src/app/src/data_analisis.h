@@ -38,5 +38,8 @@ namespace DATA{
             char data[(64*64/8)];
     }QR_OLED;
 
+
+using QrCode_t =  QR_OLED;
+
 #pragma pack(pop)
 }

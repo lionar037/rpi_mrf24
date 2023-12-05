@@ -8,6 +8,7 @@
 #include <mrf24/src/mrf24j40_template.tpp>
 
 #include <oled/src/oled.h>
+//#include <app/src/data_analisis.h>
 
 namespace MRF24J40{ 
 
@@ -181,8 +182,9 @@ void handle_rx() {
     tmp.resize(43);
     //oled->create(tmp.c_str());
   
-    //std::vector<unsigned char >bf_tmp;
-    //const auto* tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
+    std::vector<unsigned char >bf_tmp;
+    //const auto* tmp_s =
+    auto& m_qs =  qr_tmp->create_qr(packet_data , bf_tmp);
 
 packet_data += 11;
     oled->create(reinterpret_cast<const char*>(packet_data));
