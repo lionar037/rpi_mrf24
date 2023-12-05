@@ -15,7 +15,7 @@
 #include <app/src/config.h>
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
-
+#include <qr/src/qr.h>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -46,6 +46,7 @@ namespace MRF24J40{
             bool flag {false};
             std::unique_ptr<GPIO::Gpio>gpio{}; 
             std::unique_ptr<QR::qr_oled> m_qr;
+
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<DATABASE::Database_t>database{};
             std::unique_ptr<WORK::Work_t>fs{};
