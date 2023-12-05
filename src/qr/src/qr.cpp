@@ -26,7 +26,7 @@ namespace QR{
 
 template <typename T>
 T* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
-    /*
+    
     std::cout<<"\n";
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     
@@ -36,16 +36,12 @@ T* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
         }
     }
 
-QrOled.width =reinterpret_cast<int>( qr->width); 
-//QrOled.height = qr->width; 
-//QrOled.data = vt.data();
-
     QRcode_free(qr);
-    */
+    
 QrOled =std::make_unique<T>();
    QrOled->height=33;
    QrOled->width=33;
-    return {QrOled.release()};//vt.data();
+    return QrOled.release();//vt.data();
 }
 
 
