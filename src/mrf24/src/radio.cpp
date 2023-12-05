@@ -178,7 +178,7 @@ void handle_rx() {
    // const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
   
     
-    auto tmp_s = qr_img->create(packet_data);
+   qr_img->create(packet_data);
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
@@ -186,7 +186,7 @@ void handle_rx() {
   
 //bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
 std::vector<unsigned char >bf_tmp;
-qr_tmp->create_qr(packet_data , bf_tmp);
+ auto tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
 
 //const auto str_tmp = qr_tmp->create_qr(packet_data , bf_tmp);
 
