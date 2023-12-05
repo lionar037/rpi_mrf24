@@ -49,7 +49,7 @@ const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char
     QRcode_free(qr);
 */
     // Devuelve el puntero a los datos del vector
-    return {reinterpret_cast<const char *>(vt.data())};
+    return vt.data();
 }
 
 
