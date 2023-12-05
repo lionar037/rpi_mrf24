@@ -183,12 +183,13 @@ void handle_rx() {
     //oled->create(tmp.c_str());
   
     std::vector<unsigned char>bf_tmp;
-    const auto* r_c = reinterpret_cast<const char*>(packet_data);
+    //const auto* r_c = reinterpret_cast<const char*>(packet_data);
     
-    const auto& df = qr_tmp->create_qr<DATA::QrCode_t>(r_c , bf_tmp);
+    const auto& df = qr_tmp->create_qr<DATA::QrCode_t>(packet_data , bf_tmp);
 
 packet_data += 11;
-    oled->create(reinterpret_cast<const char*>(packet_data));
+    //oled->create(reinterpret_cast<const char*>(packet_data));
+    oled->create(reinterpret_cast<const char*>(df));
     fs->create(reinterpret_cast<const char*>(packet_data));
 
 
