@@ -3,13 +3,11 @@
 #include <qrencode.h>
 #include <app/src/work.h>
 #include <vector>
+#include <app/src/data_analisis.h>
 
 
 namespace TYME{
     struct Time_t;
-}
-namespace DATA{
-    struct qr_oled;
 }
 
 namespace QR{
