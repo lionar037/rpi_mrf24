@@ -138,8 +138,6 @@ void handle_tx() {
     #endif     
     }
 
-
-
 //@brief 
 //@params
 //@params
@@ -165,20 +163,8 @@ void handle_rx() {
     const int recevive_data_length = mrf24j40_spi.rx_datalength();
         std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
-    for (int i = 0; i < recevive_data_length; i++) 
-    {
-        //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
-        //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        printf("%c",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-    }
 
-        for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data) 
-    {
-        //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
-        //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        //printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        std::cout<<byte;
-    }
+    for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
@@ -211,8 +197,6 @@ void handle_rx() {
         std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
         std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
         //std::cout<<"\nbuff: \n"<<buff;
-    #endif
-
 
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
@@ -221,7 +205,8 @@ void handle_rx() {
     //printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
     ///printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
     //SET_COLOR(SET_COLOR_RED_TEXT);
-    printf("LQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
+     #endif
+    printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
     std::cout<<"\r\n";
