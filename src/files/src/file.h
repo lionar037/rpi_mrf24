@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <string_view>
 #include <app/src/work.h>
 
 namespace FILESYSTEM{
@@ -27,7 +28,7 @@ namespace FILESYSTEM{
         File_t();
         ~File_t();
         unsigned char* loadFile(const char*);
-        bool create(const char*);
+        bool create(const std::string_view*);
 
         const std::string  tyme();
         
