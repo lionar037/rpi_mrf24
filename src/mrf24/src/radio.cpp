@@ -174,7 +174,7 @@ void handle_rx() {
     auto qr_tmp{std::make_unique<QR::QrOled_t>()};
     auto oled{std::make_unique<OLED::Oled_t>()};
 
-    const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+    const auto* packet_data {reinterpret_cast<const std::string_view *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
   
     qr_img->create(packet_data);
