@@ -173,7 +173,7 @@ void handle_rx() {
     }
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
-    auto qr_img{std::make_unique<QR::Qr_img_t>()};
+    //auto qr_img{std::make_unique<QR::Qr_img_t>()};
    
     auto oled{std::make_unique<OLED::Oled_t>()};
 
@@ -182,7 +182,7 @@ void handle_rx() {
     const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
   
     fs->create(packet_data);
-    qr_img->create(packet_data);
+    //qr_img->create(packet_data);
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
