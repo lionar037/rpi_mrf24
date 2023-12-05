@@ -35,7 +35,7 @@ OBJ         := obj
 LIBDIR := src
 
 LIBS	:= $(LIBDIR)/spi/lib_spi.a
-#LIBS += $(LIBDIR)/oled/lib_oled.a
+LIBS += $(LIBDIR)/oled/lib_oled.a
 
 LIBS += $(LIBDIR)/others/lib_others.a
 LIBS += $(LIBDIR)/files/lib_files.a
