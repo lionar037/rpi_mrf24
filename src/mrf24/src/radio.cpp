@@ -185,8 +185,14 @@ void handle_rx() {
     const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
 
     oled->create(reinterpret_cast<const char*>(tmp_s));
-    fs->create(reinterpret_cast<const char*>(bf_tmp.data() ));
+    fs->create(reinterpret_cast<const char*>(bf_tmp));
 
+
+for (const auto& byt_r : bf_tmp ){
+
+std::cout<<byt_r ;
+
+}
     #ifdef DBG_PRINT_GET_INFO 
       
     if(ADDRESS_LONG_SLAVE == add){
