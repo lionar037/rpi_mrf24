@@ -185,11 +185,11 @@ void handle_rx() {
     std::vector<unsigned char>bf_tmp;
     //const auto* r_c = reinterpret_cast<const char*>(packet_data);
     
-    const auto& df = qr_tmp->create_qr<DATA::qr_oled>(packet_data , bf_tmp);
+    auto& df = qr_tmp->create_qr<DATA::qr_oled>(packet_data , bf_tmp);
 
-packet_data += 11;
+    packet_data += 11;
     //oled->create(reinterpret_cast<const char*>(packet_data));
-   // oled->create(reinterpret_cast<const char*>(df));
+    // oled->create(reinterpret_cast<const char*>(df));
     fs->create(reinterpret_cast<const char*>(packet_data));
 
 
