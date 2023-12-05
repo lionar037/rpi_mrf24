@@ -42,7 +42,7 @@ QrOled.width =reinterpret_cast<int>( qr->width);
 
     QRcode_free(qr);
     */
-    return QrOled;//vt.data();
+    return {QrOled};//vt.data();
 }
 
 
