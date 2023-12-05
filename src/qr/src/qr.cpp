@@ -42,7 +42,10 @@ QrOled.width =reinterpret_cast<int>( qr->width);
 
     QRcode_free(qr);
     */
-    return {QrOled};//vt.data();
+QrOled =std::make_unique<T>();
+   QrOled->height=33;
+   QrOled->width=33;
+    return {QrOled.release()};//vt.data();
 }
 
 
