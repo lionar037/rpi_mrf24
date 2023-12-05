@@ -36,23 +36,20 @@ namespace QR{
     };
 
 
-    struct QrOled_t 
+     struct QrOled_t 
     {
             QrOled_t()=default;
             ~QrOled_t()=default;
             
             template <typename T>
             void create_qr (std::string_view& str_view ,  std::vector<T>& variable) {
-                //T variavle{};
-                 //variable = T{};
-                //return std::tuple{true};
-            }        
-            // template <typename T>
-            // auto* create_qr_ (std::string_view& str_view , std::vector<unsigned char>&) {
-            // return std::tuple{0};
-            // }            
-            std::unique_ptr<QR_OLED> QrOled;
-    };
+                return;
+            }  
+            //private:             
+//            std::unique_ptr<QR_OLED> QrOled;            
+    };       
+
+
 
 
 

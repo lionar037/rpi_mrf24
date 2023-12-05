@@ -197,7 +197,18 @@ void handle_rx() {
      //std::unique_ptr<QR::qr_oled> m_qr;
     //const auto& df = 
     
-qr_tmp->create_qr ( packet_data , bf_tmp );
+
+    std::string_view packet_data = "ljwekjnwldnlwwnx";
+    std::vector<int> bf_tmp; 
+    qr->create_qr(packet_data, bf_tmp);
+
+    std::cout << "Size of bf_tmp: " << bf_tmp.size() << std::endl;
+
+
+//qr_tmp->create_qr ( packet_data , bf_tmp );
+
+
+
 
     //packet_data += 11;
     //std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
