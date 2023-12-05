@@ -30,7 +30,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
 
 
 
-bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
+bool Qr_t::create_qr(const char* data, unsigned char& buffer[64][64]) 
     {
 
         SET_COLOR(SET_COLOR_WHITE_TEXT);

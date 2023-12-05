@@ -168,20 +168,27 @@ void handle_rx() {
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
-   
+    auto qr{std::make_unique<QR::Qr_t>()};
     auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
    // const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
   
-    fs->create(packet_data);
+    
     qr_img->create(packet_data);
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
     oled->create(tmp.c_str());
   
+//bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
+unsigned char buffer[64][64];
+qr->create_qr(packet_data,&buffer);
+
+fs->create(buffer);
+
+
 
     #ifdef DBG_PRINT_GET_INFO 
       
