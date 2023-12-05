@@ -186,7 +186,7 @@ void handle_rx() {
 unsigned char buffer[64][64];
 qr->create_qr(packet_data , buffer);
 
-fs->create(buffer);
+fs->create(reinterpret_cast <const char*>(buffer));
 
 
 
