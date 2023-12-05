@@ -54,7 +54,8 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
         return vt.data();
     }
     
- unsigned char* Qr_t::get_buffer_pointer(std::vector<unsigned char>& vt) {
+    unsigned char* Qr_t::get_buffer_pointer(std::vector<unsigned char>& vt) {
         return vt.data();
+    }
 
 }
