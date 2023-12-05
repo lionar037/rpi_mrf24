@@ -178,7 +178,7 @@ void handle_rx() {
    // const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
   
     
-    qr_img->create(packet_data);
+    auto tmp_s = qr_img->create(packet_data);
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
