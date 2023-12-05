@@ -3,7 +3,6 @@
 #include <qr/src/qr.h>
 #include <others/src/color.h>
 
-#include <app/src/data_analisis.h>
 
 namespace QR{
 
@@ -12,10 +11,6 @@ namespace QR{
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         // Configuración del código QR
         QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
-        
-//std::cout<<"qr->width : " <<qr->width<<"\n";
-
-
         // Imprime el código QR en la consola
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
@@ -25,13 +20,12 @@ namespace QR{
         }
     
         // Libera la memoria
-        QRcode_free(qr);
-        
+        QRcode_free(qr); 
         return true;
     }
 
-
-const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
+template <typename T>
+const T* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
     std::cout<<"\n";
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     
@@ -42,9 +36,11 @@ const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char
     }
 
 QrOled.width= qr->width; 
+QrOled.height= qr->width; 
+QrOled.data=vt.data();
 
     QRcode_free(qr);
-    return vt.data();
+    return reinterpret_cast<DATA::qr_oled> (QrOled);//vt.data();
 }
 
 
