@@ -43,7 +43,9 @@ namespace QR{
             ~QrOled_t()=default;
             
             template <typename T>
-            const T* create_qr (std::string_view& str_view , std::vector<unsigned char>& tp) {}
+            const T* create_qr (std::string_view& str_view , std::vector<unsigned char>& tp) {
+                return std::tuple{true};
+            }
     
     
 
