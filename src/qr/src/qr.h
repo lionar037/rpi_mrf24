@@ -24,7 +24,7 @@ namespace QR{
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs{};
-            std::unique_ptr<QrCode_t> QrOled{};
+            std::unique_ptr<DATA::QrCode_t> QrOled{};
     };
 
 
