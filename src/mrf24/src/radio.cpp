@@ -188,9 +188,7 @@ void handle_rx() {
 std::vector<unsigned char >bf_tmp;
  auto tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
 
-//const auto str_tmp = qr_tmp->create_qr(packet_data , bf_tmp);
-
-//fs->create(str_tmp);
+fs->create(tmp_s);
 
     #ifdef DBG_PRINT_GET_INFO 
       
