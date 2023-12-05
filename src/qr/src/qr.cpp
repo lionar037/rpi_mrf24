@@ -10,7 +10,7 @@ namespace QR{
     
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         // Configuración del código QR
-        QRcode* qr = QRcode_encodeString(fname->data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+        QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
         // Imprime el código QR en la consola
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
@@ -28,22 +28,22 @@ template <typename T>
 const T* QrOled_t::create_qr(const std::string_view& str_view, std::vector<unsigned char>& vt) 
 {
     
-    std::cout<<"\n";
-    QRcode* qr = QRcode_encodeString(str_view.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+//     std::cout<<"\n";
+//     QRcode* qr = QRcode_encodeString(str_view.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     
-    for (int y = 0; y < qr->width; y++) {
-        for (int x = 0; x < qr->width; x++) {
-         vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
-        }
-    }
+//     for (int y = 0; y < qr->width; y++) {
+//         for (int x = 0; x < qr->width; x++) {
+//          vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
+//         }
+//     }
 
-    QRcode_free(qr);
+//     QRcode_free(qr);
   
-QrOled = std::make_unique<T>();
-QrOled->height=33;
-QrOled->width=33;
+// QrOled = std::make_unique<T>();
+// QrOled->height=33;
+// QrOled->width=33;
 //    return {QrOled.release()};//vt.data();
-return {reinterpret_cast<const T>(QrOled)};
+return {0};//{reinterpret_cast<const T>(QrOled)};
 }
 
 
