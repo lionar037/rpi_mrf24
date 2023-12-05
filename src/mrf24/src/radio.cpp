@@ -182,7 +182,7 @@ void handle_rx() {
     tmp.resize(43);
     //oled->create(tmp.c_str());
   
-    std::vector<unsigned char >bf_tmp;
+    auto bf_tmp = std::vector<unsigned char>();
     //const auto* tmp_s =
     //auto& m_qs =  
     qr_tmp->create_qr(packet_data , bf_tmp);
