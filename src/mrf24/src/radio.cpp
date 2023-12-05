@@ -165,28 +165,36 @@ void handle_rx() {
     const int recevive_data_length = mrf24j40_spi.rx_datalength();
         std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
-    for (int i = 0; i < recevive_data_length; i++) 
+    // for (int i = 0; i < recevive_data_length; i++) 
+    // {
+    //     //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
+    //     //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+    //     printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+    // }
+
+        for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data) 
     {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
-        printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        //printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
+        std::cout<<byte;
     }
 
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
-    //auto qr_img{std::make_unique<QR::Qr_img_t>()};
+    auto qr_img{std::make_unique<QR::Qr_img_t>()};
    
-    //auto oled{std::make_unique<OLED::Oled_t>()};
+    auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
     const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
   
     fs->create(packet_data);
-    //qr_img->create(packet_data);
+    qr_img->create(packet_data);
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
-    //oled->create(tmp.c_str());
+    oled->create(tmp.c_str());
   
   
     if(ADDRESS_LONG_SLAVE == add){
