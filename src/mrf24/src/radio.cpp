@@ -190,7 +190,7 @@ void handle_rx() {
 std::cout<<"\r\n";
 for (const auto& byt_r : bf_tmp ){
 
-std::cout<<byt_r ;
+std::cout<<std::hex<<byt_r ;
 
 }
 std::cout<<"\r\n";
