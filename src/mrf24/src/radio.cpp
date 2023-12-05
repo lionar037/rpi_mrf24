@@ -185,7 +185,7 @@ void handle_rx() {
     const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
 
     oled->create(reinterpret_cast<const char*>(tmp_s));
-    fs->create(reinterpret_cast<const char*>(bf_tmp));
+   // fs->create(reinterpret_cast<const char*>(bf_tmp));
 
 std::cout<<"\r\n";
 for (const auto& byt_r : bf_tmp ){
