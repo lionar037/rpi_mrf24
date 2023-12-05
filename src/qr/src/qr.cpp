@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <tuple>
 #include <qr/src/qr.h>
 #include <others/src/color.h>
 
@@ -43,7 +44,7 @@ const T* QrOled_t::create_qr(const std::string_view& str_view, std::vector<unsig
 // QrOled->height=33;
 // QrOled->width=33;
 //    return {QrOled.release()};//vt.data();
-return {0};//{reinterpret_cast<const T>(QrOled)};
+return std::tuple{0};//{reinterpret_cast<const T>(QrOled)};
 }
 
 
