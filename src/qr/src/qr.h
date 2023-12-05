@@ -27,7 +27,7 @@ namespace QR{
             ~Qr_t()=default;
             bool                create                  (const char* );
             template <typename T>
-            const T* create_qr (const char*,  std::vector<unsigned char>&) ;
+            const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;
             
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
