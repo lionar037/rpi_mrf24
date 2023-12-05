@@ -2,7 +2,7 @@
 #include <cstring>
 #include <qr/src/qr.h>
 #include <others/src/color.h>
-#include <app/src/data_analisis.h>
+
 
 
 namespace QR{
