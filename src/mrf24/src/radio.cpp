@@ -152,10 +152,12 @@ void handle_rx() {
     
     if(mrf24j40_spi.get_bufferPHY()){
       std::cout << " Packet data (PHY Payload) :";
+      #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
       {
           std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];
       }
+      #endif
     }
         std::cout << "\n";
     SET_COLOR(SET_COLOR_CYAN_TEXT);
@@ -163,7 +165,8 @@ void handle_rx() {
     const int recevive_data_length = mrf24j40_spi.rx_datalength();
         std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
-    for (int i = 0; i < recevive_data_length; i++) {
+    for (int i = 0; i < recevive_data_length; i++) 
+    {
         //std::cout<<std::hex<<mrf24j40_spi.get_rxinfo()->rx_data[i];
         //printf("0x%x ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
         printf("%c ",mrf24j40_spi.get_rxinfo()->rx_data[i]);
@@ -192,13 +195,13 @@ void handle_rx() {
     else{
         std::cout<< "\nmac no es igual\n" ;
     }
-
+    #ifdef DBG_PRINT_GET_INFO 
     std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
     std::cout<< "buffer_receiver->head : " << packet_data_tmp->head <<"\n";
     auto bs = (~packet_data_tmp->size)&0xffff;
     std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
     std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
-    
+    #endif
     //std::cout<<"\nbuff: \n"<<buff;
 
         SET_COLOR(SET_COLOR_GRAY_TEXT);

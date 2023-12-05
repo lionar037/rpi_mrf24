@@ -59,6 +59,8 @@
 //#define DBG_FILES //imprime Debugger en files
 //#define DBG_DISPLAY_OLED
 
+//#define DBG_PRINT_GET_INFO
+
 //config QR string 
 //Linea de configuracion para codigo Qr de una red wifi
 //#define QR_CODE_SRT "WIFI:T:WPA;S:MiRedWiFi;P:MiContraseña123;;";
