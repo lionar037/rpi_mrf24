@@ -38,7 +38,7 @@ const T* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt)
 
     QRcode_free(qr);
     
-    QrOled =std::make_unique<T>();
+    QrOled = std::make_unique<T>();
     QrOled->height=33;
     QrOled->width=33;
     return QrOled.release();//vt.data();

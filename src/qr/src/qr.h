@@ -4,7 +4,7 @@
 
 #include <app/src/work.h>
 #include <vector>
-
+ #include <app/src/data_analisis.h>
 
 
 namespace TYME{
@@ -12,7 +12,7 @@ namespace TYME{
 }
 
 namespace QR{
- #include <app/src/data_analisis.h>
+
     struct Qr_t : public WORK::Work_t
     {
             Qr_t()=default;
@@ -25,7 +25,7 @@ namespace QR{
         private:
             std::vector<unsigned char>vs{};
            
-            std::unique_ptr<DATA::qr_oled> QrOled{};
+            std::unique_ptr<DATA::qr_oled> QrOled;
     };
 
 
