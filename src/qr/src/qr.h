@@ -25,7 +25,7 @@ using QrCode_t = DATA::qr_oled;
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs{};
-            struct QrCode_t QrOled{};
+            QrCode_t QrOled{};
     };
 
 
