@@ -177,7 +177,7 @@ void handle_rx() {
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
   
-   // qr_img->create(packet_data);
+    qr_img->create(packet_data);
    // std::string  tmp (packet_data+15);
     //tmp.resize(43);
     //oled->create(tmp.c_str());
