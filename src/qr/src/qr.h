@@ -26,7 +26,7 @@ namespace QR{
     {
             Qr_t()=default;
             ~Qr_t()=default;
-            bool                create                  (const char* );
+            bool                create                  (const std::string_view*);
             //template <typename T>
             //const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;
             
