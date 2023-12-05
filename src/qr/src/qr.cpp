@@ -25,7 +25,7 @@ namespace QR{
     }
 
 template <typename T>
-const T* Qr_t::create_qr(const char* data /*, std::vector<unsigned char>& vt*/) 
+const T* QrOled_t::create_qr(const char* data /*, std::vector<unsigned char>& vt*/) 
 {/*
     std::cout<<"\n";
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);

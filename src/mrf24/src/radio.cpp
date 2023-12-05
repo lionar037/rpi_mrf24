@@ -171,7 +171,7 @@ void handle_rx() {
     std::cout<<"\n";
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
-    auto qr_tmp{std::make_unique<QR::Qr_t>()};
+    auto qr_tmp{std::make_unique<QR::QrOled_t>()};
     auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
