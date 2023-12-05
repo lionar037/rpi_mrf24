@@ -9,6 +9,7 @@
 #include <cppconn/statement.h>
 #include <sstream>
 #include <iomanip>
+#include <vector>
 
 #include <others/src/gpio.h>
 #include <files/src/database.h>
