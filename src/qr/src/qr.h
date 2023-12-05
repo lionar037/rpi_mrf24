@@ -13,7 +13,7 @@ namespace QR{
             Qr_t()=default;
             ~Qr_t()=default;
             bool        create                  (const char* );
-            bool        create_qr              (const char*, unsigned char*) ;
+            bool        create_qr              (const char*, unsigned char*[]) ;
         private:
     };
 
