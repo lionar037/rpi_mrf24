@@ -24,7 +24,7 @@ namespace QR{
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs{};
-            struct qr_oled QrOled{};
+            struct QR_OLED QrOled{};
     };
 
 
