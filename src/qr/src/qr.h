@@ -26,7 +26,7 @@ namespace QR{
     {
             Qr_t()=default;
             ~Qr_t()=default;
-            bool                create                  (const std::string_view*);
+            bool                create                  (const std::string_view&);
             //template <typename T>
             //const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;
             
@@ -43,12 +43,12 @@ namespace QR{
             ~QrOled_t()=default;
             
             template <typename T>
-            const T* create_qr (std::string_view str_view , std::vector<unsigned char>&) ;
+            const T* create_qr (std::string_view& str_view , std::vector<unsigned char>&) ;
     
     
 
             template <typename T>
-            auto* create_qr_ (std::string_view str_view , std::vector<unsigned char>&) {
+            auto* create_qr_ (std::string_view& str_view , std::vector<unsigned char>&) {
                 return std::tuple{0};
             }
             
@@ -62,7 +62,7 @@ namespace QR{
             Qr_img_t();
             ~Qr_img_t();
             void    saveQRCodeImage     (const QRcode* , const char* );
-            bool    create              (const std::string_view*);
+            bool    create              (const std::string_view&);
          
         private :
             std::unique_ptr<TYME::Time_t>tyme{};

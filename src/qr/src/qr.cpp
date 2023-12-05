@@ -6,7 +6,7 @@
 
 namespace QR{
 
-    bool Qr_t::create(const std::string_view* fname ) {
+    bool Qr_t::create(const std::string_view& fname ) {
     
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         // Configuración del código QR
@@ -25,7 +25,7 @@ namespace QR{
     }
 
 template <typename T>
-const T* QrOled_t::create_qr(const std::string_view str_view, std::vector<unsigned char>& vt) 
+const T* QrOled_t::create_qr(const std::string_view& str_view, std::vector<unsigned char>& vt) 
 {
     
     std::cout<<"\n";
