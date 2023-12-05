@@ -56,9 +56,7 @@ namespace MRF24J40{
             std::unique_ptr<WORK::Work_t>qr{};
             struct DATA::packet_tx  buffer_transmiter{};
         #endif
-            
-             
-             
+                                     
     };
 
             void handle_tx();
