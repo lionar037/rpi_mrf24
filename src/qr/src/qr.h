@@ -3,12 +3,17 @@
 #include <qrencode.h>
 #include <app/src/work.h>
 #include <vector>
+#include <app/src/data_analisis.h>
 
 namespace TYME{
     struct Time_t;
 }
 
 namespace QR{
+
+//struct qr_oled;
+
+
     struct Qr_t : public WORK::Work_t
     {
             Qr_t()=default;
@@ -19,7 +24,11 @@ namespace QR{
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs{};
+            struct qr_oled QrOled{};
     };
+
+
+    
 
     struct Qr_img_t : public WORK::Work_t
     {

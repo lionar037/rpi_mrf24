@@ -31,5 +31,12 @@ namespace DATA{
             uint16_t checksum;
         }PACKET_TX;
 
+
+    typedef struct qr_oled{
+            uint8_t width;
+            uint8_t height;
+            uint8_t data[(64*64/8)];
+    }QR_OLED;
+
 #pragma pack(pop)
 }
