@@ -184,9 +184,9 @@ void handle_rx() {
 
     qr_img->create(packet_data);
   
-   std::string  tmp (packet_data+15);
+   std::string  tmp {packet_data+15};
     tmp.resize(43);
-    oled->create(tmp.c_str());
+    // oled->create(tmp.c_str());
   
     //std::vector<unsigned char>bf_tmp;
     //const auto* r_c = reinterpret_cast<const char*>(packet_data);
