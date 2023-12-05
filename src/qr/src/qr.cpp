@@ -24,8 +24,8 @@ namespace QR{
         return true;
     }
 
-template <typename T>
-const T* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
+//template <typename T>
+DATA::qr_oled* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
     std::cout<<"\n";
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     
@@ -40,7 +40,7 @@ QrOled.height= qr->width;
 QrOled.data=vt.data();
 
     QRcode_free(qr);
-    return reinterpret_cast<DATA::qr_oled> (QrOled);//vt.data();
+    return QrOled;//vt.data();
 }
 
 
