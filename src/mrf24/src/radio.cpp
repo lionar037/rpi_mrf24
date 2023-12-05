@@ -189,7 +189,7 @@ void handle_rx() {
 
     packet_data += 11;
     std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
-     oled->create("oled");
+     oled->create(packet_data);
     fs->create(reinterpret_cast<const char*>(packet_data));
 
 
