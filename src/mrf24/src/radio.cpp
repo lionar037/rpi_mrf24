@@ -178,6 +178,7 @@ void handle_rx() {
     //const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX*>(packet_data)};
   
   //std::string_view* packet_data (reinterpret_cast<const unsigned char*>(mrf24j40_spi.get_rxinfo()->rx_data));
+  std::cout<<"packet_data->data() : "<< packet_data->data()<<"\n";
     qr_img->create(packet_data->data());
   
    // std::string  tmp (packet_data+15);
