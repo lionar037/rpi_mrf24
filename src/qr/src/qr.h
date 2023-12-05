@@ -20,8 +20,8 @@ using QrCode_t =  DATA::qr_oled;
             Qr_t()=default;
             ~Qr_t()=default;
             bool                create                  (const char* );
-            //template <typename T>
-            const struct QrCode_t* create_qr (const char*,  std::vector<unsigned char>&) ;
+            template <typename T>
+            const struct T* create_qr (const char*,  std::vector<unsigned char>&) ;
             
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
