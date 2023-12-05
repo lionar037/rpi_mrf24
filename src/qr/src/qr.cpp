@@ -37,7 +37,7 @@ const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char
             vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
         }
     }
-    for(const auto& byt:qr->data){
+    for(const auto& byt:qr->data()){
         printf("0x%x,",byt);
     }
     QRcode_free(qr);
