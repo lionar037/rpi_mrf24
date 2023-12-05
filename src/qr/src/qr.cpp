@@ -35,9 +35,9 @@ const struct QrCode_t* Qr_t::create_qr(const char* data, std::vector<unsigned ch
         }
     }
 
-QrOled.width= qr->width; 
-QrOled.height= qr->width; 
-QrOled.data=vt.data();
+QrOled.width =reinterpret_cast<int>( qr->width); 
+//QrOled.height = qr->width; 
+//QrOled.data = vt.data();
 
     QRcode_free(qr);
     return QrOled;//vt.data();
