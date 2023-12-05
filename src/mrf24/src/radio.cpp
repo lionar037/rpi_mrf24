@@ -167,7 +167,7 @@ void handle_rx() {
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-
+std::cout<<"\n";
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
     auto qr_tmp{std::make_unique<QR::Qr_t>()};
