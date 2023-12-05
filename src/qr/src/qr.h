@@ -1,11 +1,11 @@
 #pragma once
 #include <memory>
 #include <qrencode.h>
-#include <app/src/data_analisis.h>
+
 #include <app/src/work.h>
 #include <vector>
 
-
+#include <app/src/data_analisis.h>
 
 namespace TYME{
     struct Time_t;
