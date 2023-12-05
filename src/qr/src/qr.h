@@ -6,6 +6,7 @@
 #include <vector>
 #include <app/src/data_analisis.h>
 #include <tuple>
+#include <string_view>
 
 namespace TYME{
     struct Time_t;
@@ -42,12 +43,12 @@ namespace QR{
             ~QrOled_t()=default;
             
             template <typename T>
-            const T* create_qr (/* const char* ,  std::vector<unsigned char>& */) {
+            const T* create_qr (std::string_view str_view/* const char* ,  std::vector<unsigned char>& */) {
                 return {0};
             }
 
             template <typename T>
-            auto* create_qr_ (/* const char* ,  std::vector<unsigned char>& */) {
+            auto* create_qr_ (std::string_view str_view/* const char* ,  std::vector<unsigned char>& */) {
                 return std::tuple{0};
             }
             
