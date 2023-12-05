@@ -33,9 +33,9 @@ namespace DATA{
 
 
     typedef struct qr_oled{
-            uint8_t width;
-            uint8_t height;
-            uint8_t data[(64*64/8)];
+            int width;
+            int height;
+            char data[(64*64/8)];
     }QR_OLED;
 
 #pragma pack(pop)
