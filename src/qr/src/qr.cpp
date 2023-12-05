@@ -31,6 +31,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
 
 const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) 
 {
+    /*
     SET_COLOR(SET_COLOR_WHITE_TEXT);
     // Configuración del código QR
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
@@ -46,7 +47,7 @@ const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char
 
     // Libera la memoria
     QRcode_free(qr);
-
+*/
     // Devuelve el puntero a los datos del vector
     return vt.data();
 }
