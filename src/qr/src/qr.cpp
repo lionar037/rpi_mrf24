@@ -43,7 +43,7 @@ QrOled = std::make_unique<T>();
 QrOled->height=33;
 QrOled->width=33;
 //    return {QrOled.release()};//vt.data();
-return {reinterpret_cast<const T>(1)};
+return {reinterpret_cast<const T>(QrOled)};
 }
 
 
