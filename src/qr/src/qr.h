@@ -4,8 +4,8 @@
 
 #include <app/src/work.h>
 #include <vector>
- #include <app/src/data_analisis.h>
-
+#include <app/src/data_analisis.h>
+#include <tuple>
 
 namespace TYME{
     struct Time_t;
@@ -43,7 +43,12 @@ namespace QR{
             
             template <typename T>
             const T* create_qr (/* const char* ,  std::vector<unsigned char>& */) {
-                return 0;
+                return {0};
+            }
+
+            template <typename T>
+            auto* create_qr_ (/* const char* ,  std::vector<unsigned char>& */) {
+                return std::tuple{0};
             }
             
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
