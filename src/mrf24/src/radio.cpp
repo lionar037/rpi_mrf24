@@ -196,7 +196,7 @@ void handle_rx() {
     //const auto* r_c = reinterpret_cast<const char*>(packet_data);
      //std::unique_ptr<QR::qr_oled> m_qr;
     //const auto& df = 
-     auto qr = std::make_unique<QrOled_t>();
+     auto qr = std::make_unique<QR::QrOled_t>();
 
     std::string_view packet_data = "ljwekjnwldnlwwnx";
     std::vector<int> bf_tmp; 
