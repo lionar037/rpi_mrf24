@@ -190,7 +190,7 @@ void handle_rx() {
     tmp.resize(43);
     oled->create(tmp.c_str());
   
-  std::vector<int> bf_tmp;
+  
 
   //  std::vector<uint8_t>bf_tmp(packet_data, packet_data + std::strlen(packet_data));
     //const auto* r_c = reinterpret_cast<const char*>(packet_data);
@@ -198,9 +198,9 @@ void handle_rx() {
     //const auto& df = 
      auto qr = std::make_unique<QR::QrOled_t>();
 
-    std::string_view packet_data = "ljwekjnwldnlwwnx";
+    std::string_view packet_data2 = "ljwekjnwldnlwwnx";
     std::vector<int> bf_tmp; 
-    qr->create_qr(packet_data, bf_tmp);
+    qr->create_qr(packet_data2, bf_tmp);
 
     std::cout << "Size of bf_tmp: " << bf_tmp.size() << std::endl;
 
