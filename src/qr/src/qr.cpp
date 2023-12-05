@@ -45,7 +45,7 @@ const T* QrOled_t::create_qr(const char* data /*, std::vector<unsigned char>& vt
     // QrOled->width=33;
 //    return {QrOled.release()};//vt.data();
 //   return 0;
- return {reinterpret_cast<const T*>(1)};
+ return {reinterpret_cast<const T>(1)};
 }
 
 
