@@ -44,7 +44,7 @@ namespace QR{
             template <typename T>
             void create_qr (std::string_view& str_view ,  std::vector<T>& variable) {
                 //T variavle{};
-                 variable = T{};
+                 //variable = T{};
                 //return std::tuple{true};
             }        
             // template <typename T>
