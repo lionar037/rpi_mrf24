@@ -33,7 +33,7 @@ const T* QrOled_t::create_qr(const std::string_view str_view/*, std::vector<unsi
     
     for (int y = 0; y < qr->width; y++) {
         for (int x = 0; x < qr->width; x++) {
-          vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
+         // vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
         }
     }
 
