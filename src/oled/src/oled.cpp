@@ -24,7 +24,7 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
                         myOLED.setTextColor(WHITE);
                         myOLED.setCursor(0, 0);
 
-                        myOLED.print(tmp);
+                        myOLED.print(tmp->data());
                         myOLED.setFontNum(OLEDFontType_Default);
                         myOLED.setCursor(128-24, 64-9);
                         myOLED.print(reinterpret_cast<int>(count));
