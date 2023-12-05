@@ -1,12 +1,12 @@
 #pragma once
 #include <memory>
-#include <qrencode.h>
-
-#include <app/src/work.h>
-#include <vector>
-#include <app/src/data_analisis.h>
 #include <tuple>
+#include <vector>
 #include <string_view>
+#include <qrencode.h>
+#include <app/src/work.h>
+#include <app/src/data_analisis.h>
+
 
 namespace TYME{
     struct Time_t;
@@ -28,8 +28,7 @@ namespace QR{
             ~Qr_t()=default;
             bool                create                  (const std::string_view&);
             //template <typename T>
-            //const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;
-            
+            //const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;            
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs;  
@@ -47,15 +46,11 @@ namespace QR{
             void create_qr (std::string_view& str_view , std::vector<T>& tp) {
                 T variavle{};
                 //return std::tuple{true};
-            }
-    
-    
-
+            }        
             // template <typename T>
             // auto* create_qr_ (std::string_view& str_view , std::vector<unsigned char>&) {
-                // return std::tuple{0};
-            // }
-            
+            // return std::tuple{0};
+            // }            
             std::unique_ptr<QR_OLED> QrOled;
     };
 
