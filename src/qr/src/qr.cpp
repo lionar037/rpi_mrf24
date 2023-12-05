@@ -29,6 +29,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
     }
 const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+    std::cout <<"\nqr->width : "<<qr->width<<"\n";
     for (int y = 0; y < qr->width; y++) {
         for (int x = 0; x < qr->width; x++) {
             vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
