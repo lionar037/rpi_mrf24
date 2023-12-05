@@ -186,9 +186,9 @@ void handle_rx() {
   
 //bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
 std::vector<unsigned char >bf_tmp;
-qr->create_qr(packet_data , bf_tmp);
+//qr->create_qr(packet_data , bf_tmp);
 
-fs->create(qr->get_buffer_pointer());
+fs->create(qr->create_qr(packet_data , bf_tmp));
 
 
 
