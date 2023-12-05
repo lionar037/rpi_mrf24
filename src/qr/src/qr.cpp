@@ -25,7 +25,7 @@ namespace QR{
     }
 
 template <typename T>
-const T* QrOled_t::create_qr(const char* data /*, std::vector<unsigned char>& vt*/) 
+const T* QrOled_t::create_qr(const std::string_view str_view/*, std::vector<unsigned char>& vt*/) 
 {
     // /*
     // std::cout<<"\n";
