@@ -187,12 +187,13 @@ void handle_rx() {
     oled->create(reinterpret_cast<const char*>(tmp_s));
     fs->create(reinterpret_cast<const char*>(bf_tmp));
 
-
+std::cout<<"\r\n";
 for (const auto& byt_r : bf_tmp ){
 
 std::cout<<byt_r ;
 
 }
+std::cout<<"\r\n";
     #ifdef DBG_PRINT_GET_INFO 
       
     if(ADDRESS_LONG_SLAVE == add){
