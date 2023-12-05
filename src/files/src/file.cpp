@@ -70,13 +70,13 @@ namespace FILESYSTEM{
     }
 
 
-    bool File_t::create(const char* tmp){
+    bool File_t::create(const std::string_view* tmp){
         const std::string name_files = "log/" + m_filename + tyme() +  ".bin";
         std::ofstream file(name_files, std::ios::binary);
         if (file.is_open()) {
 
-            const auto bufferSize = strlen(tmp);
-            file.write ( tmp ,  bufferSize);
+            const auto bufferSize = strlen(tmp->data());
+            file.write ( tmp->data() ,  bufferSize);
                 // Cerrar el archivo
             file.close();
         #ifdef DBG_FILES
