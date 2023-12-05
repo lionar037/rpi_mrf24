@@ -5,8 +5,6 @@
 #include <others/src/color.h>
 #include <mrf24/src/mrf24j40_template.tpp>
 
-#include <app/src/work.h>
-
 #include <oled/src/oled.h>
 
 namespace MRF24J40{ 
@@ -185,7 +183,7 @@ void handle_rx() {
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
-    //oled->create(tmp.c_str());
+    oled->create(tmp.c_str());
   
   
     if(ADDRESS_LONG_SLAVE == add){
