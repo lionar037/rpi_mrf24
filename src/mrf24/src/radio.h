@@ -46,7 +46,7 @@ namespace MRF24J40{
             bool status{false};
             bool flag {false};
             std::unique_ptr<GPIO::Gpio>gpio{}; 
-            std::unique_ptr<QR::qr_oled> m_qr;
+           // std::unique_ptr<QR::qr_oled> m_qr;
 
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<DATABASE::Database_t>database{};
