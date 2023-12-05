@@ -24,29 +24,29 @@ namespace QR{
         return true;
     }
 
-//template <typename T>
-//const T* QrOled_t::create_qr(const char* data /*, std::vector<unsigned char>& vt*/) 
-//{
-    /*
-    std::cout<<"\n";
-    QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
-    
-    for (int y = 0; y < qr->width; y++) {
-        for (int x = 0; x < qr->width; x++) {
-          //  vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
-        }
-    }
-
-    QRcode_free(qr);
-    */
-   // QrOled = std::make_unique<T>();
+template <typename T>
+const T* QrOled_t::create_qr(const char* data /*, std::vector<unsigned char>& vt*/) 
+{
+    // /*
+    // std::cout<<"\n";
+    // QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+    // 
+    // for (int y = 0; y < qr->width; y++) {
+        // for (int x = 0; x < qr->width; x++) {
+      //     vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
+        // }
+    // }
+// 
+    // QRcode_free(qr);
+  //  */
+//    QrOled = std::make_unique<T>();
         
-    //QrOled->height=33;
-    //QrOled->width=33;
-   // return {QrOled.release()};//vt.data();
-  // return 0;
-//  return reinterpret_cast<const T*>(1);
-//}
+    // QrOled->height=33;
+    // QrOled->width=33;
+//    return {QrOled.release()};//vt.data();
+//   return 0;
+ return {reinterpret_cast<const T*>(1)};
+}
 
 
 
