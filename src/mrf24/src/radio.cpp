@@ -184,7 +184,7 @@ void handle_rx() {
   
 //bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
 unsigned char buffer[64][64];
-qr->create_qr(packet_data,&buffer);
+qr->create_qr(packet_data , buffer);
 
 fs->create(buffer);
 
