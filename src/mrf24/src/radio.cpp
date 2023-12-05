@@ -178,13 +178,14 @@ void handle_rx() {
   
     qr_img->create(packet_data);
     std::string  tmp (packet_data+15);
-    tmp.resize(36);
+    tmp.resize(43);
     //oled->create(tmp.c_str());
   
     std::vector<unsigned char >bf_tmp;
     const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
+
     oled->create(reinterpret_cast<const char*>(tmp_s));
-    fs->create(reinterpret_cast<const char*>(tmp_s));
+    fs->create(reinterpret_cast<const char*>(bf_tmp.data() ));
 
     #ifdef DBG_PRINT_GET_INFO 
       
