@@ -8,7 +8,7 @@
 namespace TYME{
     struct Time_t;
 }
-namespace QR{
+namespace DATA{
     struct qr_oled;
 }
 
@@ -27,7 +27,7 @@ namespace QR{
             //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs{};
-            struct QR::qr_oled QrOled{};
+            struct DATA::qr_oled QrOled{};
     };
 
 
