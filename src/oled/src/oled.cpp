@@ -1,6 +1,7 @@
 #include <bcm2835.h>
 #include <time.h>
 #include <stdio.h>
+//#include <string_view>
 #include <oled/src/oled.h>
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
@@ -10,7 +11,9 @@ namespace OLED{
 #ifdef USE_MRF24_RX
 
 SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object 
-        bool Oled_t::create(const char* tmp){
+        //bool Oled_t::create(const char* tmp)
+        bool Oled_t::create(const std::string_view tmp)
+        {
                 static int count { 0 };
             // Define a buffer to cover whole screen 
             uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 

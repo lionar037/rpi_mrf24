@@ -188,8 +188,8 @@ void handle_rx() {
     const auto& df = qr_tmp->create_qr<uint8_t>( packet_data/* tmp.c_str() , bf_tmp*/);
 
     packet_data += 11;
-    std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
-     oled->create(packet_data);
+    //std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
+    oled->create(packet_data);
     fs->create(reinterpret_cast<const char*>(packet_data));
 
 
