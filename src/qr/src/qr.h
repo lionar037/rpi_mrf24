@@ -10,7 +10,7 @@ namespace TYME{
 
 namespace QR{
 
-struct qr_oled;
+//struct qr_oled;
 
 
     struct Qr_t : public WORK::Work_t
