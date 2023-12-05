@@ -3,7 +3,7 @@
 #include <qrencode.h>
 #include <app/src/work.h>
 #include <vector>
-#include <app/src/data_analisis.h>
+
 
 namespace TYME{
     struct Time_t;
@@ -13,9 +13,6 @@ namespace DATA{
 }
 
 namespace QR{
-
-
-
 
     struct Qr_t : public WORK::Work_t
     {
