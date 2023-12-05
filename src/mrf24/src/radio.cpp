@@ -1,5 +1,5 @@
 //#include <vector>
-
+#include <string_view>
 #include <mrf24/src/radio.h>
 #include <mrf24/src/mrf24j40.h>
 #include <qr/src/qr.h>
@@ -188,8 +188,8 @@ void handle_rx() {
     const auto& df = qr_tmp->create_qr<uint8_t>( packet_data/* tmp.c_str() , bf_tmp*/);
 
     packet_data += 11;
-    std::cout <<"DF : " <<reinterpret_cast<const char*>(df)<<"\n";
-     oled->create(reinterpret_cast<const char*>(df));
+    std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
+     oled->create("oled");
     fs->create(reinterpret_cast<const char*>(packet_data));
 
 
