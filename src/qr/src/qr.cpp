@@ -43,7 +43,7 @@ const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char
     for(const auto& byt : vt) 
     {
     if(count>qr->width){count=0;std::cout<<"\n";}
-        printf("%x",byt);
+        if(byt){printf( "█");}else{printf(" ");}
         count++;
     }
     QRcode_free(qr);
