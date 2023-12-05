@@ -12,7 +12,7 @@ namespace OLED{
 
 SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object 
         //bool Oled_t::create(const char* tmp)
-        bool Oled_t::create(const std::string_view tmp)
+        bool Oled_t::create(const std::string_view* tmp)
         {
                 static int count { 0 };
             // Define a buffer to cover whole screen 
