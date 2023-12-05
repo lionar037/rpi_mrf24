@@ -167,7 +167,7 @@ void handle_rx() {
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-std::cout<<"\n";
+    std::cout<<"\n";
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
     auto qr_tmp{std::make_unique<QR::Qr_t>()};
@@ -175,22 +175,16 @@ std::cout<<"\n";
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
-   // const auto add = (static_cast<uint64_t>(packet_data_tmp->mac_msb) << 32) | packet_data_tmp->mac_lsb;
   
-    
-   qr_img->create(packet_data);
-    //packet_data=9;
+    qr_img->create(packet_data);
     std::string  tmp (packet_data+15);
     tmp.resize(36);
-    oled->create(tmp.c_str());
+    //oled->create(tmp.c_str());
   
-//bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
-std::vector<unsigned char >bf_tmp;
- const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
-
-
-
-fs->create(reinterpret_cast<const char*>(tmp_s));
+    std::vector<unsigned char >bf_tmp;
+    const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
+    oled->create(tmp_s);
+    fs->create(reinterpret_cast<const char*>(tmp_s));
 
     #ifdef DBG_PRINT_GET_INFO 
       
@@ -205,15 +199,11 @@ fs->create(reinterpret_cast<const char*>(tmp_s));
         auto bs = (~packet_data_tmp->size)&0xffff;
         std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
         std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
-        //std::cout<<"\nbuff: \n"<<buff;
+        std::cout<<"\nbuff: \n"<<buff;
 
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
 
-    //std::cout<<"\r\nLQI/RSSI = \n\t"; 
-    //printf("0x%X ",mrf24j40_spi.get_rxinfo()->lqi);
-    ///printf("0x%X \n",mrf24j40_spi.get_rxinfo()->rssi);
-    //SET_COLOR(SET_COLOR_RED_TEXT);
      #endif
     printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
