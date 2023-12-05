@@ -5,9 +5,9 @@
 #include <others/src/color.h>
 #include <mrf24/src/mrf24j40_template.tpp>
 #include <app/src/config.h>
-#ifdef USE_MRF24_RX
+//#ifdef USE_MRF24_RX
     #include <oled/src/oled.h>
-#endif
+//#endif
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
