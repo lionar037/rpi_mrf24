@@ -188,7 +188,7 @@ void handle_rx() {
    // fs->create(reinterpret_cast<const char*>(bf_tmp));
 
 std::cout<<"\r\n";
-for (const auto& byt_r : bf_tmp ){
+for (const auto& byt_r : bf_tmp.data() ){
 
 std::cout<<std::hex<<byt_r ;
 
