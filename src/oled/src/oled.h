@@ -14,7 +14,7 @@ namespace OLED{
         explicit Oled_t();
         ~Oled_t ()=default;
         //bool create(const char*)override;
-        bool create(const std::string_view*)override;
+        bool create(const std::string_view&)override;
         bool init();
         void End();
         void Setup(); 

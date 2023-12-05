@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include <tuple>
+//#include <tuple>
 #include <qr/src/qr.h>
 #include <others/src/color.h>
 
