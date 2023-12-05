@@ -52,8 +52,6 @@ namespace QR{
                 return std::tuple{0};
             }
             
-            //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
-            
             std::unique_ptr<QR_OLED> QrOled;
     };
 
