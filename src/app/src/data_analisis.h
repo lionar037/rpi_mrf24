@@ -32,12 +32,6 @@ namespace DATA{
         }PACKET_TX;
 
 
-    typedef struct qr_oled{
-            int width;
-            int height;
-            char data[(64*64/8)];
-    }QR_OLED;
-
 
 using QrCode_t =  QR_OLED;
 

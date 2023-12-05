@@ -13,6 +13,14 @@ namespace TYME{
 
 namespace QR{
 
+
+    typedef struct qr_oled{
+            int width;
+            int height;
+            char data[(64*64/8)];
+    }QR_OLED;
+
+
     struct Qr_t : public WORK::Work_t
     {
             Qr_t()=default;
@@ -25,7 +33,7 @@ namespace QR{
         private:
             std::vector<unsigned char>vs{};
            
-            std::unique_ptr<DATA::qr_oled> QrOled;
+            std::unique_ptr<qr_oled> QrOled;
     };
 
 
