@@ -183,9 +183,9 @@ void handle_rx() {
     //oled->create(tmp.c_str());
   
     std::vector<unsigned char>bf_tmp;
-    //const auto* tmp_s =
-    //auto& m_qs =  
-    qr_tmp->create_qr("packet_data" , bf_tmp);
+    const auto* r_c = reinterpret_cast<const char*>(packet_data);
+    
+    qr_tmp->create_qr(r_c , bf_tmp);
 
 packet_data += 11;
     oled->create(reinterpret_cast<const char*>(packet_data));
