@@ -189,7 +189,8 @@ void handle_rx() {
 
 std::cout<<"\ngrafico : \n";
 
-const auto& rv = reinterpret_cast<std::string>(tmp_s);
+const std::string rv  (tmp_s);
+
 for (const auto& byt_r : rv )
 {
 
