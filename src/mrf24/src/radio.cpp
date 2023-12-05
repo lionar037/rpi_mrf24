@@ -1,3 +1,5 @@
+#include <vector>
+
 #include <mrf24/src/radio.h>
 #include <mrf24/src/mrf24j40.h>
 #include <qr/src/qr.h>
@@ -183,9 +185,8 @@ void handle_rx() {
     oled->create(tmp.c_str());
   
 //bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
-unsigned char buffer[64][64];
-
-qr->create_qr(packet_data , &buffer);
+std::vector<unsigned char >bf_tmp;
+qr->create_qr(packet_data , bf_tmp);
 
 fs->create(reinterpret_cast <const char*>(buffer));
 

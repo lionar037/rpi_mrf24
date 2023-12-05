@@ -30,7 +30,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
 
 
 
-bool Qr_t::create_qr(const char* data, unsigned char* buffer[64]/*[64][64]*/) 
+bool Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) 
     {
 
         SET_COLOR(SET_COLOR_WHITE_TEXT);
@@ -42,7 +42,7 @@ bool Qr_t::create_qr(const char* data, unsigned char* buffer[64]/*[64][64]*/)
         // Rellenar el buffer de píxeles con datos de código QR
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
-                buffer[y][x] = (qr->data[y * qr->width + x] & 1) ? 1 : 0;  // 1 para píxel negro, 0 para píxel blanco
+                vt[y][x] = (qr->data[y * qr->width + x] & 1) ? 1 : 0;  // 1 para píxel negro, 0 para píxel blanco
             }
         }
 
