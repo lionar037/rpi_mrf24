@@ -189,7 +189,7 @@ void handle_rx() {
 
 packet_data += 11;
     //oled->create(reinterpret_cast<const char*>(packet_data));
-    oled->create(reinterpret_cast<const char*>(df));
+   // oled->create(reinterpret_cast<const char*>(df));
     fs->create(reinterpret_cast<const char*>(packet_data));
 
 
