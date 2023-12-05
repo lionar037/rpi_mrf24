@@ -185,7 +185,7 @@ void handle_rx() {
     std::vector<unsigned char>bf_tmp;
     const auto* r_c = reinterpret_cast<const char*>(packet_data);
     
-    const auto& df = qr_tmp->create_qr<DATA::QR_OLED>(r_c , bf_tmp);
+    const auto& df = qr_tmp->create_qr<DATA::QrCode_t>(r_c , bf_tmp);
 
 packet_data += 11;
     oled->create(reinterpret_cast<const char*>(packet_data));
