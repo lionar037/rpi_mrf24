@@ -187,8 +187,8 @@ void handle_rx() {
     oled->create(reinterpret_cast<const char*>(tmp_s));
    // fs->create(reinterpret_cast<const char*>(bf_tmp));
 
-std::cout<<"\r\n";
-for (const auto& byt_r : bf_tmp.data() ){
+std::cout<<"\ngrafico : \n";
+for (const auto& byt_r : bf_tmp){
 
 std::cout<<std::hex<<byt_r ;
 
