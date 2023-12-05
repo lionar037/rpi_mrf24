@@ -193,7 +193,8 @@ void handle_rx() {
     std::vector<unsigned char>bf_tmp;
     //const auto* r_c = reinterpret_cast<const char*>(packet_data);
      //std::unique_ptr<QR::qr_oled> m_qr;
-    const auto& df = qr_tmp->create_qr<uint8_t>( packet_data , bf_tmp);
+    //const auto& df = 
+    qr_tmp->create_qr<uint8_t>( packet_data , bf_tmp);
 
     //packet_data += 11;
     //std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
