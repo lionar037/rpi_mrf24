@@ -184,7 +184,7 @@ void handle_rx() {
 
 
 
-    qr_img->create(packet_data->data());
+    qr_img->create(packet_data);
   
    // std::string  tmp (packet_data+15);
     //tmp.resize(43);
