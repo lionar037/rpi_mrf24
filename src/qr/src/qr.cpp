@@ -29,7 +29,7 @@ const T* QrOled_t::create_qr(const std::string_view str_view/*, std::vector<unsi
 {
     
     std::cout<<"\n";
-    QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+    QRcode* qr = QRcode_encodeString(str_view, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     
     for (int y = 0; y < qr->width; y++) {
         for (int x = 0; x < qr->width; x++) {
