@@ -186,7 +186,9 @@ std::cout<<"\n";
   
 //bool Qr_t::create_qr(const char* data, unsigned char buffer[64][64]) 
 std::vector<unsigned char >bf_tmp;
- const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
+
+
+std::string<const char*>tmp_s = reinterpret_cast<const char*>( qr_tmp->create_qr(packet_data , bf_tmp));
 
 fs->create(reinterpret_cast<const char*>(tmp_s));
 
