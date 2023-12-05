@@ -188,7 +188,7 @@ void handle_rx() {
 std::vector<unsigned char >bf_tmp;
 qr->create_qr(packet_data , bf_tmp);
 
-fs->create(static_cast<unsigned char*>(bf_tmp.data()));
+fs->create(qr->get_buffer_pointer());
 
 
 

@@ -30,7 +30,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
 
 
 
-bool Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) 
+ unsigned char*  Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) 
     {
 
         SET_COLOR(SET_COLOR_WHITE_TEXT);
@@ -44,13 +44,17 @@ bool Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt)
             for (int x = 0; x < qr->width; x++) {
                // vt[y][x] = (qr->data[y * qr->width + x] & 1) ? 1 : 0;  // 1 para píxel negro, 0 para píxel blanco
             vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
+            vs.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
             }
         }
 
         // Libera la memoria
         QRcode_free(qr);
 
-        return true;
+        return vt.data();
     }
     
+ unsigned char* Qr_t::get_buffer_pointer(std::vector<unsigned char>& vt) {
+        return vt.data();
+
 }
