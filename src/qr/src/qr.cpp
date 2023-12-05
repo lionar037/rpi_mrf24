@@ -6,11 +6,11 @@
 
 namespace QR{
 
-    bool Qr_t::create(const char* data ) {
+    bool Qr_t::create(const std::string_view* fname ) {
     
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         // Configuración del código QR
-        QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+        QRcode* qr = QRcode_encodeString(fname->data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
         // Imprime el código QR en la consola
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
