@@ -44,7 +44,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
             for (int x = 0; x < qr->width; x++) {
                // vt[y][x] = (qr->data[y * qr->width + x] & 1) ? 1 : 0;  // 1 para píxel negro, 0 para píxel blanco
             vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
-            vs.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
+            //vs.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
             }
         }
 
