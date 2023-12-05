@@ -172,7 +172,7 @@ void handle_rx() {
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
    
-    auto oled{std::make_unique<OLED::Oled_t>()};
+    //auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
     const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX *>(packet_data)};
@@ -183,7 +183,7 @@ void handle_rx() {
     //packet_data=9;
     std::string  tmp (packet_data+15);
     tmp.resize(36);
-    oled->create(tmp.c_str());
+    //oled->create(tmp.c_str());
   
   
     if(ADDRESS_LONG_SLAVE == add){
