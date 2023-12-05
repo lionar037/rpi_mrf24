@@ -14,7 +14,7 @@ namespace QR{
             Qr_t()=default;
             ~Qr_t()=default;
             bool        create                  (const char* );
-            bool        create_qr              (const char*,  std::vector<unsigned char*>&) ;
+            bool        create_qr              (const char*,  std::vector<unsigned char>&) ;
         private:
     };
 
