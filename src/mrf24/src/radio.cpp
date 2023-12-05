@@ -188,8 +188,8 @@ void handle_rx() {
 std::vector<unsigned char >bf_tmp;
 //qr->create_qr(packet_data , bf_tmp);
 
-
-fs->create(qr_tmp->create_qr(packet_data , bf_tmp));
+const auto str_tmp = qr_tmp->create_qr(packet_data , bf_tmp);
+fs->create(str_tmp);
 
 
 
