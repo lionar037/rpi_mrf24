@@ -182,7 +182,7 @@ void handle_rx() {
     //oled->create(tmp.c_str());
   
     std::vector<unsigned char >bf_tmp;
-    const auto& tmp_s = qr_tmp->create_qr(packet_data , bf_tmp);
+    const auto& tmp_s ( qr_tmp->create_qr(packet_data , bf_tmp));
 
     oled->create(reinterpret_cast<const char*>(tmp_s));
    // fs->create(reinterpret_cast<const char*>(bf_tmp));
