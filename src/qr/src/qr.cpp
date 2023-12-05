@@ -30,6 +30,7 @@ std::cout<<"qr->width : " <<qr->width<<"\n";
 
 
 const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char>& vt) {
+    std::cout<<"\n";
     QRcode* qr = QRcode_encodeString(data, 0, QR_ECLEVEL_L, QR_MODE_8, 1);
     std::cout <<"\nqr->width : "<<qr->width<<"\n";
     for (int y = 0; y < qr->width; y++) {
@@ -38,9 +39,10 @@ const unsigned char* Qr_t::create_qr(const char* data, std::vector<unsigned char
         }
     }
     uint8_t count=0;
+    std::cout<<"\n";
     for(const auto& byt : vt) 
     {
-if(count>64){count=0;std::cout<<"\n";}
+    if(count>64){count=0;std::cout<<"\n";}
         printf("%x,",byt);
         count++;
     }
