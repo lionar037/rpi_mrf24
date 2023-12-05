@@ -42,7 +42,8 @@ const T* Qr_t::create_qr(const char* data /*, std::vector<unsigned char>& vt*/)
         
     QrOled->height=33;
     QrOled->width=33;
-    return QrOled.release();//vt.data();
+   // return {QrOled.release()};//vt.data();
+   return 0;
 }
 
 
