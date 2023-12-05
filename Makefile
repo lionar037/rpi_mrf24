@@ -80,20 +80,15 @@ $(APP) : $(OBJSUBDIRS) $(ALLOBJ)
 $(foreach F,$(ALLCPPS),$(eval $(call COMPILE,$(CC),$(call C2O,$(F)),$(F),$(call C2H$(F)),$(CCFLAGS) $(INCDIRS))))
 $(foreach F,$(ALLCS),$(eval $(call COMPILE,$(C),$(call C2O,$(F)),$(F),$(call C2H$(F)),$(CFLAGS) $(INCDIRS))))
 
-
-
-#%.o : %.c
-#	$(C) -o $(patsubst $(SRC)%,$(OBJ)%,$@) -c $^ $(CFLAGS)
-
-#%.o : %.cpp
-#	$(CC) -o $(patsubst $(SRC)%,$(OBJ)%,$@) -c $^ $(CCFLAGS)
-
 info:
 	$(info $(SUBDIRS))
 	$(info $(OBJSUBDIRS))
 
 $(OBJSUBDIRS):
 	$(MKDIR) $(OBJSUBDIRS) 
+
+run: $(APP)
+	sudo $<
 
 clean:
 	$(RM) -r "./$(OBJ)"
