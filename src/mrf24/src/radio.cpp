@@ -102,12 +102,8 @@ void Radio_t::Run(bool& flag) {
         std::cout<<"\n" ;
       
       const std::string pf(msj);
-        //for(int i= 0;i<strlen(msj);i++)
-      //  for(int i= 0;i<128;i++)
-
-
+          
       for(const auto& byte : pf) std::cout << byte ; 
-       // std::cout <<std::hex<< msj[i] ; 
         std::cout<<"\n" ; 
         
         
@@ -175,27 +171,13 @@ void handle_rx() {
     auto oled{std::make_unique<OLED::Oled_t>()};
 
     const auto* packet_data = reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data);
-    //const auto packet_data_tmp {reinterpret_cast<const DATA::PACKET_RX*>(packet_data)};
-  
-  //std::string_view* packet_data (reinterpret_cast<const unsigned char*>(mrf24j40_spi.get_rxinfo()->rx_data));
-  //std::cout<<"packet_data->data() : \n";
-  
- //std::cout<<reinterpret_cast<const unsigned char*>(packet_data)<<"\n";
-
-
-
     qr_img->create(packet_data);
   
     std::string  tmp (packet_data+15);
     tmp.resize(43);
     oled->create(tmp.c_str());
   
-  
 
-  //  std::vector<uint8_t>bf_tmp(packet_data, packet_data + std::strlen(packet_data));
-    //const auto* r_c = reinterpret_cast<const char*>(packet_data);
-     //std::unique_ptr<QR::qr_oled> m_qr;
-    //const auto& df = 
      auto qr = std::make_unique<QR::QrOled_t>();
 
     std::string_view packet_data2 = "ljwekjnwldnlwwnx";
