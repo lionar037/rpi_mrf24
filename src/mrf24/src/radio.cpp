@@ -174,9 +174,8 @@ void handle_rx() {
     qr_img->create(packet_data);
   
     std::string  tmp (packet_data+15);
-    tmp.resize(43);
-    oled->create(tmp.c_str());
-  
+    tmp.resize(38);
+    oled->create(tmp.c_str());  
 
      auto qr = std::make_unique<QR::QrOled_t>();
 
@@ -185,17 +184,7 @@ void handle_rx() {
     qr->create_qr(packet_data2, bf_tmp);
 
     std::cout << "Size of bf_tmp: " << bf_tmp.size() << std::endl;
-
-
-//qr_tmp->create_qr ( packet_data , bf_tmp );
-
-
-
-
-    //packet_data += 11;
-    //std::cout <<"DF : " <<reinterpret_cast<const std::string_view*>(df)<<"\n";
     
-    //oled->create(packet_data);
     fs->create(packet_data);
 
 
