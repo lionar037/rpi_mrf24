@@ -96,7 +96,7 @@ bool Gpio::settings(const int pin , const std::string_view str_v){
     std::ifstream fileGpio(filePathGpio);
     if(!fileGpio){
         const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
-        const int result_output = std::system(f);
+        const int result_output = std::system(f.c_str());
         if (result_output == 0) {
             #ifdef DBG_GPIO
                 std::cout << "Pin GPIO "+ std::to_string(pin) +" exported successfully." << std::endl;
