@@ -7,13 +7,11 @@ extern "C"{
     #include <fcntl.h>
     #include <poll.h>
 }
-
 #include <iostream>
 #include <fstream>
 #include <chrono>
 #include <thread>
 #include <string_view>
-
 #include <others/src/gpio.h>
 #include <app/src/config.h>
 
@@ -21,17 +19,32 @@ extern "C"{
 namespace GPIO{
     /*      HELPER FUNCTIONS       */
     // FILE OPERATION
-    int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata)
-    {
-        int fd;
+    // int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata)
+    // {
+        // int fd;
+// 
+        // fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
+        // if (fd < 0)
+        // {
+            // printf("Could not open file %s...%d\r\n", fname.data(), fd);
+        // }
+        // write(fd, wdata.data(), strlen(wdata.data()));
+        // 
+        // close(fd);
+// 
+        // return 0;
+    // }
 
-        fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
-        if (fd < 0)
-        {
-            printf("Could not open file %s...%d\r\n", fname.data(), fd);
+
+     int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata) {
+        std::ofstream file(fname, std::ios::out | std::ios::binary);
+        if (!file.is_open()) {
+            std::cerr << "Error: Could not open file " << fname << std::endl;
+            return -1;
         }
-        write(fd, wdata.data(), strlen(wdata.data()));
-        close(fd);
+
+        file.write(wdata.data(), static_cast<std::streamsize>(wdata.length()));
+        file.close();
 
         return 0;
     }
@@ -54,7 +67,6 @@ namespace GPIO{
 
     // GPIO DIRECTION
     int Gpio::gpio_set_direction(const int gpio_num, const std::string_view dir)
-    //int Gpio::gpio_set_direction(const int gpio_num, const char *dir)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
@@ -129,7 +141,6 @@ namespace GPIO{
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 {
-        //Led Debugger
         settings(gpio_out ,DIR_OUT );
         settings(gpio_in , DIR_IN);
 
@@ -138,10 +149,8 @@ namespace GPIO{
 
         const int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
 
- 
         // We will wait for button press here for 10s or exit anyway
-        if(state==true)
-        {
+        if(state==true){
 
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
@@ -182,8 +191,6 @@ namespace GPIO{
     }
         return false;
     }
-
-
 
     Gpio::~Gpio(){
         #ifdef DBG
