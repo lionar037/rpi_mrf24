@@ -112,7 +112,7 @@ bool Gpio::settings(const int pin , const std::string_view str_v){
 
         gpio_unexport(pin);        
         gpio_export(pin);        
-        gpio_set_direction(pin,str_v);
+        gpio_set_direction(pin,str_v.data());
         return true;
 }
     const bool Gpio::app(bool& flag) 
