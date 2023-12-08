@@ -85,6 +85,9 @@
         "fstream": "cpp",
         "stack": "cpp",
         "filesystem": "cpp",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "__tree": "cpp",
+        "forward_list": "cpp",
+        "map": "cpp"
     }
 }
