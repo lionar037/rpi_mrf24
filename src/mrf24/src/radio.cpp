@@ -71,9 +71,10 @@ Radio_t::Radio_t()
     #endif
     {
         gpio->app(flag);
+        system("clear"); 
         mrf24j40_spi.interrupt_handler();
         Run(flag);
-        system("clear"); 
+        
     }
 }
 
