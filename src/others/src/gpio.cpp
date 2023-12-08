@@ -91,11 +91,12 @@ namespace GPIO{
 
 
 
-bool Gpio::settings(int pin , std::string_view str_v){
+bool Gpio::settings(const int pin , const std::string_view str_v){
        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
     std::ifstream fileGpio(filePathGpio);
     if(!fileGpio){
-        const int result_output = std::system("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
+        const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
+        const int result_output = std::system(f);
         if (result_output == 0) {
             #ifdef DBG_GPIO
                 std::cout << "Pin GPIO "+ std::to_string(pin) +" exported successfully." << std::endl;
