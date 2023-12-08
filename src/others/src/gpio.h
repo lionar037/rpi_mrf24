@@ -31,12 +31,12 @@ struct Gpio{
       {}
 
     ~Gpio();
-            int file_open_and_write_value(const char *, const char *);
+            int file_open_and_write_value(const std::string_view, const std::string_view);
             int gpio_export(const int);
             int gpio_unexport(const int);
             int gpio_set_direction(const int , const std::string_view );
-            int gpio_set_value(const int , const char *);
-            int gpio_set_edge(const int , const char *);
+            int gpio_set_value(const int , const std::string_view);
+            int gpio_set_edge(const int , const std::string_view);
             int gpio_get_fd_to_value(const int );
             const bool app(bool&) ;
             bool settings(const int , const std::string_view);

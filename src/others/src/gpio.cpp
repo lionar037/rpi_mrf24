@@ -21,16 +21,16 @@ extern "C"{
 namespace GPIO{
     /*      HELPER FUNCTIONS       */
     // FILE OPERATION
-    int Gpio::file_open_and_write_value(const char *fname, const char *wdata)
+    int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata)
     {
         int fd;
 
-        fd = open(fname, O_WRONLY | O_NONBLOCK);
+        fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
         if (fd < 0)
         {
-            printf("Could not open file %s...%d\r\n", fname, fd);
+            printf("Could not open file %s...%d\r\n", fname.data(), fd);
         }
-        write(fd, wdata, strlen(wdata));
+        write(fd, wdata.data(), strlen(wdata.data()));
         close(fd);
 
         return 0;
@@ -62,19 +62,19 @@ namespace GPIO{
     }
 
     // GPIO SET VALUE
-    int Gpio::gpio_set_value(const int gpio_num, const char *value)
+    int Gpio::gpio_set_value(const int gpio_num, const std::string_view value)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
-        return file_open_and_write_value(path_str, value);
+        return file_open_and_write_value(path_str, value.data());
     }
 
     // GPIO SET EDGE
-    int Gpio::gpio_set_edge(const int gpio_num, const char *edge)
+    int Gpio::gpio_set_edge(const int gpio_num, const std::string_view edge)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
-        return file_open_and_write_value(path_str, edge);
+        return file_open_and_write_value(path_str, edge.data());
     }
 
     int Gpio::gpio_get_fd_to_value(const int gpio_num)
