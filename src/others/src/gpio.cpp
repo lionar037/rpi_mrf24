@@ -168,6 +168,7 @@ bool Gpio::settings(const int pin , const std::string_view str_v){
             ++looper;
             fflush(stdout);
             }
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));   
         }
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
