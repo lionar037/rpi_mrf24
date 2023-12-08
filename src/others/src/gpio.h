@@ -34,7 +34,7 @@ struct Gpio{
             int file_open_and_write_value(const char *, const char *);
             int gpio_export(const int);
             int gpio_unexport(const int);
-            int gpio_set_direction(const int , const char *);
+            int gpio_set_direction(const int , const std::string_view );
             int gpio_set_value(const int , const char *);
             int gpio_set_edge(const int , const char *);
             int gpio_get_fd_to_value(const int );

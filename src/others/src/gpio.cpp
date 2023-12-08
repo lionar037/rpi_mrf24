@@ -53,11 +53,12 @@ namespace GPIO{
     }
 
     // GPIO DIRECTION
-    int Gpio::gpio_set_direction(const int gpio_num, const char *dir)
+    int Gpio::gpio_set_direction(const int gpio_num, const std::string_view dir)
+    //int Gpio::gpio_set_direction(const int gpio_num, const char *dir)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
-        return file_open_and_write_value(path_str, dir);
+        return file_open_and_write_value(path_str, dir.data());
     }
 
     // GPIO SET VALUE
