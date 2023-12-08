@@ -37,7 +37,7 @@ namespace GPIO{
     }
 
     // GPIO EXPORT
-    int Gpio::gpio_export(int gpio_num)
+    int Gpio::gpio_export(const int gpio_num)
     {
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
@@ -45,7 +45,7 @@ namespace GPIO{
     }
 
     // GPIO UNEXPORT
-    int Gpio::gpio_unexport(int gpio_num)
+    int Gpio::gpio_unexport(const int gpio_num)
     {
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
@@ -53,7 +53,7 @@ namespace GPIO{
     }
 
     // GPIO DIRECTION
-    int Gpio::gpio_set_direction(int gpio_num, const char *dir)
+    int Gpio::gpio_set_direction(const int gpio_num, const char *dir)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
@@ -61,7 +61,7 @@ namespace GPIO{
     }
 
     // GPIO SET VALUE
-    int Gpio::gpio_set_value(int gpio_num, const char *value)
+    int Gpio::gpio_set_value(const int gpio_num, const char *value)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
@@ -69,14 +69,14 @@ namespace GPIO{
     }
 
     // GPIO SET EDGE
-    int Gpio::gpio_set_edge(int gpio_num, const char *edge)
+    int Gpio::gpio_set_edge(const int gpio_num, const char *edge)
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
         return file_open_and_write_value(path_str, edge);
     }
 
-    int Gpio::gpio_get_fd_to_value(int gpio_num)
+    int Gpio::gpio_get_fd_to_value(const int gpio_num)
     {
         int fd;
         char fname[40];
@@ -91,29 +91,29 @@ namespace GPIO{
 
 
 
-bool Gpio::settings(const int pin , const std::string_view str_v){
-       const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
-    std::ifstream fileGpio(filePathGpio);
-    if(!fileGpio){
-        const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
-        const int result_output = std::system(f.c_str());
-        if (result_output == 0) {
-            #ifdef DBG_GPIO
-                std::cout << "Pin GPIO "+ std::to_string(pin) +" exported successfully." << std::endl;
-            #endif
-        } else {
-            #ifdef DBG_GPIO
-                std::cerr << "Error unexporting GPIO "+ std::to_string(pin) +"." << std::endl;
-                //return 0;//continua por que no es necesario el pin de salida
-            #endif
-            return false;
+    bool Gpio::settings(const int pin , const std::string_view str_v){
+           const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
+        std::ifstream fileGpio(filePathGpio);
+        if(!fileGpio){
+            const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
+            const int result_output = std::system(f.c_str());
+            if (result_output == 0) {
+                #ifdef DBG_GPIO
+                    std::cout << "Pin GPIO "+ std::to_string(pin) +" exported successfully." << std::endl;
+                #endif
+            } else {
+                #ifdef DBG_GPIO
+                    std::cerr << "Error unexporting GPIO "+ std::to_string(pin) +"." << std::endl;
+                #endif
+                return false;
+            }
         }
-    }
         gpio_unexport(pin);        
         gpio_export(pin);        
         gpio_set_direction(pin,str_v.data());
         return true;
-}
+    }
+
     const bool Gpio::app(bool& flag) 
     {
         const unsigned int gpio_out = OUT_INTERRUPT;
