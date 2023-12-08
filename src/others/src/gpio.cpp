@@ -37,9 +37,9 @@ namespace GPIO{
 
 
      int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata) {
-        std::ofstream file(fname, std::ios::out | std::ios::binary);
+        std::ofstream file(fname.data(), std::ios::out | std::ios::binary);
         if (!file.is_open()) {
-            std::cerr << "Error: Could not open file " << fname << std::endl;
+            std::cerr << "Error: Could not open file " << fname.data() << std::endl;
             return -1;
         }
 
