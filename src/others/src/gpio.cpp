@@ -109,7 +109,6 @@ bool Gpio::settings(const int pin , const std::string_view str_v){
             return false;
         }
     }
-
         gpio_unexport(pin);        
         gpio_export(pin);        
         gpio_set_direction(pin,str_v.data());
@@ -128,24 +127,7 @@ bool Gpio::settings(const int pin , const std::string_view str_v){
 
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
-//if(flag)
 {
-    //flag = false;
-//    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
-    // std::ifstream fileGpio23(filePathGpio23);
-    // if(!fileGpio23){
-        // const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
-        // if (result_input == 0) {
-            // #ifdef DBG_GPIO
-                // std::cout << "Pin GPIO 23 exported successfully." << std::endl;
-            // #endif
-        // } else {
-            // #ifdef DBG_GPIO
-                // std::cerr << "Error exporting GPIO 23." << std::endl;
-            // #endif
-            // return false;
-        // }
-    // }
         //Led Debugger
         settings(gpio_out ,DIR_OUT );
         settings(gpio_in , DIR_IN);
