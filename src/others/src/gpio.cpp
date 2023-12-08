@@ -91,11 +91,11 @@ namespace GPIO{
 
 
 
-void settings(int pin , std::string_view str_v){
+bool Gpio::settings(int pin , std::string_view str_v){
        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
     std::ifstream fileGpio(filePathGpio);
     if(!fileGpio){
-        const int result_output = std::system("echo " +std::to_string(pin)  +" > /sys/class/gpio/export");
+        const int result_output = std::system("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
         if (result_output == 0) {
             #ifdef DBG_GPIO
                 std::cout << "Pin GPIO "+ std::to_string(pin) +" exported successfully." << std::endl;
@@ -105,13 +105,14 @@ void settings(int pin , std::string_view str_v){
                 std::cerr << "Error unexporting GPIO "+ std::to_string(pin) +"." << std::endl;
                 //return 0;//continua por que no es necesario el pin de salida
             #endif
+            return false;
         }
     }
 
         gpio_unexport(pin);        
         gpio_export(pin);        
         gpio_set_direction(pin,str_v);
-        return;
+        return true;
 }
     const bool Gpio::app(bool& flag) 
     {
@@ -188,14 +189,11 @@ void settings(int pin , std::string_view str_v){
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
-        }
-         //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
-
+        }    
         close(gpio_in_fd);
         gpio_set_value(gpio_out,VALUE_LOW);
         gpio_unexport(gpio_out);
         gpio_unexport(gpio_in);
-//state=false;
     }
         return false;
     }
