@@ -11,13 +11,13 @@ author : lion
 int main(){
     auto mrf { std::make_unique<MRF24J40::Radio_t>() };
     std::vector<std::thread> Thread;
-
+const int ThreadCant{3};
 
 
     try
     {
 
-        for (int i = 0; i < numHilos; ++i) {
+        for (int i = 0; i < ThreadCant; ++i) {
             Thread.emplace_back([&mrf]() {
            mrf->Run();
             });
