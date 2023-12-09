@@ -140,8 +140,9 @@ void update(std::string_view str_view){
     #endif
     const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
     
+    
+    std::string  tmp (packet_data += positionAdvance);
     qr_img->create(packet_data);
-    std::string  tmp (packet_data + positionAdvance);
     tmp.resize(38);
     #ifdef MRF24_RECEIVER_ENABLE
         oled->create(tmp.c_str());  
