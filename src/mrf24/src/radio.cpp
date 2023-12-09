@@ -29,6 +29,7 @@ Radio_t::Radio_t()
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
 {
+    
     #ifdef ENABLE_INTERRUPT_MRF24
     
     #else
@@ -76,10 +77,9 @@ void Radio_t::Run(void){
     #endif
     {
         gpio->app(flag);
-        system("clear"); 
+        //system("clear"); 
         mrf24j40_spi.interrupt_handler();
-        Init(flag);
-        
+        Init(flag);        
     }
 }
 
@@ -87,8 +87,7 @@ void Radio_t::Run(void){
 void Radio_t::Init(bool& flag) {
 
     flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-
-    const unsigned long current_time = 1000000;//1000000 original
+    const unsigned long current_time = 10000;//1000000 original
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
