@@ -135,13 +135,17 @@ void update(std::string_view str_view){
     auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
     auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
     auto            qr_tmp      { std::make_unique<QR::QrOled_t>() };
-    static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+    #ifdef MRF24_RECEIVER_ENABLE
+        static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+    #endif
     const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
     
     qr_img->create(packet_data);
     std::string  tmp (packet_data + positionAdvance);
     tmp.resize(38);
-    oled->create(tmp.c_str());  
+    #ifdef MRF24_RECEIVER_ENABLE
+        oled->create(tmp.c_str());  
+    #endif
     auto qr = std::make_unique<QR::QrOled_t>();
     std::string_view packet_data2 = "ljwekjnwldnlwwnx";
     std::vector<int> infoQrTmp; 
