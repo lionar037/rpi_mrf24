@@ -22,16 +22,16 @@ namespace GPIO{
     // FILE OPERATION
     int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata)
     {
-        int fd;
-
-        fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
+        //@params : verifica que exista el pin . Si no existe ,retorna -1 .
+        const int fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
         printf("fname.data() : %s\n",fname.data());
-         DBG_GPIO_PRINT(9);
+         //DBG_GPIO_PRINT(9);
         if (fd < 0)
         {
             printf("Could not open file %s...%d\r\n", fname.data(), fd);
+            return -1;
         }
-         DBG_GPIO_PRINT(10);
+         //DBG_GPIO_PRINT(10);
         write(fd, wdata.data(), strlen(wdata.data()));
         
         close(fd);
@@ -58,7 +58,7 @@ namespace GPIO{
     {
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
-          std::cout<<"gpio_export\n";
+          //std::cout<<"gpio_export\n";
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_EXPORT_FN, gpio_str);
     }
 
@@ -67,7 +67,7 @@ namespace GPIO{
     {
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
-        std::cout<<"dbg gpio_unexport "<< gpio_num <<"\n";
+        //std::cout<<"dbg gpio_unexport "<< gpio_num <<"\n";
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, gpio_str);
     }
 
@@ -76,7 +76,7 @@ namespace GPIO{
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
-        std::cout<<"gpio_set_direction\n";
+        //std::cout<<"gpio_set_direction\n";
         return file_open_and_write_value(path_str, dir.data());
     }
 
@@ -85,8 +85,8 @@ namespace GPIO{
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
-        std::cout<<"gpio_set_value\n";
-         DBG_GPIO_PRINT(8);
+        //std::cout<<"gpio_set_value\n";
+        // DBG_GPIO_PRINT(8);
         return file_open_and_write_value(path_str, value.data());
     }
 
@@ -95,7 +95,7 @@ namespace GPIO{
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
-        std::cout<<"gpio_set_edge\n";
+        //std::cout<<"gpio_set_edge\n";
         return file_open_and_write_value(path_str, edge.data());
     }
 
@@ -105,7 +105,7 @@ namespace GPIO{
         char fname[64];
         sprintf(fname, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         fd = open(fname, O_RDONLY | O_NONBLOCK);
-        printf("name : %s\n",fname);
+        //printf("name : %s\n",fname);
         if (fd < 0)
         {
             printf("Could not open file %s... %d\r\n", fname, fd);
@@ -142,26 +142,27 @@ namespace GPIO{
 
     const bool Gpio::app(bool& flag) 
     {
-        const unsigned int gpio_out = OUT_INTERRUPT;
+        const int gpio_out = OUT_INTERRUPT;//originalmente es unsigned 
+        const int gpio_in = IN_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
-        const int gpio_in = IN_INTERRUPT;
+        
       //  int gpio_in_fd;
         int res;
         int looper = 0;
         char *buf[64];
 
-    // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
-    // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 {
-    DBG_GPIO_PRINT(1);
-        settings(gpio_in , DIR_IN  ,fileGpio);
-        settings(gpio_out ,DIR_OUT ,fileGpio);
-DBG_GPIO_PRINT(2);
-        gpio_set_edge(gpio_in,EDGE_FALLING);
+//    DBG_GPIO_PRINT(1);
+
+    gpio_set_direction(gpio_out,DIR_OUT);
+    gpio_set_direction(gpio_in,DIR_IN);
+
+//DBG_GPIO_PRINT(2);
         gpio_set_value(gpio_out,VALUE_HIGH);
-        
-DBG_GPIO_PRINT(3);
+        gpio_set_edge(gpio_in,EDGE_FALLING);
+          
+//DBG_GPIO_PRINT(3);
         const int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
         m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
@@ -197,14 +198,14 @@ DBG_GPIO_PRINT(3);
             std::this_thread::sleep_for(std::chrono::milliseconds(50));   
         }
         else{
-            std::cout<<"else\n";
+            //std::cout<<"else\n";
             gpio_set_value(gpio_out,VALUE_HIGH);
             //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
         
-        DBG_GPIO_PRINT(4);
+        //DBG_GPIO_PRINT(4);
         Clear();
-        DBG_GPIO_PRINT(5);
+        //DBG_GPIO_PRINT(5);
         
     }
         return false;
@@ -214,17 +215,16 @@ DBG_GPIO_PRINT(3);
     {
 
         close(m_gpio_in_fd);
-        DBG_GPIO_PRINT(6);
+        //DBG_GPIO_PRINT(6);
         gpio_set_value(m_gpio_out,VALUE_LOW);
-        DBG_GPIO_PRINT(7);
+        //DBG_GPIO_PRINT(7);
         gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
     }
 
     Gpio::~Gpio(){
             
-            Clear();
-            
+            Clear();            
             
         #ifdef DBG
             std::cout<<"~Gpio()\n";
