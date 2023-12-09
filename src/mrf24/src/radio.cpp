@@ -182,6 +182,7 @@ void handle_rx() {
   
     std::string  tmp (packet_data+15);
     tmp.resize(38);
+    
     oled->create(tmp.c_str());  
 
      auto qr = std::make_unique<QR::QrOled_t>();

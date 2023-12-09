@@ -12,13 +12,22 @@ namespace OLED{
 
 SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object 
         //bool Oled_t::create(const char* tmp)
-        bool Oled_t::create(const std::string_view& tmp)
+
+        bool Oled_t::create(const std::string_view& textOled)
         {
+        static bool flag = true;
+        static std::string textOledTmp="@";
+if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
+else{flag=true;}
+
+        if(flag)
+        {
+                flag=false;
                 static int count { 0 };
-            // Define a buffer to cover whole screen 
-            uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
-            myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
-            myOLED.OLEDclearBuffer();  
+                // Define a buffer to cover whole screen 
+                uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
+                myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
+                myOLED.OLEDclearBuffer();  
             	myOLED.setTextSize(1);
                         myOLED.setFontNum(OLEDFontType_Wide);
                         myOLED.setTextColor(WHITE);
@@ -27,11 +36,17 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
                         myOLED.print(tmp.data());
                         myOLED.setFontNum(OLEDFontType_Default);
                         myOLED.setCursor(128-24, 64-9);
+
+                        textOledTmp=textOled;
+        }
                         myOLED.print(reinterpret_cast<int>(count));
                         myOLED.OLEDupdate();
                         count++;
             return true;
         }
+
+
+
 
         bool Oled_t::init(){
                     if(!bcm2835_init())
@@ -75,8 +90,8 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
         void Oled_t::Start()
         {
                 static int count { 0 };
-            // Define a buffer to cover whole screen 
-            uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
+                // Define a buffer to cover whole screen 
+                static uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
                         myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
                 
                         myOLED.OLEDclearBuffer();  
