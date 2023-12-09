@@ -116,16 +116,13 @@ namespace GPIO{
 
 
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileTmp){
-        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";        
-        
-        
-        std::cout<< "filePathGpio : " <<filePathGpio.c_str()<<"\n";
+        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";                                
         
         fileTmp.open(filePathGpio.c_str());
         
         if(!fileTmp){
             const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
-            std::cout<< " DBG fNameResult :  " <<fNameResult<<"\n";
+            
             const int result_output = std::system(fNameResult.c_str());
             if (result_output == 0) {
                 #ifdef DBG_GPIO
