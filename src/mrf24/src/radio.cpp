@@ -188,11 +188,11 @@ void handle_rx() {
 
     auto qr = std::make_unique<QR::QrOled_t>();
 
-    std::string_view packetDataTmp = "ljwekjnwldnlwwnx";
-    std::vector<int> bufferTmp; 
-    qr->create_qr(packetDataTmp.data(), bufferTmp);
+    std::string_view packet_data2 = "ljwekjnwldnlwwnx";
+    std::vector<int> bf_tmp; 
+    qr->create_qr(packet_data2.data(), bf_tmp);
 
-    std::cout << "Size of bf_tmp: " << bufferTmp.size() << std::endl;
+    std::cout << "Size of bf_tmp: " << bf_tmp.size() << std::endl;
     
     fs->create(packet_data);
 
