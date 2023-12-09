@@ -25,6 +25,7 @@ namespace GPIO{
         int fd;
 
         fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
+        printf("fname.data() : %s\n",fname.data());
         if (fd < 0)
         {
             printf("Could not open file %s...%d\r\n", fname.data(), fd);
