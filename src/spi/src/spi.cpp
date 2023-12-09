@@ -23,8 +23,16 @@ namespace SPI {
       spi->delay_usecs = 1;
       spi->len = 3;
 
-           tx_buffer[0] = tx_buffer[1] = tx_buffer[2] = tx_buffer[3] = 0x00;
-           rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0xff;
+          //  tx_buffer[0] = tx_buffer[1] = tx_buffer[2] = tx_buffer[3] = 0x00;
+          //  rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0xff;
+          tx_buffer[0] = 0x00;
+          tx_buffer[1] = 0x00;
+          tx_buffer[2] = 0x00;
+          tx_buffer[3] = 0x00;
+          rx_buffer[0] = 0xFF;
+          rx_buffer[1] = 0xFF;
+          rx_buffer[2] = 0xFF;
+          rx_buffer[3] = 0xff;
     return;
   }
 
