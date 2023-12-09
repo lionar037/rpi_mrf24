@@ -27,7 +27,7 @@ namespace FILESYSTEM{
     {
         File_t();
         ~File_t();
-        unsigned char* loadFile(const char*);
+        unsigned char* loadFile(const std::string_view);
         bool create(const std::string_view&);
 
         const std::string  tyme();

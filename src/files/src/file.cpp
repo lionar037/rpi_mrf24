@@ -28,12 +28,13 @@ namespace FILESYSTEM{
     }
 
 
-    unsigned char* File_t::loadFile(const char* filename){
+    unsigned char* File_t::loadFile(const std::string_view filename){
+        //unsigned char* File_t::loadFile(const char* filename){
 
-            std::ifstream file(filename, std::ios::binary);
+            std::ifstream file(filename.data(), std::ios::binary);
 
     if (!file.is_open()) {
-        std::cerr << "Error al abrir el archivo: " << filename << std::endl;
+        std::cerr << "Error al abrir el archivo: " << filename.data() << std::endl;
         return nullptr;
     }
 
