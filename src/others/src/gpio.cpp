@@ -19,35 +19,35 @@ extern "C"{
 namespace GPIO{
     /*      HELPER FUNCTIONS       */
     // FILE OPERATION
-    // int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata)
-    // {
-        // int fd;
-// 
-        // fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
-        // if (fd < 0)
-        // {
-            // printf("Could not open file %s...%d\r\n", fname.data(), fd);
-        // }
-        // write(fd, wdata.data(), strlen(wdata.data()));
-        // 
-        // close(fd);
-// 
-        // return 0;
-    // }
+    int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata)
+    {
+        int fd;
 
-
-     int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata) {
-        std::ofstream file(fname.data(), std::ios::out | std::ios::binary);
-        if (!file.is_open()) {
-            std::cerr << "Error: Could not open file " << fname.data() << std::endl;
-            return -1;
+        fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
+        if (fd < 0)
+        {
+            printf("Could not open file %s...%d\r\n", fname.data(), fd);
         }
-
-        file.write(wdata.data(), static_cast<std::streamsize>(wdata.length()));
-        file.close();
+        write(fd, wdata.data(), strlen(wdata.data()));
+        
+        close(fd);
 
         return 0;
     }
+
+
+    //  int Gpio::file_open_and_write_value(const std::string_view fname, const std::string_view wdata) {
+        // std::ofstream file(fname.data(), std::ios::out | std::ios::binary);
+        // if (!file.is_open()) {
+            // std::cerr << "Error: Could not open file " << fname.data() << std::endl;
+            // return -1;
+        // }
+// 
+        // file.write(wdata.data(), static_cast<std::streamsize>(wdata.length()));
+        // file.close();
+// 
+        // return 0;
+    // }
 
     // GPIO EXPORT
     int Gpio::gpio_export(const int gpio_num)
