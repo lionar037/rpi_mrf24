@@ -107,7 +107,7 @@ namespace GPIO{
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileGpioTmp){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
         //std::ifstream fileGpio(filePathGpio);
-        fileGpioTmp(filePathGpio.data());
+        fileGpioTmp(filePathGpio.c_str());
         if(!fileGpioTmp){
             const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
             const int result_output = std::system(fNameResult.c_str());
