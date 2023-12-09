@@ -63,6 +63,7 @@ namespace GPIO{
     {
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
+        std::cout<<"dbggpio_unexport\n";
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, gpio_str);
     }
 
@@ -71,6 +72,7 @@ namespace GPIO{
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
+        std::cout<<"gpio_set_direction\n";
         return file_open_and_write_value(path_str, dir.data());
     }
 
@@ -79,6 +81,7 @@ namespace GPIO{
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
+        std::cout<<"gpio_set_value\n";
         return file_open_and_write_value(path_str, value.data());
     }
 
@@ -87,6 +90,7 @@ namespace GPIO{
     {
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
+        std::cout<<"gpio_set_edge\n";
         return file_open_and_write_value(path_str, edge.data());
     }
 
