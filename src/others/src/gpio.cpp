@@ -171,9 +171,9 @@ namespace GPIO{
             }
         }
   
-       const std::string filePathGpio1 = "/sys/class/gpio/gpio12/direction";
-        std::ifstream fileGpio1(filePathGpio1);
-        if(!fileGpio1){
+       const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
+        std::ifstream fileGpio12(filePathGpio12);
+        if(!fileGpio12){
             const int result_output = std::system("echo 12 > /sys/class/gpio/export");
             if (result_output == 0) {
                 #ifdef DBG_GPIO
