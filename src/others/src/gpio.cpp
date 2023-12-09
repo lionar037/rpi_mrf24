@@ -59,7 +59,7 @@ namespace GPIO{
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
           //std::cout<<"gpio_export\n";
-        return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_EXPORT_FN, gpio_str);
+        return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_EXPORT_FN,std::to_string(gpio_num) /*gpio_str*/);
     }
 
     // GPIO UNEXPORT
@@ -68,7 +68,7 @@ namespace GPIO{
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
         //std::cout<<"dbg gpio_unexport "<< gpio_num <<"\n";
-        return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, gpio_str);
+        return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, std::to_string(gpio_num) /*gpio_str*/);
     }
 
     // GPIO DIRECTION
@@ -161,7 +161,7 @@ settings(gpio_in ,  DIR_IN ,fileGpioInput);
 settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
-{
+
         // 
     //    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
         // std::ifstream fileGpio23(filePathGpio23);
@@ -197,9 +197,6 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
     // 
     
     
-
-}
-
      
             // gpio_unexport(gpio_out);
             // gpio_unexport(gpio_in);
@@ -207,7 +204,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
             // gpio_export(gpio_in);
 
 
-{
+//{
 //    DBG_GPIO_PRINT(1);
 
     // gpio_set_direction(gpio_out,DIR_OUT);
@@ -262,7 +259,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
         Clear();
         //DBG_GPIO_PRINT(5);
         
-    }
+    //}
         return false;
     }
 
