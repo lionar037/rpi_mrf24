@@ -17,7 +17,7 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
         bool Oled_t::create(const std::string_view& textOled)
         {
         static bool flag = true;
-        static int count { 0 };
+        static int Step { 0 };
         static std::string textOledTmp="@";
         static uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
 // if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
@@ -42,9 +42,9 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                         
         }
                         myOLED.setCursor(128-24, 64-9);
-                        myOLED.print(reinterpret_cast<const int*>(count));
+                        myOLED.print(reinterpret_cast<const int*>(Step));
                         myOLED.OLEDupdate();
-                        count++;
+                        Step++;
             return true;
         }
 
