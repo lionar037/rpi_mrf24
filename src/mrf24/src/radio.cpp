@@ -23,8 +23,8 @@ Radio_t::Radio_t()
     #endif
 #else
 :   status          (false)
+,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
-//,   qr              { std::make_unique<QR::Qr_t>() }
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
 {
     

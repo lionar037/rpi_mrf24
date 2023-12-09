@@ -49,13 +49,13 @@ namespace MRF24J40{
             bool                status{false};
             bool                flag {false};
             std::unique_ptr<GPIO::Gpio> gpio{};                                   
-            //std::unique_ptr<WORK::Work_t> qr{};
+            
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<DATABASE::Database_t>   database{};
             //std::unique_ptr<WORK::Work_t>           fs{};
             struct DATA::packet_rx                  buffer_receiver{};
         #else    
-            
+            std::unique_ptr<WORK::Work_t> qr{};
             struct DATA::packet_tx                  buffer_transmiter{};
         #endif                                     
     };
