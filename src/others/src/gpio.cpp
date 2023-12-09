@@ -104,8 +104,8 @@ namespace GPIO{
 
 
 
-    bool Gpio::settings(const int pin , const std::string_view str_v){
-           const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
+    bool Gpio::settings(const int pin , const std::string_view str_v /* , struct pollfd& fdpoll */){
+        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
         std::ifstream fileGpio(filePathGpio);
         if(!fileGpio){
             const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
@@ -148,9 +148,10 @@ namespace GPIO{
         gpio_set_edge(gpio_in,EDGE_FALLING);
 
         const int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
-
+        m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
-        if(state==true){
+        if(state==true)
+        {
 
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
@@ -182,17 +183,21 @@ namespace GPIO{
         }
         else{
             gpio_set_value(gpio_out,VALUE_HIGH);
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));            
+            //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
-        close(gpio_in_fd);
-        gpio_set_value(gpio_out,VALUE_LOW);
-        gpio_unexport(gpio_out);
-        gpio_unexport(gpio_in);
+        
+        
+        
+        
     }
         return false;
     }
 
     Gpio::~Gpio(){
+            close(m_gpio_in_fd);
+            gpio_set_value(m_gpio_out,VALUE_LOW);
+            gpio_unexport(m_gpio_out);
+            gpio_unexport(m_gpio_in);
         #ifdef DBG
             std::cout<<"~Gpio()\n";
         #endif       

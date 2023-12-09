@@ -30,20 +30,7 @@ namespace SPI{
     const uint8_t Transfer2bytes(const uint16_t address);
     const uint8_t Transfer3bytes(const uint32_t address);
     void printDBGSpi();
-    void msj_fail();
-    
-    //void read_write();
-    //void read_write(size_t,uint32_t);
-   
-    //uint8_t read(uint16_t);
-    //void write(uint16_t);
-  
-    //void read_write_dbg();
-    //uint16_t transfer(uint16_t);
- 
-    //void setBitOrder(const uint16_t);
-    //void setDataMode(const uint16_t);
-    //void begin();
+    void msj_fail();  
 
   private:
 

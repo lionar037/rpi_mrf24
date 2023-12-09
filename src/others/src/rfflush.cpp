@@ -2,7 +2,7 @@
 #include <thread>
 #include <mutex>
 #include <unistd.h>
-#include <others/src/fflush.h>
+#include <others/src/rfflush.h>
 
 namespace FFLUSH{
 

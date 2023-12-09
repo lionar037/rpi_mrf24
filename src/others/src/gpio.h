@@ -24,8 +24,7 @@
 
 
 namespace GPIO{
-struct Gpio{
-   // Gpio();
+struct Gpio{   
       Gpio(bool& st)
       : state   { st }
       {}
@@ -43,5 +42,8 @@ struct Gpio{
         private :
             static inline int static_file_open_and_write_value{0};
             bool state{false};
+            int m_gpio_in_fd{};
+            const int m_gpio_out{OUT_INTERRUPT};
+            const int m_gpio_in{IN_INTERRUPT};
     };
 }
