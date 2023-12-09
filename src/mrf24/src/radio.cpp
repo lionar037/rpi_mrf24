@@ -192,7 +192,7 @@ void handle_rx() {
     std::vector<int> infoQrTmp; 
     qr->create_qr(packet_data2, infoQrTmp);
 
-    std::cout << "Size of bf_tmp: " << infoQrTmp.size() << std::endl;
+    std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;
     
     fs->create(packet_data);
 
