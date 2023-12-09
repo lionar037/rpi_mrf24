@@ -92,12 +92,13 @@ namespace GPIO{
     int Gpio::gpio_get_fd_to_value(const int gpio_num)
     {
         int fd;
-        char fname[40];
-        sprintf(fname, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
+        char fname[64];
+        sprintf(fname, "%s/gpio%s%s", SYSFS_GPIO_PATH, std::to_string(gpio_num), SYSFS_GPIO_VALUE);
         fd = open(fname, O_RDONLY | O_NONBLOCK);
+        printf("name : %s\n",fname);
         if (fd < 0)
         {
-            printf("Could not open file %s...%d\r\n", fname, fd);
+            printf("Could not open file %s... %d\r\n", fname, fd);
         }
         return fd;
     }

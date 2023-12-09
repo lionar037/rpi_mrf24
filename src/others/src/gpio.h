@@ -1,8 +1,8 @@
 #pragma once
 #include <fstream>
 
-#define IN_INTERRUPT    23
-#define OUT_INTERRUPT   12    //GPIO LED
+#define IN_INTERRUPT    23      //GPIO INTERRUPT 
+#define OUT_INTERRUPT   12    //GPIO LED DBG
 #define READING_STEPS   2     //10 originalmente
 
 #define SYSFS_GPIO_PATH             "/sys/class/gpio"
