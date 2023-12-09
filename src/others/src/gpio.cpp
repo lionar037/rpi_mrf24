@@ -24,7 +24,7 @@ namespace GPIO{
     {
         //@params : verifica que exista el pin . Si no existe ,retorna -1 .
         const int fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
-        printf("fname.data() : %s\n",fname.data());
+        //printf("fname.data() : %s\n",fname.data());
          //DBG_GPIO_PRINT(9);
         if (fd < 0)
         {
@@ -195,14 +195,14 @@ namespace GPIO{
             ++looper;
             fflush(stdout);
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));   
+            //std::this_thread::sleep_for(std::chrono::milliseconds(50));   
         }
         else{
             //std::cout<<"else\n";
             gpio_set_value(gpio_out,VALUE_HIGH);
-            //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
-        
+                    gpio_set_value(gpio_out,VALUE_LOW);
         //DBG_GPIO_PRINT(4);
         Clear();
         //DBG_GPIO_PRINT(5);
@@ -218,7 +218,7 @@ namespace GPIO{
         //DBG_GPIO_PRINT(6);
         gpio_set_value(m_gpio_out,VALUE_LOW);
         //DBG_GPIO_PRINT(7);
-        gpio_unexport(m_gpio_out);
+        //gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
     }
 
