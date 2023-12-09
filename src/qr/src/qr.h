@@ -44,9 +44,7 @@ namespace QR{
             template <typename T>
             void create_qr (std::string_view& str_view ,  std::vector<T>& variable) {
                 return;
-            }  
-            //private:             
-//            std::unique_ptr<QR_OLED> QrOled;            
+            }          
     };       
 
 

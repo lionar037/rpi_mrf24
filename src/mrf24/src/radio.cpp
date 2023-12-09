@@ -66,7 +66,7 @@ Radio_t::Radio_t()
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
     flag=true;
-    Run();
+   // Run();
 
 }
 
@@ -176,7 +176,7 @@ void handle_rx() {
     auto fs{std::make_unique<FILESYSTEM::File_t> ()};
     auto qr_img{std::make_unique<QR::Qr_img_t>()};
     auto qr_tmp{std::make_unique<QR::QrOled_t>()};
-    static auto oled{std::make_unique<OLED::Oled_t>()};
+    static auto oled{std::make_unique<OLED::Oled_t>()};//inicializar una sola vez 
 
     const auto* packet_data = reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data);
     qr_img->create(packet_data);
@@ -189,10 +189,10 @@ void handle_rx() {
     auto qr = std::make_unique<QR::QrOled_t>();
 
     std::string_view packet_data2 = "ljwekjnwldnlwwnx";
-    std::vector<int> bf_tmp; 
-    qr->create_qr(packet_data2, bf_tmp);
+    std::vector<int> infoQrTmp; 
+    qr->create_qr(packet_data2, infoQrTmp);
 
-    std::cout << "Size of bf_tmp: " << bf_tmp.size() << std::endl;
+    std::cout << "Size of bf_tmp: " << infoQrTmp.size() << std::endl;
     
     fs->create(packet_data);
 
