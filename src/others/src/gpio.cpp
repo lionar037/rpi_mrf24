@@ -116,13 +116,13 @@ namespace GPIO{
 
 
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileTmp){
-        //const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";        
-        const std::string filePathGpio = "/sys/class/gpio/gpio12/direction";        
-static int count{25};
+        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";        
+        //const std::string filePathGpio = "/sys/class/gpio/gpio12/direction";        
+        static int count{25};
         std::cout<< "filePathGpio : " <<filePathGpio.c_str()<<"\n";
-        fileTmp.open("/sys/class/gpio/gpio13/direction");
         //fileTmp.open(filePathGpio.c_str());
-DBG_GPIO_PRINT(count++);
+        fileTmp.open(filePathGpio.c_str());
+        DBG_GPIO_PRINT(count++);
         if(!fileTmp){
             const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
             std::cout<< " DBG fNameResult :  " <<fNameResult<<"\n";
@@ -158,7 +158,7 @@ DBG_GPIO_PRINT(count++);
         int looper = 0;
         char *buf[64];
 
-settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
+//settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
 settings(gpio_in ,  DIR_IN ,fileGpioInput);
@@ -182,22 +182,22 @@ settings(gpio_in ,  DIR_IN ,fileGpioInput);
             // }
         // }
 //   
-    //    const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
-        // std::ifstream fileGpio12(filePathGpio12);
-        // if(!fileGpio12){
-            // const int result_output = std::system("echo 12 > /sys/class/gpio/export");
-            // if (result_output == 0) {
-                // #ifdef DBG_GPIO
-                    // std::cout << "Pin GPIO 12 exported successfully." << std::endl;
-                // #endif
-            // } else {
-                // #ifdef DBG_GPIO
-                    // std::cerr << "Error unexporting GPIO 12." << std::endl;
-                //    return 0;//continua por que no es necesario el pin de salida
-                // #endif
-            // }
-        // }
-    // 
+       const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
+        std::ifstream fileGpio12(filePathGpio12);
+        if(!fileGpio12){
+            const int result_output = std::system("echo 12 > /sys/class/gpio/export");
+            if (result_output == 0) {
+                #ifdef DBG_GPIO
+                    std::cout << "Pin GPIO 12 exported successfully." << std::endl;
+                #endif
+            } else {
+                #ifdef DBG_GPIO
+                    std::cerr << "Error unexporting GPIO 12." << std::endl;
+                   return 0;//continua por que no es necesario el pin de salida
+                #endif
+            }
+        }
+    
     
     
      
