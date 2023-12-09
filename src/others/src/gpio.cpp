@@ -29,7 +29,7 @@ namespace GPIO{
         if (fd < 0)
         {
             printf("Could not open file %s...%d\r\n", fname.data(), fd);
-            return -1;
+            //return -1;
         }
          //DBG_GPIO_PRINT(10);
         write(fd, wdata.data(), strlen(wdata.data()));
