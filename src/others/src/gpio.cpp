@@ -120,7 +120,7 @@ namespace GPIO{
 
         std::cout<< " DBG filePathGpio :  " <<filePathGpio.c_str()<<"\n";
         fileTmp.open(filePathGpio.c_str());
-
+DBG_GPIO_PRINT(12);
         if(!fileTmp){
             const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
             std::cout<< " DBG fNameResult :  " <<fNameResult<<"\n";
@@ -136,8 +136,10 @@ namespace GPIO{
                 return false;
             }
         }
+        DBG_GPIO_PRINT(13);
         gpio_unexport(pin);        
-        gpio_export(pin);        
+        gpio_export(pin);      
+        DBG_GPIO_PRINT(14);  
         gpio_set_direction(pin,str_v.data());
         return true;
     }
