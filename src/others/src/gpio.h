@@ -23,7 +23,7 @@
 
 #define POLL_TIMEOUT        10*1000
 
-#define DBG_GPIO_PRINT(x) {std::cout<<"Step :"<<X<<"\n"}
+#define DBG_GPIO_PRINT(x) {std::cout<<"Step :"<<(X)<<"\n"}
 
 namespace GPIO{
 struct Gpio{   
