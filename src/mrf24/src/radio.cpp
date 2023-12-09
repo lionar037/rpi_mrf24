@@ -71,7 +71,7 @@ Radio_t::Radio_t()
 
 void Radio_t::Run(void){
     #ifdef MRF24_RECEIVER_ENABLE
-       // while(true)
+        while(true)
     #endif
     {
         gpio->app(flag);
@@ -182,7 +182,7 @@ void handle_rx() {
   
     std::string  tmp (packet_data+15);
     tmp.resize(38);
-    
+
     oled->create(tmp.c_str());  
 
      auto qr = std::make_unique<QR::QrOled_t>();
