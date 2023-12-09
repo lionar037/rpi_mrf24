@@ -143,8 +143,8 @@ namespace GPIO{
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 {
-        settings(gpio_out ,DIR_OUT ,fileGpio1);
-        settings(gpio_in , DIR_IN  ,fileGpio2);
+        settings(gpio_out ,DIR_OUT ,fileGpio);
+        settings(gpio_in , DIR_IN  ,fileGpio);
 
         gpio_set_value(gpio_out,VALUE_HIGH);
         gpio_set_edge(gpio_in,EDGE_FALLING);
