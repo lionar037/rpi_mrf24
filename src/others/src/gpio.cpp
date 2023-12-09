@@ -8,7 +8,7 @@ extern "C"{
     #include <poll.h>
 }
 #include <iostream>
-#include <fstream>
+
 #include <chrono>
 #include <thread>
 #include <string_view>
@@ -104,13 +104,13 @@ namespace GPIO{
 
 
 
-    bool Gpio::settings(const int pin , const std::string_view str_v /* , struct pollfd& fdpoll */){
+    bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileGpioTmp){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
         //std::ifstream fileGpio(filePathGpio);
-        fileGpio(filePathGpio);
-        if(!fileGpio){
-            const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
-            const int result_output = std::system(f.c_str());
+        fileGpioTmp(filePathGpio);
+        if(!fileGpioTmp){
+            const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
+            const int result_output = std::system(fNameResult.c_str());
             if (result_output == 0) {
                 #ifdef DBG_GPIO
                     std::cout << "Pin GPIO "+ std::to_string(pin) +" exported successfully." << std::endl;
@@ -142,8 +142,8 @@ namespace GPIO{
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
 {
-        settings(gpio_out ,DIR_OUT );
-        settings(gpio_in , DIR_IN);
+        settings(gpio_out ,DIR_OUT ,fileGpio1);
+        settings(gpio_in , DIR_IN  ,fileGpio2);
 
         gpio_set_value(gpio_out,VALUE_HIGH);
         gpio_set_edge(gpio_in,EDGE_FALLING);
