@@ -65,7 +65,8 @@ namespace GPIO{
     // GPIO UNEXPORT
     int Gpio::gpio_unexport(const int gpio_num)
     {
-        char gpio_str[4];
+        char gpio_str[6];
+        //    char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
         //std::cout<<"dbg gpio_unexport "<< gpio_num <<"\n";
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, std::to_string(gpio_num) /*gpio_str*/);
@@ -74,7 +75,7 @@ namespace GPIO{
     // GPIO DIRECTION
     int Gpio::gpio_set_direction(const int gpio_num, const std::string_view dir)
     {
-        char path_str[40];
+        char path_str[64];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_DIRECTION);
         //std::cout<<"gpio_set_direction\n";
         return file_open_and_write_value(path_str, dir.data());
@@ -83,7 +84,7 @@ namespace GPIO{
     // GPIO SET VALUE
     int Gpio::gpio_set_value(const int gpio_num, const std::string_view value)
     {
-        char path_str[40];
+        char path_str[64];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         //std::cout<<"gpio_set_value\n";
         // DBG_GPIO_PRINT(8);
@@ -93,7 +94,7 @@ namespace GPIO{
     // GPIO SET EDGE
     int Gpio::gpio_set_edge(const int gpio_num, const std::string_view edge)
     {
-        char path_str[40];
+        char path_str[64];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_EDGE);
         //std::cout<<"gpio_set_edge\n";
         return file_open_and_write_value(path_str, edge.data());
@@ -101,10 +102,10 @@ namespace GPIO{
 
     int Gpio::gpio_get_fd_to_value(const int gpio_num)
     {
-        int fd;
+        //int fd;
         char fname[64];
         sprintf(fname, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
-        fd = open(fname, O_RDONLY | O_NONBLOCK);
+        const int fd = open(fname, O_RDONLY | O_NONBLOCK);
         //printf("name : %s\n",fname);
         if (fd < 0)
         {
@@ -250,7 +251,7 @@ namespace GPIO{
         return false;
     }
 
-    void Gpio::Clear()
+    void Gpio::ClosedGpios()
     {
         if(fileGpioInput.is_open())fileGpioInput.close();
 
@@ -265,7 +266,7 @@ namespace GPIO{
 
     Gpio::~Gpio(){
             
-            Clear();            
+            ClosedGpios();            
             
         #ifdef DBG
             std::cout<<"~Gpio()\n";

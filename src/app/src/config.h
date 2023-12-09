@@ -55,7 +55,7 @@
 
 //#define DBG//DBG_GPIO
 //#define DBG_BUFFER
-#define DBG_GPIO //DBG_GPIO
+//#define DBG_GPIO //DBG_GPIO
 //#define DBG_FILES //imprime Debugger en files
 //#define DBG_DISPLAY_OLED
 
