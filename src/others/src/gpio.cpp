@@ -117,12 +117,12 @@ namespace GPIO{
 
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileTmp){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";        
-        //const std::string filePathGpio = "/sys/class/gpio/gpio12/direction";        
-        static int count{25};
+        
+        
         std::cout<< "filePathGpio : " <<filePathGpio.c_str()<<"\n";
-        //fileTmp.open(filePathGpio.c_str());
+        
         fileTmp.open(filePathGpio.c_str());
-        DBG_GPIO_PRINT(count++);
+        
         if(!fileTmp){
             const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
             std::cout<< " DBG fNameResult :  " <<fNameResult<<"\n";
@@ -137,11 +137,9 @@ namespace GPIO{
                 #endif
                 return false;
             }
-        }
-        DBG_GPIO_PRINT(13);
+        }       
         gpio_unexport(pin);        
-        gpio_export(pin);      
-        DBG_GPIO_PRINT(14);  
+        gpio_export(pin);             
         gpio_set_direction(pin,str_v.data());
         return true;
     }
@@ -158,11 +156,8 @@ namespace GPIO{
         int looper = 0;
         char *buf[64];
 
-
-
-settings(gpio_in ,  DIR_IN ,fileGpioInput);
-
-settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
+        settings( gpio_in  , DIR_IN  ,fileGpioInput);
+        settings( gpio_out , DIR_OUT ,fileGpioOutput);
 
 
         // 
@@ -196,10 +191,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
                 //    return 0;//continua por que no es necesario el pin de salida
                 // #endif
             // }
-        // }
-    
-    
-    
+        // }        
      
             // gpio_unexport(gpio_out);
             // gpio_unexport(gpio_in);
@@ -208,16 +200,13 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
 //{
-//   DBG_GPIO_PRINT(1);
 
     // gpio_set_direction(gpio_out,DIR_OUT);
     // gpio_set_direction(gpio_in,DIR_IN);
 
-DBG_GPIO_PRINT(2);
         gpio_set_value(gpio_out,VALUE_HIGH);
         gpio_set_edge(gpio_in,EDGE_FALLING);
           
-DBG_GPIO_PRINT(3);
         int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
         m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
@@ -269,10 +258,10 @@ DBG_GPIO_PRINT(3);
         if(fileGpioInput.is_open())fileGpioInput.close();
 
         close(m_gpio_in_fd);
-        DBG_GPIO_PRINT(6);
+        
         gpio_set_value(m_gpio_out,VALUE_LOW);
-        //DBG_GPIO_PRINT(7);
-        //gpio_unexport(m_gpio_out);
+        
+        gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
         if(fileGpioOutput.is_open())fileGpioOutput.close();
     }
