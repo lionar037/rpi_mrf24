@@ -33,7 +33,7 @@ else{flag=true;}
                         myOLED.setTextColor(WHITE);
                         myOLED.setCursor(0, 0);
 
-                        myOLED.print(tmp.data());
+                        myOLED.print(textOled.data());
                         myOLED.setFontNum(OLEDFontType_Default);
                         myOLED.setCursor(128-24, 64-9);
 
