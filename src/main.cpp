@@ -15,7 +15,7 @@ int main(){
         mrf->Run();
     }
     catch(...){
-        std::errc<<"\nerror :(\n";
+        std::cerr<<"\nerror :(\n";
     }
     return 0 ;
 }
