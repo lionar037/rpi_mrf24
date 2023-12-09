@@ -71,7 +71,7 @@ Radio_t::Radio_t()
 
 void Radio_t::Run(void){
     #ifdef MRF24_RECEIVER_ENABLE
-        while(true)
+       // while(true)
     #endif
     {
         gpio->app(flag);
