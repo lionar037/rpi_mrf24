@@ -205,16 +205,16 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
 //{
-//    DBG_GPIO_PRINT(1);
+//   DBG_GPIO_PRINT(1);
 
     // gpio_set_direction(gpio_out,DIR_OUT);
     // gpio_set_direction(gpio_in,DIR_IN);
 
-//DBG_GPIO_PRINT(2);
+DBG_GPIO_PRINT(2);
         gpio_set_value(gpio_out,VALUE_HIGH);
         gpio_set_edge(gpio_in,EDGE_FALLING);
           
-//DBG_GPIO_PRINT(3);
+DBG_GPIO_PRINT(3);
         int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
         m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
@@ -248,14 +248,14 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
             //std::this_thread::sleep_for(std::chrono::milliseconds(50));   
         }
         else{
-            //std::cout<<"else\n";
+            std::cout<<"else\n";
             gpio_set_value(gpio_out,VALUE_HIGH);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
                     gpio_set_value(gpio_out,VALUE_LOW);
-        //DBG_GPIO_PRINT(4);
+        DBG_GPIO_PRINT(4);
         Clear();
-        //DBG_GPIO_PRINT(5);
+        DBG_GPIO_PRINT(5);
         
     //}
         return false;
@@ -266,7 +266,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
         if(fileGpioInput.is_open())fileGpioInput.close();
 
         close(m_gpio_in_fd);
-        //DBG_GPIO_PRINT(6);
+        DBG_GPIO_PRINT(6);
         gpio_set_value(m_gpio_out,VALUE_LOW);
         //DBG_GPIO_PRINT(7);
         //gpio_unexport(m_gpio_out);
