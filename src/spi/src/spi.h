@@ -47,8 +47,8 @@ namespace SPI{
 
   private:
 
-    uint8_t tx_buffer[4]{};
-    uint8_t rx_buffer[4]{};
+    uint8_t tx_buffer[4]{nullptr};
+    uint8_t rx_buffer[4]{nullptr};
 
     const uint32_t len_data { 32 };
     const uint32_t spi_speed { 0 };
