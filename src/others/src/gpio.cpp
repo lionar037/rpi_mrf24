@@ -156,10 +156,10 @@ DBG_GPIO_PRINT(12);
         int looper = 0;
         char *buf[64];
 
+settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
 settings(gpio_in ,  DIR_IN ,fileGpioInput);
-settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
 
