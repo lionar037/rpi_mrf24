@@ -209,9 +209,11 @@ DBG_GPIO_PRINT(3);
 
     void Gpio::Clear()
     {
+        
         close(m_gpio_in_fd);
-        gpio_set_value(m_gpio_out,VALUE_LOW);
         DBG_GPIO_PRINT(6);
+        gpio_set_value(m_gpio_out,VALUE_LOW);
+        DBG_GPIO_PRINT(7);
         gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
     }
