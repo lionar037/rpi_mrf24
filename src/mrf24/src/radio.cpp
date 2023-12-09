@@ -66,6 +66,7 @@ Radio_t::Radio_t()
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
     flag=true;
+    Run();
 
 }
 

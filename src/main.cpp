@@ -18,7 +18,7 @@ int main(){
 
         // for (int i = 0; i < ThreadCant; ++i) {
             // threadVect.emplace_back([&mrf]() {
-           mrf->Run();
+           //mrf->Run();
             // });
         //}
 
