@@ -40,7 +40,7 @@ namespace MRF24J40{
             void                Init(bool&);
             void                interrupt_routine();
             void                Run(void);
-            void                update();  
+            friend void                update();  
 
         private :
             unsigned long       last_time{0};
