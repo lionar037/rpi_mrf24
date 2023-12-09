@@ -11,7 +11,7 @@ author : lion
 int main(){
     auto mrf { std::make_unique<MRF24J40::Radio_t>()};
     std::vector<std::thread> threadVect;
-    const int ThreadCant{3};
+    const int ThreadCant{4};
 system("clear"); 
 
     try    {

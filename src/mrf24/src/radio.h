@@ -35,28 +35,27 @@ namespace MRF24J40{
    struct Radio_t
    {
         public:
-            explicit Radio_t();
-            ~Radio_t();
+            explicit            Radio_t();
+                                ~Radio_t();
+            void                Init(bool&);
+            void                interrupt_routine();
+            void                Run(void);
+            void                update();  
 
-            void Init(bool&);
-            void interrupt_routine();
-            void Run(void);
         private :
-            unsigned long last_time{0};
-            unsigned long tx_interval{1000}; 
-            bool status{false};
-            bool flag {false};
-            std::unique_ptr<GPIO::Gpio>gpio{};                         
+            unsigned long       last_time{0};
+            unsigned long       tx_interval{1000}; 
+            bool                status{false};
+            bool                flag {false};
+            std::unique_ptr<GPIO::Gpio>gpio{};                                   
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
-            std::unique_ptr<DATABASE::Database_t>database{};
-            std::unique_ptr<WORK::Work_t>fs{};
-            struct DATA::packet_rx  buffer_receiver{};
-            //static std::unique_ptr<WORK::Work_t> oled{};
+            std::unique_ptr<DATABASE::Database_t>   database{};
+            std::unique_ptr<WORK::Work_t>           fs{};
+            struct DATA::packet_rx                  buffer_receiver{};
         #else    
-            std::unique_ptr<WORK::Work_t>qr{};
-            struct DATA::packet_tx  buffer_transmiter{};
-        #endif
-                                     
+            std::unique_ptr<WORK::Work_t>           qr{};
+            struct DATA::packet_tx                  buffer_transmiter{};
+        #endif                                     
     };
 
             void handle_tx();

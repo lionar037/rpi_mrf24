@@ -18,8 +18,6 @@ Radio_t::Radio_t()
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
 ,   fs              { std::make_unique<FILESYSTEM::File_t>() }
-//,   oled            { std::make_unique<OLED::Oled_t>() }
-//, buffer_receiver { std::make_unique<DATA::BUFFER>() }
     #ifdef ENABLE_DATABASE
 ,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
@@ -64,6 +62,7 @@ Radio_t::Radio_t()
     //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
     //last_time = millis();
 
+    //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
     flag=true;
@@ -131,6 +130,30 @@ void Radio_t::interrupt_routine() {
     mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
 }
 
+void update(std::string_view str_view){
+    const int positionAdvance{15};
+    auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
+    auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
+    auto            qr_tmp      { std::make_unique<QR::QrOled_t>() };
+    static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+    const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
+    
+    qr_img->create(packet_data);
+    std::string  tmp (packet_data + positionAdvance);
+    tmp.resize(38);
+    oled->create(tmp.c_str());  
+    auto qr = std::make_unique<QR::QrOled_t>();
+    std::string_view packet_data2 = "ljwekjnwldnlwwnx";
+    std::vector<int> infoQrTmp; 
+    qr->create_qr(packet_data2, infoQrTmp);
+    std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
+    fs->create(packet_data);
+    std::cout<<"\r\n";
+
+return ;
+}
+
+
 void handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
@@ -172,31 +195,9 @@ void handle_rx() {
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
     std::cout<<"\n";
-    auto fs{std::make_unique<FILESYSTEM::File_t> ()};
-    auto qr_img{std::make_unique<QR::Qr_img_t>()};
-    auto qr_tmp{std::make_unique<QR::QrOled_t>()};
-    static auto oled{std::make_unique<OLED::Oled_t>()};//inicializar una sola vez 
 
-    const auto* packet_data = reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data);
-    qr_img->create(packet_data);
-  
-    std::string  tmp (packet_data+15);
-    tmp.resize(38);
+    update(mrf24j40_spi.get_rxinfo()->rx_data);
 
-    oled->create(tmp.c_str());  
-
-    auto qr = std::make_unique<QR::QrOled_t>();
-
-    std::string_view packet_data2 = "ljwekjnwldnlwwnx";
-    std::vector<int> infoQrTmp; 
-    qr->create_qr(packet_data2, infoQrTmp);
-
-    std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;
-    
-    fs->create(packet_data);
-
-
-std::cout<<"\r\n";
     #ifdef DBG_PRINT_GET_INFO 
       
     if(ADDRESS_LONG_SLAVE == add){
