@@ -26,10 +26,12 @@ namespace GPIO{
 
         fd = open(fname.data(), O_WRONLY | O_NONBLOCK);
         printf("fname.data() : %s\n",fname.data());
+         DBG_GPIO_PRINT(9);
         if (fd < 0)
         {
             printf("Could not open file %s...%d\r\n", fname.data(), fd);
         }
+         DBG_GPIO_PRINT(10);
         write(fd, wdata.data(), strlen(wdata.data()));
         
         close(fd);
@@ -84,6 +86,7 @@ namespace GPIO{
         char path_str[40];
         sprintf(path_str, "%s/gpio%d%s", SYSFS_GPIO_PATH, gpio_num, SYSFS_GPIO_VALUE);
         std::cout<<"gpio_set_value\n";
+         DBG_GPIO_PRINT(8);
         return file_open_and_write_value(path_str, value.data());
     }
 
@@ -209,7 +212,7 @@ DBG_GPIO_PRINT(3);
 
     void Gpio::Clear()
     {
-        
+
         close(m_gpio_in_fd);
         DBG_GPIO_PRINT(6);
         gpio_set_value(m_gpio_out,VALUE_LOW);
