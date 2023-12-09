@@ -195,7 +195,8 @@ namespace GPIO{
         return false;
     }
 
-    Gpio::Clear(){
+    void Gpio::Clear()
+    {
         close(m_gpio_in_fd);
         gpio_set_value(m_gpio_out,VALUE_LOW);
         gpio_unexport(m_gpio_out);
