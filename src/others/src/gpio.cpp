@@ -64,7 +64,7 @@ namespace GPIO{
     {
         char gpio_str[4];
         sprintf(gpio_str, "%d", gpio_num);
-        std::cout<<"dbg gpio_unexport "<< gpio_num <<\n";
+        std::cout<<"dbg gpio_unexport "<< gpio_num <<"\n";
         return file_open_and_write_value(SYSFS_GPIO_PATH SYSFS_GPIO_UNEXPORT_FN, gpio_str);
     }
 
