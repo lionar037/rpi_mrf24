@@ -42,7 +42,7 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                         
         }
                         myOLED.setCursor(128-24, 64-9);
-                        myOLED.print(reinterpret_cast<const int*>(Step));
+                        myOLED.print(reinterpret_cast<const int>(Step));
                         myOLED.OLEDupdate();
                         Step++;
             return true;
