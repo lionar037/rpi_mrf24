@@ -189,17 +189,24 @@ namespace GPIO{
         }    
         
         
-        
+        Clear();
         
     }
         return false;
     }
 
+    Gpio::Clear(){
+        close(m_gpio_in_fd);
+        gpio_set_value(m_gpio_out,VALUE_LOW);
+        gpio_unexport(m_gpio_out);
+        gpio_unexport(m_gpio_in);
+    }
+
     Gpio::~Gpio(){
-            close(m_gpio_in_fd);
-            gpio_set_value(m_gpio_out,VALUE_LOW);
-            gpio_unexport(m_gpio_out);
-            gpio_unexport(m_gpio_in);
+            
+            Clear();
+            
+            
         #ifdef DBG
             std::cout<<"~Gpio()\n";
         #endif       
