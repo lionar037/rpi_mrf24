@@ -245,9 +245,9 @@ namespace GPIO{
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
                     gpio_set_value(gpio_out,VALUE_LOW);
-        DBG_GPIO_PRINT(4);
-        Clear();
-        DBG_GPIO_PRINT(5);
+        
+        //Clear();
+        
         
     //}
         return false;
