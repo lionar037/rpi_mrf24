@@ -218,9 +218,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
         int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
         m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
-        if(state==true)
-        {
-
+        if(state==true){
         while(looper<READING_STEPS) {
             memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = gpio_in_fd;
