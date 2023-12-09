@@ -48,7 +48,7 @@ struct Gpio{
             int m_gpio_in_fd{};
             const int m_gpio_out{OUT_INTERRUPT};
             const int m_gpio_in{IN_INTERRUPT};
-            std::ifstream fileGpio{};
+            std::ifstream fileGpio1{};
             std::ifstream fileGpio2{};
     };
 }

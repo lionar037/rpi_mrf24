@@ -154,7 +154,7 @@ namespace GPIO{
 
 
 
-settings(gpio_in ,  DIR_OUT ,fileGpio);
+settings(gpio_in ,  DIR_IN ,fileGpio1);
 settings(gpio_out ,  DIR_OUT ,fileGpio2);
 
 
@@ -266,6 +266,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpio2);
 
     void Gpio::Clear()
     {
+        if(fileGpio1.open()){fileGpio1.close()};
 
         close(m_gpio_in_fd);
         //DBG_GPIO_PRINT(6);
@@ -273,6 +274,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpio2);
         //DBG_GPIO_PRINT(7);
         //gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
+        if(fileGpio2.open()){fileGpio2.close()};
     }
 
     Gpio::~Gpio(){
