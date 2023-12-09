@@ -145,7 +145,7 @@ namespace GPIO{
 
     const bool Gpio::app(bool& flag) 
     {
-        const int gpio_out = OUT_INTERRUPT;//originalmente es unsigned 
+        const unsigned int gpio_out = OUT_INTERRUPT;//originalmente es unsigned 
         const int gpio_in = IN_INTERRUPT;
         struct pollfd fdpoll;
         int num_fdpoll = 1;
@@ -197,15 +197,14 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
     // 
     
     
-     
-            gpio_unexport(gpio_out);
-            gpio_unexport(gpio_in);
-    // 
-            gpio_export(gpio_out);
-            gpio_export(gpio_in);
 
 }
 
+     
+            gpio_unexport(gpio_out);
+            gpio_unexport(gpio_in);
+            gpio_export(gpio_out);
+            gpio_export(gpio_in);
 
 
 {
