@@ -17,14 +17,14 @@ Mrf24j mrf24j40_spi ;
 Radio_t::Radio_t() 
 #ifdef ENABLE_INTERRUPT_MRF24
 :   status          (true)
-,   fs              { std::make_unique<FILESYSTEM::File_t>() }
+//,   fs              { std::make_unique<FILESYSTEM::File_t>() }
     #ifdef ENABLE_DATABASE
 ,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
 #else
 :   status          (false)
-,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
+//,   qr              { std::make_unique<QR::Qr_t>() }
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
 {
     
