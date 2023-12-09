@@ -2,6 +2,6 @@
 
 for ((i=1; i<=100; i++)); do
     echo "Iteración $i:"
-    uname -m
+    make run
     echo "----------------"
 done
