@@ -10,7 +10,7 @@ namespace FFLUSH{
 
 std::mutex mtx;
 
-void Fflush_t::updateValue(int id, int delay, int row, int col) 
+void updateValue(int id, int delay, int row, int col) 
 { //row fila  // col : columna 
     int valor = 0;
     while (valor <= 100) {
