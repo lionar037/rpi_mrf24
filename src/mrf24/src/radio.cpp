@@ -181,18 +181,18 @@ void handle_rx() {
     const auto* packet_data = reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data);
     qr_img->create(packet_data);
   
-    std::string  tmp (packet_data+15);
-    tmp.resize(38);
+    std::string  packetTmp (packet_data+15);
+    packetTmp.resize(38);
 
-    oled->create(tmp.c_str());  
+    oled->create(packetTmp.c_str());  
 
-     auto qr = std::make_unique<QR::QrOled_t>();
+    auto qr = std::make_unique<QR::QrOled_t>();
 
-    std::string_view packet_data2 = "ljwekjnwldnlwwnx";
-    std::vector<int> bf_tmp; 
-    qr->create_qr(packet_data2, bf_tmp);
+    std::string_view packetDataTmp = "ljwekjnwldnlwwnx";
+    std::vector<int> bufferTmp; 
+    qr->create_qr(packetDataTmp.data(), bufferTmp);
 
-    std::cout << "Size of bf_tmp: " << bf_tmp.size() << std::endl;
+    std::cout << "Size of bf_tmp: " << bufferTmp.size() << std::endl;
     
     fs->create(packet_data);
 
