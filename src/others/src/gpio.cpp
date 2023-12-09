@@ -274,7 +274,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpio2);
         //DBG_GPIO_PRINT(7);
         //gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
-        if(fileGpio2.open()){fileGpio2.close()};
+        if(fileGpio2.open())fileGpio2.close();
     }
 
     Gpio::~Gpio(){
