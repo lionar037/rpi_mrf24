@@ -46,7 +46,7 @@ struct Gpio{
             static inline int static_file_open_and_write_value{0};
             bool state{false};
             int m_gpio_in_fd{};
-            const int m_gpio_out{OUT_INTERRUPT};
+            const unsigned int m_gpio_out{OUT_INTERRUPT};
             const int m_gpio_in{IN_INTERRUPT};
             std::ifstream fileGpioInput{};
             std::ifstream fileGpioOutput{};
