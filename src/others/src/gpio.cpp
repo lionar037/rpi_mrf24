@@ -150,13 +150,14 @@ namespace GPIO{
 
     // std::cout << "Pin GPIO inp : "<< gpio_in<<"\n";
     // std::cout << "Pin GPIO out : "<< gpio_out<<"\n";
-{
-        settings(gpio_out ,DIR_OUT ,fileGpio);
+{std::cout << "Step 1 \n";
         settings(gpio_in , DIR_IN  ,fileGpio);
-
-        gpio_set_value(gpio_out,VALUE_HIGH);
+        settings(gpio_out ,DIR_OUT ,fileGpio);
+std::cout << "Step 2\n ";
         gpio_set_edge(gpio_in,EDGE_FALLING);
-
+        gpio_set_value(gpio_out,VALUE_HIGH);
+        
+std::cout << "Step 3 \n";
         const int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
         m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
@@ -192,12 +193,14 @@ namespace GPIO{
             std::this_thread::sleep_for(std::chrono::milliseconds(50));   
         }
         else{
+            std::cout<<"else\n";
             gpio_set_value(gpio_out,VALUE_HIGH);
             //std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
         
-        
+        DBG_GPIO(4);
         Clear();
+        DBG_GPIO(5);
         
     }
         return false;
@@ -207,6 +210,7 @@ namespace GPIO{
     {
         close(m_gpio_in_fd);
         gpio_set_value(m_gpio_out,VALUE_LOW);
+        DBG_GPIO(6);
         gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
     }
