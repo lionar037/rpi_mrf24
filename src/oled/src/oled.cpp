@@ -18,7 +18,7 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
         bool Oled_t::create(const std::string_view& textOled)
         {
         static int Step { 0 };        
-        const uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
+        uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
                 
                 // Define a buffer to cover whole screen 
                 
