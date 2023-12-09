@@ -1,4 +1,5 @@
 #pragma once
+#include <fstream>
 
 #define IN_INTERRUPT    23
 #define OUT_INTERRUPT   12    //GPIO LED
@@ -45,5 +46,6 @@ struct Gpio{
             int m_gpio_in_fd{};
             const int m_gpio_out{OUT_INTERRUPT};
             const int m_gpio_in{IN_INTERRUPT};
+            std::ifstream fileGpio;
     };
 }

@@ -106,7 +106,8 @@ namespace GPIO{
 
     bool Gpio::settings(const int pin , const std::string_view str_v /* , struct pollfd& fdpoll */){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
-        std::ifstream fileGpio(filePathGpio);
+        //std::ifstream fileGpio(filePathGpio);
+        fileGpio(filePathGpio);
         if(!fileGpio){
             const std::string f("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
             const int result_output = std::system(f.c_str());
