@@ -19,14 +19,16 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
         static bool flag = true;
         static int count { 0 };
         static std::string textOledTmp="@";
+        static uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
 // if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
 // else{flag=true;}
 
         if(flag & (std::strcmp(textOledTmp.c_str(),textOled.data()))!=false){
                 flag=false;
-                static int count { 0 };
+                textOledTmp=textOled;
+                
                 // Define a buffer to cover whole screen 
-                uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
+                
                 myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
                 myOLED.OLEDclearBuffer();  
             	myOLED.setTextSize(1);
@@ -35,10 +37,11 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                 myOLED.setCursor(0, 0);
                 myOLED.print(textOled.data());
                 myOLED.setFontNum(OLEDFontType_Default);
-                myOLED.setCursor(128-24, 64-9);
+                
 
-                        textOledTmp=textOled;
+                        
         }
+                        myOLED.setCursor(128-24, 64-9);
                         myOLED.print(reinterpret_cast<int>(count));
                         myOLED.OLEDupdate();
                         count++;
