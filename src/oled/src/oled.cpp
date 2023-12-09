@@ -38,7 +38,7 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                 myOLED.print(textOled.data());
                 myOLED.setFontNum(OLEDFontType_Default);
                 
-
+std::<<"pasa :(\n";
                         
         }
                         myOLED.setCursor(128-24, 64-9);
