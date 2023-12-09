@@ -1,6 +1,7 @@
 #include <bcm2835.h>
 #include <time.h>
 #include <stdio.h>
+#include <string>
 //#include <string_view>
 #include <oled/src/oled.h>
 #ifdef USE_MRF24_RX
@@ -16,6 +17,7 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
         bool Oled_t::create(const std::string_view& textOled)
         {
         static bool flag = true;
+
         static std::string textOledTmp="@ rnjferfnelrfkelrkferlfmkerlf";
 if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
 else{flag=true;}
