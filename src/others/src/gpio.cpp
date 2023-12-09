@@ -118,10 +118,13 @@ namespace GPIO{
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileTmp){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";
         //std::ifstream fileGpio(filePathGpio);
+
+        std::cout<< " DBG filePathGpio :  " <<filePathGpio<<"\n";
         fileTmp.open(filePathGpio.c_str());
            //fileGpio.open(filePathGpio.c_str());
         if(!fileTmp){
             const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
+           std::cout<< " DBG fNameResult :  " <<fNameResult<<"\n";
             const int result_output = std::system(fNameResult.c_str());
             if (result_output == 0) {
                 #ifdef DBG_GPIO
@@ -154,8 +157,8 @@ namespace GPIO{
 
 
 
-settings(gpio_in ,  DIR_IN ,fileGpio1);
-settings(gpio_out ,  DIR_OUT ,fileGpio2);
+settings(gpio_in ,  DIR_IN ,fileGpioInput);
+settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
 
 
 {
@@ -266,7 +269,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpio2);
 
     void Gpio::Clear()
     {
-        if(fileGpio1.is_open())fileGpio1.close();
+        if(fileGpioInput.is_open())fileGpioInput.close();
 
         close(m_gpio_in_fd);
         //DBG_GPIO_PRINT(6);
@@ -274,7 +277,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpio2);
         //DBG_GPIO_PRINT(7);
         //gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
-        if(fileGpio2.is_open())fileGpio2.close();
+        if(fileGpioOutput.is_open())fileGpioOutput.close();
     }
 
     Gpio::~Gpio(){
