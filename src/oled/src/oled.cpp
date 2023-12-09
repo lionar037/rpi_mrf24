@@ -19,8 +19,8 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
         static bool flag = true;
         static int count { 0 };
         static std::string textOledTmp="@";
-if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
-else{flag=true;}
+// if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
+// else{flag=true;}
 
         if(flag)
         {
