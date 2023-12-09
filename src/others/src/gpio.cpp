@@ -147,10 +147,10 @@ namespace GPIO{
         struct pollfd fdpoll;
         int num_fdpoll = 1;
         
-       int gpio_in_fd;
-        // int res;
-        // int looper = 0;
-        // char *buf[64];
+        int gpio_in_fd;
+        int res;
+        int looper = 0;
+        char *buf[64];
 
 
 {
