@@ -129,7 +129,7 @@ void Radio_t::interrupt_routine() {
 }
 
 void update(std::string_view str_view){
-    Radio_t& radio;
+    
     const int positionAdvance{15};
     auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
     auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
