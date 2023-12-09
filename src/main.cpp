@@ -10,7 +10,7 @@ author : lion
 
 int main(){
     auto mrf { std::make_unique<MRF24J40::Radio_t>() };
-    std::vector<std::thread> hilos;
+    std::vector<std::thread> Thread;
 
 
 
@@ -18,13 +18,13 @@ int main(){
     {
 
         for (int i = 0; i < numHilos; ++i) {
-            hilos.emplace_back([&mrf]() {
+            Thread.emplace_back([&mrf]() {
            mrf->Run();
             });
         }
 
         // Esperar a que todos los hilos terminen
-        for (auto& hilo : hilos) {
+        for (auto& hilo : Thread) {
             hilo.join();
         }
 
