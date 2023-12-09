@@ -75,7 +75,7 @@ void Radio_t::Run(void){
     #endif
     {
         gpio->app(flag);
-        system("clear"); 
+        //system("clear"); 
         mrf24j40_spi.interrupt_handler();
         Init(flag);
         
