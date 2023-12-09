@@ -120,7 +120,7 @@ namespace GPIO{
         const std::string filePathGpio = "/sys/class/gpio/gpio12/direction";        
 static int count{25};
         std::cout<< "filePathGpio : " <<filePathGpio.c_str()<<"\n";
-        fileTmp.open("/sys/class/gpio/gpio12/direction");
+        fileTmp.open("/sys/class/gpio/gpio13/direction");
         //fileTmp.open(filePathGpio.c_str());
 DBG_GPIO_PRINT(count++);
         if(!fileTmp){
