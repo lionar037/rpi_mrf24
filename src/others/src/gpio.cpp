@@ -150,7 +150,7 @@ namespace GPIO{
         struct pollfd fdpoll;
         int num_fdpoll = 1;
         
-        int gpio_in_fd;
+        //int gpio_in_fd;
         int res;
         int looper = 0;
         char *buf[64];
@@ -215,7 +215,7 @@ settings(gpio_out ,  DIR_OUT ,fileGpioOutput);
         gpio_set_edge(gpio_in,EDGE_FALLING);
           
 //DBG_GPIO_PRINT(3);
-        const int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
+        int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
         m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
         if(state==true)
