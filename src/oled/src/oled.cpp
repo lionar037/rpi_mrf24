@@ -17,7 +17,7 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
         bool Oled_t::create(const std::string_view& textOled)
         {
         static bool flag = true;
-
+        static int count { 0 };
         static std::string textOledTmp="@ rnjferfnelrfkelrkferlfmkerlf";
 if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
 else{flag=true;}
