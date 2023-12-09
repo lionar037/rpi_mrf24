@@ -11,7 +11,7 @@
 namespace OLED{
 #ifdef USE_MRF24_RX
 
-SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object 
+SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object 
         //bool Oled_t::create(const char* tmp)
 
         bool Oled_t::create(const std::string_view& textOled)
@@ -22,8 +22,7 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
 // if(std::strcmp(textOledTmp.c_str(),textOled.data())){flag=false;}
 // else{flag=true;}
 
-        if(flag & !(std::strcmp(textOledTmp.c_str(),textOled.data())))
-        {
+        if(flag & (std::strcmp(textOledTmp.c_str(),textOled.data()))!=false){
                 flag=false;
                 static int count { 0 };
                 // Define a buffer to cover whole screen 
@@ -31,13 +30,12 @@ SSD1306 myOLED(myOLEDwidth ,myOLEDheight) ; // instantiate  an object
                 myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
                 myOLED.OLEDclearBuffer();  
             	myOLED.setTextSize(1);
-                        myOLED.setFontNum(OLEDFontType_Wide);
-                        myOLED.setTextColor(WHITE);
-                        myOLED.setCursor(0, 0);
-
-                        myOLED.print(textOled.data());
-                        myOLED.setFontNum(OLEDFontType_Default);
-                        myOLED.setCursor(128-24, 64-9);
+                myOLED.setFontNum(OLEDFontType_Wide);
+                myOLED.setTextColor(WHITE);
+                myOLED.setCursor(0, 0);
+                myOLED.print(textOled.data());
+                myOLED.setFontNum(OLEDFontType_Default);
+                myOLED.setCursor(128-24, 64-9);
 
                         textOledTmp=textOled;
         }
