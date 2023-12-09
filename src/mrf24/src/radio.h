@@ -38,8 +38,9 @@ namespace MRF24J40{
             explicit Radio_t();
             ~Radio_t();
 
-            void Run(bool&);
+            void Init(bool&);
             void interrupt_routine();
+            void Run(void);
         private :
             unsigned long last_time{0};
             unsigned long tx_interval{1000}; 

@@ -66,6 +66,10 @@ Radio_t::Radio_t()
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
     flag=true;
+
+}
+
+void Radio_t::Run(void){
     #ifdef MRF24_RECEIVER_ENABLE
         while(true)
     #endif
@@ -73,12 +77,13 @@ Radio_t::Radio_t()
         gpio->app(flag);
         system("clear"); 
         mrf24j40_spi.interrupt_handler();
-        Run(flag);
+        Init(flag);
         
     }
 }
 
-void Radio_t::Run(bool& flag) {
+
+void Radio_t::Init(bool& flag) {
 
     flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
 
