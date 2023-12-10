@@ -36,8 +36,8 @@ int Fflush_t::func()
 std::cout << "\033[2J\033[H" << std::flush;
 
     // Inicia los hilos para actualizar los valores
-   // std::thread thread1(updateValue, 1, 1000000, 2, 9);  // Fila 2, Columna 9
-    //std::thread thread2(updateValue, 2, 2000000, 3, 9);  // Fila 3, Columna 9
+    std::thread thread1(updateValue, 1, 1000000, 2, 9);  // Fila 2, Columna 9
+    std::thread thread2(updateValue, 2, 2000000, 3, 9);  // Fila 3, Columna 9
 
     thread1.join();
     thread2.join();
