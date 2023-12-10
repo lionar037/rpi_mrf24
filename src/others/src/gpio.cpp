@@ -139,13 +139,13 @@ namespace GPIO{
     {
         //const unsigned int gpio_out = OUT_INTERRUPT;//originalmente es unsigned 
         //const int gpio_in = IN_INTERRUPT;
-            struct pollfd fdpoll;
-            int m_num_fdpoll { 1 };        
-            int m_looper { 0 };
-            char *buf[64];
+        struct pollfd fdpoll;
+        int m_num_fdpoll { 1 };        
+        int m_looper { 0 };
+        char *buf[64];
 
-         settings( m_gpio_in  , DIR_IN  ,filenameGpio);
-         settings( m_gpio_out , DIR_OUT ,filenameGpio);
+        settings( m_gpio_in  , DIR_IN  ,filenameGpio);
+        settings( m_gpio_out , DIR_OUT ,filenameGpio);
         
         gpio_set_edge (m_gpio_in,EDGE_FALLING);
         gpio_set_value(m_gpio_out,VALUE_HIGH);
