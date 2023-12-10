@@ -146,7 +146,7 @@ void update(std::string_view str_view){
     
     std::string  PacketDataTmp (packet_data += positionAdvance);
     PacketDataTmp.resize(38);
-    qr_img->create2(packet_data);
+    qr_img->create(packet_data);
     
 
     #ifdef MRF24_RECEIVER_ENABLE
