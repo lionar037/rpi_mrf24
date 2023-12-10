@@ -92,7 +92,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
        // std::cout << "\033[2J\033[H" << std::flush;
         //monitor->print(" ",20,0);
         // Imprime el código QR en la consola
-         std::cout << "\033[" << 20 << ";" << 0 << "H";
+         std::cout << "\033[" << 0 << ";" << 0 << "H";
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
