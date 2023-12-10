@@ -95,16 +95,12 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);        
     //auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
     
-       // std::cout << "\033[2J\033[H" << std::flush;
-        //monitor->print(" ",20,0);
+       // std::cout << "\033[2J\033[H" << std::flush;//limpia pantalla
+
         // Imprime el código QR en la consola
-        
-        //refresh(); 
-         //std::cout << "\033[" << 10 << ";" << 0 << "H";
-          // int fila, columna;
-//move(10,0);
-        //getyx(stdscr, fila, columna); 
-        //std::cout<< "\nPosicion cursor : "<< std::to_string(fila) << " , "<< std::to_string(columna) <<"\n";
+                
+         std::cout << "\033[" << 10 << ";" << 0 << "H";
+
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
@@ -112,11 +108,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
             }
             std::cout << "\n";
         }
-
-      
-       //getyx(stdscr, fila, columna); 
-
-       // std::cout<< "\nPosicion cursor : "<< std::to_string(fila) << std::to_string(columna) <<"\n";
+          
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
         saveQRCodeImage(qr, file_tmp.c_str());
