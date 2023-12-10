@@ -1,6 +1,6 @@
 #include <iostream>
 #include <thread>
-
+#include <memory>
 #include <unistd.h>
 #include <others/src/rfflush.h>
 
@@ -8,14 +8,16 @@ namespace FFLUSH{
 
     void updateValue(int id, int delay, int row, int col) 
     { //row fila  // col : columna 
+        auto ff{std::make_unique<Fflush_t>() };
         int valor = 0;
         while (valor <= 100) {
-            std::unique_lock<std::mutex> lock(Fflush_t::m_mtx);
+            std::unique_lock<std::mutex> lock(ff->m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
             std::cout << "\033[" << row << ";" << col << "HVALOR " << id << " : " << valor << std::flush;
             lock.unlock();
             valor++;
             usleep(delay);
+            
         }
     }
 
