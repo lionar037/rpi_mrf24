@@ -163,10 +163,10 @@ namespace GPIO{
 
        const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
         std::ifstream fileGpio23;
-        fileGpio23.open(filePathGpio);
+        fileGpio23.open(filePathGpio.c_str());
 
         if(!fileGpio23){
-            const bool result_input = std::system(fNameResult);
+            const bool result_input = std::system(fNameResult.c_str());
             //const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
             if (result_input == 0) {
                 #ifdef DBG_GPIO
