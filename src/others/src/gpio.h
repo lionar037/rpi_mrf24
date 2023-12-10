@@ -22,7 +22,7 @@
 #define EDGE_FALLING                "falling"
 
 //#define POLL_TIMEOUT        10*1000
-#define POLL_TIMEOUT        10*100
+#define POLL_TIMEOUT        10*1000
 
 #define DBG_GPIO_PRINT(x) std::cout<<"Step :"<<( x )<<"\n"
 
