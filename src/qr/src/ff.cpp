@@ -27,14 +27,14 @@ namespace QR{
         std::cout << "Presiona Enter para imprimir otro cuadrado...";
         _getch();  // Esperar a que se presione una tecla en Windows
     #else
-        std::cout << "\033[" << 30 << "A";
+        std::cout << "\033[" << 15 << "A";
         usleep(500000);  // Esperar medio segundo en sistemas basados en Unix
     #endif
     }
 
     bool Qr_img_t::create2(const std::string_view& createView) {
         int width = 50;
-        int height = 30;
+        int height = 10;
 
         // Inicializar la semilla para obtener valores aleatorios diferentes en cada ejecución
         std::srand(std::time(0));
