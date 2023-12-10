@@ -10,10 +10,11 @@ struct Fflush_t
         ~Fflush_t()=default;
         /* data */
         friend void updateValue(int, int, int, int) ;
+        //void updateValue(int, int, int, int) ;
         int func() ;
         void set(std::string_view, int, int) ;
     private:
-        std::mutex mtx;
+        std::mutex m_mtx;
 };
 
 

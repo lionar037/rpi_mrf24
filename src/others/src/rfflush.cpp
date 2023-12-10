@@ -10,7 +10,7 @@ namespace FFLUSH{
     { //row fila  // col : columna 
         int valor = 0;
         while (valor <= 100) {
-            std::unique_lock<std::mutex> lock(mtx);
+            std::unique_lock<std::mutex> lock(Fflush_t::m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
             std::cout << "\033[" << row << ";" << col << "HVALOR " << id << " : " << valor << std::flush;
             lock.unlock();
@@ -21,7 +21,7 @@ namespace FFLUSH{
 
     void Fflush_t::set(std::string_view str_txt, int row, int col) 
     { //row fila  // col : columna         
-            std::unique_lock<std::mutex> lock(mtx);
+            std::unique_lock<std::mutex> lock(m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
             std::cout << "\033[" << row << ";" << col << str_txt.data()<< std::flush;
             lock.unlock();                
@@ -36,8 +36,8 @@ int Fflush_t::func()
 std::cout << "\033[2J\033[H" << std::flush;
 
     // Inicia los hilos para actualizar los valores
-    std::thread thread1(updateValue, 1, 1000000, 2, 9);  // Fila 2, Columna 9
-    std::thread thread2(updateValue, 2, 2000000, 3, 9);  // Fila 3, Columna 9
+   // std::thread thread1(updateValue, 1, 1000000, 2, 9);  // Fila 2, Columna 9
+    //std::thread thread2(updateValue, 2, 2000000, 3, 9);  // Fila 3, Columna 9
 
     thread1.join();
     thread2.join();
