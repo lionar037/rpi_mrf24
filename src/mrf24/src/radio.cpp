@@ -165,8 +165,6 @@ void update(std::string_view str_view){
     
     fs->create(packet_data);
     std::cout<<"\n";
-
-
    qr_img->create(packet_data);
 return ;    
 }
