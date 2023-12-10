@@ -91,7 +91,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
     RST_COLOR() ;
 std::cout << "\033[2J\033[H" << std::flush;
-monitor->print("\n",0,0);
+monitor->print(" ",0,0);
         // Imprime el código QR en la consola
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
