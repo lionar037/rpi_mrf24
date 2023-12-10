@@ -206,9 +206,9 @@ monitor->set(" Packet data (PHY Payload) :",files++,col);
     SET_COLOR(SET_COLOR_CYAN_TEXT);
 monitor->set("ASCII data (relevant data) :",files++,col);
         //std::cout<<"\r\nASCII data (relevant data) :\n";
-    const int recevive_data_length = mrf24j40_spi.rx_datalength();
-    monitor->set("\t\tdata_length : "<<std::dec<< recevive_data_length ,files++,col);
-        std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
+    const auto recevive_data_length = mrf24j40_spi.rx_datalength();
+    monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);
+        //std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
