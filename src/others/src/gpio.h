@@ -41,7 +41,7 @@ struct Gpio{
             int gpio_get_fd_to_value(const int );
             const bool app(bool&) ;
             bool settings(const int , const std::string_view , std::ifstream& );
-            void ClosedGpios(void);
+            void CloseGpios(void);
         private :
             static inline int static_file_open_and_write_value{0};
             bool state{false};

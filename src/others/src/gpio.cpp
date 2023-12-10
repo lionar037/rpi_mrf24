@@ -151,58 +151,8 @@ namespace GPIO{
 
          settings( gpio_in  , DIR_IN  ,fileGpioInput);
          settings( gpio_out , DIR_OUT ,fileGpioOutput);
-        // const int pin =23;
-        // const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";                                
-        // const std::string fNameResult = "echo " + std::to_string(pin) + " > /sys/class/gpio/export";
-        //    
-// 
-// 
-    //    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
-        // std::ifstream fileGpio23;
-        // fileGpio23.open(filePathGpio23.c_str());
-// 
-        // if(!fileGpio23){
-            // const bool result_input = std::system(fNameResult.c_str());
-           
-            // if (result_input == 0) {
-                // #ifdef DBG_GPIO
-                    // std::cout << "Pin GPIO 23 exported successfully." << std::endl;
-                // #endif
-            // } else {
-                // #ifdef DBG_GPIO
-                    // std::cerr << "Error exporting GPIO 23." << std::endl;
-                // #endif
-                // return false;
-            // }
-        // }
-            // gpio_unexport(gpio_in);
-            // gpio_export(gpio_in);
-            // gpio_set_direction(gpio_in,DIR_IN);            
-
-            gpio_set_edge(gpio_in,EDGE_FALLING);
-
-
-
-
-    //    const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
-        // std::ifstream fileGpio12(filePathGpio12);
-        // if(!fileGpio12){
-            // const int result_output = std::system("echo 12 > /sys/class/gpio/export");
-            // if (result_output == 0) {
-                // #ifdef DBG_GPIO
-                    // std::cout << "Pin GPIO 12 exported successfully." << std::endl;
-                // #endif
-            // } else {
-                // #ifdef DBG_GPIO
-                    // std::cerr << "Error unexporting GPIO 12." << std::endl;
-                //    return 0;//continua por que no es necesario el pin de salida
-                // #endif
-            // }
-        // }         
-        // gpio_unexport(gpio_out);
-        // gpio_export(gpio_out);
-        // gpio_set_direction(gpio_out,DIR_OUT);
-
+        
+        gpio_set_edge(gpio_in,EDGE_FALLING);
         gpio_set_value(gpio_out,VALUE_HIGH);
 
           
@@ -244,15 +194,12 @@ namespace GPIO{
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
                     gpio_set_value(gpio_out,VALUE_LOW);
-        
-        //Clear();
-        
-        
-    //}
+
+
         return false;
     }
 
-    void Gpio::ClosedGpios()
+    void Gpio::CloseGpios()
     {
         if(fileGpioInput.is_open())fileGpioInput.close();
 
@@ -267,7 +214,7 @@ namespace GPIO{
 
     Gpio::~Gpio(){
             
-            ClosedGpios();            
+            CloseGpios();            
             
         #ifdef DBG
             std::cout<<"~Gpio()\n";
