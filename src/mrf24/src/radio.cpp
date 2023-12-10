@@ -148,7 +148,6 @@ void update(std::string_view str_view){
     PacketDataTmp.resize(38);
     qr_img->create(packet_data);
     
-    monitor->print( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
 
     #ifdef MRF24_RECEIVER_ENABLE
         oled->create(PacketDataTmp.c_str());  
@@ -159,8 +158,9 @@ void update(std::string_view str_view){
     //std::string_view packet_data2 = "1234567890";    
     //std::vector<int> infoQrTmp; 
     //qr->create_qr(packet_data2, infoQrTmp);
-    
+    //monitor->print( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
     //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
+    
     fs->create(packet_data);
     std::cout<<"\r\n";
 
