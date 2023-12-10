@@ -214,7 +214,7 @@ monitor->set("ASCII data (relevant data) :",files++,col);
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
     std::cout<<"\n";
 
-    update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
+    //update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
 
     #ifdef DBG_PRINT_GET_INFO 
       
