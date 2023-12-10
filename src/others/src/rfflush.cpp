@@ -27,7 +27,7 @@ namespace FFLUSH{
      SET_COLOR(SET_COLOR_RED_TEXT);
             std::unique_lock<std::mutex> lock(m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
-            std::cout << "\033[" << row << ";" << col << "H" << str_txt.data()<< std::flush;
+            std::cout << "\033[" << row << ";" << col << "H" << str_txt.data();//<< std::flush;
             lock.unlock();                
     return ;    
     }
