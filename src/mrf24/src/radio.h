@@ -18,6 +18,7 @@
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
 
+
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
 #elif defined (USE_MAC_ADDRESS_SHORT)
@@ -29,6 +30,9 @@
         struct Oled_t;
     }
 #endif
+
+
+#define N_FILE_INIT 0
 
 namespace MRF24J40{
 
