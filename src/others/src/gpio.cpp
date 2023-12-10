@@ -150,7 +150,7 @@ namespace GPIO{
         char *buf[64];
 
          settings( gpio_in  , DIR_IN  ,fileGpioInput);
-        // settings( gpio_out , DIR_OUT ,fileGpioOutput);
+         settings( gpio_out , DIR_OUT ,fileGpioOutput);
         // const int pin =23;
         // const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";                                
         // const std::string fNameResult = "echo " + std::to_string(pin) + " > /sys/class/gpio/export";
@@ -184,24 +184,24 @@ namespace GPIO{
 
 
 
-       const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
-        std::ifstream fileGpio12(filePathGpio12);
-        if(!fileGpio12){
-            const int result_output = std::system("echo 12 > /sys/class/gpio/export");
-            if (result_output == 0) {
-                #ifdef DBG_GPIO
-                    std::cout << "Pin GPIO 12 exported successfully." << std::endl;
-                #endif
-            } else {
-                #ifdef DBG_GPIO
-                    std::cerr << "Error unexporting GPIO 12." << std::endl;
-                   return 0;//continua por que no es necesario el pin de salida
-                #endif
-            }
-        }         
-        gpio_unexport(gpio_out);
-        gpio_export(gpio_out);
-        gpio_set_direction(gpio_out,DIR_OUT);
+    //    const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
+        // std::ifstream fileGpio12(filePathGpio12);
+        // if(!fileGpio12){
+            // const int result_output = std::system("echo 12 > /sys/class/gpio/export");
+            // if (result_output == 0) {
+                // #ifdef DBG_GPIO
+                    // std::cout << "Pin GPIO 12 exported successfully." << std::endl;
+                // #endif
+            // } else {
+                // #ifdef DBG_GPIO
+                    // std::cerr << "Error unexporting GPIO 12." << std::endl;
+                //    return 0;//continua por que no es necesario el pin de salida
+                // #endif
+            // }
+        // }         
+        // gpio_unexport(gpio_out);
+        // gpio_export(gpio_out);
+        // gpio_set_direction(gpio_out,DIR_OUT);
 
         gpio_set_value(gpio_out,VALUE_HIGH);
 
