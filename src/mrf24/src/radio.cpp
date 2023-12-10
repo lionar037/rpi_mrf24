@@ -184,7 +184,9 @@ void handle_rx() {
     int files {7};
     int col {0};
 char bufferMonitor[128];
-std::unique_ptr< FFLUSH::Fflush_t> monitor;
+
+auto  monitor{std::make_unique <FFLUSH::Fflush_t>()};
+
 monitor->set("received a packet ... ",files++,col);
     //std::cout << " \nreceived a packet ... ";
     sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
