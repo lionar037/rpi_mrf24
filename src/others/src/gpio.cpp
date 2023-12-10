@@ -117,12 +117,12 @@ namespace GPIO{
 
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileTmp){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";                                
-        
+        const std::string fNameResult ="echo " + std::to_string(pin) + " > /sys/class/gpio/export";
+               
         fileTmp.open(filePathGpio.c_str());
         
         if(!fileTmp){
-            const std::string fNameResult ="echo " + std::to_string(pin) + " > /sys/class/gpio/export";
-            
+
             const int result_output = std::system(fNameResult.c_str());
             if (result_output == 0) {
                 #ifdef DBG_GPIO
@@ -153,24 +153,26 @@ namespace GPIO{
         int looper = 0;
         char *buf[64];
 
-         settings( gpio_in  , DIR_IN  ,fileGpioInput);
+        // settings( gpio_in  , DIR_IN  ,fileGpioInput);
         // settings( gpio_out , DIR_OUT ,fileGpioOutput);
         
-    //    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
-        // std::ifstream fileGpio23(filePathGpio23);
-        // if(!fileGpio23){
-            // const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
-            // if (result_input == 0) {
-                // #ifdef DBG_GPIO
-                    // std::cout << "Pin GPIO 23 exported successfully." << std::endl;
-                // #endif
-            // } else {
-                // #ifdef DBG_GPIO
-                    // std::cerr << "Error exporting GPIO 23." << std::endl;
-                // #endif
-                // return false;
-            // }
-        // }
+       const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
+        std::ifstream fileGpio23;
+        fileGpio23.open(filePathGpio23);
+
+        if(!fileGpio23){
+            const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
+            if (result_input == 0) {
+                #ifdef DBG_GPIO
+                    std::cout << "Pin GPIO 23 exported successfully." << std::endl;
+                #endif
+            } else {
+                #ifdef DBG_GPIO
+                    std::cerr << "Error exporting GPIO 23." << std::endl;
+                #endif
+                return false;
+            }
+        }
             gpio_unexport(gpio_in);
             gpio_export(gpio_in);
             gpio_set_direction(gpio_in,DIR_IN);            
