@@ -30,7 +30,8 @@ namespace QR{
         
     
         // Libera la memoria
-        QRcode_free(qr); 
+        QRcode_free(qr.get); 
+        
         return true;
     }
 
