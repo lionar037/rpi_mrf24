@@ -222,7 +222,7 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
    // std::cout<<"\n";
 
-    update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
+   
 
     #ifdef DBG_PRINT_GET_INFO 
       
@@ -250,6 +250,8 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
     RST_COLOR() ;
     std::cout<<"\r\n";
     #endif
+
+     update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
     
 }
 
