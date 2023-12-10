@@ -8,7 +8,6 @@ extern "C"{
     #include <poll.h>
 }
 #include <iostream>
-
 #include <chrono>
 #include <thread>
 #include <string_view>
@@ -122,7 +121,7 @@ namespace GPIO{
         fileTmp.open(filePathGpio.c_str());
         
         if(!fileTmp){
-            const std::string fNameResult("echo " + std::to_string(pin) + " > /sys/class/gpio/export");
+            const std::string fNameResult ="echo " + std::to_string(pin) + " > /sys/class/gpio/export";
             
             const int result_output = std::system(fNameResult.c_str());
             if (result_output == 0) {
@@ -156,8 +155,6 @@ namespace GPIO{
 
          settings( gpio_in  , DIR_IN  ,fileGpioInput);
         // settings( gpio_out , DIR_OUT ,fileGpioOutput);
-
-
         
     //    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
         // std::ifstream fileGpio23(filePathGpio23);
@@ -177,7 +174,7 @@ namespace GPIO{
             gpio_unexport(gpio_in);
             gpio_export(gpio_in);
             gpio_set_direction(gpio_in,DIR_IN);            
-             gpio_set_edge(gpio_in,EDGE_FALLING);
+            gpio_set_edge(gpio_in,EDGE_FALLING);
 
 
 
