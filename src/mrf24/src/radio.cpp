@@ -152,7 +152,7 @@ void update(std::string_view str_view){
     #ifdef MRF24_RECEIVER_ENABLE
         oled->create(PacketDataTmp.c_str());  
     #endif
-    auto qr = std::make_unique<QR::QrOled_t>();
+    //auto qr = std::make_unique<QR::QrOled_t>();
 
     //De momento no hace nada
     //std::string_view packet_data2 = "1234567890";    
