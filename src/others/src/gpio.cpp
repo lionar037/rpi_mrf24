@@ -129,10 +129,11 @@ namespace GPIO{
                 #endif
                 return false;
             }
-        }       
-        // gpio_unexport(pin);        
-        // gpio_export(pin);             
-        // gpio_set_direction(pin,str_v.data());
+        }  
+           fileTmp.close();  
+         gpio_unexport(pin);        
+         gpio_export(pin);             
+         gpio_set_direction(pin,str_v.data());
         return true;
     }
 
@@ -158,11 +159,11 @@ namespace GPIO{
 // 
     //    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
         // std::ifstream fileGpio23;
-        // fileGpio23.open(filePathGpio.c_str());
+        // fileGpio23.open(filePathGpio23.c_str());
 // 
         // if(!fileGpio23){
             // const bool result_input = std::system(fNameResult.c_str());
-            const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
+           
             // if (result_input == 0) {
                 // #ifdef DBG_GPIO
                     // std::cout << "Pin GPIO 23 exported successfully." << std::endl;
