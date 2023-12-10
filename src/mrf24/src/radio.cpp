@@ -238,10 +238,10 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
     std::cout<<"\r\n";
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
-
- 
-    printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
-    printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
+monitor->set("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
+monitor->set("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
+    //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
+    //printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
     std::cout<<"\r\n";
     #endif
