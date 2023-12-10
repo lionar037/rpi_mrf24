@@ -145,7 +145,7 @@ namespace GPIO{
             char *buf[64];
 
          settings( m_gpio_in  , DIR_IN  ,filenameGpio);
-         //settings( m_gpio_out , DIR_OUT ,fileGpioOutput);
+         settings( m_gpio_out , DIR_OUT ,filenameGpio);
         
         gpio_set_edge (m_gpio_in,EDGE_FALLING);
         gpio_set_value(m_gpio_out,VALUE_HIGH);
@@ -190,15 +190,16 @@ namespace GPIO{
         }    
         gpio_set_value(m_gpio_out,VALUE_LOW);
         
-        close(m_gpio_in_fd);        
-        //gpio_set_value(m_gpio_out,VALUE_LOW);
-
+   
         return false;
     }
 
     void Gpio::CloseGpios()
     {
-        if(filenameGpio.is_open())filenameGpio.close();        
+        if(filenameGpio.is_open())filenameGpio.close();   
+        close(m_gpio_in_fd);        
+        gpio_set_value(m_gpio_out,VALUE_LOW);
+     
         gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
         //if(fileGpioOutput.is_open())fileGpioOutput.close();
