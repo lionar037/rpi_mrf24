@@ -9,12 +9,12 @@ author : lion
 
 
 int main(){
-    system("clear"); 
+    //system("clear"); 
     auto mrf { std::make_unique<MRF24J40::Radio_t>()};
     // std::vector<std::thread> threadVect;
     // const int ThreadCant{4};
 
-
+std::cout << "\033[2J\033[H" << std::flush;
      try    {
 // 
         // for (int i = 0; i < ThreadCant; ++i) {
