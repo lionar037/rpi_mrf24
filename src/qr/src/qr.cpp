@@ -20,7 +20,7 @@ namespace QR{
         std::cout << "\033[2J\033[H" << std::flush;
         monitor->print("\n",0,0);
                 SET_COLOR(SET_COLOR_WHITE_TEXT);
-        //std::cout << "\n";
+        std::cout << "\n";
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
                 std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
@@ -28,7 +28,7 @@ namespace QR{
             //std::cout << std::endl;
             std::cout << "\n";
         }
-        
+        std::array buff=qr->data;
     
         // Libera la memoria
         // QRcode_free(qr.get()); 

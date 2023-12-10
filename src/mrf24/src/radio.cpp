@@ -242,7 +242,7 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
     std::cout<<"\r\n";
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
-        files++;
+        files++;  files++;  files++;
 monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
 monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
     //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
