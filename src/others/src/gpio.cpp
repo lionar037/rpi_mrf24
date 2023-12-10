@@ -112,10 +112,8 @@ namespace GPIO{
 
     bool Gpio::settings(const int pin , const std::string_view str_v ,std::ifstream& fileTmp){
         const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";                                
-        const std::string fNameResult ="echo " + std::to_string(pin) + " > /sys/class/gpio/export";
-               
-        fileTmp.open(filePathGpio.c_str());
-        
+        const std::string fNameResult ="echo " + std::to_string(pin) + " > /sys/class/gpio/export";               
+        fileTmp.open(filePathGpio.c_str());        
         if(!fileTmp.is_open()){
 
             const int result_output = std::system(fNameResult.c_str());
@@ -130,48 +128,43 @@ namespace GPIO{
                 return false;
             }
         }  
-           fileTmp.close();  
-         gpio_unexport(pin);        
-         gpio_export(pin);             
-         gpio_set_direction(pin,str_v.data());
+            fileTmp.close();  
+            gpio_unexport(pin);        
+            gpio_export(pin);             
+            gpio_set_direction(pin,str_v.data());
         return true;
     }
 
     const bool Gpio::app(bool& flag) 
     {
-        const unsigned int gpio_out = OUT_INTERRUPT;//originalmente es unsigned 
-        const int gpio_in = IN_INTERRUPT;
-        struct pollfd fdpoll;
-        int num_fdpoll = 1;
-        
-        //int gpio_in_fd;
-        int res;
-        int looper = 0;
-        char *buf[64];
+        //const unsigned int gpio_out = OUT_INTERRUPT;//originalmente es unsigned 
+        //const int gpio_in = IN_INTERRUPT;
+  
 
-         settings( gpio_in  , DIR_IN  ,fileGpioInput);
-         settings( gpio_out , DIR_OUT ,fileGpioOutput);
+         settings( m_gpio_in  , DIR_IN  ,fileGpioInput);
+         settings( m_gpio_out , DIR_OUT ,fileGpioOutput);
         
-        gpio_set_edge(gpio_in,EDGE_FALLING);
-        gpio_set_value(gpio_out,VALUE_HIGH);
+        gpio_set_edge (m_gpio_in,EDGE_FALLING);
+        gpio_set_value(m_gpio_out,VALUE_HIGH);
 
           
-        int gpio_in_fd = gpio_get_fd_to_value(gpio_in);
-        m_gpio_in_fd = gpio_in_fd;
+        m_gpio_in_fd = gpio_get_fd_to_value(m_gpio_in);
+        //m_gpio_in_fd = gpio_in_fd;
         // We will wait for button press here for 10s or exit anyway
-        if(state==true){
-        while(looper<READING_STEPS) {
-            memset((void *)&fdpoll,0,sizeof(fdpoll));
-            fdpoll.fd = gpio_in_fd;
+        if(m_state==true)
+        {
+        while(m_looper<READING_STEPS) {
+            memset((void *)&m_fdpoll,0,sizeof(m_fdpoll));
+            fdpoll.fd = m_gpio_in_fd;
             fdpoll.events = POLLPRI;
-            res = poll(&fdpoll,num_fdpoll,POLL_TIMEOUT);
+            m_res = poll(&fdpoll,m_num_fdpoll,POLL_TIMEOUT);
 
-            if(res < 0) {
+            if(m_res < 0) {
                 #ifdef DBG_GPIO
                 printf("Poll failed...%d\r\n",res);   
                 #endif         
                 }
-            if(res == 0) {
+            if(m_res == 0) {
                 #ifdef DBG_GPIO
                     std::cout<<"\nPoll success...timed out or received button press...\r\n";
                 #endif
@@ -183,17 +176,16 @@ namespace GPIO{
                     std::cout<<"Standby reading msj mrf24j40...\n";
                 #endif
                 }
-            ++looper;
+            ++m_looper;
             fflush(stdout);
             }
             //std::this_thread::sleep_for(std::chrono::milliseconds(50));   
         }
-        else{
-            std::cout<<"else\n";
-            gpio_set_value(gpio_out,VALUE_HIGH);
+        else{            
+            gpio_set_value(m_gpio_out,VALUE_HIGH);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
-                    gpio_set_value(gpio_out,VALUE_LOW);
+        gpio_set_value(m_gpio_out,VALUE_LOW);
 
 
         return false;

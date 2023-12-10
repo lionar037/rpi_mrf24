@@ -28,7 +28,7 @@
 namespace GPIO{
 struct Gpio{   
       Gpio(bool& st)
-      : state   { st }
+      : m_state   { st }
       {}
 
     ~Gpio();
@@ -44,11 +44,17 @@ struct Gpio{
             void CloseGpios(void);
         private :
             static inline int static_file_open_and_write_value{0};
-            bool state{false};
+            bool m_state{false};
             int m_gpio_in_fd{};
+            int m_res{};
             const unsigned int m_gpio_out{OUT_INTERRUPT};
             const int m_gpio_in{IN_INTERRUPT};
             std::ifstream fileGpioInput;
             std::ifstream fileGpioOutput;
+
+            struct pollfd fdpoll;
+            int m_num_fdpoll { 1 };        
+            int m_looper { 0 };
+            char *buf[64];
     };
 }
