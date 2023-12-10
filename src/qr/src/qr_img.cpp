@@ -100,7 +100,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         // Imprime el código QR en la consola
         
         //refresh(); 
-         std::cout << "\033[" << 10 << ";" << 0 << "H";
+         //std::cout << "\033[" << 10 << ";" << 0 << "H";
           // int fila, columna;
 //move(10,0);
         //getyx(stdscr, fila, columna); 

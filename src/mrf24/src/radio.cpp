@@ -149,8 +149,7 @@ void update(std::string_view str_view){
 
 //std::cout << "\033[2J\033[H" << std::flush;
 
-    qr_img->create(packet_data);
-    
+  
 
     #ifdef MRF24_RECEIVER_ENABLE
         oled->create(PacketDataTmp.c_str());  
@@ -168,7 +167,9 @@ void update(std::string_view str_view){
     std::cout<<"\r\n";
 
 return ;
- std::cout << "\033[" << 27 << "A";
+  qr_img->create(packet_data);
+    
+ //std::cout << "\033[" << 27 << "A";
 }
 
 
