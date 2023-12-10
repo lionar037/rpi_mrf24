@@ -14,6 +14,7 @@ struct Fflush_t
         int func() ;
         void set(std::string_view, int, int) ;
     //private:
+    protected:
         std::mutex m_mtx;
 };
 
