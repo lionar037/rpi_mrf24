@@ -257,9 +257,9 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
     //RST_COLOR() ;
     //std::cout<<"\r\n";
     #endif
-
+RST_COLOR() ;   
      update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
- RST_COLOR() ;   
+ 
 }
 
 
