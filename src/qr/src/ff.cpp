@@ -31,7 +31,7 @@ void Qr_img_t::drawRectangle(int width, int height) {
 #endif
 }
 
-int Qr_img_t::create2(const std::string_view& createView) {
+bool Qr_img_t::create2(const std::string_view& createView) {
     int width = 50;
     int height = 10;
 
@@ -42,7 +42,7 @@ int Qr_img_t::create2(const std::string_view& createView) {
         drawRectangle(width, height);
     }
 
-    return 0;
+    return false;
 }
 
 }
