@@ -104,7 +104,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
            int fila, columna;
 
         getyx(stdscr, fila, columna); 
-        std::cout<< "\nPosicion cursor : "<< std::to_string(fila) << std::to_string(columna) <<"\n";
+        std::cout<< "\nPosicion cursor : "<< std::to_string(fila) << " , "<< std::to_string(columna) <<"\n";
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
