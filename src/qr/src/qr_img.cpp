@@ -91,17 +91,17 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     bool Qr_img_t::create(const std::string_view& fname) {
 
     // Configuración del código QR
-    auto* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
-    //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);        
+    //auto* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+    QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);        
     //auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
     
        // std::cout << "\033[2J\033[H" << std::flush;//limpia pantalla
 
         // Imprime el código QR en la consola
-                
-         //std::cout << "\033[" << 10 << ";" << 0 << "H";
- SET_COLOR(SET_COLOR_WHITE_TEXT);
-        SET_COLOR(SET_COLOR_WHITE_TEXT);
+           SET_COLOR(SET_COLOR_WHITE_TEXT);       
+        std::cout << "\033[" << 10 << ";" << 0 << "H";
+ 
+      
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
                 std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
