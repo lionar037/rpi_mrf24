@@ -181,7 +181,7 @@ void handle_tx() {
 
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
-    int files {7};
+    int files {17};
     int col {0};
 char bufferMonitor[128];
 
