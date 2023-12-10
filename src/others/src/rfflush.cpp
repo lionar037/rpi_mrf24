@@ -24,11 +24,11 @@ namespace FFLUSH{
 
     void Fflush_t::print(std::string_view str_txt, int row, int col) 
     { //row fila  // col : columna         
-     SET_COLOR(SET_COLOR_RED_TEXT);
-            std::unique_lock<std::mutex> lock(m_mtx);
+     SET_COLOR(SET_COLOR_BLUE_TEXT);
+            //std::unique_lock<std::mutex> lock(m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
             std::cout << "\033[" << row << ";" << col << "H" << str_txt.data();//<< std::flush;
-            lock.unlock();                
+            //lock.unlock();                
     return ;    
     }
 

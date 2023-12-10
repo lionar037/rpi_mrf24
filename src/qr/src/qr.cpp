@@ -17,8 +17,8 @@ namespace QR{
 
         //auto qr = std::unique_ptr<QRcode>(QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1));
         // Imprime el código QR en la consola
-        std::cout << "\033[2J\033[H" << std::flush;
-        monitor->print("\n",1,10);
+       // std::cout << "\033[2J\033[H" << std::flush;
+        //monitor->print("\n",1,10);
                 SET_COLOR(SET_COLOR_WHITE_TEXT);
         std::cout << "\n";
         std::vector<bool> buff;//(QRcode_getBufferSize(qr));
