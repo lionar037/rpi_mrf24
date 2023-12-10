@@ -1,27 +1,32 @@
 #include <iostream>
 #include <thread>
-#include <mutex>
+
 #include <unistd.h>
 #include <others/src/rfflush.h>
 
 namespace FFLUSH{
 
-
-
-std::mutex mtx;
-
-void updateValue(int id, int delay, int row, int col) 
-{ //row fila  // col : columna 
-    int valor = 0;
-    while (valor <= 100) {
-        std::unique_lock<std::mutex> lock(mtx);
-        // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
-        std::cout << "\033[" << row << ";" << col << "HVALOR " << id << " : " << valor << std::flush;
-        lock.unlock();
-        valor++;
-        usleep(delay);
+    void updateValue(int id, int delay, int row, int col) 
+    { //row fila  // col : columna 
+        int valor = 0;
+        while (valor <= 100) {
+            std::unique_lock<std::mutex> lock(mtx);
+            // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
+            std::cout << "\033[" << row << ";" << col << "HVALOR " << id << " : " << valor << std::flush;
+            lock.unlock();
+            valor++;
+            usleep(delay);
+        }
     }
-}
+
+    void Fflush_t::set(std::string_view str_txt, int row, int col) 
+    { //row fila  // col : columna         
+            std::unique_lock<std::mutex> lock(mtx);
+            // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
+            std::cout << "\033[" << row << ";" << col << str_txt.data()<< std::flush;
+            lock.unlock();                
+    return ;    
+    }
 
 int Fflush_t::func() 
 {

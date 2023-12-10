@@ -8,6 +8,7 @@
 #include <mrf24/src/mrf24j40_template.tpp>
 #include <oled/src/oled.h>
 #include <others/src/rfflush.h>
+
 //#include <app/src/data_analisis.h>
 
 namespace MRF24J40{ 
@@ -74,9 +75,11 @@ void Radio_t::Run(void){
     #ifdef MRF24_RECEIVER_ENABLE
         while(true)
     #endif
-    {
+    {   
+        std::cout << "\033[2J\033[H" << std::flush;
         gpio->app(flag);
         //system("clear"); 
+
         mrf24j40_spi.interrupt_handler();
         Init(flag);        
     }
@@ -178,23 +181,33 @@ void handle_tx() {
 
 void handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
-    std::cout << " \nreceived a packet ... ";
-        printf("0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
-    std::cout << " bytes long " ;
+    int files {7};
+    int col {0};
+char bufferMonitor[128];
+    std::unique_ptr< FFLUSH::Fflush_t> monitor;
+monitor->set("received a packet ... ",files++,col);
+    //std::cout << " \nreceived a packet ... ";
+    sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
+monitor->set(bufferMonitor,files++,col);
+//    std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-      std::cout << " Packet data (PHY Payload) :";
+monitor->set(" Packet data (PHY Payload) :",files++,col);
+    //  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
       {
+        //monitor->set(" Packet data (PHY Payload) :",files,col);
           std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];
       }
       #endif
     }
         std::cout << "\n";
     SET_COLOR(SET_COLOR_CYAN_TEXT);
-        std::cout<<"\r\nASCII data (relevant data) :\n";
+monitor->set("ASCII data (relevant data) :",files++,col);
+        //std::cout<<"\r\nASCII data (relevant data) :\n";
     const int recevive_data_length = mrf24j40_spi.rx_datalength();
+    monitor->set("\t\tdata_length : "<<std::dec<< recevive_data_length ,files++,col);
         std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
 
