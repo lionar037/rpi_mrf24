@@ -154,53 +154,48 @@ namespace GPIO{
         int looper = 0;
         char *buf[64];
 
-        settings( gpio_in  , DIR_IN  ,fileGpioInput);
-        settings( gpio_out , DIR_OUT ,fileGpioOutput);
+        // settings( gpio_in  , DIR_IN  ,fileGpioInput);
+        // settings( gpio_out , DIR_OUT ,fileGpioOutput);
 
 
-        // 
-    //    const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
-        // std::ifstream fileGpio23(filePathGpio23);
-        // if(!fileGpio23){
-            // const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
-            // if (result_input == 0) {
-                // #ifdef DBG_GPIO
-                    // std::cout << "Pin GPIO 23 exported successfully." << std::endl;
-                // #endif
-            // } else {
-                // #ifdef DBG_GPIO
-                    // std::cerr << "Error exporting GPIO 23." << std::endl;
-                // #endif
-                // return false;
-            // }
-        // }
-//   
-    //    const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
-        // std::ifstream fileGpio12(filePathGpio12);
-        // if(!fileGpio12){
-            // const int result_output = std::system("echo 12 > /sys/class/gpio/export");
-            // if (result_output == 0) {
-                // #ifdef DBG_GPIO
-                    // std::cout << "Pin GPIO 12 exported successfully." << std::endl;
-                // #endif
-            // } else {
-                // #ifdef DBG_GPIO
-                    // std::cerr << "Error unexporting GPIO 12." << std::endl;
-                //    return 0;//continua por que no es necesario el pin de salida
-                // #endif
-            // }
-        // }        
-     
-            // gpio_unexport(gpio_out);
-            // gpio_unexport(gpio_in);
-            // gpio_export(gpio_out);
-            // gpio_export(gpio_in);
-
-
-//{
-
-    // gpio_set_direction(gpio_out,DIR_OUT);
-    // gpio_set_direction(gpio_in,DIR_IN);
+        
+       const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
+        std::ifstream fileGpio23(filePathGpio23);
+        if(!fileGpio23){
+            const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
+            if (result_input == 0) {
+                #ifdef DBG_GPIO
+                    std::cout << "Pin GPIO 23 exported successfully." << std::endl;
+                #endif
+            } else {
+                #ifdef DBG_GPIO
+                    std::cerr << "Error exporting GPIO 23." << std::endl;
+                #endif
+                return false;
+            }
+        }
+  
+       const std::string filePathGpio12 = "/sys/class/gpio/gpio12/direction";
+        std::ifstream fileGpio12(filePathGpio12);
+        if(!fileGpio12){
+            const int result_output = std::system("echo 12 > /sys/class/gpio/export");
+            if (result_output == 0) {
+                #ifdef DBG_GPIO
+                    std::cout << "Pin GPIO 12 exported successfully." << std::endl;
+                #endif
+            } else {
+                #ifdef DBG_GPIO
+                    std::cerr << "Error unexporting GPIO 12." << std::endl;
+                   return 0;//continua por que no es necesario el pin de salida
+                #endif
+            }
+        }         
+        gpio_unexport(gpio_out);
+        gpio_unexport(gpio_in);
+        gpio_export(gpio_out);
+        gpio_export(gpio_in);
+        gpio_set_direction(gpio_out,DIR_OUT);
+        gpio_set_direction(gpio_in,DIR_IN);
 
         gpio_set_value(gpio_out,VALUE_HIGH);
         gpio_set_edge(gpio_in,EDGE_FALLING);

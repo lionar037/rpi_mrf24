@@ -36,3 +36,17 @@ sudo apt-get install libpng-dev -y
 
 sudo apt-get install zlib1g-dev -y
 
+
+
+comunication
+
+		ssh-keygen -R raspberry.local
+
+
+create comunication secure
+
+		ssh-keygen -t rsa
+		ssh-copy-id root@127.0.0.1
+		cat ~/.ssh/id_rsa.pub | ssh root@127.0.0.1 'cat >> ~/.ssh/authorized_keys'
+
+
