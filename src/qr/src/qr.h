@@ -57,7 +57,8 @@ namespace QR{
             ~Qr_img_t();
             void    saveQRCodeImage     (const QRcode* , const char* );
             bool    create              (const std::string_view&);
-         
+            void    drawRectangle       (int , int );
+            bool    create2              (const std::string_view&);
         private :
             std::unique_ptr<TYME::Time_t>tyme{};
     };
