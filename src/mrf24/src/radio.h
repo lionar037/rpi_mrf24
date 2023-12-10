@@ -18,7 +18,6 @@
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
 
-
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
 #elif defined (USE_MAC_ADDRESS_SHORT)
@@ -31,8 +30,7 @@
     }
 #endif
 
-
-#define N_FILE_INIT 35
+#define N_FILE_INIT 40
 
 namespace MRF24J40{
 
@@ -46,7 +44,6 @@ namespace MRF24J40{
             void                Run(void);
             friend void                update();  
             
-
         private :
             unsigned long       last_time{0};
             unsigned long       tx_interval{1000}; 
@@ -68,7 +65,5 @@ namespace MRF24J40{
 
             void handle_tx();
             void handle_rx();
-
-
 
 }//end MRF24J40
