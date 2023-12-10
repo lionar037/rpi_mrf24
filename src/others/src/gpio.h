@@ -49,10 +49,9 @@ struct Gpio{
             int m_res{};
             const unsigned int m_gpio_out{OUT_INTERRUPT};
             const int m_gpio_in{IN_INTERRUPT};
-            std::ifstream fileGpioInput;
-            std::ifstream fileGpioOutput;
+            std::ifstream filenameGpio;
+            //std::ifstream fileGpioOutput;
 
-            int m_num_fdpoll { 1 };        
-            int m_looper { 0 };
+
     };
 }
