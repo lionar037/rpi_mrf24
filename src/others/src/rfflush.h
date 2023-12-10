@@ -13,7 +13,7 @@ struct Fflush_t
         //void updateValue(int, int, int, int) ;
         int func() ;
         void set(std::string_view, int, int) ;
-    private:
+    //private:
         std::mutex m_mtx;
 };
 
