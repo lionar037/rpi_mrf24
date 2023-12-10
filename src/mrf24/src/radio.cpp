@@ -235,6 +235,7 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
         std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
         std::cout<<"\nbuff: \n"<<buff;
     #endif
+    std::cout<<"\r\n";
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
 

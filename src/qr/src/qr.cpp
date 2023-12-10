@@ -10,6 +10,7 @@ namespace QR{
 
     bool Qr_t::create(const std::string_view& fname ) {
     auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
+        RST_COLOR() ;
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         // Configuración del código QR
         QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
