@@ -169,7 +169,6 @@ void update(std::string_view str_view){
 return ;
   qr_img->create(packet_data);
     
- //std::cout << "\033[" << 27 << "A";
 }
 
 
@@ -255,12 +254,12 @@ monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files+
 monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
     //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
     //printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
-    RST_COLOR() ;
-    std::cout<<"\r\n";
+    //RST_COLOR() ;
+    //std::cout<<"\r\n";
     #endif
 
      update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
-    
+ RST_COLOR() ;   
 }
 
 
