@@ -155,13 +155,19 @@ namespace GPIO{
 
         // settings( gpio_in  , DIR_IN  ,fileGpioInput);
         // settings( gpio_out , DIR_OUT ,fileGpioOutput);
-        
+        const int pin =23;
+        const std::string filePathGpio = "/sys/class/gpio/gpio" + std::to_string(pin) + "/direction";                                
+        const std::string fNameResult = "echo " + std::to_string(pin) + " > /sys/class/gpio/export";
+           
+
+
        const std::string filePathGpio23 = "/sys/class/gpio/gpio23/direction";
         std::ifstream fileGpio23;
-        fileGpio23.open(filePathGpio23);
+        fileGpio23.open(filePathGpio);
 
         if(!fileGpio23){
-            const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
+            const bool result_input = std::system(fNameResult);
+            //const bool result_input = std::system("echo 23 > /sys/class/gpio/export");
             if (result_input == 0) {
                 #ifdef DBG_GPIO
                     std::cout << "Pin GPIO 23 exported successfully." << std::endl;
