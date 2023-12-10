@@ -155,7 +155,7 @@ void update(std::string_view str_view){
     std::string_view packet_data2 = "1234567890";
     std::vector<int> infoQrTmp; 
     qr->create_qr(packet_data2, infoQrTmp);
-    monitor->set(infoQrTmp.size(),25,17);
+    monitor->set( std::to_string(infoQrTmp.size()),25,17);
     //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
     fs->create(packet_data);
     std::cout<<"\r\n";
