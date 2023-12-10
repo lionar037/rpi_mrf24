@@ -52,9 +52,6 @@ struct Gpio{
             std::ifstream fileGpioInput;
             std::ifstream fileGpioOutput;
 
-            struct pollfd fdpoll;
-            int m_num_fdpoll { 1 };        
-            int m_looper { 0 };
-            char *buf[64];
+
     };
 }
