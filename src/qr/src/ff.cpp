@@ -27,7 +27,7 @@ namespace QR{
         std::cout << "Presiona Enter para imprimir otro cuadrado...";
         _getch();  // Esperar a que se presione una tecla en Windows
     #else
-        std::cout << "\033[" << 15 << "A";
+        std::cout << "\033[" << 10 << "A";
         usleep(500000);  // Esperar medio segundo en sistemas basados en Unix
     #endif
     }
