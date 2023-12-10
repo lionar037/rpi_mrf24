@@ -154,7 +154,7 @@ namespace GPIO{
         if(m_state==true)
         {
         while(m_looper<READING_STEPS) {
-            memset((void *)&m_fdpoll,0,sizeof(m_fdpoll));
+            memset((void *)&fdpoll,0,sizeof(fdpoll));
             fdpoll.fd = m_gpio_in_fd;
             fdpoll.events = POLLPRI;
             m_res = poll(&fdpoll,m_num_fdpoll,POLL_TIMEOUT);
