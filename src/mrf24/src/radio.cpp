@@ -147,7 +147,7 @@ void update(std::string_view str_view){
     std::string  PacketDataTmp (packet_data += positionAdvance);
     PacketDataTmp.resize(38);
 
-std::cout << "\033[2J\033[H" << std::flush;
+//std::cout << "\033[2J\033[H" << std::flush;
 
     qr_img->create(packet_data);
     
@@ -168,6 +168,7 @@ std::cout << "\033[2J\033[H" << std::flush;
     std::cout<<"\r\n";
 
 return ;
+ std::cout << "\033[" << 27 << "A";
 }
 
 
