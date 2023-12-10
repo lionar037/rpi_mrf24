@@ -27,6 +27,7 @@ namespace QR{
             for (int x = 0; x < qr->width; x++) {                
               //  std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
                 buff.push_back((qr->data[index] & 1) != 0);
+              
                 index++;
             }
             //std::cout << std::endl;
