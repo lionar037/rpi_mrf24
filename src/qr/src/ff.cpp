@@ -16,7 +16,7 @@ namespace QR{
     void Qr_img_t::drawRectangle(int width, int height) {
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
-                char randomChar = rand() % 26 + '0';  // Generar un carácter aleatorio (A-Z)
+                char randomChar = rand() % 26 + 'A';  // Generar un carácter aleatorio (A-Z)
                 std::cout << randomChar;
             }
             std::cout << std::endl;
