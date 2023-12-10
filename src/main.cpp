@@ -14,7 +14,7 @@ int main(){
     // std::vector<std::thread> threadVect;
     // const int ThreadCant{4};
 
-std::cout << "\033[2J\033[H" << std::flush;
+//std::cout << "\033[2J\033[H" << std::flush;
      try    {
 // 
         // for (int i = 0; i < ThreadCant; ++i) {
