@@ -216,7 +216,7 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-    std::cout<<"\n";
+   // std::cout<<"\n";
 
     update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
 
@@ -238,6 +238,7 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
     std::cout<<"\r\n";
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
+        files++;
 monitor->set("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
 monitor->set("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
     //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
