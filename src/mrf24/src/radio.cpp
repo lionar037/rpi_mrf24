@@ -138,6 +138,7 @@ void update(std::string_view str_view){
     auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
     auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
     auto            qr_tmp      { std::make_unique<QR::QrOled_t>() };
+    auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
     #ifdef MRF24_RECEIVER_ENABLE
         static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
     #endif
@@ -151,10 +152,11 @@ void update(std::string_view str_view){
         oled->create(tmp.c_str());  
     #endif
     auto qr = std::make_unique<QR::QrOled_t>();
-    std::string_view packet_data2 = "ljwekjnwldnlwwnx";
+    std::string_view packet_data2 = "1234567890";
     std::vector<int> infoQrTmp; 
     qr->create_qr(packet_data2, infoQrTmp);
-    std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
+    monitor->set(infoQrTmp.size(),25,17);
+    //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
     fs->create(packet_data);
     std::cout<<"\r\n";
 
@@ -216,7 +218,7 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
     std::cout<<"\n";
 
-    //update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
+    update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
 
     #ifdef DBG_PRINT_GET_INFO 
       
@@ -232,11 +234,11 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
         std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
         std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
         std::cout<<"\nbuff: \n"<<buff;
-
+    #endif
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
 
-     #endif
+ 
     printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
     printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;
