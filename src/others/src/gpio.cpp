@@ -189,22 +189,19 @@ namespace GPIO{
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
         gpio_set_value(m_gpio_out,VALUE_LOW);
-
+        
+        close(m_gpio_in_fd);        
+        //gpio_set_value(m_gpio_out,VALUE_LOW);
 
         return false;
     }
 
     void Gpio::CloseGpios()
     {
-        if(filenameGpio.is_open())filenameGpio.close();
-
-        close(m_gpio_in_fd);
-        
-        gpio_set_value(m_gpio_out,VALUE_LOW);
-        
+        if(filenameGpio.is_open())filenameGpio.close();        
         gpio_unexport(m_gpio_out);
         gpio_unexport(m_gpio_in);
-        if(fileGpioOutput.is_open())fileGpioOutput.close();
+        //if(fileGpioOutput.is_open())fileGpioOutput.close();
     }
 
     Gpio::~Gpio(){
