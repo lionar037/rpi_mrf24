@@ -138,24 +138,28 @@ void update(std::string_view str_view){
     auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
     auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
     auto            qr_tmp      { std::make_unique<QR::QrOled_t>() };
-    auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
+    auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
     #ifdef MRF24_RECEIVER_ENABLE
         static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
     #endif
     const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
     
-    
-    std::string  tmp (packet_data += positionAdvance);
+    std::string  PacketDataTmp (packet_data += positionAdvance);
+    PacketDataTmp.resize(38);
     qr_img->create(packet_data);
-    tmp.resize(38);
+    
+    monitor->print( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
+
     #ifdef MRF24_RECEIVER_ENABLE
-        oled->create(tmp.c_str());  
+        oled->create(PacketDataTmp.c_str());  
     #endif
     auto qr = std::make_unique<QR::QrOled_t>();
-    std::string_view packet_data2 = "1234567890";
-    std::vector<int> infoQrTmp; 
-    qr->create_qr(packet_data2, infoQrTmp);
-    monitor->set( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
+
+    //De momento no hace nada
+    //std::string_view packet_data2 = "1234567890";    
+    //std::vector<int> infoQrTmp; 
+    //qr->create_qr(packet_data2, infoQrTmp);
+    
     //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
     fs->create(packet_data);
     std::cout<<"\r\n";
@@ -189,14 +193,14 @@ char bufferMonitor[128];
 
 auto  monitor{std::make_unique <FFLUSH::Fflush_t>()};
 
-monitor->set("received a packet ... ",files++,col);
+monitor->print("received a packet ... ",files++,col);
     //std::cout << " \nreceived a packet ... ";
     sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
-monitor->set(bufferMonitor,files++,col);
+monitor->print(bufferMonitor,files++,col);
 //    std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-monitor->set(" Packet data (PHY Payload) :",files++,col);
+monitor->print(" Packet data (PHY Payload) :",files++,col);
     //  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
@@ -208,10 +212,10 @@ monitor->set(" Packet data (PHY Payload) :",files++,col);
     }
         std::cout << "\n";
     SET_COLOR(SET_COLOR_CYAN_TEXT);
-monitor->set("ASCII data (relevant data) :",files++,col);
+monitor->print("ASCII data (relevant data) :",files++,col);
         //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
-monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);
+monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);
         //std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
 
@@ -239,8 +243,8 @@ monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files+
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
         files++;
-monitor->set("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
-monitor->set("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
+monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
+monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
     //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
     //printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
     RST_COLOR() ;

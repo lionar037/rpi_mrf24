@@ -12,7 +12,7 @@ struct Fflush_t
         //friend void updateValue(int, int, int, int) ;
         //void updateValue(int, int, int, int) ;
         int funcThread() ;
-        void set(std::string_view, int, int) ;
+        void print(std::string_view, int, int) ;
     //private:
     protected:
         std::mutex m_mtx;
