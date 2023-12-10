@@ -1,15 +1,15 @@
 #pragma once
 #include <string_view>
 #include <mutex>
-#include <ncurses.h>
+//#include <ncurses.h>
 
 namespace FFLUSH{
 
 struct Fflush_t
 {
-        Fflush_t(){
-            initscr(); 
-        }
+        Fflush_t()=default;
+            //initscr(); 
+        
         ~Fflush_t()=default;
         /* data */
         //friend void updateValue(int, int, int, int) ;
