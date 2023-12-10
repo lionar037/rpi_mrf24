@@ -4,7 +4,7 @@
 #include <qr/src/qr.h>
 #include <others/src/color.h>
 #include <others/src/rfflush.h>
-
+#include <array>
 
 namespace QR{
 
