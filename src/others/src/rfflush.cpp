@@ -26,12 +26,12 @@ namespace FFLUSH{
     { //row fila  // col : columna         
      SET_COLOR(SET_COLOR_BLUE_TEXT);
     // move(row,col);
-    std::cout << "\033[" << row << ";" << col << "H";
+    std::cout << "\033[" << row << ";" << col << "H"<<str_txt.data();
             //std::unique_lock<std::mutex> lock(m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
             //std::cout << "\033[" << row << ";" << col << "H" << str_txt.data();//<< std::flush;
             //lock.unlock();                
-            std::cout<<str_txt.data();
+            //std::cout<<str_txt.data();
     return ;    
     }
 
