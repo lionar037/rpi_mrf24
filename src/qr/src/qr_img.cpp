@@ -90,21 +90,20 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
     auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
     
         std::cout << "\033[2J\033[H" << std::flush;
-        monitor->print(" ",0,0);
+        monitor->print(" ",20,0);
         // Imprime el código QR en la consola
         SET_COLOR(SET_COLOR_WHITE_TEXT);
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {
                 std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
             }
-            std::cout << std::endl;
+            std::cout << "\n";
         }
 
 
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
         saveQRCodeImage(qr, file_tmp.c_str());
-
         // Libera la memoria
         QRcode_free(qr);
 
