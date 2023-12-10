@@ -21,12 +21,12 @@ namespace QR{
         monitor->print("\n",0,0);
                 SET_COLOR(SET_COLOR_WHITE_TEXT);
         std::cout << "\n";
-        std::vector<bool> buff(QRcode_getBufferSize(qr));
+        std::vector<bool> buff;//(QRcode_getBufferSize(qr));
         int index { 0 };
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {                
-                //std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-                buff[index] = (qr->data[index] & 1) != 0;
+                std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+                buff.push_back((qr->data[index] & 1) != 0);
                 index++;
             }
             //std::cout << std::endl;
