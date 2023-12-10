@@ -34,7 +34,7 @@ namespace QR{
 
     bool Qr_img_t::create2(const std::string_view& createView) {
         int width = 50;
-        int height = 10;
+        int height = 30;
 
         // Inicializar la semilla para obtener valores aleatorios diferentes en cada ejecución
         std::srand(std::time(0));
