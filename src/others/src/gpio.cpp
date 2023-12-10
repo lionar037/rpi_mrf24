@@ -141,10 +141,9 @@ namespace GPIO{
         //const int gpio_in = IN_INTERRUPT;
   
             struct pollfd fdpoll;
-            int m_num_fdpoll { 1 };        
-            int m_looper { 0 };
+
             char *buf[64];
-            
+
          settings( m_gpio_in  , DIR_IN  ,fileGpioInput);
          settings( m_gpio_out , DIR_OUT ,fileGpioOutput);
         
