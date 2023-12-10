@@ -197,6 +197,8 @@ char bufferMonitor[128];
 
 auto  monitor{std::make_unique <FFLUSH::Fflush_t>()};
 
+files=POSITIOM_INIT_PRINTS;
+
 monitor->print("received a packet ... ",files++,col);
     //std::cout << " \nreceived a packet ... ";
     sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
@@ -224,7 +226,7 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-   // std::cout<<"\n";
+    std::cout<<"\n";
 
    
 
@@ -242,11 +244,12 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
         std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
         std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
         std::cout<<"\nbuff: \n"<<buff;
+        std::cout<<"\r\n";
     #endif
-    std::cout<<"\r\n";
-        SET_COLOR(SET_COLOR_GRAY_TEXT);
-        SET_COLOR(SET_COLOR_BLUE_BACKGROUND);
-        files++;  files++;  files++;
+    
+       
+        SET_COLOR(SET_COLOR_RED_BACKGROUND);
+        files++;  files++; // files++;
 monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
 monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
     //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
