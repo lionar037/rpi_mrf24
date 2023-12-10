@@ -102,12 +102,24 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         std::cout << "\033[" << 10 << ";" << 0 << "H";
  
       
+        // for (int y = 0; y < qr->width; y++) {
+            // for (int x = 0; x < qr->width; x++) {
+                // std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+            // }
+            // std::cout << "\n";
+        // }
+
+
+        std::cout << "\n";
+        
+        
         for (int y = 0; y < qr->width; y++) {
-            for (int x = 0; x < qr->width; x++) {
-                std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-            }
-            std::cout << "\n";
+            for (int x = 0; x < qr->width; x++)                
+               std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+        std::cout << "\n";
         }
+            
+
           
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
