@@ -4,6 +4,7 @@
 #include <png.h>
 #include <zlib.h>
 
+#include <others/src/rfflush.h>
 #include <others/src/color.h>
 #include <app/src/config.h>
 #include <others/src/tyme.h>
