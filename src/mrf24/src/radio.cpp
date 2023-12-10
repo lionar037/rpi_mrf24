@@ -190,11 +190,11 @@ auto  monitor{std::make_unique <FFLUSH::Fflush_t>()};
 monitor->set("received a packet ... ",files++,col);
     //std::cout << " \nreceived a packet ... ";
     sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
-//monitor->set(bufferMonitor,files++,col);
+monitor->set(bufferMonitor,files++,col);
 //    std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-//monitor->set(" Packet data (PHY Payload) :",files++,col);
+monitor->set(" Packet data (PHY Payload) :",files++,col);
     //  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
@@ -206,10 +206,10 @@ monitor->set("received a packet ... ",files++,col);
     }
         std::cout << "\n";
     SET_COLOR(SET_COLOR_CYAN_TEXT);
-//monitor->set("ASCII data (relevant data) :",files++,col);
+monitor->set("ASCII data (relevant data) :",files++,col);
         //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
-//monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);
+monitor->set("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);
         //std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
 
 
