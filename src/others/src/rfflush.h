@@ -7,6 +7,7 @@ namespace FFLUSH{
 
 struct Fflush_t
 {
+    
         Fflush_t()=default;
             //initscr(); 
         
