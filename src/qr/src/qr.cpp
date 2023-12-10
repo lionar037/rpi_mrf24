@@ -25,7 +25,7 @@ namespace QR{
         int index { 0 };
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++) {                
-                std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+              //  std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
                 buff.push_back((qr->data[index] & 1) != 0);
                 index++;
             }
@@ -33,7 +33,6 @@ namespace QR{
             std::cout << "\n";
         }
        
-    
         // Libera la memoria
         // QRcode_free(qr.get()); 
         QRcode_free(qr); 
