@@ -7,6 +7,9 @@
 #else
 #include <unistd.h>
 #endif
+
+#include <qr/src/qr.h>
+
 namespace QR{
 
 void Qr_img_t::drawRectangle(int width, int height) {
@@ -28,7 +31,7 @@ void Qr_img_t::drawRectangle(int width, int height) {
 #endif
 }
 
-int Qr_img_t::create2() {
+int Qr_img_t::create2(const std::string_view& createView) {
     int width = 50;
     int height = 10;
 
