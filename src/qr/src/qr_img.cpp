@@ -4,7 +4,7 @@
 extern "C"{
     #include <png.h>
     #include <zlib.h>
-    #include <ncurses.h>
+    //#include <ncurses.h>
 }
 
 #include <others/src/rfflush.h>
@@ -99,17 +99,9 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
 
         // Imprime el código QR en la consola
            SET_COLOR(SET_COLOR_WHITE_TEXT);       
-        std::cout << "\033[" << 10 << ";" << 0 << "H";
+      //  std::cout << "\033[" << 10 << ";" << 0 << "H";
  
-      
-        // for (int y = 0; y < qr->width; y++) {
-            // for (int x = 0; x < qr->width; x++) {
-                // std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-            // }
-            // std::cout << "\n";
-        // }
-
-
+    
         std::cout << "\n";
         
         

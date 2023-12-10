@@ -164,10 +164,10 @@ void update(std::string_view str_view){
     //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
     
     fs->create(packet_data);
-    std::cout<<"\r\n";
+    std::cout<<"\n";
 
 
-  qr_img->create(packet_data);
+   qr_img->create(packet_data);
 return ;    
 }
 
