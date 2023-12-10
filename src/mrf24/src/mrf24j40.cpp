@@ -230,7 +230,7 @@ namespace MRF24J40{
         }
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
-            #ifdef DBG
+            #ifdef DBG_MRF
                 std::cout<< "transmite algo \n";
             #endif
             tx_handler();
@@ -255,7 +255,9 @@ void Mrf24j::settings_mrf(void){
         rxmcr.PANCOORD=true;
         rxmcr.COORD=false;
         rxmcr.PROMI=true;
-        //printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
+        #ifdef DBG_MRF
+            printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
+        #endif
         write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
         return;
     }
@@ -339,7 +341,7 @@ void Mrf24j::settings_mrf(void){
     }
 
     Mrf24j::~Mrf24j( ){
-        #ifdef DBG
+        #ifdef DBG_MRF
             std::cout <<"~Mrf24j( )\r\n";
         #endif
     }
@@ -429,7 +431,9 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, dest >> 8); // dest16 high
 
         if(sizeof(dest)>2){
-            std::cout <<"es un mac de 64 bytes\n";
+            #ifdef DBG_MRF
+                std::cout <<"es un mac de 64 bytes\n";
+            #endif
         write_long(i++, (dest >> 16 ) & 0xff);
         write_long(i++, (dest >> 24 ) & 0xff);
         write_long(i++, (dest >> 32 ) & 0xff);
@@ -438,7 +442,9 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, (dest >> 56 ) & 0xff);
         }
         else{
+            #ifdef DBG_MRF
             std::cout <<"es un mac de 16 bytes\n";
+            #endif
         }
  
         const uint64_t src = address64_read();

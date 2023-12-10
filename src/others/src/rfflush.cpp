@@ -25,7 +25,7 @@ namespace FFLUSH{
     { //row fila  // col : columna         
             std::unique_lock<std::mutex> lock(m_mtx);
             // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
-            std::cout << "\033[" << row << ";" << col << str_txt.data()<< std::flush;
+            std::cout << "\033[" << row << ";" << col << "H" << str_txt.data()<< std::flush;
             lock.unlock();                
     return ;    
     }

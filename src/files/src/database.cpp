@@ -36,12 +36,13 @@ namespace DATABASE{
                 hexData << std::setw(2) << static_cast<int>(buffer);
             }
             delete hexDataStream;
-
-            std::cout << "ID: " << id << "\n";
-            std::cout << "Hex Data: " << hexData.str() << "\n";
-            std::cout << "Name: " << res->getString("NAME") << "\n";
-            std::cout << "Data: " << res->getString("DATA") << "\n";
-            std::cout << "Date: " << res->getString("DATE") << "\n";
+            #ifdef DBG_DATABASE
+                std::cout << "ID: " << id << "\n";
+                std::cout << "Hex Data: " << hexData.str() << "\n";
+                std::cout << "Name: " << res->getString("NAME") << "\n";
+                std::cout << "Data: " << res->getString("DATA") << "\n";
+                std::cout << "Date: " << res->getString("DATE") << "\n";
+            #endif
         } else {
             std::cout << "No se encontró un registro con el ID " << idToRetrieve << "\n";
         }
@@ -50,11 +51,13 @@ namespace DATABASE{
         delete stmt;
         delete con;
     } catch (sql::SQLException &e) {
-        std::cout << "# ERR: SQLException en " << __FILE__;
-        std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << "\n";
-        std::cout << "# ERR: " << e.what();
-        std::cout << " (Código de error MySQL: " << e.getErrorCode();
-        std::cout << ", Estado SQL: " << e.getSQLState() << " )\n";
+        #ifdef DBG_DATABASE
+            std::cout << "# ERR: SQLException en " << __FILE__;
+            std::cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << "\n";
+            std::cout << "# ERR: " << e.what();
+            std::cout << " (Código de error MySQL: " << e.getErrorCode();
+            std::cout << ", Estado SQL: " << e.getSQLState() << " )\n";
+        #endif
     }
 }
 

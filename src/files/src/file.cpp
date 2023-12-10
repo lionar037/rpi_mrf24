@@ -34,7 +34,9 @@ namespace FILESYSTEM{
             std::ifstream file(filename.data(), std::ios::binary);
 
     if (!file.is_open()) {
-        std::cerr << "Error al abrir el archivo: " << filename.data() << std::endl;
+        #ifdef DBG_FILES
+            std::cerr << "Error al abrir el archivo: " << filename.data() << std::endl;
+        #endif
         return nullptr;
     }
 
@@ -45,8 +47,9 @@ namespace FILESYSTEM{
     const auto& address_rx = packet.mac_address_rx;
 
     if (address_rx != ADDRESS_LONG_SLAVE) {
-
-        std::cerr << "Es un MRF24 no  válido." << std::endl;
+    #ifdef DBG_FILES
+            std::cerr << "Es un MRF24 no  válido." << std::endl;
+    #endif        
         file.close();
         return nullptr;
     }
@@ -60,8 +63,9 @@ namespace FILESYSTEM{
     file.read(reinterpret_cast<char*>(imgdata), dataSize);
 
     if (packet.panid != PAN_ID) {
-
+#ifdef DBG_FILES
         std::cerr << SET_COLOR_RED_TEXT << "PAN_ID no  válido." << std::endl;
+#endif        
         file.close();
         return nullptr;
     }
