@@ -32,7 +32,7 @@
 #endif
 
 
-#define N_FILE_INIT 0
+#define N_FILE_INIT 35
 
 namespace MRF24J40{
 
