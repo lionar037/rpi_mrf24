@@ -136,9 +136,9 @@ namespace GPIO{
                 return false;
             }
         }       
-        gpio_unexport(pin);        
-        gpio_export(pin);             
-        gpio_set_direction(pin,str_v.data());
+        // gpio_unexport(pin);        
+        // gpio_export(pin);             
+        // gpio_set_direction(pin,str_v.data());
         return true;
     }
 
@@ -174,9 +174,9 @@ namespace GPIO{
                 // return false;
             // }
         // }
-            // gpio_unexport(gpio_in);
-            // gpio_export(gpio_in);
-            // gpio_set_direction(gpio_in,DIR_IN);            
+            gpio_unexport(gpio_in);
+            gpio_export(gpio_in);
+            gpio_set_direction(gpio_in,DIR_IN);            
              gpio_set_edge(gpio_in,EDGE_FALLING);
 
 
