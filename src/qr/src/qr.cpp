@@ -15,6 +15,7 @@ namespace QR{
         // Configuración del código QR
         QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
         // Imprime el código QR en la consola
+        std::cout << "\033[2J\033[H" << std::flush;
         monitor->set(" ",30,0);
         std::cout << "\n";
         for (int y = 0; y < qr->width; y++) {
