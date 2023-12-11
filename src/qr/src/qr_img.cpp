@@ -114,13 +114,13 @@ std::ofstream outputFile(filename, std::ios::binary);
 
 buffBoolOledTmp.reserve(qr->width*qr->width);
 
-   for (int i = 0; i < qr->width*qr->width; ++i) {
+   for (int i = 0; i < qr->width*qr->width/8; ++i) {
         // Obtener el bit en la posición i y almacenarlo en el vector
         buffBoolOledTmp.push_back((qr->data[i >> 3] & (1 << (7 - (i & 7)))) != 0);
     }
 
 
-       for (int i = 0; i < qr->width*qr->width; ++i) {
+       for (int i = 0; i < qr->width*qr->width/8; ++i) {
         std::cout << (buffBoolOledTmp[i] ? "██" : "  ");
         if ((i + 1) % qr->width == 0) {
             std::cout << std::endl;
