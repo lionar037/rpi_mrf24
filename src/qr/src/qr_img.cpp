@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+
 extern "C"{
     #include <png.h>
     #include <zlib.h>
@@ -130,7 +131,7 @@ buffBoolOledTmp.reserve(qr->width*qr->width);
 
         std::ofstream outputFile("log/output.bin", std::ios::binary);
     if (outputFile.is_open()) {
-        outputFile.write(reinterpret_cast<const char*>(booleanBuffer.data()), booleanBuffer.size() / 8);
+        outputFile.write(reinterpret_cast<const char*>(buffBoolOledTmp.data()), booleanBuffer.size() / 8);
         outputFile.close();
         std::cout << "Datos guardados en output.bin" << std::endl;
     } else {
