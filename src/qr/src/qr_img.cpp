@@ -114,7 +114,7 @@ std::ofstream outputFile(filename, std::ios::binary);
 for(auto& byte : qr->data)
 outputFile.write(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
 
-std::cout<< "print qr->data : "<< std::to_string(qr->data)<<"\n";
+std::cout<< "print qr->data : "<< std::to_string(sizeof( qr->data))<<"\n";
 //buffBoolOledTmp.push_back(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
 
 /*
