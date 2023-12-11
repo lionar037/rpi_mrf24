@@ -100,21 +100,37 @@ const char* filename = "file.bin";
 std::ofstream outputFile(filename, std::ios::binary);
 
         
-        for (int y = 0; y < qr->width; y++) {
-            for (int x = 0; x < qr->width; x++)   {             
-               //std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-            }
-        std::cout << "\n";
-        }
+        // for (int y = 0; y < qr->width; y++) {
+            // for (int x = 0; x < qr->width; x++)   {             
+            //    std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+            // }
+        // std::cout << "\n";
+        // }
 
 
 
 
             std::vector<bool> buffBoolOledTmp;int index { 0 };
-for(auto& byte : qr->data)
-outputFile.write(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
 
-std::cout<< "print qr->data : "<< std::to_string(sizeof( qr->data))<<"\n";
+buffBoolOledTmp.reserve(qr->width*qr->width);
+
+   for (int i = 0; i < bufferSize; ++i) {
+        // Obtener el bit en la posición i y almacenarlo en el vector
+        booleanBuffer.push_back((qr->data[i >> 3] & (1 << (7 - (i & 7)))) != 0);
+    }
+
+
+       for (int i = 0; i < bufferSize; ++i) {
+        std::cout << (booleanBuffer[i] ? "██" : "  ");
+        if ((i + 1) % qr->width == 0) {
+            std::cout << std::endl;
+        }
+    }
+
+//for(auto& byte : qr->data)
+//outputFile.write(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
+
+//std::cout<< "print qr->data : "<< std::to_string(sizeof( qr->data))<<"\n";
 //buffBoolOledTmp.push_back(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
 
 /*
