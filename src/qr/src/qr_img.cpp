@@ -110,7 +110,7 @@ std::ofstream outputFile(filename, std::ios::binary);
 
 
 
-            std::vector<T> buffBoolOledTmp;int index { 0 };
+            std::vector<bool> buffBoolOledTmp;int index { 0 };
 for(auto& byte : qr->data)
 outputFile.write(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
 
