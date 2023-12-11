@@ -133,6 +133,7 @@ size_t bytesToWrite = buffBoolOledTmp.size() / 8;
     if (outputFile.is_open()) {
        // outputFile.write(reinterpret_cast<const char*>(buffBoolOledTmp.data()), booleanBuffer.size() / 8);
         outputFile.write(reinterpret_cast<const char*>(buffBoolOledTmp.data()), bytesToWrite);
+        
 
         outputFile.close();
         std::cout << "Datos guardados en output.bin" << std::endl;
