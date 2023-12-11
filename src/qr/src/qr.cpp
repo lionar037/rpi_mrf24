@@ -8,7 +8,7 @@
 
 namespace QR{
 
-template<typenameT>
+template<typename T>
 const bool* funcionCreateBufferOled(){
 
             std::vector<T> buffBoolOledTmp;//(QRcode_getBufferSize(qr));
