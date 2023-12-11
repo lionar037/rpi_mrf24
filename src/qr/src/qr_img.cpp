@@ -147,15 +147,10 @@ buffBoolOledTmp.reserve(qr->width*qr->width);
 
 //std::cout<< "print qr->data : "<< std::to_string(sizeof( qr->data))<<"\n";
 //buffBoolOledTmp.push_back(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
-
-/*
-  for (bool value : buffBoolOledTmp) {
-        outputFile.write(reinterpret_cast<const char*>(&value), sizeof(bool));
-    }
-*/
+outputFile.close();  
 
 
-        outputFile.close();  
+        
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
         saveQRCodeImage(qr, file_tmp.c_str());
