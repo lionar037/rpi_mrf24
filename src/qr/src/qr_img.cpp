@@ -141,13 +141,7 @@ buffBoolOledTmp.reserve(qr->width*qr->width);
         // std::cerr << "No se pudo abrir el archivo para escritura." << std::endl;
     // }
 
-
-//for(auto& byte : qr->data)
-//outputFile.write(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
-
-//std::cout<< "print qr->data : "<< std::to_string(sizeof( qr->data))<<"\n";
-//buffBoolOledTmp.push_back(reinterpret_cast<bool *>((qr->data[index++] & 1) != 0));
-outputFile.close();  
+//outputFile.close();  
 
 
         
