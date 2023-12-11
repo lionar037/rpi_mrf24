@@ -105,7 +105,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         std::cout << "\n";
         
         
-        for (int y = 0; y < qr->width; y++) {
+        for (int y = 0; y < 10 /*qr->width*/; y++) {
             for (int x = 0; x < qr->width; x++)   {             
                std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
             }
