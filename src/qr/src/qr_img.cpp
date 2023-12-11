@@ -130,7 +130,9 @@ buffBoolOledTmp.reserve(qr->width*qr->width);
 
 std::ofstream outputFile("log/output.bin", std::ios::binary);
     if (outputFile.is_open()) {
+        // outputFile.write(reinterpret_cast<const char*>(buffBoolOledTmp.data()), static_cast<std::streamsize>(bytesToWrite));
         outputFile.write(reinterpret_cast<const char*>(buffBoolOledTmp.data()), static_cast<std::streamsize>(bytesToWrite));
+
         outputFile.close();
         std::cout << "Datos guardados en output.bin" << std::endl;
     } else {
