@@ -128,7 +128,7 @@ buffBoolOledTmp.reserve(qr->width*qr->width);
     // }
 
 
-        std::ofstream outputFile("output.bin", std::ios::binary);
+        std::ofstream outputFile("log/output.bin", std::ios::binary);
     if (outputFile.is_open()) {
         outputFile.write(reinterpret_cast<const char*>(booleanBuffer.data()), booleanBuffer.size() / 8);
         outputFile.close();
