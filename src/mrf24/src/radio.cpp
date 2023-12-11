@@ -147,8 +147,7 @@ void update(std::string_view str_view){
     std::string  PacketDataTmp (packet_data += positionAdvance);
     PacketDataTmp.resize(38);
 
-//std::cout << "\033[2J\033[H" << std::flush;
-
+    SET_COLOR(SET_COLOR_GRAY_TEXT);
   
 
     #ifdef MRF24_RECEIVER_ENABLE
@@ -256,6 +255,7 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
     //std::cout<<"\r\n";
     #endif
 RST_COLOR() ;   
+SET_COLOR(SET_COLOR_RED_TEXT);
      update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
  
 }
