@@ -97,8 +97,8 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
            SET_COLOR(SET_COLOR_WHITE_TEXT);           
         std::cout << "\n";
         
-const char* filename = "file.bin";
-std::ofstream outputFile(filename, std::ios::binary);
+//const char* filename = "file.bin";
+//std::ofstream outputFile(filename, std::ios::binary);
 
         
         // for (int y = 0; y < qr->width; y++) {
