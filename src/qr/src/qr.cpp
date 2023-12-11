@@ -8,14 +8,14 @@
 
 namespace QR{
 
-template<typename T>
-const bool* funcionCreateBufferOled(){
-
-            std::vector<T> buffBoolOledTmp;//(QRcode_getBufferSize(qr));
-        int index { 0 };
-        buffBoolOledTmp.push_back((qr->data[index] & 1) != 0);
-        return reinterpreted_cast<const bool*>(buffBoolOledTmp);
-}
+// template<typename T>
+// const bool* funcionCreateBufferOled(){
+// 
+            // std::vector<T> buffBoolOledTmp;//(QRcode_getBufferSize(qr));
+        // int index { 0 };
+        // buffBoolOledTmp.push_back((qr->data[index] & 1) != 0);
+        // return reinterpreted_cast<const bool*>(buffBoolOledTmp);
+// }
 
     bool Qr_t::create(const std::string_view& fname ) {
     auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
