@@ -28,6 +28,7 @@ Radio_t::Radio_t()
 ,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
+,   mosq            { std::make_unique<MOSQUITTO::Mosquitto_t>()}    
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
@@ -66,7 +67,7 @@ Radio_t::Radio_t()
 
     //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
-    
+    mosq->init();
     flag=true;
    // Run();
 
