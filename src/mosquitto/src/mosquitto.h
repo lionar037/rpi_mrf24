@@ -10,6 +10,7 @@ namespace MOSQUITTO{
             void pub();
             int init();
         private:
+            int rc{};
             struct mosquitto * mosq;
             //std::unique_ptr<mosquitto> mosco{};
     };
