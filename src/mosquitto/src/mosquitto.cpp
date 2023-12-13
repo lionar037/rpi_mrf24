@@ -12,17 +12,10 @@
 namespace MOSQUITTO{
 
 
-    void Mosquitto_t::sub(){
 
 
-    }
 
-
-    void Mosquitto_t::pub(){
-
-    }
-
-    int Mosquitto_t::init(){
+    int Mosquitto_t::pub(){
         mosq = mosquitto_new("publisher-test", true, NULL);
         rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO , 1883, 60);
 
@@ -36,6 +29,7 @@ namespace MOSQUITTO{
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
         mosquitto_lib_cleanup();
+        return 0;
     }
 
 
@@ -44,20 +38,21 @@ namespace MOSQUITTO{
     //:mosco {std::make_unique<mosquitto>()}
     {
         //mosco = mosquitto_new("publisher-test", true, NULL);
-        init();
+        //pub();
+        sub();
     }
 
 
 
 
-void Mosquitto_t::sub() {
+int Mosquitto_t::sub() {
 	int rc, id=12;
 	mosquitto_lib_init();
 	struct mosquitto *mosq;
 	mosq = mosquitto_new("subscribe-test", true, &id);
 	mosquitto_connect_callback_set(mosq, on_connect);
 	mosquitto_message_callback_set(mosq, on_message);	
-	rc = mosquitto_connect(mosq, "raspberry.local", 1883, 10);
+	rc = mosquitto_connect(mosq, "HOSTNAME_MOSQUITTO", 1883, 10);
 	if(rc) {
 		printf("Could not connect to Broker with return code %d\n", rc);
 		return -1;
