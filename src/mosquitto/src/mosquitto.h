@@ -8,7 +8,7 @@ namespace MOSQUITTO{
             ~Mosquitto_t()=default;
             void sub();
             void pub();
-            void init();
+            int init();
         private:
             struct mosquitto * mosq;
             //std::unique_ptr<mosquitto> mosco{};

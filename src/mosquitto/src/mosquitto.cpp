@@ -15,7 +15,7 @@ namespace MOSQUITTO{
 
     }
 
-    void Mosquitto_t::init(){
+    int Mosquitto_t::init(){
         mosq = mosquitto_new("publisher-test", true, NULL);
         rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO , 1883, 60);
 
