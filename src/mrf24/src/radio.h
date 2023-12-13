@@ -30,7 +30,7 @@
     }
 #endif
 
-#define POSITIOM_INIT_PRINTS 4
+#define POSITIOM_INIT_PRINTS 3
 
 namespace MOSQUITTO{
     struct Mosquitto_t;
@@ -47,6 +47,9 @@ namespace MRF24J40{
             void                interrupt_routine();
             void                Run(void);
             friend void                update();  
+
+            static void handle_tx();
+            static void handle_rx();
             
         private :
             unsigned long       last_time{0};
@@ -68,7 +71,5 @@ namespace MRF24J40{
         std::unique_ptr<MOSQUITTO::Mosquitto_t> mosq{};    
     };
 
-            void handle_tx();
-            void handle_rx();
 
 }//end MRF24J40
