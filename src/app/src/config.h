@@ -67,4 +67,3 @@
 #define QR_CODE_SRT MSJ   
 
 
-#define HOSTNAME_MOSQUITTO "192.168.1.38"

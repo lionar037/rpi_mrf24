@@ -2,6 +2,9 @@
 #include <memory>
 #include <mosquitto.h>
 
+#define HOSTNAME_MOSQUITTO "raspberry-2.local"
+
+//#define HOSTNAME_MOSQUITTO "192.168.1.38"
 
 namespace MOSQUITTO{
     struct Mosquitto_t{
