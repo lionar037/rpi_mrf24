@@ -35,6 +35,9 @@
 namespace MOSQUITTO{
     struct Mosquitto_t;
 }
+namespace MRF24J40{
+struct Mrf24j ;
+}
 
 namespace MRF24J40{
 
