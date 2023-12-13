@@ -17,7 +17,7 @@
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
-#include <mrf24/src/mrf24j40.h>
+
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -72,7 +72,7 @@ namespace MRF24J40{
         
         std::unique_ptr<GPIO::Gpio> gpio{};    
         std::unique_ptr<MOSQUITTO::Mosquitto_t> mosq{};    
-        Mrf24j mrf24j40_spi ;
+        
     };
 
 
