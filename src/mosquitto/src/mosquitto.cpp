@@ -35,7 +35,7 @@ namespace MOSQUITTO{
                 mosquitto_destroy(mosq);
                 return -1;
         }
-        printf("We are now connected to the broker!\n");
+        printf("\t\tWe are now connected to the broker!\n");
         mosquitto_publish(mosq, NULL, "house/room", 6, " is Room ", 0, false);
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
@@ -54,7 +54,7 @@ namespace MOSQUITTO{
     	rc = mosquitto_connect(mosq, "HOSTNAME_MOSQUITTO", 1883, 10);
         mosquitto_username_pw_set(mosq, "pi", "zero");
     	if(rc) {
-    		printf("Could not connect to Broker with return code %d\n", rc);
+    		printf("\t\tCould not connect to Broker with return code %d\n", rc);
     		return -1;
     	}
     	mosquitto_loop_start(mosq);
