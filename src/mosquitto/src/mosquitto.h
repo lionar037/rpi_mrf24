@@ -6,12 +6,11 @@
 namespace MOSQUITTO{
     struct Mosquitto_t{
             Mosquitto_t();
-            ~Mosquitto_t()=default;
-            int sub();
-            int pub();
-            
+            ~Mosquitto_t()=default;            
             void on_connect(struct mosquitto *mosq, void *obj, int rc) ;
             void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) ;
+            int sub();
+            int pub();
         private:
             int rc{};
             struct mosquitto * mosq;
