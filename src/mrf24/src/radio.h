@@ -30,7 +30,7 @@
     }
 #endif
 
-#define POSITIOM_INIT_PRINTS 0
+#define POSITIOM_INIT_PRINTS 2
 
 namespace MRF24J40{
 
