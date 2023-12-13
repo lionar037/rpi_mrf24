@@ -21,6 +21,7 @@ namespace MOSQUITTO{
             exit(-1);
         }
         mosquitto_subscribe(mosq, NULL, "home/room", 0);
+        mosquitto_username_pw_set(mosq, "pi", "zero");
     }
 
     void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
@@ -31,6 +32,7 @@ namespace MOSQUITTO{
     int Mosquitto_t::pub(){
         mosq = mosquitto_new("publisher-test", true, NULL);
         rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO , 1883, 60);
+        mosquitto_username_pw_set(mosq, "pi", "zero");
 
                 if(rc != 0){
                 printf("Client could not connect to broker! Error Code: %d\n", rc);
