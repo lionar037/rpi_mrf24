@@ -37,6 +37,6 @@ namespace MOSQUITTO{
     //:mosco {std::make_unique<mosquitto>()}
     {
 //mosco = mosquitto_new("publisher-test", true, NULL);
-        inti();
+        init();
     }
 }
