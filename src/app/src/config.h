@@ -65,3 +65,6 @@
 //Linea de configuracion para codigo Qr de una red wifi
 //#define QR_CODE_SRT "WIFI:T:WPA;S:MiRedWiFi;P:MiContraseña123;;";
 #define QR_CODE_SRT MSJ   
+
+
+#define HOSTNAME_MOSQUITTO "192.168.1.38"
