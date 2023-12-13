@@ -69,6 +69,7 @@ namespace MRF24J40{
         
         std::unique_ptr<GPIO::Gpio> gpio{};    
         std::unique_ptr<MOSQUITTO::Mosquitto_t> mosq{};    
+        Mrf24j mrf24j40_spi ;
     };
 
 

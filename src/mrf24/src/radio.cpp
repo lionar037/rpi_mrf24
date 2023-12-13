@@ -14,7 +14,7 @@
 
 namespace MRF24J40{ 
 
-Mrf24j mrf24j40_spi ;
+
 
 Radio_t::Radio_t() 
 #ifdef ENABLE_INTERRUPT_MRF24
