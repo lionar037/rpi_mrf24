@@ -135,7 +135,8 @@ void Radio_t::interrupt_routine() {
     mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
 }
 
-void update(std::string_view str_view){
+void update(std::string_view str_view)
+{
     
     const int positionAdvance{15};
     auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
@@ -167,7 +168,8 @@ void update(std::string_view str_view){
     
     fs->create(packet_data);
     std::cout<<"\n";
-   qr_img->create(packet_data);
+    qr_img->create(packet_data);
+
 return ;    
 }
 
@@ -260,7 +262,7 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
 RST_COLOR() ;   
 SET_COLOR(SET_COLOR_RED_TEXT);
      update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
- 
+ mosq->pub();
 }
 
 
