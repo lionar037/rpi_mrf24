@@ -30,7 +30,7 @@
     }
 #endif
 
-#define POSITIOM_INIT_PRINTS 2
+#define POSITIOM_INIT_PRINTS 4
 
 namespace MOSQUITTO{
     struct Mosquitto_t;
