@@ -36,7 +36,7 @@ namespace MOSQUITTO{
                 return -1;
         }
         printf("We are now connected to the broker!\n");
-        mosquitto_publish(mosq, NULL, "home/room", 6, "is Room", 0, false);
+        mosquitto_publish(mosq, NULL, "house/room", 6, "is Room", 0, false);
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
         mosquitto_lib_cleanup();
