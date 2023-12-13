@@ -32,6 +32,10 @@
 
 #define POSITIOM_INIT_PRINTS 2
 
+namespace MOSQUITTO{
+    struct Mosquitto_t;
+}
+
 namespace MRF24J40{
 
    struct Radio_t

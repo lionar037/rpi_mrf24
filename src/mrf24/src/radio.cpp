@@ -8,6 +8,7 @@
 #include <mrf24/src/mrf24j40_template.tpp>
 #include <oled/src/oled.h>
 #include <others/src/rfflush.h>
+#include <mosquitto/src/mosquitto.h>
 
 //#include <app/src/data_analisis.h>
 
