@@ -35,11 +35,10 @@
 namespace MOSQUITTO{
     struct Mosquitto_t;
 }
-namespace MRF24J40{
-struct Mrf24j ;
-}
 
 namespace MRF24J40{
+
+struct Mrf24j ;
 
    struct Radio_t
    {
@@ -72,7 +71,7 @@ namespace MRF24J40{
         
         std::unique_ptr<GPIO::Gpio> gpio{};    
         std::unique_ptr<MOSQUITTO::Mosquitto_t> mosq{};    
-        MRF24J40::Mrf24j mrf24j40_spi ;
+        Mrf24j mrf24j40_spi ;
     };
 
 
