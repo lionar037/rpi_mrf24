@@ -14,7 +14,7 @@ namespace MOSQUITTO{
 
 
 
-    void Mosquitto_t::on_connect(struct mosquitto *mosq, void *obj, int rc) {
+    void on_connect(struct mosquitto *mosq, void *obj, int rc) {
         printf("ID: %d\n", * (int *) obj);
         if(rc) {
             printf("Error with result code: %d\n", rc);
@@ -23,7 +23,7 @@ namespace MOSQUITTO{
         mosquitto_subscribe(mosq, NULL, "home/room", 0);
     }
 
-    void Mosquitto_t::on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
+    void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
         printf("New message with topic %s: %s\n", msg->topic, (char *) msg->payload);
     }
 
