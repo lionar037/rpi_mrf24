@@ -21,7 +21,7 @@ namespace MOSQUITTO{
             exit(-1);
         }
         mosquitto_subscribe(mosq, NULL, "home/room", 0);
-        mosquitto_username_pw_set(mosq, "pi", "zero");
+        
     }
 
     void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
@@ -56,6 +56,7 @@ int Mosquitto_t::sub() {
 	mosquitto_connect_callback_set(mosq, on_connect);
 	mosquitto_message_callback_set(mosq, on_message);	
 	rc = mosquitto_connect(mosq, "HOSTNAME_MOSQUITTO", 1883, 10);
+    mosquitto_username_pw_set(mosq, "pi", "zero");
 	if(rc) {
 		printf("Could not connect to Broker with return code %d\n", rc);
 		return -1;
