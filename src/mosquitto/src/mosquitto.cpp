@@ -1,6 +1,8 @@
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
+extern "C"{
+    #include <stdio.h>
+    #include <stdlib.h>
+}
 #include <mosquitto/src/mosquitto.h>
 #include <app/src/config.h>
 
@@ -10,7 +12,7 @@ namespace MOSQUITTO{
     void on_connect(struct mosquitto *mosq, void *obj, int rc) {
         printf("ID: %d\n", * (int *) obj);
         if(rc) {
-            printf("Error with result code: %d\n", rc);
+            std::cout<<"Error with result code: "<< std::to_string (rc) <<"n";
             exit(-1);
         }
         mosquitto_subscribe(mosq, NULL, "house/room", 0);        
@@ -37,7 +39,7 @@ namespace MOSQUITTO{
     		return -1;
     	}
     	mosquitto_loop_start(mosq);
-    	printf("Press Enter to quit...\n");
+    	std::cout<<"Press Enter to quit...\n";
     	getchar();
     	mosquitto_loop_stop(mosq, true);
     	mosquitto_disconnect(mosq);
