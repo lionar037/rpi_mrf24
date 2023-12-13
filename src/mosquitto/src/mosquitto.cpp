@@ -17,7 +17,7 @@ namespace MOSQUITTO{
             printf("Error with result code: %d\n", rc);
             exit(-1);
         }
-        mosquitto_subscribe(mosq, NULL, "home/room", 0);        
+        mosquitto_subscribe(mosq, NULL, "house/room", 0);        
     }
 
     void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
@@ -36,7 +36,7 @@ namespace MOSQUITTO{
                 return -1;
         }
         printf("We are now connected to the broker!\n");
-        mosquitto_publish(mosq, NULL, "house/room", 6, "is Room", 0, false);
+        mosquitto_publish(mosq, NULL, "house/room", 6, " is Room ", 0, false);
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
         mosquitto_lib_cleanup();
