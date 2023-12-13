@@ -73,7 +73,7 @@ int Mosquitto_t::sub() {
     {
         //mosco = mosquitto_new("publisher-test", true, NULL);
         //pub();
-        sub();
+        //sub();
     }
 
 

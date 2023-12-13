@@ -67,7 +67,8 @@ Radio_t::Radio_t()
 
     //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
-    mosq->init();
+    mosq->sub();
+    //mosq->pub();
     flag=true;
    // Run();
 
