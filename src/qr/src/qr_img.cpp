@@ -97,50 +97,41 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
            SET_COLOR(SET_COLOR_WHITE_TEXT);           
         std::cout << "\n";
         
-//const char* filename = "file.bin";
-//std::ofstream outputFile(filename, std::ios::binary);
 
         
-        // for (int y = 0; y < qr->width; y++) {
-            // for (int x = 0; x < qr->width; x++)   {             
-            //    std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-            // }
-        // std::cout << "\n";
+        for (int y = 0; y < qr->width; y++) {
+            for (int x = 0; x < qr->width; x++)   {             
+               std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+            }
+        std::cout << "\n";
+        }
+
+
+        // std::vector<bool> buffBoolOledTmp;int index { 0 };
+// 
+        // buffBoolOledTmp.reserve(qr->width*qr->width);
+// 
+        // for (int i = 0; i < qr->width*qr->width; ++i) {
+            //Obtener el bit en la posición i y almacenarlo en el vector
+            // buffBoolOledTmp.push_back((qr->data[i >> 3] & (1 << (7 - (i & 7)))) != 0);
         // }
 
 
 
-
-            std::vector<bool> buffBoolOledTmp;int index { 0 };
-
-buffBoolOledTmp.reserve(qr->width*qr->width);
-
-   for (int i = 0; i < qr->width*qr->width; ++i) {
-        // Obtener el bit en la posición i y almacenarlo en el vector
-        buffBoolOledTmp.push_back((qr->data[i >> 3] & (1 << (7 - (i & 7)))) != 0);
-    }
-
-
-    //    for (int i = 0; i < qr->width*qr->width; ++i) {
-    //     std::cout << (buffBoolOledTmp[i] ? "██" : "  ");
-    //     if ((i + 1) % qr->width == 0) {
-    //         std::cout << std::endl;
-    //     }
+//    size_t bytesToWrite = buffBoolOledTmp.size();
+// std::ofstream outputFile("log/output.bin", std::ios::binary);
+    // if (outputFile.is_open()) {
+// outputFile.write(buffBoolOledTmp.data(),bytesToWrite);
+    //   
+// 
+        // outputFile.close();
+        // std::cout << "Datos guardados en output.bin" << std::endl;
+    // } else {
+        // std::cerr << "No se pudo abrir el archivo para escritura." << std::endl;
     // }
-   size_t bytesToWrite = buffBoolOledTmp.size();
-std::ofstream outputFile("log/output.bin", std::ios::binary);
-    if (outputFile.is_open()) {
-outputFile.write(buffBoolOledTmp.data(),bytesToWrite);
-      
-
-        outputFile.close();
-        std::cout << "Datos guardados en output.bin" << std::endl;
-    } else {
-        std::cerr << "No se pudo abrir el archivo para escritura." << std::endl;
-    }
-
-
-//outputFile.close();  
+// 
+// 
+// outputFile.close();  
 
 
         
