@@ -17,6 +17,7 @@
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
+#include <mrf24/src/mrf24j40.h>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -38,7 +39,7 @@ namespace MOSQUITTO{
 
 namespace MRF24J40{
 
-struct Mrf24j ;
+//struct Mrf24j ;
 
    struct Radio_t
    {
