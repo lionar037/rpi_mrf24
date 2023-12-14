@@ -74,7 +74,7 @@ namespace MRF24J40{
         
         std::unique_ptr<GPIO::Gpio> gpio{};    
 
-        //static std::unique_ptr<MOSQUITTO::Mosquitto_t>mosq;    
+        static std::unique_ptr<MOSQUITTO::Mosquitto_t>mosq;    
         
         
     };
