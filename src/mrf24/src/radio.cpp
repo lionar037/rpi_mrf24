@@ -261,8 +261,8 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
 RST_COLOR() ;   
 SET_COLOR(SET_COLOR_RED_TEXT);
 const int temperature = mosq->pub();
-const std::string tempString=   \
-reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data)   \
+const std::string tempString=   /
+reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data)   /
 + "{ temp :" + std::to_string(temperature)+ " }";
 update(tempString.data());
 SET_COLOR(SET_COLOR_YELLOW_TEXT);
