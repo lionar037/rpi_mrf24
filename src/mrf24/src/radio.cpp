@@ -69,9 +69,9 @@ Radio_t::Radio_t()
     //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     //mosq->sub();
-    mosq = std::make_unique<MOSQUITTO::Mosquitto_t>();
-
-    mosq->pub();
+    // mosq = std::make_unique<MOSQUITTO::Mosquitto_t>();
+    // mosq->pub();
+    
     flag=true;
    // Run();
 
@@ -265,17 +265,16 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
 RST_COLOR() ;   
 SET_COLOR(SET_COLOR_RED_TEXT);
 update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
-mosq->pub();
+//mosq->pub();
 }
 
 void Radio_t::PublicMosquitto(){
- //instance->mosq->sub();
- mosq->pub();
+ 
+ //mosq->pub();
 }
 
 void Radio_t::SuscribeMosquitto(){
- mosq->sub();
- //instance->mosq->pub();
+ //mosq->sub();
 }
 
     Radio_t::~Radio_t() {
