@@ -34,7 +34,7 @@ namespace MOSQUITTO{
     	mosquitto_username_pw_set(mosq, "pi", "zero");
         mosquitto_connect_callback_set(mosq, on_connect);
     	mosquitto_message_callback_set(mosq, on_message);	
-    	rc = mosquitto_connect(mosq, "HOSTNAME_MOSQUITTO", 1883, 10);
+    	rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO, 1883, 10);
         
     	if(rc) {
     		printf("\t\tSub \tCould not connect to Broker with return code %d\n", rc);
