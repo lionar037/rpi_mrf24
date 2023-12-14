@@ -51,8 +51,14 @@ namespace MOSQUITTO{
     	return 0;
     }
 
+
+
+
+
+
     int Mosquitto_t::pub(){
         static int conter_msj{0};
+        static int temperature{10};
         mosq = mosquitto_new("publisher-test", true, NULL);
     if (!mosq) {
         fprintf(stderr, "Error: Out of memory.\n");
@@ -71,7 +77,7 @@ namespace MOSQUITTO{
         printf("\t\tPub  \tWe are now connected to the broker!\n");
         }
 
-        rc = mosquitto_publish(mosq, NULL, "house/room", 6, " is Room ", 0, false);
+        rc = mosquitto_publish(mosq, NULL, "house/room", 6, " tmp" + std::to_string (temperature), 0, false);
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
             } else {
