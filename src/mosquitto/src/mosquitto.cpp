@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+
 extern "C"{
     #include <stdio.h>
     #include <stdlib.h>
@@ -78,7 +80,7 @@ namespace MOSQUITTO{
         }
   //      char* strtmp;
 //sprintf(strtmp, "tmp: %d ",  temperature);
-        rc = mosquitto_publish(mosq, NULL, "house/room", 6, " temp " , 0, false);
+        rc = mosquitto_publish(mosq, NULL, "house/room", 6, std::to_string(temperature) , 0, false);
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
             } else {
