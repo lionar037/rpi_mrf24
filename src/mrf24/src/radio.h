@@ -19,6 +19,7 @@
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
+#include <mosquitto/src/mosquitto.h>
 
 
 #ifdef USE_MAC_ADDRESS_LONG 
@@ -35,9 +36,9 @@
 
 #define POSITIOM_INIT_PRINTS 4
 
-    namespace MOSQUITTO{
-        struct Mosquitto_t;
-    }
+    // namespace MOSQUITTO{
+        // struct Mosquitto_t;
+    // }
 
 namespace MRF24J40{
 
