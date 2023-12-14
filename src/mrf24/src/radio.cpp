@@ -8,8 +8,7 @@
 #include <mrf24/src/mrf24j40_template.tpp>
 #include <oled/src/oled.h>
 #include <others/src/rfflush.h>
-
-//#include <app/src/data_analisis.h>
+#include <mosquitto/src/mosquitto.h>
 
 namespace MRF24J40{ 
 
@@ -268,15 +267,6 @@ update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
 SET_COLOR(SET_COLOR_YELLOW_TEXT);
 mosq->pub();
 mosq->sub();
-}
-
-void Radio_t::PublicMosquitto(){
- 
- //mosq->pub();
-}
-
-void Radio_t::SuscribeMosquitto(){
- //mosq->sub();
 }
 
     Radio_t::~Radio_t() {

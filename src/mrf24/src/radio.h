@@ -13,15 +13,12 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-
-
 #include <others/src/gpio.h>
 #include <files/src/database.h>
 #include <app/src/config.h>
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
-#include <mosquitto/src/mosquitto.h>
 
 
 #ifdef USE_MAC_ADDRESS_LONG 
@@ -38,9 +35,9 @@
 
 #define POSITIOM_INIT_PRINTS 4
 
-    // namespace MOSQUITTO{
-        // struct Mosquitto_t;
-    // }
+    namespace MOSQUITTO{
+        struct Mosquitto_t;
+    }
 
 namespace MRF24J40{
 
@@ -58,10 +55,6 @@ namespace MRF24J40{
             static void         handle_rx();
 
             void                funcion(std::function<void(uint8_t*)> rx);
-
-
-            void                PublicMosquitto();
-            void                SuscribeMosquitto();
 
         private :
             unsigned long       last_time{0};
