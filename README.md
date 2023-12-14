@@ -50,6 +50,12 @@ create comunication secure
 		cat ~/.ssh/id_rsa.pub | ssh root@127.0.0.1 'cat >> ~/.ssh/authorized_keys'
 
 
- mosquitto_pub -h raspberry.local -p 1883 -t "house/room" -m "{ temp:40 }" -u Username -P "psw"
+help Mosquitto IOT
 
- mosquitto_sub -h raspberry.local -p 1883 -t "house/room" -v -u Username -P "psw"
+	mosquitto_pub -h raspberry.local -p 1883 -t "house/room" -m "{ temp:40 }" -u Username -P "psw"
+
+	mosquitto_sub -h raspberry.local -p 1883 -t "house/room" -v -u Username -P "psw"
+
+	sudo nano /etc/mosquitto/mosquitto.conf 
+
+	sudo systemctl restart mosquitto
