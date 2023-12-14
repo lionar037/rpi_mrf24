@@ -174,7 +174,7 @@ return ;
 }
 
 
-void Radio_t::handle_tx(Radio_t* instance) {
+void Radio_t::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
@@ -191,7 +191,7 @@ void Radio_t::handle_tx(Radio_t* instance) {
 //@params
 //@params
 
-void Radio_t::handle_rx(Radio_t* instance) {
+void Radio_t::handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     int files {POSITIOM_INIT_PRINTS};
     int col {0};

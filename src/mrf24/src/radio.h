@@ -51,8 +51,8 @@ namespace MRF24J40{
             void                Run(void);
             friend void                update();  
 
-            static void         handle_tx(Radio_t* );
-            static void         handle_rx(Radio_t*);
+            static void         handle_tx();
+            static void         handle_rx();
 
             void                funcion(std::function<void(uint8_t*)> rx);
 
