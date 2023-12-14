@@ -263,10 +263,18 @@ RST_COLOR() ;
 SET_COLOR(SET_COLOR_RED_TEXT);
      update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
  
- //instance->mosq->sub();
- instance->mosq->pub();
+
 }
 
+void Radio_t::PublicMosquitto(){
+ //instance->mosq->sub();
+ mosq->pub();
+}
+
+void Radio_t::SuscribeMosquitto(){
+ mosq->sub();
+ //instance->mosq->pub();
+}
 
     Radio_t::~Radio_t() {
         #ifdef DBG

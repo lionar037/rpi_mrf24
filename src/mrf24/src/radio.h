@@ -56,6 +56,10 @@ namespace MRF24J40{
 
             void                funcion(std::function<void(uint8_t*)> rx);
 
+
+void PublicMosquitto();
+void SuscribeMosquitto();
+
         private :
             unsigned long       last_time{0};
             unsigned long       tx_interval{1000}; 

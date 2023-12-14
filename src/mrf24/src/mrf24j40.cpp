@@ -218,7 +218,9 @@ namespace MRF24J40{
     /**
      * Call this function periodically, it will invoke your nominated handlers
      */
-    bool Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)()){
+    bool Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)())
+    
+    {
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_rx) {
             m_flag_got_rx = 0;
