@@ -1,4 +1,3 @@
-//#include <vector>
 #include <string_view>
 #include <mrf24/src/radio.h>
 #include <mrf24/src/mrf24j40.h>
@@ -67,12 +66,11 @@ Radio_t::Radio_t()
 
     //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
-    //mosq->sub();
+    
     mosq = std::make_unique<MOSQUITTO::Mosquitto_t>();
     mosq->pub();
     
     flag=true;
-   // Run();
 
 }
 
@@ -82,9 +80,7 @@ void Radio_t::Run(void){
     #endif
     {   
         //std::cout << "\033[2J\033[H" << std::flush;
-        gpio->app(flag);
-        //system("clear"); 
-
+        gpio->app(flag);        
         mrf24j40_spi.interrupt_handler();
         Init(flag);        
     }

@@ -50,16 +50,30 @@ namespace MOSQUITTO{
 
     int Mosquitto_t::pub(){
         mosq = mosquitto_new("publisher-test", true, NULL);
-        rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO , 1883, 60);
+    if (!mosq) {
+        fprintf(stderr, "Error: Out of memory.\n");
+        return 1;
+    }
+
         mosquitto_username_pw_set(mosq, "pi", "zero");
 
-                if(rc != 0){
-                printf("Client could not connect to broker! Error Code: %d\n", rc);
-                mosquitto_destroy(mosq);
-                return -1;
-        }
+        rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO , 1883, 60);
+        
+        if(rc != 0){
+            printf("Client could not connect to broker! Error Code: %d\n", rc);
+            mosquitto_destroy(mosq);
+            return -1;
+        }else{
         printf("\t\tPub  \tWe are now connected to the broker!\n");
-        mosquitto_publish(mosq, NULL, "house/room", 6, " is Room ", 0, false);
+        }
+
+        rc = mosquitto_publish(mosq, NULL, "house/room", 6, " is Room ", 0, false);
+        if (rc != 0) {
+            fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
+            } else {
+                printf("Message published successfully!\n");
+            }
+
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
         mosquitto_lib_cleanup();
