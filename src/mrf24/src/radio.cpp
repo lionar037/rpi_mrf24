@@ -174,7 +174,7 @@ return ;
 }
 
 
-void Radio_t::handle_tx() {
+void Radio_t::handle_tx(Radio_t* instance) {
     #ifdef MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
@@ -191,7 +191,7 @@ void Radio_t::handle_tx() {
 //@params
 //@params
 
-void Radio_t::handle_rx() {
+void Radio_t::handle_rx(Radio_t* instance) {
     #ifdef MRF24_RECEIVER_ENABLE
     int files {POSITIOM_INIT_PRINTS};
     int col {0};
@@ -262,8 +262,9 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
 RST_COLOR() ;   
 SET_COLOR(SET_COLOR_RED_TEXT);
      update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
- //mosq->pub();
- mosq->sub();
+ 
+ //instance->mosq->sub();
+ instance->mosq->pub();
 }
 
 

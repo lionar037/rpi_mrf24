@@ -11,6 +11,8 @@
 #include <iomanip>
 #include <vector>
 
+#include <functional>
+
 #include <others/src/gpio.h>
 #include <files/src/database.h>
 #include <app/src/config.h>
@@ -33,13 +35,11 @@
 
 #define POSITIOM_INIT_PRINTS 4
 
-namespace MOSQUITTO{
-    struct Mosquitto_t;
-}
+    namespace MOSQUITTO{
+        struct Mosquitto_t;
+    }
 
 namespace MRF24J40{
-
-//struct Mrf24j ;
 
    struct Radio_t
    {
@@ -51,9 +51,11 @@ namespace MRF24J40{
             void                Run(void);
             friend void                update();  
 
-            static void handle_tx();
-            static void handle_rx();
-            
+            static void         handle_tx(Radio_t* );
+            static void         handle_rx(Radio_t*);
+
+            void                funcion(std::function<void(uint8_t*)> rx);
+
         private :
             unsigned long       last_time{0};
             unsigned long       tx_interval{1000}; 
