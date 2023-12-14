@@ -82,7 +82,7 @@ namespace MOSQUITTO{
   //      char* strtmp;
 //sprintf(strtmp, "tmp: %d ",  temperature);
 text= "temp" + std::to_string(temperature) ;
-        rc = mosquitto_publish(mosq, NULL, "house/room", 6 ,text.data() , 0, false);
+        rc = mosquitto_publish(mosq, NULL, "house/room", text.size() ,text.data() , 0, false);
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
             } else {
