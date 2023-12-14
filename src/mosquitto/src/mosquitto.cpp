@@ -41,9 +41,9 @@ namespace MOSQUITTO{
     		printf("\t\tSub \tCould not connect to Broker with return code %d\n", rc);
     		return -1;
     	}
-    	mosquitto_loop_start(mosq);
-    	std::cout<<"Press Enter to quit...\n";
-    	getchar();
+    	//mosquitto_loop_start(mosq);
+    	//std::cout<<"Press Enter to quit...\n";
+    	//getchar();
     	mosquitto_loop_stop(mosq, true);
     	mosquitto_disconnect(mosq);
     	mosquitto_destroy(mosq);
