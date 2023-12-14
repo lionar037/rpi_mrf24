@@ -2,7 +2,7 @@
 #include <memory>
 #include <mosquitto.h>
 
-#define HOSTNAME_MOSQUITTO "raspberry-2.local"
+#define HOST_SERVER_MOSQUITTO "raspberry-2.local"
 
 //#define HOSTNAME_MOSQUITTO "192.168.1.38"
 

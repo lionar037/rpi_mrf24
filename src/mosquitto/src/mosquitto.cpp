@@ -37,7 +37,7 @@ namespace MOSQUITTO{
     	mosquitto_username_pw_set(mosq, "pi", "zero");
         mosquitto_connect_callback_set(mosq, on_connect);
     	mosquitto_message_callback_set(mosq, on_message);	
-    	rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO, 1883, 10);
+    	rc = mosquitto_connect(mosq, HOST_SERVER_MOSQUITTO, 1883, 10);
         
     	if(rc) {
     		printf("\t\tSub \tCould not connect to Broker with return code %d\n", rc);
@@ -55,9 +55,6 @@ namespace MOSQUITTO{
 
 
 
-
-
-
     int Mosquitto_t::pub(){
         static int conter_msj{0};
         static int temperature = 10;
@@ -70,7 +67,7 @@ namespace MOSQUITTO{
 
         mosquitto_username_pw_set(mosq, "pi", "zero");
 
-        rc = mosquitto_connect(mosq, HOSTNAME_MOSQUITTO , 1883, 60);
+        rc = mosquitto_connect(mosq, HOST_SERVER_MOSQUITTO , 1883, 60);
         
         if(rc != 0){
             printf("Client could not connect to broker! Error Code: %d\n", rc);
@@ -79,8 +76,7 @@ namespace MOSQUITTO{
         }else{
         printf("\t\tPub  \tWe are now connected to the broker!\n");
         }
-  //      char* strtmp;
-//sprintf(strtmp, "tmp: %d ",  temperature);
+
 text= "{ temp : " + std::to_string(temperature) +" }";
         rc = mosquitto_publish(mosq, NULL, "house/room", text.size() ,text.data() , 0, false);
         if (rc != 0) {
