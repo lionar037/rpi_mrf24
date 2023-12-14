@@ -49,7 +49,7 @@ namespace MOSQUITTO{
     }
 
     int Mosquitto_t::pub(){
-        static int16_t conter_msj{0};
+        static int conter_msj{0};
         mosq = mosquitto_new("publisher-test", true, NULL);
     if (!mosq) {
         fprintf(stderr, "Error: Out of memory.\n");
@@ -72,13 +72,13 @@ namespace MOSQUITTO{
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
             } else {
-                printf("Message published successfully!\t\tmsj: %d \n",conter_msj++);
+                printf("Message published successfully!\t\tmsj: %d \n",conter_msj);
             }
 
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
         mosquitto_lib_cleanup();
-        return 0;
+        return conter_msj++;
     }
 
 }
