@@ -76,8 +76,9 @@ namespace MOSQUITTO{
         }else{
         printf("\t\tPub  \tWe are now connected to the broker!\n");
         }
-
-        rc = mosquitto_publish(mosq, NULL, "house/room", 6, " tmp" + std::to_string (temperature), 0, false);
+        char* strtmp;
+sprintf(strtmp, "tmp: %s ", std::to_string (temperature));
+        rc = mosquitto_publish(mosq, NULL, "house/room", 6, strtmp , 0, false);
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
             } else {
