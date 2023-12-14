@@ -49,7 +49,7 @@ namespace MRF24J40{
             void                Init(bool&);
             void                interrupt_routine();
             void                Run(void);
-            friend void                update();  
+            friend void         update();  
 
             static void         handle_tx();
             static void         handle_rx();
@@ -57,8 +57,8 @@ namespace MRF24J40{
             void                funcion(std::function<void(uint8_t*)> rx);
 
 
-void PublicMosquitto();
-void SuscribeMosquitto();
+            void                PublicMosquitto();
+            void                SuscribeMosquitto();
 
         private :
             unsigned long       last_time{0};
