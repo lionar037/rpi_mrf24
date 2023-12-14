@@ -58,6 +58,7 @@ namespace MOSQUITTO{
     int Mosquitto_t::pub(){
         
         static int temperature_day { 11 };
+        static int conter_msj{0};
         
         mosq = mosquitto_new("publisher-test", true, NULL);
     if (!mosq) {
@@ -90,7 +91,7 @@ namespace MOSQUITTO{
         mosquitto_disconnect(mosq);
         mosquitto_destroy(mosq);
         mosquitto_lib_cleanup();
-        
+        conter_msj++;
         return temperature_day++;
     }
 
