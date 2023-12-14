@@ -22,6 +22,7 @@ namespace MOSQUITTO{
 
     void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
         printf("New message with topic %s: %s\n", msg->topic, (char *) msg->payload);
+        return;
     }
 
 
