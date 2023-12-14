@@ -12,7 +12,7 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
-//åstd::unique_ptr<MOSQUITTO::Mosquitto_t> Radio_t::mosq = nullptr;
+std::unique_ptr<MOSQUITTO::Mosquitto_t> Radio_t::mosq = nullptr;
 
 
 Radio_t::Radio_t() 
@@ -67,7 +67,7 @@ Radio_t::Radio_t()
     //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
-    //åmosq = std::make_unique<MOSQUITTO::Mosquitto_t>();
+    mosq = std::make_unique<MOSQUITTO::Mosquitto_t>();
     //mosq->pub();
     
     flag=true;
@@ -260,9 +260,11 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
     #endif
 RST_COLOR() ;   
 SET_COLOR(SET_COLOR_RED_TEXT);
-update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data));
+const int temperature = mosq->pub();
+const std::string tempString="{ temp :"std::to_string(temperature)+ " }";
+update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) + tempString.data());
 SET_COLOR(SET_COLOR_YELLOW_TEXT);
-//mosq->pub();
+
 //mosq->sub();
 }
 

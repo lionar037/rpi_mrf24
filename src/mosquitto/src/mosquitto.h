@@ -4,19 +4,16 @@
 
 #define HOST_SERVER_MOSQUITTO "raspberry-2.local"
 
-//#define HOSTNAME_MOSQUITTO "192.168.1.38"
+//#define HOST_SERVER_MOSQUITTO "192.168.1.38"
 
 namespace MOSQUITTO{
     struct Mosquitto_t{
             Mosquitto_t()=default;
-            ~Mosquitto_t()=default;            
-            // void on_connect(struct mosquitto *mosq, void *obj, int rc) ;
-            // void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) ;
+            ~Mosquitto_t()=default;                        
             int sub();
             int pub();
         private:
             int rc{};
-            struct mosquitto * mosq;
-            //std::unique_ptr<mosquitto> mosco{};
+            struct mosquitto * mosq;      
     };
 }
