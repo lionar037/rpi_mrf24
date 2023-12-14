@@ -78,7 +78,7 @@ namespace MOSQUITTO{
         }
         char* strtmp;
 sprintf(strtmp, "tmp: %d ",  temperature);
-        rc = mosquitto_publish(mosq, NULL, "house/room", 6, strtmp , 0, false);
+        rc = mosquitto_publish(mosq, NULL, "house/room", 6, " temperature 50 " , 0, false);
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
             } else {
