@@ -60,7 +60,7 @@ namespace MOSQUITTO{
 
     int Mosquitto_t::pub(){
         static int conter_msj{0};
-        static int temperature{10};
+        static int temperature = 10;
         std::string text;
         mosq = mosquitto_new("publisher-test", true, NULL);
     if (!mosq) {
@@ -81,7 +81,7 @@ namespace MOSQUITTO{
         }
   //      char* strtmp;
 //sprintf(strtmp, "tmp: %d ",  temperature);
-text= "temp : " + std::to_string(temperature) ;
+text= "temp" + std::to_string(temperature) ;
         rc = mosquitto_publish(mosq, NULL, "house/room", 6 ,text.data() , 0, false);
         if (rc != 0) {
             fprintf(stderr, "Error publishing message! Error Code: %d\n", rc);
