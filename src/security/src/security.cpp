@@ -55,7 +55,7 @@ namespace SECURITY{
 
   int Security_t::init() {
       
-      std::cout << "Ingrese el password: ";
+      std::cout << "\nUser : Admin\n" << "Password: ";
       m_inputPassword = getHiddenInput();
 
       auto result = sha256(PASSWORD_SAVE) == sha256(m_inputPassword);
