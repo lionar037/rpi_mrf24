@@ -179,7 +179,14 @@ return ;
 
 void Radio_t::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
-         if(security->init()!=SUCCESS_PASS){return ; }
+    auto comprobe=security->init();
+         if(comprobe != SUCCESS_PASS){
+            std::cout<<"Exit tx\n";
+            return ; 
+            }
+            else{
+                std::cout<<"Success tx\n";
+            }
 
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
