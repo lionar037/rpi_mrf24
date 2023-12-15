@@ -3,7 +3,7 @@
 
 namespace SECURITY{
 
-    Security_t{
+   struct Security_t{
         Security_t()=default;
         ~Security_t()=default;
         std::string sha256(const std::string&) ;
