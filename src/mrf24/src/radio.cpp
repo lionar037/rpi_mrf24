@@ -17,7 +17,7 @@ Mrf24j mrf24j40_spi ;
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq       = nullptr;
 
 #ifdef USE_MRF24_TX
-std::unique_ptr< SECURITY::Security_t >   Radio_t::security   = nullptr;
+    std::unique_ptr< SECURITY::Security_t >   Radio_t::security   = nullptr;
 #endif
 
 Radio_t::Radio_t() 
@@ -99,6 +99,16 @@ void Radio_t::Init(bool& flag) {
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
+
+    auto comprobe=security->init();
+         if(comprobe != SUCCESS_PASS){
+            std::cout<<"Exit tx\n";
+            return ; 
+            }
+            else{
+                std::cout<<"Success tx\n";
+            }
+
         #ifdef DBG
             #ifdef MACADDR64
                 std::cout<<"send msj 64() ... \n";
@@ -179,14 +189,7 @@ return ;
 
 void Radio_t::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
-    auto comprobe=security->init();
-         if(comprobe != SUCCESS_PASS){
-            std::cout<<"Exit tx\n";
-            return ; 
-            }
-            else{
-                std::cout<<"Success tx\n";
-            }
+
 
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
