@@ -28,7 +28,6 @@ Radio_t::Radio_t()
 #else
 :   status          (false)
 ,   qr              { std::make_unique<QR::Qr_t>() }
-,   security        { std::make_unique<SECURITY::Security_t>()}
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
 {
@@ -37,6 +36,7 @@ Radio_t::Radio_t()
     
     #else
             qr->create(QR_CODE_SRT);
+            security    =   std::make_unique<SECURITY::Security_t >();
     #endif
           
     #ifdef DBG
@@ -71,7 +71,7 @@ Radio_t::Radio_t()
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
     mosq        =   std::make_unique<MOSQUITTO::Mosquitto_t>();
-    security    =   std::make_unique<SECURITY::Security_t >();
+    
     
     //mosq->pub();
     
