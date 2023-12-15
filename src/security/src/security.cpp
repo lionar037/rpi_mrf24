@@ -55,12 +55,12 @@ namespace SECURITY{
 
   int Security_t::init() {
       
-      std::cout << "\nUser : Admin\n" << "Password: ";
+      std::cout << "\nUser : "<< USER <<"\n" << "\tPassword: ";
       m_inputPassword = getHiddenInput();
 
       auto result = sha256(PASSWORD_SAVE) == sha256(m_inputPassword);
       if (result==1){
-        std::cout << "\nsuccess\n";
+        std::cout << "\n\t\tsuccess\n";
         return SUCCESS_PASS;
       }
         std::cout << "\n el password no es valido\n";
