@@ -15,8 +15,9 @@ namespace MRF24J40{
 
 Mrf24j mrf24j40_spi ;
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq       = nullptr;
+#ifdef USE_MRF24_TX
 std::unique_ptr< SECURITY::Security_t >   Radio_t::security   = nullptr;
-
+#endif
 
 Radio_t::Radio_t() 
 #ifdef ENABLE_INTERRUPT_MRF24
