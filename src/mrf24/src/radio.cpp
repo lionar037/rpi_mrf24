@@ -8,6 +8,8 @@
 #include <oled/src/oled.h>
 #include <others/src/rfflush.h>
 #include <mosquitto/src/mosquitto.h>
+#include <security/src/security.h>
+
 
 namespace MRF24J40{ 
 
@@ -25,9 +27,9 @@ Radio_t::Radio_t()
 #else
 :   status          (false)
 ,   qr              { std::make_unique<QR::Qr_t>() }
+,   security        { std::make_unique<SECURITY::Security_t>()};
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
-//,   mosq            { std::make_unique<MOSQUITTO::Mosquitto_t>()}    
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
@@ -175,6 +177,8 @@ return ;
 
 void Radio_t::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
+         if(security->init()!=SUCCESS_PASS){return ; }
+
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
              std::cout<<"TX went ok, got ack \n";
@@ -194,11 +198,11 @@ void Radio_t::handle_rx() {
     #ifdef MRF24_RECEIVER_ENABLE
     int files {POSITIOM_INIT_PRINTS};
     int col {0};
-char bufferMonitor[128];
+    char bufferMonitor[128];
 
-auto  monitor{std::make_unique <FFLUSH::Fflush_t>()};
+    auto  monitor{std::make_unique <FFLUSH::Fflush_t>()};
 
-files=POSITIOM_INIT_PRINTS;
+    files=POSITIOM_INIT_PRINTS;
 
 monitor->print("received a packet ... ",files++,col);
     //std::cout << " \nreceived a packet ... ";
@@ -227,9 +231,7 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-    std::cout<<"\n";
-
-   
+    std::cout<<"\n";   
 
     #ifdef DBG_PRINT_GET_INFO 
       

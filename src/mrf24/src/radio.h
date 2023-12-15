@@ -39,6 +39,10 @@
         struct Mosquitto_t;
     }
 
+    namespace SECURITY{
+        struct Security_t;
+    }
+
 namespace MRF24J40{
 
    struct Radio_t
@@ -70,6 +74,7 @@ namespace MRF24J40{
         #else    
             std::unique_ptr<WORK::Work_t> qr{};
             struct DATA::packet_tx                  buffer_transmiter{};
+            std::unique_ptr<SECURITY::Security_t> security{};
         #endif             
         
         std::unique_ptr<GPIO::Gpio> gpio{};    

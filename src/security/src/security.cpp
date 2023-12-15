@@ -53,21 +53,19 @@ namespace SECURITY{
   }
 
 
-  int Security_t::function() {
-      std::string variable;
-  //    std::cout << sha256("0") << '\n';
-
+  int Security_t::init() {
+      
       std::cout << "Ingrese el password: ";
-      variable = getHiddenInput();
+      m_inputPassword = getHiddenInput();
 
-      auto result = sha256("0") == sha256(variable);
-  if (result==1){
-    std::cout << "\nsuccess\n";
-  return 0;
-  }
-    std::cout << "\nerror\n";
+      auto result = sha256(PASSWORD_SAVE) == sha256(m_inputPassword);
+      if (result==1){
+        std::cout << "\nsuccess\n";
+        return SUCCESS_PASS;
+      }
+    std::cout << "\n el password no es valido\n";
       //?out << "result: " << result << "\n";
-      return 0;
+      return -1;
   }
 
 }
