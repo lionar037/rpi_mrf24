@@ -63,8 +63,8 @@ namespace SECURITY{
         std::cout << "\nsuccess\n";
         return SUCCESS_PASS;
       }
-    std::cout << "\n el password no es valido\n";
-      //?out << "result: " << result << "\n";
+        std::cout << "\n el password no es valido\n";
+        std::cout << "No se pudo enviar el mensaje \n";
       return -1;
   }
 
