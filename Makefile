@@ -48,7 +48,8 @@ LIBS := $(CFLAGS)
 INCDIRS := -I$(SRC) -I$(LIBDIR)
 #LIBS		+= -lX11 -lXext
 
-LIBS += -pthread -lmysqlcppconn -lqrencode -lpng -lbcm2835 -lrt -lmosquitto
+LIBS += -pthread -lmysqlcppconn -lqrencode -lpng 
+LIBS += -lbcm2835 -lrt -lmosquitto -lcrypto
 LIBS += -lSSD1306_OLED_RPI 
 
 
