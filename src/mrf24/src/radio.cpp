@@ -27,7 +27,7 @@ Radio_t::Radio_t()
 #else
 :   status          (false)
 ,   qr              { std::make_unique<QR::Qr_t>() }
-,   security        { std::make_unique<SECURITY::Security_t>()};
+,   security        { std::make_unique<SECURITY::Security_t>()}
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(status) }
 {
