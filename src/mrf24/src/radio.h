@@ -19,7 +19,7 @@
 #include <app/src/work.h>
 #include <app/src/data_analisis.h>
 #include <qr/src/qr.h>
-
+#include <security/src/security.h>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -39,9 +39,9 @@
         struct Mosquitto_t;
     }
 
-    namespace SECURITY{
-        struct Security_t;
-    }
+    // namespace SECURITY{
+        // struct Security_t;
+    // }
 
 namespace MRF24J40{
 
