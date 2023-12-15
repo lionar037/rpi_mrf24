@@ -15,6 +15,7 @@ namespace MRF24J40{
 
 Mrf24j mrf24j40_spi ;
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq       = nullptr;
+
 #ifdef USE_MRF24_TX
 std::unique_ptr< SECURITY::Security_t >   Radio_t::security   = nullptr;
 #endif
@@ -72,9 +73,6 @@ Radio_t::Radio_t()
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
     mosq        =   std::make_unique<MOSQUITTO::Mosquitto_t>();
-    
-    
-    //mosq->pub();
     
     flag=true;
 
