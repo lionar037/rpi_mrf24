@@ -242,7 +242,7 @@ namespace MRF24J40{
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_rx) {
             m_flag_got_rx = 0;
-            #ifdef DBG
+            #ifdef DBG_MRF
                 std::cout<< "recibe algo \n";
             #endif
             rx_handler();
