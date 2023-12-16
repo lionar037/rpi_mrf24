@@ -29,7 +29,9 @@ Radio_t::Radio_t()
     #endif
 #else
 :   m_status          (false)
+#ifdef ENABLE_QR
 ,   qr              { std::make_unique<QR::Qr_t>() }
+#endif
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(m_status) }
 {
@@ -151,7 +153,9 @@ void Radio_t::Init(bool& flag) {
     {    
         const int positionAdvance{15};
         auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
+        #ifdef ENABLE_QR
         auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
+        #endif
         auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
         #ifdef MRF24_RECEIVER_ENABLE
             static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
@@ -177,7 +181,9 @@ void Radio_t::Init(bool& flag) {
 
         fs->create(packet_data);
         std::cout<<"\n";
-        qr_img->create(packet_data);
+        #ifdef ENABLE_QR
+            qr_img->create(packet_data);
+        #endif
 
     return ;    
     }

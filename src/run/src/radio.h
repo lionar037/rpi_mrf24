@@ -71,8 +71,10 @@ namespace MRF24J40{
             std::unique_ptr<DATABASE::Database_t>   database{};
             //std::unique_ptr<WORK::Work_t>           fs{};
             struct DATA::packet_rx                  buffer_receiver{};
-        #else    
-            std::unique_ptr<WORK::Work_t> qr{};                    
+        #else   //IS_TX
+            #ifdef ENABLE_QR 
+                std::unique_ptr<WORK::Work_t> qr{};                    
+            #endif
         #endif             
         struct DATA::packet_tx                  buffer_transmiter{};
         std::unique_ptr <GPIO::Gpio> gpio{};    
