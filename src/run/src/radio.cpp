@@ -203,7 +203,7 @@ void Radio_t::Init(bool& flag) {
 
 
 void Radio_t::handle_tx() {
-    #ifdef MRF24_TRANSMITER_ENABLE//MRF24_TRANSMITER_ENABLE
+    //#ifdef MRF24_TRANSMITER_ENABLE//MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
              std::cout<<"\tTX went ok, got ACK success ! \n";
@@ -212,7 +212,7 @@ void Radio_t::handle_tx() {
              std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" \n";
          }
-    #endif     
+    //#endif     
     return;
     }
 
