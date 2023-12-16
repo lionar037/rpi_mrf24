@@ -142,46 +142,44 @@ void Radio_t::Init(bool& flag) {
     }
 }
 
-void Radio_t::interrupt_routine() {
-    mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
-}
+    void Radio_t::interrupt_routine() {
+        mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
+    }
 
-void update(std::string_view str_view)
-{
-    
-    const int positionAdvance{15};
-    auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
-    auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
-    auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
-    #ifdef MRF24_RECEIVER_ENABLE
-        static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
-    #endif
-    const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
-    
-    std::string  PacketDataTmp (packet_data += positionAdvance);
-    PacketDataTmp.resize(38);
+    void update(std::string_view str_view)
+    {    
+        const int positionAdvance{15};
+        auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
+        auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
+        auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
+        #ifdef MRF24_RECEIVER_ENABLE
+            static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+        #endif
+        const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
 
-    SET_COLOR(SET_COLOR_GRAY_TEXT);
-  
+        std::string  PacketDataTmp (packet_data += positionAdvance);
+        PacketDataTmp.resize(38);
 
-    #ifdef MRF24_RECEIVER_ENABLE
-        oled->create(PacketDataTmp.c_str());  
-    #endif
-    //auto qr = std::make_unique<QR::QrOled_t>();
+        SET_COLOR(SET_COLOR_GRAY_TEXT);
+        
+        #ifdef MRF24_RECEIVER_ENABLE
+            oled->create(PacketDataTmp.c_str());  
+        #endif
+        //auto qr = std::make_unique<QR::QrOled_t>();
 
-    //De momento no hace nada
-    //std::string_view packet_data2 = "1234567890";    
-    //std::vector<int> infoQrTmp; 
-    //qr->create_qr(packet_data2, infoQrTmp);
-    //monitor->print( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
-    //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
-    
-    fs->create(packet_data);
-    std::cout<<"\n";
-    qr_img->create(packet_data);
+        //De momento no hace nada
+        //std::string_view packet_data2 = "1234567890";    
+        //std::vector<int> infoQrTmp; 
+        //qr->create_qr(packet_data2, infoQrTmp);
+        //monitor->print( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
+        //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
 
-return ;    
-}
+        fs->create(packet_data);
+        std::cout<<"\n";
+        qr_img->create(packet_data);
+
+    return ;    
+    }
 
 
 void Radio_t::handle_tx() {
@@ -267,19 +265,18 @@ monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,file
     //RST_COLOR() ;
     //std::cout<<"\r\n";
     #endif
-RST_COLOR() ;   
-SET_COLOR(SET_COLOR_RED_TEXT);
-const int temperature = mosq->pub();
+    RST_COLOR() ;   
+    SET_COLOR(SET_COLOR_RED_TEXT);
+    const int temperature = mosq->pub();
 
-const std::string tempString=  "{ temp :" + std::to_string(temperature)+ " }";
+    const std::string tempString=  "{ temp :" + std::to_string(temperature)+ " }";
 
-//reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) 
-update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) );
-//update(tempString.data());
-SET_COLOR(SET_COLOR_YELLOW_TEXT);
-std::cout<<tempString.data(); 
-//mosq->sub();
-}
+    //reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) 
+    update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) );
+    //update(tempString.data());
+    SET_COLOR(SET_COLOR_YELLOW_TEXT);
+    std::cout<<tempString.data();     
+    }
 
     Radio_t::~Radio_t() {
         #ifdef DBG
