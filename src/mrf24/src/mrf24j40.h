@@ -36,31 +36,32 @@ struct Mrf24j : public SPI::Spi
        // void reset(void);
         void                init                (void);
 
-        const uint8_t       read_short          (uint8_t);            //address
-        const uint8_t       read_long           (uint16_t);            //address
-        void                write_short         (uint8_t , uint8_t );   //address ,data
+        const uint8_t       read_short          (const uint8_t);            //address
+        const uint8_t       read_long           (const uint16_t);            //address
+        void                write_short         (const uint8_t ,const uint8_t );   //address ,data
         void                write_long          (const uint16_t , const uint8_t);//address ,data
         uint16_t            get_pan             (void);
-        void                set_pan             (uint16_t);                 //panid
-        void                address16_write     (uint16_t);         //address16
-        void                address64_write     (uint64_t);
+        void                set_pan             (const uint16_t);                 //panid
+        void                address16_write     (const uint16_t);         //address16
+        void                address64_write     (const uint64_t);
         uint16_t            address16_read      (void);
         uint64_t            address64_read      (void);
         void                set_interrupts      (void);
+        void                address_write       (const uint64_t);
 
                 //void set_promiscuous(__OBJC_BOOL_IS_BOOL );
         void                set_promiscuous     (bool );  
                 /**
                  * Set the channel, using 802.15.4 channel numbers (11..26)
                  */
-        void                set_channel         (uint8_t);
+        void                set_channel         (const uint8_t);
         void                rx_enable           (void);
         void                rx_disable          (void);
                                    /**IMPLEMENTADO  */
 
         void                pinMode             (int,bool);
         void                digitalWrite        (int,bool);
-        void                delay               (uint16_t);
+        void                delay               (const uint16_t);
         void                interrupts          (void);
         void                noInterrupts        (void);
         

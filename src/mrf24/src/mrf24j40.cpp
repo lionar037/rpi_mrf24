@@ -24,7 +24,7 @@ namespace MRF24J40{
         #endif
     }
 
-    const uint8_t Mrf24j::read_short(uint8_t address) {
+    const uint8_t Mrf24j::read_short(const uint8_t address) {
             // 0 top for short addressing, 0 bottom for read
         const uint8_t tmp = (address<<1 & 0b01111110);
         const uint8_t ret = prt_spi->Transfer2bytes(tmp); // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
@@ -32,7 +32,7 @@ namespace MRF24J40{
         return ret;
     }
 
-    void Mrf24j::write_short(uint8_t address, uint8_t data) {
+    void Mrf24j::write_short(const uint8_t address,const uint8_t data) {
             // 0 for top short address, 1 bottom for write
     const uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
         prt_spi->Transfer2bytes(lsb_tmp);
@@ -63,17 +63,17 @@ namespace MRF24J40{
         return (panh << 8 | read_short(MRF_PANIDL));
     }
 
-    void Mrf24j::set_pan(uint16_t panid) {
+    void Mrf24j::set_pan(const uint16_t panid) {
         write_short(MRF_PANIDH, (panid >> 8)& 0xff);
         write_short(MRF_PANIDL, panid & 0xff);
     }
 
-    void Mrf24j::address16_write(uint16_t address16) {
+    void Mrf24j::address16_write(const uint16_t address16) {
         write_short(MRF_SADRH, (address16 >> 8)& 0xff);
         write_short(MRF_SADRL, address16 & 0xff);
     }
 
-    void Mrf24j::address64_write(uint64_t addressLong){
+    void Mrf24j::address64_write(const uint64_t addressLong){
         write_short(MRF_EADR7,(addressLong>>56)&0xff);
         write_short(MRF_EADR6,(addressLong>>48)&0xff);
         write_short(MRF_EADR5,(addressLong>>40)&0xff);
@@ -82,6 +82,23 @@ namespace MRF24J40{
         write_short(MRF_EADR2,(addressLong>>16)&0xff);
         write_short(MRF_EADR1,(addressLong>>8 )&0xff);
         write_short(MRF_EADR0,(addressLong)&0xff);
+    return ;
+    }
+
+    void Mrf24j::address_write(const uint64_t addressLong)
+    {
+
+        write_short(MRF_EADR1,(addressLong>>8 )&0xff);
+        write_short(MRF_EADR0,(addressLong)&0xff);
+
+        if(addressLong>0xffff){
+        write_short(MRF_EADR7,(addressLong>>56)&0xff);
+        write_short(MRF_EADR6,(addressLong>>48)&0xff);
+        write_short(MRF_EADR5,(addressLong>>40)&0xff);
+        write_short(MRF_EADR4,(addressLong>>32)&0xff);
+        write_short(MRF_EADR3,(addressLong>>24)&0xff);
+        write_short(MRF_EADR2,(addressLong>>16)&0xff);
+        }
     return ;
     }
 
@@ -118,7 +135,7 @@ namespace MRF24J40{
 
             /** use the 802.15.4 channel numbers..
             */
-    void Mrf24j::set_channel(uint8_t channel) {
+    void Mrf24j::set_channel(const uint8_t channel) {
         write_long(MRF_RFCON0, (((channel - 11) << 4) | 0x03));
     }
 
@@ -330,8 +347,8 @@ void Mrf24j::settings_mrf(void){
     return;
     }
 
-    void Mrf24j::delay(uint16_t t){
-        TYME::Time_t time ;
+    void Mrf24j::delay(const uint16_t t){
+        const TYME::Time_t time ;
         time.delay_ms(t);
     return;
     }
