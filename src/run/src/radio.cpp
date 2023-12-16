@@ -155,7 +155,6 @@ void update(std::string_view str_view)
     const int positionAdvance{15};
     auto            fs          { std::make_unique<FILESYSTEM::File_t> () };
     auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
-    //auto            qr_tmp      { std::make_unique<QR::QrOled_t>() };
     auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
     #ifdef MRF24_RECEIVER_ENABLE
         static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
@@ -192,9 +191,9 @@ void Radio_t::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
-             std::cout<<"TX went ok, got ack \n";
+             std::cout<<"\t\tTX went ok, got ACK success ! \n";
          } else {
-             std::cout<<"\nTX failed after \n";
+             std::cout<<"\n\t\tTX failed after \n";
              std::cout<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" retries\n";
          }
