@@ -73,7 +73,7 @@ namespace DATABASE{
 }
 
     void Database_t::init() {
-    std::string host = "tcp://" +  HOSTNAME_DATABASE + ":3306";
+    std::string host = "tcp://" +  std::string(HOSTNAME_DATABASE) + ":3306";
     std::string user = "user1";
     std::string password = "passwd";
     std::string database = "databaseMDB";
