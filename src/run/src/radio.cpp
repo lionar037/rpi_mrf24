@@ -217,8 +217,8 @@ void Radio_t::handle_rx() {
 //    std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-    monitor->print(" Packet data (PHY Payload) :",files++,col);
-    //  std::cout << " Packet data (PHY Payload) :";
+        monitor->print(" Packet data (PHY Payload) :",files++,col);
+        //  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
       {
@@ -265,12 +265,12 @@ void Radio_t::handle_rx() {
         SET_COLOR(SET_COLOR_RED_TEXT);
         const int temperature = mosq->pub();
 
-        const std::string tempString=  "{ temp :" + std::to_string(temperature)+ " }";
+        const std::string temperatureToString=  "{ temp :" + std::to_string(temperature)+ " }";
 
         update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) );
         //update(tempString.data());
         SET_COLOR(SET_COLOR_YELLOW_TEXT);
-        std::cout<<tempString.data();     
+        std::cout<<temperatureToString.data();     
     }
 
     Radio_t::~Radio_t() {
