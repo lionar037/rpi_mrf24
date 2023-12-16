@@ -259,6 +259,25 @@ namespace MRF24J40{
         return false;
     }
 
+
+    bool Mrf24j::check_ack(void (*rx_handler)())    
+    {
+            // TODO - we could check whether the flags are > 1 here, indicating data was lost?
+        if (m_flag_got_rx) {
+            m_flag_got_rx = 0;
+            #ifdef DBG_MRF
+                std::cout<< "recibe ACK OK \n";
+            #endif
+            
+            return true;
+        }else{
+            #ifdef DBG_MRF
+                std::cout<< "ACK not response  \n";
+            #endif        
+        }
+
+        return false;
+    }
     /**
      * Set RX mode to promiscuous, or normal
      */

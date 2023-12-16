@@ -90,6 +90,7 @@ struct Mrf24j : public SPI::Spi
         void                    send64(uint64_t , const struct DATA::packet_tx&);
         void                    interrupt_handler(void);
         bool                    check_flags(void (*rx_handler)(), void (*tx_handler)());
+        bool                    check_ack(void (*rx_handler)());        
         void                    settings_mrf(void);
 
     private:
