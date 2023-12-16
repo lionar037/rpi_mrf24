@@ -209,14 +209,14 @@ void Radio_t::handle_rx() {
 
     files=POSITIOM_INIT_PRINTS;
 
-monitor->print("received a packet ... ",files++,col);
+    monitor->print("received a packet ... ",files++,col);
     //std::cout << " \nreceived a packet ... ";
     sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
-monitor->print(bufferMonitor,files++,col);
+    monitor->print(bufferMonitor,files++,col);
 //    std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-monitor->print(" Packet data (PHY Payload) :",files++,col);
+    monitor->print(" Packet data (PHY Payload) :",files++,col);
     //  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
@@ -227,12 +227,11 @@ monitor->print(" Packet data (PHY Payload) :",files++,col);
       #endif
     }
         std::cout << "\n";
-    SET_COLOR(SET_COLOR_CYAN_TEXT);
-monitor->print("ASCII data (relevant data) :",files++,col);
+        SET_COLOR(SET_COLOR_CYAN_TEXT);
+        monitor->print("ASCII data (relevant data) :",files++,col);
         //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
-monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);
-        //std::cout << "\t\tdata_length : "<<std::dec<< recevive_data_length<<"\n\t";
+        monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);        
 
 
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
@@ -240,12 +239,12 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
 
     #ifdef DBG_PRINT_GET_INFO 
       
-    if(ADDRESS_LONG_SLAVE == add){
-        std::cout<< "\nmac es igual\n" ;
-    }
-    else{
-        std::cout<< "\nmac no es igual\n" ;
-    }
+        if(ADDRESS_LONG_SLAVE == add){
+            std::cout<< "\nmac es igual\n" ;
+        }
+        else{
+            std::cout<< "\nmac no es igual\n" ;
+        }
         std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
         std::cout<< "buffer_receiver->head : " << packet_data_tmp->head <<"\n";
         auto bs = (~packet_data_tmp->size)&0xffff;
@@ -253,29 +252,24 @@ monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,file
         std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
         std::cout<<"\nbuff: \n"<<buff;
         std::cout<<"\r\n";
-    #endif
-    
-       RST_COLOR() ; 
+    #endif    
+        RST_COLOR() ; 
         SET_COLOR(SET_COLOR_RED_TEXT);
         files++;  files++; // files++;
-monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
-monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);
-    //printf("\nLQI : %d , ",mrf24j40_spi.get_rxinfo()->lqi);
-    //printf("RSSI : %d \n",mrf24j40_spi.get_rxinfo()->rssi);
-    //RST_COLOR() ;
-    //std::cout<<"\r\n";
+        monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
+        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);            
+        //std::cout<<"\r\n";
     #endif
-    RST_COLOR() ;   
-    SET_COLOR(SET_COLOR_RED_TEXT);
-    const int temperature = mosq->pub();
+        RST_COLOR() ;   
+        SET_COLOR(SET_COLOR_RED_TEXT);
+        const int temperature = mosq->pub();
 
-    const std::string tempString=  "{ temp :" + std::to_string(temperature)+ " }";
+        const std::string tempString=  "{ temp :" + std::to_string(temperature)+ " }";
 
-    //reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) 
-    update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) );
-    //update(tempString.data());
-    SET_COLOR(SET_COLOR_YELLOW_TEXT);
-    std::cout<<tempString.data();     
+        update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) );
+        //update(tempString.data());
+        SET_COLOR(SET_COLOR_YELLOW_TEXT);
+        std::cout<<tempString.data();     
     }
 
     Radio_t::~Radio_t() {
