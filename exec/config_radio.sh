@@ -17,6 +17,7 @@ case $config in
         #cp libs/app/src/config.h libs/app/src/config.h.bkp 
         sed -i 's,//#define USE_MRF24_TX,#define USE_MRF24_TX,g' src/app/src/config.h
         sed -i 's,#define USE_MRF24_RX,//#define USE_MRF24_RX,g' src/app/src/config.h
+        sed -i 's,LIBS += -lSSD1306_OLED_RPI,#LIBS += -lSSD1306_OLED_RPI ,g' Makefile
         echo "Configure as transmitter Rx ..."
         ;;
     rx)
