@@ -12,7 +12,6 @@
 #include <unistd.h>
 #include <netdb.h>
 
-
 #include <app/src/config.h>
 #include <others/src/tyme.h>
 
