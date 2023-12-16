@@ -28,7 +28,7 @@ Radio_t::Radio_t()
 ,   database        { std::make_unique<DATABASE::Database_t>() }
     #endif
 #else
-:   status          (false)
+:   m_status          (false)
 ,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio>(m_status) }
