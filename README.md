@@ -59,3 +59,25 @@ help Mosquitto IOT
 	sudo nano /etc/mosquitto/mosquitto.conf 
 
 	sudo systemctl restart mosquitto
+
+
+#	git hub 
+#	ver detalle de los mensajes anteriores
+	git log --pretty=format:"%h - %an, %ar : %s" | grep " update 2023"
+
+#	ver mensajes 
+	git log -n 10
+
+#	retroceder en el tiempo 
+	git log --oneline --decorate --graph --all
+
+# Sustituye "hash_del_commit" con el hash que encontraste
+	git reset --hard hash_del_commit
+
+	git reset --hard  3c626c5f4dd85c118e1c65b2f1d1db084cba553b
+
+#	ver la fecha de un has
+	git show --pretty=format:"%h - %an, %ar : %s"
+
+	#visual Studio Code para mac os
+	>Shell Command: Install 'code' command in PATH
