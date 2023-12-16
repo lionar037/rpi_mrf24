@@ -136,7 +136,7 @@ void Radio_t::Init(bool& flag) {
           
       for(const auto& byte : pf) std::cout << byte ; 
         std::cout<<"\n" ;         
-         
+        #ifdef USE_MRF24_TX 
         #ifdef MACADDR64
             mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
            // mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, buffer_transmiter);
@@ -145,6 +145,7 @@ void Radio_t::Init(bool& flag) {
             mrf24j40_spi.send(ADDRESS_SLAVE, msj);
             //mrf24j40_spi.send(ADDRESS_SLAVE, pf );
             //mrf24j40_spi.send16(ADDRESS_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+        #endif
         #endif
     #endif
     }
