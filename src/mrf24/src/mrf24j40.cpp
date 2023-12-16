@@ -148,7 +148,7 @@ namespace MRF24J40{
            delay(192); 
            #include <app/src/config.h>
            #ifdef MODULE_TX_RST
-            //write_short(MRF_SOFTRST, 0x7); 
+            write_short(MRF_SOFTRST, 0x7); 
             #else
             //write_short(MRF_SOFTRST, 0x7); 
            #endif
@@ -236,14 +236,13 @@ namespace MRF24J40{
     /**
      * Call this function periodically, it will invoke your nominated handlers
      */
-    bool Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)())
-    
+    bool Mrf24j::check_flags(void (*rx_handler)(), void (*tx_handler)())    
     {
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_rx) {
             m_flag_got_rx = 0;
             #ifdef DBG_MRF
-                std::cout<< "recibe algo \n";
+                std::cout<< "recibe packete \n";
             #endif
             rx_handler();
             return true;
@@ -251,7 +250,7 @@ namespace MRF24J40{
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
             #ifdef DBG_MRF
-                std::cout<< "transmite algo \n";
+                std::cout<< "transmite packete \n";
             #endif
             tx_handler();
             return false;
@@ -260,11 +259,11 @@ namespace MRF24J40{
     }
 
 
-    bool Mrf24j::check_ack(void (*rx_handler)())    
+    bool Mrf24j::check_ack(void (*tx_handler)())    
     {
             // TODO - we could check whether the flags are > 1 here, indicating data was lost?
-        if (m_flag_got_rx) {
-            m_flag_got_rx = 0;
+        if (m_flag_got_tx) {
+            m_flag_got_tx = 0;
             #ifdef DBG_MRF
                 std::cout<< "recibe ACK OK \n";
             #endif

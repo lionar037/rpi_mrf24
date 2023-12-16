@@ -147,7 +147,7 @@ void Radio_t::Init(bool& flag) {
                 //mrf24j40_spi.send(ADDRESS_SLAVE, pf );
                 //mrf24j40_spi.send16(ADDRESS_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
             #endif
-        mrf24j40_spi.check_ack(&handle_rx);
+        mrf24j40_spi.check_ack(&handle_tx);
         #endif
     #endif
     
