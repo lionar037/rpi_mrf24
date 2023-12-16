@@ -27,7 +27,7 @@
     #define MACADDR16
 #endif
 
-#ifdef USE_MRF24_RX
+#ifdef USE_OLED
     namespace OLED{
         struct Oled_t;
     }

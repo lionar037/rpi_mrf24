@@ -5,7 +5,9 @@
 #include <files/src/file.h>
 #include <others/src/color.h>
 #include <mrf24/src/mrf24j40_template.tpp>
+#ifdef USE_OLED
 #include <display/src/oled.h>
+#endif
 #include <others/src/rfflush.h>
 #include <mosquitto/src/mosquitto.h>
 
@@ -161,7 +163,9 @@ void Radio_t::Init(bool& flag) {
         #endif
         auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
         #ifdef MRF24_RECEIVER_ENABLE
+            #ifdef USE_OLED            
             static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+            #endif
         #endif
         const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
 
@@ -171,7 +175,9 @@ void Radio_t::Init(bool& flag) {
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         
         #ifdef MRF24_RECEIVER_ENABLE
+            #ifdef USE_OLED
             oled->create(PacketDataTmp.c_str());  
+            #endif
         #endif
         //auto qr = std::make_unique<QR::QrOled_t>();
 

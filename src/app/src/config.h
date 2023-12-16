@@ -80,8 +80,12 @@
 //#define QR_START
 
 #ifdef QR_START
-    #define ENABLE_QR
+    #define ENABLE_QR    
 #endif
 
 //habilita la encriptacion de mensajes 
 //#define ENABLE_SECURITY 
+#ifdef USE_MRF24_RX
+    #define USE_OLED
+#else
+#endif
