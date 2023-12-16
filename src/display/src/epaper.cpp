@@ -9,7 +9,8 @@ namespace EPAPER{
         return;
     }
 
-    bool Epaper_t::create(std::string_view& epaperText){
+    bool Epaper_t::create(const std::string_view& epaperText)    
+    {
 
         return ;
     }
