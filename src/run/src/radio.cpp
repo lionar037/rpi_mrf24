@@ -88,7 +88,7 @@ void Radio_t::Run(void){
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
         gpio->app(m_flag);        
-        mrf24j40_spi.interrupt_handler();
+        //mrf24j40_spi.interrupt_handler();
         Init(m_flag);        
     }
 }
