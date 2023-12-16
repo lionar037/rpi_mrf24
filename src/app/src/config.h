@@ -16,10 +16,10 @@
 #define HEAD 0x40
 
 #ifdef USE_MRF24_TX
-    #define MODULE_TX 
+    #define MODULE_IS_TX 
     #define MODULE_TX_RST
 #else
-    #define MODULE_RX 
+    #define MODULE_IS_RX 
     #define MODULE_RX_RST
 #endif
 
@@ -32,7 +32,7 @@
 #endif
 
 
-#ifdef MODULE_TX
+#ifdef MODULE_IS_TX
     #define ADDRESS_LONG 0x1122334455667702
     #define ADDRESS_LONG_SLAVE 0x1122334455667701
     #define ADDRESS 0x6001
@@ -40,13 +40,14 @@
     #define ADDRESS_SLAVE 0x6002
     #define MRF24_TRANSMITER_ENABLE
 //#endif    
-#elif  defined(MODULE_RX)
+#elif  defined(MODULE_IS_RX)
     #define ADDRESS_LONG 0x1122334455667701
     #define ADDRESS_LONG_SLAVE 0x1122334455667702
     #define ADDRESS 0x6002
     #define PAN_ID 0x1235
     #define ADDRESS_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
+    #define MRF24_TRANSMITER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
 #endif
 
