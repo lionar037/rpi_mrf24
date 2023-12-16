@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 //#include <string_view>
-#include <oled/src/oled.h>
+#include <display/src/oled.h>
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
 #endif
