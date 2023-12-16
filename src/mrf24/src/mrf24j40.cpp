@@ -168,14 +168,14 @@ namespace MRF24J40{
      */
             
     void Mrf24j::interrupt_handler(void) {
-        const uint8_t last_interrupt = read_short(MRF_INTSTAT);
+        const auto last_interrupt = read_short(MRF_INTSTAT);
         if(last_interrupt & MRF_I_RXIF) {
             m_flag_got_rx++;
                 // read out the packet data...
             noInterrupts();
             rx_disable();
                 // read start of rxfifo for, has 2 bytes more added by FCS. frame_length = m + n + 2
-            const uint8_t frame_length = read_long(0x300);
+            const auto frame_length = read_long(0x300);
 
                 // buffer all bytes in PHY Payload
             if(bufPHY){
@@ -192,7 +192,7 @@ namespace MRF24J40{
             // printf(" frame length : %d \n",frame_length);
             // printf(" rx datalength : %d \n",rx_datalength());
 
-        for (uint16_t i = 0; i < frame_length ; i++) {//original
+        for (uint8_t i = 0; i < frame_length ; i++) {//original
            // for (uint16_t i = 0; i < frame_length + rx_datalength(); i++) {//original
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + m_bytes_MHR + i);
             }
@@ -205,9 +205,10 @@ namespace MRF24J40{
             rx_enable();
             interrupts();
         }
+
         if (last_interrupt & MRF_I_TXNIF) {
             m_flag_got_tx++;
-            uint8_t tmp = read_short(MRF_TXSTAT);
+            const auto tmp = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
             tx_info.tx_ok = !(tmp & ~(1 << TXNSTAT));
             tx_info.retries = tmp >> 6;

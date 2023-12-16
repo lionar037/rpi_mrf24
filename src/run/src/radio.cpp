@@ -22,7 +22,7 @@ std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 Radio_t::Radio_t() 
 #ifdef ENABLE_INTERRUPT_MRF24
-:   status          (true)
+:   m_status          (true)
 //,   fs              { std::make_unique<FILESYSTEM::File_t>() }
     #ifdef ENABLE_DATABASE
 ,   database        { std::make_unique<DATABASE::Database_t>() }
@@ -31,7 +31,7 @@ Radio_t::Radio_t()
 :   status          (false)
 ,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
-,   gpio            { std::make_unique<GPIO::Gpio>(status) }
+,   gpio            { std::make_unique<GPIO::Gpio>(m_status) }
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
@@ -74,7 +74,7 @@ Radio_t::Radio_t()
     
     mosq        =   std::make_unique<MOSQUITTO::Mosquitto_t>();
     
-    flag=true;
+    m_flag=true;
 
 }
 
@@ -85,9 +85,9 @@ void Radio_t::Run(void){
     {   
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-        gpio->app(flag);        
+        gpio->app(m_flag);        
         mrf24j40_spi.interrupt_handler();
-        Init(flag);        
+        Init(m_flag);        
     }
 }
 
@@ -96,8 +96,8 @@ void Radio_t::Init(bool& flag) {
 
     flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
     const unsigned long current_time = 10000;//1000000 original
-    if (current_time - last_time > tx_interval) {
-        last_time = current_time;
+    if (current_time - m_last_time > m_tx_interval) {
+        m_last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE   
             #ifdef ENABLE_SECURITY 
              if( security->init() != SUCCESS_PASS){

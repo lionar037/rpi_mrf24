@@ -61,10 +61,10 @@ namespace MRF24J40{
             void                funcion(std::function<void(uint8_t*)> rx);
 
         private :
-            unsigned long       last_time{0};
-            unsigned long       tx_interval{1000}; 
-            bool                status{false};
-            bool                flag {false};
+            unsigned long       m_last_time{0};
+            unsigned long       m_tx_interval{1000}; 
+            bool                m_status{false};
+            bool                m_flag {false};
                                             
             
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
