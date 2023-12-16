@@ -72,7 +72,7 @@
 #define QR_CODE_SRT MSJ   
 
 #ifdef ENABLE_MOSQUITTO
-    #define HOST_SERVER_MOSQUITTO "raspberry-2.local"
+    #define HOST_SERVER_MOSQUITTO "raspberry.local"
 #endif
 
 
