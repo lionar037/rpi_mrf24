@@ -348,7 +348,7 @@ void Mrf24j::settings_mrf(void){
     }
 
     void Mrf24j::delay(const uint16_t t){
-        const TYME::Time_t time ;
+        TYME::Time_t time ;
         time.delay_ms(t);
     return;
     }
