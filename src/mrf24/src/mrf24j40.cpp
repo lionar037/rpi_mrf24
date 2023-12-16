@@ -265,13 +265,13 @@ namespace MRF24J40{
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
             #ifdef DBG_MRF
-                std::cout<< "recibe ACK OK \n";
+                std::cout<< "\trecibe ACK OK \n";
             #endif
             
             return true;
         }else{
             #ifdef DBG_MRF
-                std::cout<< "ACK not response  \n";
+                std::cout<< "\tACK not response  \n";
             #endif        
         }
 
@@ -293,7 +293,7 @@ void Mrf24j::settings_mrf(void){
         rxmcr.PANCOORD=true;
         rxmcr.COORD=false;
         rxmcr.PROMI=true;
-        #ifdef DBG_MRF
+        #ifdef DBG
             printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
         #endif
         write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
