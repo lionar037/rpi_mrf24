@@ -1,5 +1,16 @@
 //# sudo apt-get install libmysqlcppconn-dev -y
 
+#include <memory>
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <mysql_driver.h>
+#include <mysql_connection.h>
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
 
 #include <files/src/database.h>
 
@@ -61,19 +72,19 @@ namespace DATABASE{
     }
 }
 
-void Database_t::init() {
-std::string host = "tcp://192.168.1.45:3306";
-std::string user = "user1";
-std::string password = "passwd";
-std::string database = "databaseMDB";
+    void Database_t::init() {
+    std::string host = "tcp://"+  HOSTNAME_DATABASE + ":3306";
+    std::string user = "user1";
+    std::string password = "passwd";
+    std::string database = "databaseMDB";
 
-std::unique_ptr<Database_t> databaseInstance{std::make_unique<Database_t>(host, user, password, database)};
+    std::unique_ptr<Database_t> databaseInstance{std::make_unique<Database_t>(host, user, password, database)};
 
-int idToRetrieve = 64;
-databaseInstance->fetchData(idToRetrieve);
+    int idToRetrieve = 64;
+    databaseInstance->fetchData(idToRetrieve);
 
-return ;
-}
+    return ;
+    }
 }
 
 
