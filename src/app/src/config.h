@@ -1,7 +1,7 @@
 #pragma once
 
-//#define USE_MRF24_TX
-#define USE_MRF24_RX
+#define USE_MRF24_TX
+//#define USE_MRF24_RX
 
 //#define USE_MAC_ADDRESS_LONG
 #define USE_MAC_ADDRESS_SHORT
@@ -39,6 +39,7 @@
     #define PAN_ID 0x1234
     #define ADDRESS_SLAVE 0x6002
     #define MRF24_TRANSMITER_ENABLE
+    #define MRF24_RECEIVER_ENABLE
 //#endif    
 #elif  defined(MODULE_IS_RX)
     #define ADDRESS_LONG 0x1122334455667701
