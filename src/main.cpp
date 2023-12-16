@@ -9,7 +9,7 @@ author : lion
 
 
 int main(){
-    system("clear"); 
+    ///system("clear"); 
     auto mrf { std::make_unique<MRF24J40::Radio_t>()};
     // std::vector<std::thread> threadVect;
     
