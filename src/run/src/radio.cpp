@@ -14,10 +14,10 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
-std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq       = nullptr;
+std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 #ifdef USE_MRF24_TX
-    std::unique_ptr< SECURITY::Security_t >   Radio_t::security   = nullptr;
+    std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
 #endif
 
 Radio_t::Radio_t() 
@@ -190,8 +190,6 @@ return ;
 
 void Radio_t::handle_tx() {
     #ifdef MRF24_TRANSMITER_ENABLE
-
-
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
              std::cout<<"TX went ok, got ack \n";

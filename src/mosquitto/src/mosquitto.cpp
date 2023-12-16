@@ -6,7 +6,7 @@ extern "C"{
     #include <stdlib.h>
 }
 #include <mosquitto/src/mosquitto.h>
-#include <app/src/config.h>
+//#include <app/src/config.h>
 
 
 namespace MOSQUITTO{

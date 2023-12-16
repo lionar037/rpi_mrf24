@@ -9,6 +9,9 @@
     //Enable database 
 //#define ENABLE_DATABASE
 
+#define ENABLE_MOSQUITTO
+
+
 #define CHANNEL 24
 #define HEAD 0x40
 
@@ -66,4 +69,6 @@
 //#define QR_CODE_SRT "WIFI:T:WPA;S:MiRedWiFi;P:MiContraseña123;;";
 #define QR_CODE_SRT MSJ   
 
-
+#ifdef ENABLE_MOSQUITTO
+    #define HOST_SERVER_MOSQUITTO "raspberry-2.local"
+#endif

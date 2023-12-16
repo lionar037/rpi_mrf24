@@ -1,10 +1,14 @@
 #pragma once
 #include <memory>
 #include <mosquitto.h>
+#include <app/src/config.h>
 
-#define HOST_SERVER_MOSQUITTO "raspberry.local"
+#ifdef ENABLE_MOSQUITTO    
+    //#redefine HOST_SERVER_MOSQUITTO "192.168.1.38"
+#else 
+    #define HOST_SERVER_MOSQUITTO "raspberry.local"
+#endif
 
-//#define HOST_SERVER_MOSQUITTO "192.168.1.38"
 
 namespace MOSQUITTO{
     struct Mosquitto_t{
