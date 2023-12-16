@@ -81,14 +81,17 @@ Radio_t::Radio_t()
 }
 
 void Radio_t::Run(void){
-    #ifdef ENABLE_INTERRUPT_MRF24
+    //#ifdef ENABLE_INTERRUPT_MRF24
+    #ifdef USE_MRF24_RX
         while(true)
     #endif
     {   
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-        gpio->app(m_flag);        
-        //mrf24j40_spi.interrupt_handler();
+        #ifdef USE_MRF24_RX
+            gpio->app(m_flag); 
+        #endif       
+        mrf24j40_spi.interrupt_handler();
         Init(m_flag);        
     }
 }
