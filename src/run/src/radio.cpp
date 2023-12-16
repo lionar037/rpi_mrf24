@@ -98,14 +98,12 @@ void Radio_t::Init(bool& flag) {
     const unsigned long current_time = 10000;//1000000 original
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
-    #ifdef MRF24_TRANSMITER_ENABLE
-
-    
+    #ifdef MRF24_TRANSMITER_ENABLE    
          if( security->init() != SUCCESS_PASS){
             std::cout<<"Exit tx\n";
             return ; 
             }
-            else{
+            else{ 
                 std::cout<<"Success tx\n";
             }
 
