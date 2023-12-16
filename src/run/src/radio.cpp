@@ -98,15 +98,16 @@ void Radio_t::Init(bool& flag) {
     const unsigned long current_time = 10000;//1000000 original
     if (current_time - last_time > tx_interval) {
         last_time = current_time;
-    #ifdef MRF24_TRANSMITER_ENABLE    
-         if( security->init() != SUCCESS_PASS){
-            std::cout<<"Exit tx\n";
-            return ; 
-            }
-            else{ 
-                std::cout<<"Success tx\n";
-            }
-
+    #ifdef MRF24_TRANSMITER_ENABLE   
+            #ifdef ENABLE_SECURITY 
+             if( security->init() != SUCCESS_PASS){
+                std::cout<<"Exit tx\n";
+                return ; 
+                }
+                else{ 
+                    std::cout<<"Success tx\n";
+                }
+            #endif
         #ifdef DBG
             #ifdef MACADDR64
                 std::cout<<"send msj 64() ... \n";
@@ -128,7 +129,7 @@ void Radio_t::Init(bool& flag) {
           
       for(const auto& byte : pf) std::cout << byte ; 
         std::cout<<"\n" ;         
-        
+         
         #ifdef MACADDR64
             mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
            // mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, buffer_transmiter);

@@ -37,7 +37,7 @@
     #define ADDRESS_LONG_SLAVE 0x1122334455667701
     #define ADDRESS 0x6001
     #define PAN_ID 0x1234
-    #define ADDR_SLAVE 0x6002
+    #define ADDRESS_SLAVE 0x6002
     #define MRF24_TRANSMITER_ENABLE
 //#endif    
 #elif  defined(MODULE_RX)
@@ -45,7 +45,7 @@
     #define ADDRESS_LONG_SLAVE 0x1122334455667702
     #define ADDRESS 0x6002
     #define PAN_ID 0x1235
-    #define ADDR_SLAVE  0x6001
+    #define ADDRESS_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
 #endif
@@ -72,3 +72,6 @@
 #ifdef ENABLE_MOSQUITTO
     #define HOST_SERVER_MOSQUITTO "raspberry-2.local"
 #endif
+
+
+//#define ENABLE_SECURITY 

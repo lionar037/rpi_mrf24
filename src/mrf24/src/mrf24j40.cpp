@@ -376,7 +376,8 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, dest & 0xff);  // dest16 low
         write_long(i++, dest >> 8); // dest16 high
 
-        if(sizeof(dest)>2){
+        //if(sizeof(dest)>2){
+        if(dest>0xffff){            
             #ifdef DBG_MRF
                 std::cout <<"es un mac de 64 bytes\n";
             #endif
@@ -397,7 +398,9 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, src & 0xff); // src16 low
         write_long(i++, src >> 8); // src16 high
 
-       if(sizeof(src)>2){
+       //if(sizeof(src)>2)
+       if(dest>0xffff)            
+       {
             write_long(i++, (src >> 16 ) & 0xff); 
             write_long(i++, (src >> 24 ) & 0xff); 
             write_long(i++, (src >> 32 ) & 0xff); 
