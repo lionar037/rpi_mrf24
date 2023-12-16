@@ -37,7 +37,7 @@ Radio_t::Radio_t()
     #ifdef ENABLE_INTERRUPT_MRF24
     
     #else
-            qr->create(QR_CODE_SRT);
+            //qr->create(QR_CODE_SRT);
             security    =   std::make_unique<SECURITY::Security_t >();
     #endif
           
