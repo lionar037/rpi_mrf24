@@ -100,9 +100,8 @@ void Radio_t::Init(bool& flag) {
         last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE
 
-    auto comprobe = security->init();
-
-         if(comprobe != SUCCESS_PASS){
+    
+         if( security->init() != SUCCESS_PASS){
             std::cout<<"Exit tx\n";
             return ; 
             }
