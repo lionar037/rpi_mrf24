@@ -68,4 +68,8 @@ namespace SECURITY{
       return -1;
   }
 
+    std::string Security_t::encrypt(std::string_view& encTmp){
+    return sha256(encTmp.data()); 
+    }
+
 }

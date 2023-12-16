@@ -5,7 +5,7 @@
 #include <files/src/file.h>
 #include <others/src/color.h>
 #include <mrf24/src/mrf24j40_template.tpp>
-#include <oled/src/oled.h>
+#include <display/src/oled.h>
 #include <others/src/rfflush.h>
 #include <mosquitto/src/mosquitto.h>
 
