@@ -12,7 +12,7 @@ namespace EPAPER{
     bool Epaper_t::create(const std::string_view& epaperText)    
     {
 
-        return ;
+        return true;
     }
     
 }
