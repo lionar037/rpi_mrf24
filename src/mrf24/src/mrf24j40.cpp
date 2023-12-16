@@ -242,7 +242,7 @@ namespace MRF24J40{
         if (m_flag_got_rx) {
             m_flag_got_rx = 0;
             #ifdef DBG_MRF
-                std::cout<< "recibe packete \n";
+                std::cout<< "\t\trecibe packete \n";
             #endif
             rx_handler();
             return true;
@@ -250,7 +250,7 @@ namespace MRF24J40{
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
             #ifdef DBG_MRF
-                std::cout<< "transmite packete \n";
+                std::cout<< "\t\ttransmite packete \n";
             #endif
             tx_handler();
             return false;
