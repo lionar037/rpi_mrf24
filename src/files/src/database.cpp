@@ -4,6 +4,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <string>
 #include <mysql_driver.h>
 #include <mysql_connection.h>
 #include <cppconn/driver.h>
