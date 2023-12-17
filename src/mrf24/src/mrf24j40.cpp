@@ -411,7 +411,7 @@ void Mrf24j::settings_mrf(void){
 
         write_long(i++, dest & 0xff);  // dest16 low
         write_long(i++, dest >> 8); // dest16 high
-
+uint64_t src ;
         //if(sizeof(dest)>2){
         if(dest>0xffff){            
             #ifdef DBG_MRF
@@ -423,16 +423,21 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, (dest >> 40 ) & 0xff);
         write_long(i++, (dest >> 48 ) & 0xff);
         write_long(i++, (dest >> 56 ) & 0xff);
+
+        src = address64_read();
+
         }
         else{
             #ifdef DBG_MRF
             std::cout <<"es un mac de 16 bytes\n";
+        
+        src = address16_read();
+
             #endif
         }
- 
-        const uint64_t src = address64_read();
         write_long(i++, src & 0xff); // src16 low
         write_long(i++, src >> 8); // src16 high
+ 
 
        //if(sizeof(src)>2)
        if(dest>0xffff)            

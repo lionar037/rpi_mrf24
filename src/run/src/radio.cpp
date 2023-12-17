@@ -103,7 +103,7 @@ void Radio_t::Run(void){
 void Radio_t::Init(bool& flag) {
 
     flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
-    const unsigned long current_time = 10000;//1000000 original
+    const unsigned long current_time = 1000000;//1000000 original
     if (current_time - m_last_time > m_tx_interval) {
         m_last_time = current_time;
     #ifdef MRF24_TRANSMITER_ENABLE   
