@@ -153,8 +153,8 @@ void Radio_t::Init(bool& flag) {
              std::cout<<"TX went ok, got ack \n";
          } else {
              std::cout<<"\nTX failed after \n";
-             std::cout<<mrf24j40_spi.get_txinfo()->retries;
-             std::cout<<" retries\n";
+             std::cout<<" retries : "<<std::to_string(mrf24j40_spi.get_txinfo()->retries);
+             std::cout<<"\n";
          }
         #endif
     #endif
