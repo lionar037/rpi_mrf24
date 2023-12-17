@@ -22,8 +22,10 @@ typedef struct _rx_info_t{
      * Based on the TXSTAT register, but "better"
      */
 typedef struct _tx_info_t{
-    uint8_t         tx_ok           :1;
-    uint8_t         retries         :2;
+    uint8_t         tx_ok           :1; //  bit 0 TXNSTAT: TX Normal FIFO Release Status bit 
+                                        //  1 = Failed, retry count exceeded
+                                        //  0 = Succeeded
+    uint8_t         retries         :2; //0 = Succeeded
     uint8_t         channel_busy    :1;
 } tx_info_t;
 
