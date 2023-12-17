@@ -296,7 +296,7 @@ void Mrf24j::settings_mrf(void){
         rxmcr.PROMI=true;       //1 = Receive all packet types with good CRC
         //rxmcr.PROMI=false;   //0 = Discard packet when there is a MAC address mismatch, illegal frame type, dPAN/sPAN or MACshort address mismatch (default)
         
-        rxmcr.NOACKRSP=false    //1 = Disables automatic Acknowledgement response
+        rxmcr.NOACKRSP=false;    //1 = Disables automatic Acknowledgement response
                                 //0 = Enables automatic Acknowledgement response. Acknowledgements are returned when they are requested (default).
         #ifdef DBG
             printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
