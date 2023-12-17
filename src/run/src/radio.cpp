@@ -147,7 +147,15 @@ void Radio_t::Init(bool& flag) {
                 //mrf24j40_spi.send(ADDRESS_SLAVE, pf );
                 //mrf24j40_spi.send16(ADDRESS_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
             #endif
-        mrf24j40_spi.check_ack(&handle_tx);
+        //mrf24j40_spi.check_ack(&handle_tx);
+         const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
+         if (status) {
+             std::cout<<"TX went ok, got ack \n";
+         } else {
+             std::cout<<"\nTX failed after \n";
+             std::cout<<mrf24j40_spi.get_txinfo()->retries;
+             std::cout<<" retries\n";
+         }
         #endif
     #endif
     
