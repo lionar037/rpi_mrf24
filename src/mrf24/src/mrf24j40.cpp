@@ -145,13 +145,14 @@ namespace MRF24J40{
     // while (read_short(MRF_SOFTRST) & 0x7 != 0) {
         // ; // wait for soft reset to finish
     // }
-           delay(192); 
+
            #include <app/src/config.h>
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else
             //write_short(MRF_SOFTRST, 0x7); 
            #endif
+                      delay(192); 
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
         write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
 
@@ -292,7 +293,11 @@ namespace MRF24J40{
 void Mrf24j::settings_mrf(void){
         rxmcr.PANCOORD=true;
         rxmcr.COORD=false;
-        rxmcr.PROMI=true;
+        rxmcr.PROMI=true;       //1 = Receive all packet types with good CRC
+        //rxmcr.PROMI=false;   //0 = Discard packet when there is a MAC address mismatch, illegal frame type, dPAN/sPAN or MACshort address mismatch (default)
+        
+        rxmcr.NOACKRSP=false    //1 = Disables automatic Acknowledgement response
+                                //0 = Enables automatic Acknowledgement response. Acknowledgements are returned when they are requested (default).
         #ifdef DBG
             printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
         #endif

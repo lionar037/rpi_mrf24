@@ -262,7 +262,7 @@ void Radio_t::handle_rx() {
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
         monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);        
 
-
+   std::cout<<"\n";   
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
     std::cout<<"\n";   
 
