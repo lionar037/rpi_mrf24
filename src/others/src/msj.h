@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-namespace MSJ{
+namespace DEVICES{
 
     struct Msj_t{
          Msj_t(){}

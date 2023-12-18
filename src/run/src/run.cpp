@@ -35,10 +35,10 @@ void Run_t::start()
 
 
             auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
-            auto msj { std::make_unique<MSJ::Msj_t>()};               
+            auto msj { std::make_unique<DEVICES::Msj_t>()};               
 
             std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
-            std::thread thread2(&MSJ::Msj_t::Start>, msj.get());
+            std::thread thread2(&DEVICES::Msj_t::Start>, msj.get());
                
           //      Esperar a que todos los hilos terminen
                  thread1.join();

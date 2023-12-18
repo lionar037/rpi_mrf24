@@ -1,6 +1,6 @@
 #include <others/src/msj.h>
 
-namespace MSJ{
+namespace DEVICES{
 
     
 
