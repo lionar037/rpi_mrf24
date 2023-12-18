@@ -8,7 +8,8 @@
 
 namespace RUN{
 
-void Run_t::start(){
+void Run_t::start()
+{
         system("clear"); 
     
     //std::vector<std::thread> threadVect;
@@ -30,21 +31,14 @@ void Run_t::start(){
 
 
 
-auto mrf { std::make_unique<MRF24J40::Radio_t>()};
 
-        // Inicializar hilos y ejecutar las clases en paralelo
-        std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
-    
-        // Esperar a que todos los hilos terminen
-        thread1.join();
-
-
-      }
-       catch(...){
-         std::cerr<<"\nerror :(\n";
-      }
-}
-
-
-
+        //auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
+               // std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
+                // Esperar a que todos los hilos terminen
+            ///    thread1.join();
+            }
+        catch(...){
+                    std::cerr<<"\nerror :(\n";
+        }
+    }
 }
