@@ -4,7 +4,8 @@ namespace MSJ{
 
     
 
-    void Msj_t::get(){
+    void Msj_t::get()
+    {
 
     }
 
