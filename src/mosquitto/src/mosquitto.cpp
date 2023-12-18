@@ -71,14 +71,14 @@ namespace MOSQUITTO{
         rc = mosquitto_connect(mosq, HOST_SERVER_MOSQUITTO , 1883, 60);
         
         if(rc != 0){
-            printf("Client could not connect to broker! Error Code: %d\n", rc);
+            printf("\t\tClient could not connect to broker! Error Code: %d\n", rc);
             mosquitto_destroy(mosq);
             return -1;
         }else{
         printf("\t\tPub  \tWe are now connected to the broker!\n");
         }
 
-        const std::string text= "{ temp : " + std::to_string(temperature_day) +" }";
+        const std::string text= "{\t temp : " + std::to_string(temperature_day) +" }";
         
         rc = mosquitto_publish(mosq, NULL, "house/room", text.size() ,text.data() , 0, false);
 
