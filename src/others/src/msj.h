@@ -8,6 +8,7 @@ namespace MSJ{
         ~Msj_t()=default;
         void get();
         void set(std::string&);
+        void Start(){std::cout<<"Msj : Start() \n";}
     private:
         std::string txt;
     };

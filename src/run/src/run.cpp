@@ -2,8 +2,10 @@
 #include <thread>
 #include <vector>
 
-#include <run/src/radio.h>
+
 #include <run/src/run.h>
+#include <run/src/radio.h>
+#include <others/src/msj.h>
 
 
 namespace RUN{
@@ -32,8 +34,12 @@ void Run_t::start()
 
 
 
-        auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
-               std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
+            auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
+            auto msj { std::make_unique<MSJ::Msj_t>()};               
+
+            std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
+            std::thread thread1(&MSJ::Msj_t::Start>, msj.get());
+               
           //      Esperar a que todos los hilos terminen
                  thread1.join();
             }
