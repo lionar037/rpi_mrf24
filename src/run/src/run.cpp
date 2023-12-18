@@ -38,7 +38,7 @@ void Run_t::start()
             auto msj { std::make_unique<DEVICES::Msj_t>()};               
 
             std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
-            std::thread thread2(&DEVICES::Msj_t::Start>, msj.get());
+            std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
                
           //      Esperar a que todos los hilos terminen
                  thread1.join();
