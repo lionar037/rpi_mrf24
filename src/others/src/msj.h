@@ -1,11 +1,12 @@
 #pragma once
+#include <iostream>
 #include <string>
 
 namespace MSJ{
 
     struct Msj_t{
-         Msj_t()=default;
-        ~Msj_t()=default;
+         Msj_t(){}
+        ~Msj_t(){}
         void get();
         void set(std::string&);
         void Start(){std::cout<<"Msj : Start() \n";}
