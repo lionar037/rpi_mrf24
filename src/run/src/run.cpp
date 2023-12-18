@@ -42,6 +42,7 @@ void Run_t::start()
                
           //      Esperar a que todos los hilos terminen
                  thread1.join();
+                 thread2.join();
             }
         catch(...){
                     std::cerr<<"\nerror :(\n";
