@@ -64,9 +64,9 @@ void Oled_t::Setup()
         printf("\nOLED Begin\r\n");
         #endif
         myOLED.OLEDbegin(I2C_Speed, I2C_Address); // initialize the OLED
-myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
+        myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
         bcm2835_delay(100);
-//myOLED.OLEDclearBuffer();
+        //myOLED.OLEDclearBuffer();
         return;
 }
 
@@ -121,6 +121,10 @@ myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
 
     Oled_t::Oled_t(){
         init();
+    }
+
+    Oled_t::~Oled_t(){
+        End();
     }
 #endif
 }

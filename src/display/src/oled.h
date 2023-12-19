@@ -12,7 +12,7 @@ namespace OLED{
     struct Oled_t : public WORK::Work_t
     {
         explicit Oled_t();
-        ~Oled_t ()=default;
+        ~Oled_t();
         //bool create(const char*)override;
         bool create(const std::string_view&)override;
         bool init();

@@ -61,14 +61,14 @@ Radio_t::Radio_t()
     #endif
 
     // uncomment if you want to receive any packet on this channel
-  mrf24j40_spi.set_promiscuous(true);
-  //mrf24j40_spi.settings_mrf();
+    mrf24j40_spi.set_promiscuous(true);
+    //mrf24j40_spi.settings_mrf();
   
     // uncomment if you want to enable PA/LNA external control
-  mrf24j40_spi.set_palna(true);
+    mrf24j40_spi.set_palna(true);
   
     // uncomment if you want to buffer all PHY Payload
-  mrf24j40_spi.set_bufferPHY(true);
+    mrf24j40_spi.set_bufferPHY(true);
 
     //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
     //last_time = millis();
@@ -90,9 +90,7 @@ void Radio_t::Run(void){
     {   
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-        //#ifdef USE_MRF24_RX
-            gpio->app(m_flag); 
-        //#endif       
+        gpio->app(m_flag);              
         mrf24j40_spi.interrupt_handler();
         Init(m_flag);        
     }
@@ -133,7 +131,7 @@ void Radio_t::Init(bool& flag) {
         std::cout<<"\n MSJ : size ( "<<  strlen(msj) <<" , "<<sizeof(msj) << " )\n" ;
         std::cout<<"\n" ;
       
-      const std::string pf(msj);
+        const std::string pf(msj);
           
       for(const auto& byte : pf) std::cout << byte ; 
         std::cout<<"\n" ;         
@@ -148,8 +146,9 @@ void Radio_t::Init(bool& flag) {
                 //mrf24j40_spi.send16(ADDRESS_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
             #endif
         //mrf24j40_spi.check_ack(&handle_tx);
-         const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
-         if (status) {
+         const auto status = read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful
+         //mrf24j40_spi.get_txinfo()->tx_ok;
+         if (status==0) {//0 = Succeeded
              std::cout<<"TX went ok, got ack \n";
          } else {
              std::cout<<"\nTX failed after \n";
