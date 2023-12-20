@@ -1,10 +1,12 @@
 #include <mrf24/src/mrf24j40_cmd.h>
 #include <mrf24/src/mrf24j40_settings.h>
+#include <mrf24/src/mrf24j40_control_register.h>
 #include <others/src/tyme.h>
 #include <app/src/config.h>
 #include <app/src/data_analisis.h>
 #include <mrf24/src/mrf24j40.h>
 #include <spi/src/spi.h>
+
 
 namespace MRF24J40{
             // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
@@ -468,5 +470,14 @@ uint64_t src ;
         // ack on, and go!
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
+
+void  Mrf24j::settingsSecurity(){
+    SECCR2 securityConfig;
+    securityConfig.TXG1CIPHER=AES_CBC_MAC_64;
+    securityConfig.TXG2CIPHER=AES_CBC_MAC_64;
+    securityConfig.UPDEC=true;         //Upper Layer Security Decryption Mode bit
+    securityConfig.UPENC=true;         //Upper Layer Security Encryption Mode bit
+}
+
 
 }//END NAMESPACE MRF24

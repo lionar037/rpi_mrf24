@@ -95,7 +95,7 @@ struct Mrf24j : public SPI::Spi
         bool                    check_ack(void (*rx_handler)());    
         int                     getStatusInfoTx(void);    
         void                    settings_mrf(void);
-
+        void                    settingsSecurity();
     private:
         std::unique_ptr<SPI::Spi> prt_spi {};
 
