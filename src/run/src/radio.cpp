@@ -176,7 +176,7 @@ void Radio_t::Init(bool& flag) {
         auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
         #ifdef MRF24_RECEIVER_ENABLE
             #ifdef USE_OLED            
-            static auto     oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+            static auto  oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
             #endif
         #endif
         const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());

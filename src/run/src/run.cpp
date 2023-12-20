@@ -6,7 +6,7 @@
 #include <run/src/run.h>
 #include <run/src/radio.h>
 #include <others/src/msj.h>
-#include <display/src/oled.h>
+//#include <display/src/oled.h>
 #include <app/src/config.h>
 
 
