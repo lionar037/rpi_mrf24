@@ -16,7 +16,7 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
-extern static tx_info_t tx_info{};
+
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 #ifdef USE_MRF24_TX
