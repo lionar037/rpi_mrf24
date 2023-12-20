@@ -471,12 +471,13 @@ uint64_t src ;
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
 
-void  Mrf24j::settingsSecurity(){
-    SECCR2 securityConfig;
+void  Mrf24j::settingsSecurity(void){
+    SECCR2 securityConfig{0x00};
     securityConfig.TXG1CIPHER=AES_CBC_MAC_64;
     securityConfig.TXG2CIPHER=AES_CBC_MAC_64;
     securityConfig.UPDEC=true;         //Upper Layer Security Decryption Mode bit
     securityConfig.UPENC=true;         //Upper Layer Security Encryption Mode bit
+    return ;
 }
 
 
