@@ -137,18 +137,13 @@ void Radio_t::Init(bool& flag) {
         std::cout<<"\n" ;         
         #ifdef USE_MRF24_TX 
             #ifdef MACADDR64
-                mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
-               // mrf24j40_spi.send64(ADDRESS_LONG_SLAVE, buffer_transmiter);
-               //mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);
+                mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);               
             #elif defined(MACADDR16)
-                mrf24j40_spi.send(ADDRESS_SLAVE, msj);
-                //mrf24j40_spi.send(ADDRESS_SLAVE, pf );
-                //mrf24j40_spi.send16(ADDRESS_SLAVE, MSJ );//send data//original//mrf24j40_spi.send16(0x4202, "abcd")
+                mrf24j40_spi.send(ADDRESS_SLAVE, msj);                                
             #endif
-            
-        //mrf24j40_spi.check_ack(&handle_tx);
-         const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful
-         //mrf24j40_spi.get_txinfo()->tx_ok;
+                    
+//         const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful         
+         const auto status = mrf24j40_spi.check_ack(&handle_tx);
          if (status==0) {//0 = Succeeded
              std::cout<<"\tTX went ok, got ack \n";
          } else {
