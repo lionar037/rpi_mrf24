@@ -26,7 +26,7 @@ AES_CBC_MAC_32
         uint8_t DISDEC      :1;       //Disable Decryption Function bit
         uint8_t Reserved0   :2;
         uint8_t TXBCIPHER   :3;
-        uint8_t Reserved_1  :1;
+        uint8_t Reserved    :1;
     }SECCR1 ;
 
     typedef struct seccr2{
