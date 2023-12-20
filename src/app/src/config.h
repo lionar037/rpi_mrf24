@@ -86,6 +86,6 @@
 //habilita la encriptacion de mensajes 
 //#define ENABLE_SECURITY 
 #ifdef USE_MRF24_RX
-    //#define USE_OLED2
+    #define USE_OLED2
 #else
 #endif
