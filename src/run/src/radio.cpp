@@ -150,7 +150,7 @@ void Radio_t::Init(bool& flag) {
          const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful
          //mrf24j40_spi.get_txinfo()->tx_ok;
          if (status==0) {//0 = Succeeded
-             std::cout<<"TX went ok, got ack \n";
+             std::cout<<"\tTX went ok, got ack \n";
          } else {
              std::cout<<"\nTX failed after \n";
              std::cout<<" retries : "<<std::to_string(mrf24j40_spi.get_txinfo()->retries);
@@ -214,7 +214,7 @@ void Radio_t::handle_tx() {
     //#ifdef MRF24_TRANSMITER_ENABLE//MRF24_TRANSMITER_ENABLE
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
-             std::cout<<"\tTX went ok, got ACK success ! \n";
+             std::cout<<"\t\t\thandle_tx() : TX went ok, got ACK success ! \n";
          } else {
              std::cout<<"\n\tTX failed after \n";
              std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
