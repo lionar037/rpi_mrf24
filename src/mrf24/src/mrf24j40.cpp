@@ -267,7 +267,7 @@ int Mrf24j::getStatusInfoTx(void)
 
     bool Mrf24j::check_ack(void (*tx_handler)())    
     {
-            // TODO - we could check whether the flags are > 1 here, indicating data was lost?
+    // TODO - we could check whether the flags are > 1 here, indicating data was lost?
         if (m_flag_got_tx) {
             m_flag_got_tx = 0;
             #ifdef DBG_MRF

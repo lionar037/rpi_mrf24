@@ -142,7 +142,7 @@ void Radio_t::Init(bool& flag) {
             #elif defined(MACADDR16)
                 mrf24j40_spi.send(ADDRESS_SLAVE, msj);                                
             #endif
-                    
+                      
 //         const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful         
          const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
           if (status==1) {//0 = Succeeded
