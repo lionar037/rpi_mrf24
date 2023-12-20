@@ -235,7 +235,8 @@ namespace MRF24J40{
     }
 
 
-int Mrf24j40::getStatusInfoTx(void){
+int Mrf24j::getStatusInfoTx(void)
+{
     return tx_info.tx_ok ;
 }
     /**
