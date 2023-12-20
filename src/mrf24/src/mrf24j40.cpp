@@ -234,6 +234,10 @@ namespace MRF24J40{
         }
     }
 
+
+int Mrf24j40::getStatusInfoTx(void){
+    return tx_info.tx_ok ;
+}
     /**
      * Call this function periodically, it will invoke your nominated handlers
      */

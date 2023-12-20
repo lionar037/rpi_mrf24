@@ -16,6 +16,7 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
+extern static tx_info_t tx_info{};
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 #ifdef USE_MRF24_TX
@@ -143,14 +144,14 @@ void Radio_t::Init(bool& flag) {
             #endif
                     
 //         const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful         
-         const auto status = mrf24j40_spi.check_ack(&handle_tx);
-        //  if (status==0) {//0 = Succeeded
-            //  std::cout<<"\tTX went ok, got ack \n";
-        //  } else {
-            //  std::cout<<"\nTX failed after \n";
+         const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
+          if (status==1) {//0 = Succeeded
+              std::cout<<"\tTX  Ok ,response ack \n";
+          } else {
+              std::cout<<"\nTX failed\n";
             //  std::cout<<" retries : "<<std::to_string(mrf24j40_spi.get_txinfo()->retries);
             //  std::cout<<"\n";
-        //  }
+        }
         #endif
     #endif
     
