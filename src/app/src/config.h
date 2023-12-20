@@ -1,7 +1,7 @@
 #pragma once
 
-#define USE_MRF24_TX
-//#define USE_MRF24_RX
+//#define USE_MRF24_TX
+#define USE_MRF24_RX
 
 //#define USE_MAC_ADDRESS_LONG
 #define USE_MAC_ADDRESS_SHORT
@@ -86,6 +86,6 @@
 //habilita la encriptacion de mensajes 
 //#define ENABLE_SECURITY 
 #ifdef USE_MRF24_RX
-    #define USE_OLED
+    #define USE_OLED2
 #else
 #endif
