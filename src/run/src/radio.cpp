@@ -6,7 +6,7 @@
 #include <others/src/color.h>
 #include <mrf24/src/mrf24j40_template.tpp>
 #ifdef USE_OLED
-#include <display/src/oled.h>
+    #include <display/src/oled.h>
 #endif
 #include <others/src/rfflush.h>
 #include <mosquitto/src/mosquitto.h>
@@ -77,7 +77,7 @@ Radio_t::Radio_t()
     //Single send cmd
     //mrf24j40_spi.Transfer3bytes(0xE0C1);
     
-    mosq        =   std::make_unique<MOSQUITTO::Mosquitto_t>();
+    mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
     
     m_flag=true;
 

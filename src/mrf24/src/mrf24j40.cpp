@@ -298,8 +298,8 @@ int Mrf24j::getStatusInfoTx(void)
 void Mrf24j::settings_mrf(void){
         rxmcr.PANCOORD=true;
         rxmcr.COORD=false;
-        rxmcr.PROMI=true;       //1 = Receive all packet types with good CRC
-        //rxmcr.PROMI=false;   //0 = Discard packet when there is a MAC address mismatch, illegal frame type, dPAN/sPAN or MACshort address mismatch (default)
+        //rxmcr.PROMI=true;       //1 = Receive all packet types with good CRC
+        rxmcr.PROMI=false;   //0 = Discard packet when there is a MAC address mismatch, illegal frame type, dPAN/sPAN or MACshort address mismatch (default)
         
         rxmcr.NOACKRSP=false;    //1 = Disables automatic Acknowledgement response
                                 //0 = Enables automatic Acknowledgement response. Acknowledgements are returned when they are requested (default).
