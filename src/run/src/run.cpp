@@ -52,7 +52,7 @@ void Run_t::start()
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_OLED2
                 //std::thread thread3(&OLED::Oled_t::init, oled.get());
-                std::thread thread3(&OLED::Oled_t , oled.get());
+                std::thread thread3(&OLED::Oled_t::init , oled.get());
             #endif
 
 

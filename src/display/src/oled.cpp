@@ -52,6 +52,9 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                 //TestLoop();
                 //EndTest();
 
+
+create(MSJ);
+
         return true;
         }
 
@@ -121,7 +124,7 @@ void Oled_t::Setup()
 
     Oled_t::Oled_t(){
         init();
-        create(MSJ);
+        
     }
 
     Oled_t::~Oled_t(){
