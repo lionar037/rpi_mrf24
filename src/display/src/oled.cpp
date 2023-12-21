@@ -121,7 +121,7 @@ void Oled_t::Setup()
 
     Oled_t::Oled_t(){
         init();
-        create(CONFIG::MSJ);
+        create(MSJ);
     }
 
     Oled_t::~Oled_t(){
