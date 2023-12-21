@@ -6,8 +6,11 @@
 #include <run/src/run.h>
 #include <run/src/radio.h>
 #include <others/src/msj.h>
-//#include <display/src/oled.h>
 #include <app/src/config.h>
+#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
+    #include <display/src/oled.h>
+#endif
+
 
 
 namespace RUN{
