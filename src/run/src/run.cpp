@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-#define USE_OLED2
+//#define USE_OLED2
 
 #include <run/src/run.h>
 #include <run/src/radio.h>
