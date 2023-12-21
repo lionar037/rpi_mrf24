@@ -96,6 +96,7 @@ struct Mrf24j : public SPI::Spi
         int                     getStatusInfoTx(void);    
         void                    settings_mrf(void);
         void                    settingsSecurity();
+        void                    RadioSetSleep(uint8_t);
     private:
         std::unique_ptr<SPI::Spi> prt_spi {};
 

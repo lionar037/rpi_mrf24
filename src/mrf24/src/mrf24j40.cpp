@@ -173,6 +173,15 @@ namespace MRF24J40{
         write_short(MRF_BBREG6, 0x40);      // – Set appended RSSI value to RXFIFO.
         set_interrupts();
         set_channel(CHANNEL);                    //original 12
+
+    #ifdef TURBO_MODE					// propriatary TURBO_MODE runs at 625 kbps (vs. 802.15.4 compliant 250 kbps)
+		write_short(MRF_BBREG0, 0x01);	// TURBO mode enable
+		write_short(MRF_BBREG3, 0x38);	// PREVALIDTH to turbo optimized setting
+		write_short(MRF_BBREG4, 0x5C);	// CSTH carrier sense threshold to turbo optimal
+	#endif
+
+
+
         // max power is by default.. just leave it...
         // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
@@ -493,6 +502,35 @@ void Mrf24j::settings_mrf(void){
         write_short(MRF_SECCR2 , *reinterpret_cast<uint8_t*>(&security.seccr2));
         return ;
     }
+
+
+
+
+
+
+
+
+
+void Mrf24j::RadioSetSleep(uint8_t powerState){
+#ifdef ENABLE_SLEEP    
+	if (powerState)
+	{
+		#if defined(ENABLE_PA_LNA)
+			highWrite(TESTMODE, 0x08);      // Disable automatic switch on PA/LNA
+			lowWrite(MRF_GPIODIR, 0x0F);	// Set GPIO direction to OUTPUT (control PA/LNA)
+			lowWrite(MRF_GPIO, 0x00);     // Disable PA and LNA
+		#endif
+
+		lowWrite(MRF_SOFTRST, 0x04);		// power management reset to ensure device goes to sleep
+		lowWrite(MRF_WAKECON,0x80);		// WAKECON; enable immediate wakeup
+		lowWrite(MRF_SLPACK,0x80);		// SLPACK; force radio to sleep now
+
+		RadioStatus.SLEEPING = 1;			// radio is sleeping
+	}	
+	else
+		initMRF24J40();		// could wakeup with WAKE pin or by toggling REGWAKE (1 then 0), but this is simpler
+#endif
+}
 
 
 }//END NAMESPACE MRF24

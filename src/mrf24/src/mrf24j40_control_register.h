@@ -1,4 +1,10 @@
 #pragma once
+////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief
+/// @params Security
+/// @author
+/// 
+////////////////////////////////////////////////////////////////////////////////////////////
 #include <stdint.h>
 
 namespace MRF24J40{
@@ -131,11 +137,12 @@ namespace MRF24J40{
         ASSOSADR1 assosadr1;
     }ASSOSADR;
 
-
-
-
-
-
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    /// @brief
+    /// @params
+    /// @author
+    /// 
+    ////////////////////////////////////////////////////////////////////////////////////////////
     typedef struct  upnonce0{
         uint8_t upnoce_7_to_0;
     }UPNONCE0;
@@ -204,4 +211,45 @@ namespace MRF24J40{
         UPNONCE11 upnonce11 ;
         UPNONCE12 upnonce12 ; 
     }UPNONCES;
+
+////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief
+/// @params
+/// @author
+/// @register TRANSMIT BEACON FIFO CONTROL 0 REGISTER (ADDRESS: 0x1A)
+////////////////////////////////////////////////////////////////////////////////////////////
+
+    typedef struct txbcon0{
+        uint8_t TXBTRIG:1;      // Transmit Frame in TX Beacon FIFO bit
+        uint8_t TXBSECEN:1;     // TX Beacon FIFO Security Enabled bit
+                                //1= Securityenabled
+                                //0= Securitydisabled(default)
+        uint8_t Reserved:6;
+    }TXBCON0;// TRANSMIT BEACON FIFO CONTROL 0 REGISTER (ADDRESS: 0x1A)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+/// @brief
+/// @params
+/// @author
+/// @register TXNCON: TRANSMIT NORMAL FIFO CONTROL REGISTER (ADDRESS: 0x1B)
+////////////////////////////////////////////////////////////////////////////////////////////
+
+    typedef struct txncon{
+        uint8_t TXNTRIG:1;          //  1 = Transmit the frame in the TX Normal FIFO; bit is automatically cleared by hardware
+        uint8_t TXNSECEN:1;         //  TX Normal FIFO Security Enabled bit(3,4)      
+                                    //  1= Securityenabled
+        uint8_t TXNACKREQ:1;        //  TX Normal FIFO Acknowledgement Request bit
+        uint8_t INDIRECT:1;         //  Activate Indirect Transmission bit (coordinator only)
+        uint8_t FPSTAT:1;           //  Frame Pending Status bit
+        uint8_t Reserved:3;
+    }TXNCON;
+
 }
+
+
+
+
+	
+
+

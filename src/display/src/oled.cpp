@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-//#include <string_view>
 #include <display/src/oled.h>
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
@@ -12,16 +11,14 @@
 namespace OLED{
 #ifdef USE_MRF24_RX
 
-SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object 
-        //bool Oled_t::create(const char* tmp)
+SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object         
 
         bool Oled_t::create(const std::string_view& textOled)
         {
         static int Step { 0 };        
         uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
                 
-                // Define a buffer to cover whole screen 
-                
+                // Define a buffer to cover whole screen                 
                 myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
                 myOLED.OLEDclearBuffer();  
             	myOLED.setTextSize(1);
@@ -49,9 +46,6 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                 }
 
                 Setup();
-                //TestLoop();
-                //EndTest();
-
 
 create(MSJ);
 
@@ -123,8 +117,7 @@ void Oled_t::Setup()
     
 
     Oled_t::Oled_t(){
-        init();
-        
+        init();        
     }
 
     Oled_t::~Oled_t(){
