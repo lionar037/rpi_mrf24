@@ -56,7 +56,7 @@ void Run_t::start()
             thread1.join();
             thread2.join();
             #ifdef USE_OLED2
-                //thread3.join();
+                thread3.join();
             #endif
             }
         catch(...){
