@@ -107,7 +107,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 // uint8_t tx_buffer[4]{nullptr};
 // uint8_t rx_buffer[4]{nullptr};
 
-    Spi::Spi()
+    [[nodiscard]]Spi::Spi()
     :spi{std::make_unique<struct spi_ioc_transfer >()} , spi_speed(SPI_SPEED)
     ,tx_buffer{0x00},rx_buffer{0x00}
     {
