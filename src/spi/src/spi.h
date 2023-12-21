@@ -34,15 +34,15 @@ namespace SPI{
 
   private:
 
-    [[nodiscard]]uint8_t tx_buffer[4]{0x00};
-    [[nodiscard]]uint8_t rx_buffer[4]{0x00};
+    [[maybe_unused]]uint8_t tx_buffer[4]{0x00};
+    [[maybe_unused]]uint8_t rx_buffer[4]{0x00};
 
     const uint32_t len_data { 32 };
-    [[nodiscard]]const uint32_t spi_speed { 0 };
+    [[maybe_unused]]const uint32_t spi_speed { 0 };
     
     int fs{0};
     int ret{0};
-    [[nodiscard]]std::unique_ptr<struct spi_ioc_transfer >spi{nullptr};
+    [[maybe_unused]]std::unique_ptr<struct spi_ioc_transfer >spi{nullptr};
     uint8_t looper{0};
     uint32_t scratch32{0};
   };
