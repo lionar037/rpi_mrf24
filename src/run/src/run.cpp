@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-
+#define USE_OLED2
 
 #include <run/src/run.h>
 #include <run/src/radio.h>
@@ -12,12 +12,13 @@
     #include <display/src/oled.h>
 #endif
 
-
+ 
 
 namespace RUN{
 
 void Run_t::start()
 {
+    std::string msj;
         system("clear"); 
     
     //std::vector<std::thread> threadVect;
@@ -50,8 +51,12 @@ void Run_t::start()
             std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_OLED2
-                std::thread thread3(&OLED::Oled_t::init, oled.get());
+                //std::thread thread3(&OLED::Oled_t::init, oled.get());
+                std::thread thread3(&OLED::Oled_t::create,msj);
             #endif
+
+
+
             //Esperar a que todos los hilos terminen
             thread1.join();
             thread2.join();
