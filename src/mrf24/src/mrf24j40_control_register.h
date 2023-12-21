@@ -3,16 +3,16 @@
 
 namespace MRF24J40{
 
-enum ENUM_SECURITY{
-NONE                ,
-AES_CTR             ,
-AES_CCM_128         ,
-AES_CCM_64          ,
-AES_CCM_32          ,
-AES_CBC_MAC_128     ,
-AES_CBC_MAC_64      ,
-AES_CBC_MAC_32 
-};
+    enum ENUM_SECURITY{
+        NONE                ,
+        AES_CTR             ,
+        AES_CCM_128         ,
+        AES_CCM_64          ,
+        AES_CCM_32          ,
+        AES_CBC_MAC_128     ,
+        AES_CBC_MAC_64      ,
+        AES_CBC_MAC_32 
+    };
 
     typedef struct seccon0{
         uint8_t TXNCIPHER:3;
@@ -59,9 +59,9 @@ AES_CBC_MAC_32
 
     typedef struct  seccr
     {
-     SECCON0 seccon0;
-     SECCON1 seccon1;
-     SECCR2 seccr2;   
+        SECCON0 seccon0;
+        SECCON1 seccon1;
+        SECCR2 seccr2;   
     }SECCR;
 
 
