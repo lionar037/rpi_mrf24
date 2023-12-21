@@ -423,7 +423,7 @@ void Mrf24j::settings_mrf(void){
 
         write_long(i++, dest & 0xff);  // dest16 low
         write_long(i++, dest >> 8); // dest16 high
-uint64_t src ;
+        uint64_t src ;
         //if(sizeof(dest)>2){
         if(dest>0xffff){            
             #ifdef DBG_MRF
@@ -471,14 +471,28 @@ uint64_t src ;
         write_short(MRF_TXNCON, (1<<MRF_TXNACKREQ | 1<<MRF_TXNTRIG));
     }
 
-void  Mrf24j::settingsSecurity(void){
-    SECCR2 securityConfig{0x00};
-    securityConfig.TXG1CIPHER=AES_CBC_MAC_64;
-    securityConfig.TXG2CIPHER=AES_CBC_MAC_64;
-    securityConfig.UPDEC=true;         //Upper Layer Security Decryption Mode bit
-    securityConfig.UPENC=true;         //Upper Layer Security Encryption Mode bit
-    return ;
-}
+    void  Mrf24j::settingsSecurity(void){
+        SECCR seccr;
+        
+        seccr.seccr0.SECIGNORE  =false;
+        seccr.seccr0.SECSTART   =true;
+        seccr.seccr0.RXCIPHER   =AES_CBC_MAC_64;
+        seccr.seccr0.TXNCIPHER  =AES_CBC_MAC_64;
+
+        seccr.seccr1.DISDEC     =false;
+        seccr.seccr1.DISENC     =false;
+        seccr.seccr1.TXBCIPHER  =AES_CBC_MAC_64;
+
+        seccr.seccr2.TXG1CIPHER=AES_CBC_MAC_64;
+        seccr.seccr2.TXG2CIPHER=AES_CBC_MAC_64;
+        seccr.seccr2.UPDEC=true;         //Upper Layer Security Decryption Mode bit
+        seccr.seccr2.UPENC=true;         //Upper Layer Security Encryption Mode bit
+
+        write_short(MRF_SECCR0, *reinterpret_cast<uint8_t*>(&seccr.seccr0));
+        write_short(MRF_SECCR1, *reinterpret_cast<uint8_t*>(&seccr.seccr1));
+        write_short(MRF_SECCR2, *reinterpret_cast<uint8_t*>(&seccr.seccr2));
+        return ;
+    }
 
 
 }//END NAMESPACE MRF24

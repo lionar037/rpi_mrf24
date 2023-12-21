@@ -57,5 +57,17 @@ AES_CBC_MAC_32
 
     }SECCR2;                // SECURITY CONTROL 2 REGISTER (ADDRESS: 0x37)
 
+    typedef struct  seccr
+    {
+     SECCR0 seccr0;
+     SECCR1 seccr1;
+     SECCR2 seccr2;   
+    }SECCR;
+
+
+// Alinear la estructura CODE en 3 bytes
+typedef struct alignas(1) {
+    SECCR seccr;
+} ALIGNED_SECCR;
 
 }
