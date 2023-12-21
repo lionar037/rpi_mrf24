@@ -474,22 +474,22 @@ void Mrf24j::settings_mrf(void){
     void  Mrf24j::settingsSecurity(void){
         SECCR seccr;
         
-        seccr.seccr0.SECIGNORE  =false;
-        seccr.seccr0.SECSTART   =true;
-        seccr.seccr0.RXCIPHER   =AES_CBC_MAC_64;
-        seccr.seccr0.TXNCIPHER  =AES_CBC_MAC_64;
+        seccr.seccon0.SECIGNORE  =false;
+        seccr.seccon0.SECSTART   =true;
+        seccr.seccon0.RXCIPHER   =AES_CBC_MAC_64;
+        seccr.seccon0.TXNCIPHER  =AES_CBC_MAC_64;
 
-        seccr.seccr1.DISDEC     =false;
-        seccr.seccr1.DISENC     =false;
-        seccr.seccr1.TXBCIPHER  =AES_CBC_MAC_64;
+        seccr.seccon1.DISDEC     =false;
+        seccr.seccon1.DISENC     =false;
+        seccr.seccon1.TXBCIPHER  =AES_CBC_MAC_64;
 
         seccr.seccr2.TXG1CIPHER=AES_CBC_MAC_64;
         seccr.seccr2.TXG2CIPHER=AES_CBC_MAC_64;
         seccr.seccr2.UPDEC=true;         //Upper Layer Security Decryption Mode bit
         seccr.seccr2.UPENC=true;         //Upper Layer Security Encryption Mode bit
 
-        write_short(MRF_SECCR0, *reinterpret_cast<uint8_t*>(&seccr.seccr0));
-        write_short(MRF_SECCR1, *reinterpret_cast<uint8_t*>(&seccr.seccr1));
+        write_short(MRF_SECCR0, *reinterpret_cast<uint8_t*>(&seccr.seccon0));
+        write_short(MRF_SECCR1, *reinterpret_cast<uint8_t*>(&seccr.seccon1));
         write_short(MRF_SECCR2, *reinterpret_cast<uint8_t*>(&seccr.seccr2));
         return ;
     }
