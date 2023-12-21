@@ -50,7 +50,7 @@ void Run_t::start()
             std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_OLED2
-                //std::thread thread3(&OLED::Oled_t::init, display.get());
+                std::thread thread3(&OLED::Oled_t::init, display.get());
             #endif
             //Esperar a que todos los hilos terminen
             thread1.join();
