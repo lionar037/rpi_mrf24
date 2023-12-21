@@ -16,23 +16,23 @@
 namespace SPI {
 
   void Spi::settings_spi(){
-      spi->tx_buf = (unsigned long)tx_buffer;
-      spi->rx_buf = (unsigned long)rx_buffer;
+      spi->tx_buf = (unsigned long)m_tx_buffer;
+      spi->rx_buf = (unsigned long)m_rx_buffer;
       spi->bits_per_word = 0;
-      spi->speed_hz = spi_speed;
+      spi->speed_hz = m_spi_speed;
       spi->delay_usecs = 1;
       spi->len = 3;
 
           //  tx_buffer[0] = tx_buffer[1] = tx_buffer[2] = tx_buffer[3] = 0x00;
           //  rx_buffer[0]=rx_buffer[1]  = rx_buffer[2]  =0xFF;rx_buffer[3]  =0xff;
-          tx_buffer[0] = 0x00;
-          tx_buffer[1] = 0x00;
-          tx_buffer[2] = 0x00;
-          tx_buffer[3] = 0x00;
-          rx_buffer[0] = 0xFF;
-          rx_buffer[1] = 0xFF;
-          rx_buffer[2] = 0xFF;
-          rx_buffer[3] = 0xff;
+          m_tx_buffer[0] = 0x00;
+          m_tx_buffer[1] = 0x00;
+          m_tx_buffer[2] = 0x00;
+          m_tx_buffer[3] = 0x00;
+          m_rx_buffer[0] = 0xFF;
+          m_rx_buffer[1] = 0xFF;
+          m_rx_buffer[2] = 0xFF;
+          m_rx_buffer[3] = 0xff;
     return;
   }
 
@@ -61,7 +61,7 @@ namespace SPI {
       close(fs);
       exit(EXIT_FAILURE);
     }
-      scratch32 = spi_speed;
+      scratch32 = m_spi_speed;
       ret = ioctl(fs, SPI_IOC_WR_MAX_SPEED_HZ, &scratch32);
 
       if(ret != 0) {
@@ -75,27 +75,27 @@ namespace SPI {
 
 const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     spi->len = sizeof(cmd);
-    rx_buffer[0]=rx_buffer[1]=0xff;
-    rx_buffer[2]=rx_buffer[3]=0x00;
-    memcpy(tx_buffer, &cmd, sizeof(cmd));
+    m_rx_buffer[0]=m_rx_buffer[1]=0xff;
+    m_rx_buffer[2]=m_rx_buffer[3]=0x00;
+    memcpy(m_tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
     if((cmd>>8&0xff)==0x00)
         printDBGSpi(); 
       //if(ret != 0) return rx_buffer[1];  
-  return rx_buffer[1];
+  return m_rx_buffer[1];
   }
 
 
   const uint8_t Spi::Transfer3bytes(const uint32_t cmd){
     spi->len = 3;
-    rx_buffer[0]=rx_buffer[1]=rx_buffer[2]==0xff;
-    rx_buffer[3]=0x00;
-    memcpy(tx_buffer, &cmd, sizeof(cmd));
+    m_rx_buffer[0]=m_rx_buffer[1]=m_rx_buffer[2]==0xff;
+    m_rx_buffer[3]=0x00;
+    memcpy(m_tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
       if((cmd>>16&0xff)==0x00) 
         printDBGSpi();
         //if(ret != 0) return rx_buffer[2];       
-    return rx_buffer[2];
+    return m_rx_buffer[2];
     }
 
 
@@ -108,9 +108,9 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 // uint8_t rx_buffer[4]{nullptr};
 
     Spi::Spi()
-    : spi_speed ( SPI_SPEED )
-    , tx_buffer  { 0x00 }
-    , rx_buffer  { 0x00 }
+    : m_spi_speed ( SPI_SPEED )
+    , m_tx_buffer  { 0x00 }
+    , m_rx_buffer  { 0x00 }
     , spi       { std::make_unique<struct spi_ioc_transfer >() } 
     {
           #ifdef DBG
