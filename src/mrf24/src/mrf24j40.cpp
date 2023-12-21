@@ -483,10 +483,10 @@ void Mrf24j::settings_mrf(void){
         security.seccon1.DISENC     =false;
         security.seccon1.TXBCIPHER  =AES_CBC_MAC_64;
 
-        security.seccr2.TXG1CIPHER=AES_CBC_MAC_64;
-        security.seccr2.TXG2CIPHER=AES_CBC_MAC_64;
-        security.seccr2.UPDEC=true;         //Upper Layer Security Decryption Mode bit
-        security.seccr2.UPENC=true;         //Upper Layer Security Encryption Mode bit
+        security.seccr2.TXG1CIPHER  =AES_CBC_MAC_64;
+        security.seccr2.TXG2CIPHER  =AES_CBC_MAC_64;
+        security.seccr2.UPDEC       =true;         //Upper Layer Security Decryption Mode bit
+        security.seccr2.UPENC       =true;         //Upper Layer Security Encryption Mode bit
 
         write_short(MRF_SECCON0, *reinterpret_cast<uint8_t*>(&security.seccon0));
         write_short(MRF_SECCON1, *reinterpret_cast<uint8_t*>(&security.seccon1));
