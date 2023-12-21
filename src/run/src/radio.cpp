@@ -188,15 +188,6 @@ void Radio_t::Init(bool& flag) {
             oled->create(PacketDataTmp.c_str());  
             #endif
         #endif
-        //auto qr = std::make_unique<QR::QrOled_t>();
-
-        //De momento no hace nada
-        //std::string_view packet_data2 = "1234567890";    
-        //std::vector<int> infoQrTmp; 
-        //qr->create_qr(packet_data2, infoQrTmp);
-        //monitor->print( std::to_string(infoQrTmp.size()),N_FILE_INIT+10,17);
-        //std::cout << " Size info of Qr Buffer : " << infoQrTmp.size() << std::endl;    
-
         fs->create(packet_data);
         std::cout<<"\n";
         #ifdef ENABLE_QR
@@ -207,8 +198,7 @@ void Radio_t::Init(bool& flag) {
     }
 
 
-void Radio_t::handle_tx() {
-    //#ifdef MRF24_TRANSMITER_ENABLE//MRF24_TRANSMITER_ENABLE
+void Radio_t::handle_tx() {    
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
              std::cout<<"\t\t\thandle_tx() : TX went ok, got ACK success ! \n";
@@ -217,7 +207,6 @@ void Radio_t::handle_tx() {
              std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
              std::cout<<" \n";
          }
-    //#endif     
     return;
     }
 
@@ -235,31 +224,26 @@ void Radio_t::handle_rx() {
 
     files=POSITIOM_INIT_PRINTS;
 
-    monitor->print("received a packet ... ",files++,col);
-    //std::cout << " \nreceived a packet ... ";
+    monitor->print("received a packet ... ",files++,col);    //std::cout << " \nreceived a packet ... ";
     sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
-    monitor->print(bufferMonitor,files++,col);
-//    std::cout << " bytes long " ;
+    monitor->print(bufferMonitor,files++,col);//    std::cout << " bytes long " ;
     
     if(mrf24j40_spi.get_bufferPHY()){
-        monitor->print(" Packet data (PHY Payload) :",files++,col);
-        //  std::cout << " Packet data (PHY Payload) :";
+        monitor->print(" Packet data (PHY Payload) :",files++,col);//  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
-      {
-        //monitor->set(" Packet data (PHY Payload) :",files,col);
-          std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];
+      {        
+          std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];//monitor->set(" Packet data (PHY Payload) :",files,col);
       }
       #endif
     }
         std::cout << "\n";
         SET_COLOR(SET_COLOR_CYAN_TEXT);
-        monitor->print("ASCII data (relevant data) :",files++,col);
-        //std::cout<<"\r\nASCII data (relevant data) :\n";
+        monitor->print("ASCII data (relevant data) :",files++,col); //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
         monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);        
 
-   std::cout<<"\n";   
+    std::cout<<"\n";   
     for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
     std::cout<<"\n";   
 
@@ -283,8 +267,7 @@ void Radio_t::handle_rx() {
         SET_COLOR(SET_COLOR_RED_TEXT);
         files++;  files++; // files++;
         monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
-        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);            
-        //std::cout<<"\r\n";
+        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
     #endif
         RST_COLOR() ;   
         SET_COLOR(SET_COLOR_RED_TEXT);
@@ -292,8 +275,7 @@ void Radio_t::handle_rx() {
 
         const std::string temperatureToString=  "{ temp :" + std::to_string(temperature)+ " }";
 
-        update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) );
-        //update(tempString.data());
+        update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ); //update(tempString.data());
         SET_COLOR(SET_COLOR_YELLOW_TEXT);
         std::cout<<temperatureToString.data(); 
         return;    
