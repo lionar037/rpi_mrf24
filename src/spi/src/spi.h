@@ -42,10 +42,12 @@ namespace SPI{
     
     int fs{0};
     int ret{0};
-    std::unique_ptr<struct spi_ioc_transfer >spi;
-    //std::unique_ptr<struct spi_ioc_transfer >spi{nullptr} ;
+    
+    
     uint8_t looper{0};
     uint32_t scratch32{0};
+    std::unique_ptr<struct spi_ioc_transfer >spi{nullptr} ;
+    //std::unique_ptr<struct spi_ioc_transfer >spi;
   };
 
 }//END namespace SPI_H
