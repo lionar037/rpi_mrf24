@@ -41,11 +41,11 @@ void Run_t::start()
                 thread3.join();
             #endif
 
-
-while(true){
-
-}
-
+            #ifdef USE_OLED2
+                while(true){
+                
+                }
+            #endif
 
             }
         catch(...){
