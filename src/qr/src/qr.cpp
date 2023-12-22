@@ -9,16 +9,16 @@
 namespace QR{
 
 
-    bool Qr_t::create(const std::string_view& fname ) {
+    bool Qr_t::create(const std::string_view& msj ) {
     auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
         RST_COLOR() ;
 
         // Configuración del código QR
-        QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+        QRcode* qr = QRcode_encodeString(msj.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
 
         //auto qr = std::unique_ptr<QRcode>(QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1));
         // Imprime el código QR en la consola
-       // std::cout << "\033[2J\033[H" << std::flush;
+        //std::cout << "\033[2J\033[H" << std::flush;
         //monitor->print("\n",1,10);
                 SET_COLOR(SET_COLOR_WHITE_TEXT);
         std::cout << "\n";

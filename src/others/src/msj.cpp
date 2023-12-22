@@ -5,30 +5,27 @@ namespace DEVICES{
         return ;
     }
         
-    void Msj_t::get()
-    {
+    void Msj_t::get(){
         return;
     }
 
     void Msj_t::set(std::string& msj){
         return;
-    }
-
-
-
-    
+    }    
     
     void Msj_t::printData (bool flag , std::string_view msj){
         return;
     }
-    
-    
+        
     void Msj_t::printQr   (bool flag , std::string_view msj){
+        
         return;
     }
-    
-    
+        
     void Msj_t::printOled (bool flag , std::string_view msj){
+        
+        auto qr_oled{std::make_unique<Qr_img_t>()};
+        qr_oled->create(msj);
         return;
     }
         
