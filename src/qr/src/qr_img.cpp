@@ -117,11 +117,11 @@ auto value =(qr_oled.width*qr_oled.height);
 for(int i=0;i<value;i++){
     *qr_oled.data =(bool*) (qr->data[i]&1 ? 0x1 : 0x0);qr_oled.data++;
 }
-int j=0;qr_oled.data=0;
+int j=0;
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++)   {             
                //std::cout << (qr_oled.data[y * qr->width + x] & 1 ? "██" : "  ");
-               std::cout << (*qr_oled.data & 1 ? "::" : "  ");qr_oled.data++;
+               std::cout << (qr_oled.data[j] & true ? "::" : "  ");
              //  std::cout << std::to_string (qr_oled.data[j++])<<" ";
             }
         std::cout << "\n";
