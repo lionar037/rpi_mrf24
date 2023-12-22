@@ -129,7 +129,7 @@ auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
         
-       // saveQRCodeImage(qr, file_tmp.c_str());
+        saveQRCodeImage(qr.get(), file_tmp.c_str());
         // Libera la memoria
         //QRcode_free(qr);
         
