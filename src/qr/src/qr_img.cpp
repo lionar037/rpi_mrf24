@@ -128,9 +128,10 @@ namespace QR{
         
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
-        saveQRCodeImage(qr, file_tmp.c_str());
+        saveQRCodeImage(&qr, file_tmp.c_str());
         // Libera la memoria
-        QRcode_free(qr);
+        //QRcode_free(qr);
+        qr->QRcode_free();
             delete[] m_buffer_qr_oled.data;
             m_buffer_qr_oled.data = nullptr;
         return true;
