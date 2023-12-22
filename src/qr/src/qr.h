@@ -41,11 +41,8 @@ namespace QR{
      struct QrOled_t 
     {
             QrOled_t()=default;
-            ~QrOled_t(){
-                delete[] alma.buffer;
-                alma.buffer = nullptr;
-            }
-            
+            ~QrOled_t()=default;
+
             template <typename T>
             void create_qr (std::string_view& str_view ,  std::vector<T>& variable) {
                 return;

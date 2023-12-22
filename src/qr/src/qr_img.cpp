@@ -138,11 +138,18 @@ namespace QR{
         #ifdef DBG
             std::cout<<"Qr_img_t()\n"; 
         #endif 
-        }
-    Qr_img_t::~Qr_img_t()   {  
-        #ifdef DBG
-            std::cout<<"~Qr_img_t()\n";
-        #endif 
-        }
+    }
+        
+        // Qr_img_t::~Qr_img_t(){  
+        // #ifdef DBG
+            // std::cout<<"~Qr_img_t()\n";
+        // #endif 
+        // }
+
+    Qr_img_t::~QrOled_t(){
+        delete[] alma.buffer;
+        alma.buffer = nullptr;
+    }
+            
 
 }
