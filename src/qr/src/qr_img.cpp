@@ -114,6 +114,9 @@ QR_OLED qr_oled;
 qr_oled.height=qr->width;
 qr_oled.width=qr->width;
 auto value =(qr_oled.width*qr_oled.height);
+qr_oled.data= new bool[value]; 
+
+
 for(int i=0;i<value;i++){
     *qr_oled.data =(bool*) (qr->data[i]&1 ? 0x1 : 0x0);qr_oled.data++;
 }
