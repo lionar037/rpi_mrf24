@@ -18,7 +18,7 @@ namespace RUN{
 
 void Run_t::start()
 {
-    std::string msj;
+    std::string msj_txt="@ABCDEFGHIJKLMNO1234567890#";
         system("clear"); 
     
      try    {
@@ -44,6 +44,7 @@ void Run_t::start()
                 thread3.join();
                 #endif
 
+                display->create(msj_txt.c_str());
             }
         catch(...){
                     std::cerr<<"\nerror :(\n";

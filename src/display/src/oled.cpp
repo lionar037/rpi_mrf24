@@ -11,10 +11,12 @@
 namespace OLED{
 #ifdef USE_MRF24_RX
 
+//GLOBAL namespace OLED
+
 SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object         
 
-        bool Oled_t::create(const std::string_view& textOled)
-        {
+
+bool Oled_t::create(const std::string_view& textOnOled){
         static int Step { 0 };        
         uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
                 
@@ -25,7 +27,7 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
                 myOLED.setFontNum(OLEDFontType_Wide);
                 myOLED.setTextColor(WHITE);
                 myOLED.setCursor(0, 0);
-                myOLED.print(textOled.data());
+                myOLED.print(textOnOled.data());
                 myOLED.setFontNum(OLEDFontType_Default);
                                 
                 myOLED.setCursor(128-24, 64-9);
