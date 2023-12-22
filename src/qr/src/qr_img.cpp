@@ -147,8 +147,8 @@ namespace QR{
         // }
 
     Qr_img_t::~Qr_img_t(){
-        delete[] alma.buffer;
-        alma.buffer = nullptr;
+        delete[] qr_oled.data;
+        qr_oled.data = nullptr;
     }
             
 
