@@ -20,7 +20,7 @@ namespace QR{
         // Imprime el código QR en la consola
         //std::cout << "\033[2J\033[H" << std::flush;
         //monitor->print("\n",1,10);
-                SET_COLOR(SET_COLOR_WHITE_TEXT);
+        SET_COLOR(SET_COLOR_WHITE_TEXT);
         std::cout << "\n";
         //std::vector<bool> buff;//(QRcode_getBufferSize(qr));
         //int index { 0 };
@@ -30,8 +30,7 @@ namespace QR{
                 //buff.push_back((qr->data[index] & 1) != 0);
               
                 //index++;
-            }
-            //std::cout << std::endl;
+            }            
             std::cout << "\n";
         }
        

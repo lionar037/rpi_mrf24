@@ -77,7 +77,7 @@
 #endif
 
 
-#define QR_START
+//#define QR_START
 
 #ifdef QR_START
     #define ENABLE_QR    
