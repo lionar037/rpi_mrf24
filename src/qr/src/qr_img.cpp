@@ -113,7 +113,7 @@ QR_OLED qr_oled;
 qr_oled.height=qr->width;
 qr_oled.width=qr->width;
 //qr_oled.data=qr->data;
-printf("\t\t\t\tqr_oled.data: %d\n",sizeof( qr->data));
+printf("\t\t\t\t\t\t\tqr_oled.data: %d\n",sizeof( qr->data));
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
