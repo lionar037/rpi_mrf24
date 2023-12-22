@@ -118,8 +118,10 @@ for(int i=0;i<value;i++){
     qr_oled.data[i]=qr->data[i];
 }
 //
-printf("\t\t\t\tqr_oled.data: %zu\n",sizeof( qr_oled.data));
 printf("\t\t\t\tqr_oled.data: %d\n",value  );
+printf("\t\t\t\tqr_oled.data: %zu\n",sizeof( qr_oled.data));
+printf("\t\t\t\tqr_oled.width: %d\n",qr_oled.width  );
+printf("\t\t\t\tqr_oled.height: %d\n",qr_oled.height  );
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
