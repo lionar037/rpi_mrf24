@@ -118,7 +118,7 @@ qr_oled.data= new bool[value];
 
 
 for(int i=0;i<value;i++){
-    *qr_oled.data =(bool*) (qr->data[i]&1 ? 0x1 : 0x0);qr_oled.data++;
+    qr_oled.data[i] =(bool*) (qr->data[i]&1 ? true : false);
 }
 int j=0;
         for (int y = 0; y < qr->width; y++) {
