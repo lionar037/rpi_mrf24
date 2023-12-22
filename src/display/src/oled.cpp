@@ -47,11 +47,21 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
 
                 Setup();
 
-create(MSJ);
+        
 
         return true;
         }
 
+
+        void Oled_t::printOled(std::string_view msj){
+                static std::string msjStatic { msj };
+                if(msj.data()!= msjStatic.c_str()){
+                        create(msj);
+                        msjStatic = msj.data();
+                }
+                
+                return;
+        }
 
         // ===================== Function Space =====================
 void Oled_t::Setup() 

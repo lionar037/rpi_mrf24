@@ -22,6 +22,7 @@ namespace OLED{
         private :
         const uint16_t I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
         const uint8_t I2C_Address   { 0x3C };
+        void printOled(std::string_view );
     };
     #endif
 
