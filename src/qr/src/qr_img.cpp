@@ -124,7 +124,7 @@ int j=0;
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++)   {             
                //std::cout << (qr_oled.data[y * qr->width + x] & 1 ? "██" : "  ");
-               std::cout << (qr_oled.data[j] & true ? "::" : "  ");
+               std::cout << (qr_oled.data[j++] & true ? "::" : "  ");
              //  std::cout << std::to_string (qr_oled.data[j++])<<" ";
             }
         std::cout << "\n";
