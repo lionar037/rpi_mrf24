@@ -1,8 +1,6 @@
 #include <others/src/msj.h>
 
-namespace DEVICES{
-
-    
+namespace DEVICES{    
     void Msj_t::passMessage(QR::QR_OLED_BUFF* qr_oled_msjp){
         return ;
     }
