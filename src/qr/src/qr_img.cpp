@@ -131,7 +131,7 @@ auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
         
         saveQRCodeImage(qr.get(), file_tmp.c_str());
         // Libera la memoria
-        //QRcode_free(qr);
+        //QRcode_free(qr);//utilizando unique_ptr no es necesario llamar a QRcode_free()
         
             delete[] m_buffer_qr_oled.data;
             m_buffer_qr_oled.data = nullptr;
@@ -147,15 +147,10 @@ auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
         #endif 
     }
         
-        // Qr_img_t::~Qr_img_t(){  
-        // #ifdef DBG
-            // std::cout<<"~Qr_img_t()\n";
-        // #endif 
-        // }
-
-    Qr_img_t::~Qr_img_t(){
-
-    }
-            
+        Qr_img_t::~Qr_img_t(){  
+        #ifdef DBG
+            std::cout<<"~Qr_img_t()\n";
+        #endif 
+        }
 
 }
