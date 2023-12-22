@@ -109,9 +109,9 @@ namespace QR{
             }
         std::cout << "\n";
         }
-        
-        m_buffer_qr_oled.height =qr->width;
-        m_buffer_qr_oled.width  =qr->width;
+        QR_OLED m_buffer_qr_oled;
+        m_buffer_qr_oled.height = qr->width;
+        m_buffer_qr_oled.width  = qr->width;
 
         auto value =(m_buffer_qr_oled.width*m_buffer_qr_oled.height);        
         if(!m_buffer_qr_oled.data)m_buffer_qr_oled.data= new bool[value]; 
