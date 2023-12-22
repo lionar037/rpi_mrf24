@@ -43,7 +43,7 @@ void Run_t::start()
                 #ifdef USE_OLED2
                 thread3.join();
                 std::cout<<"MSJ OLED : \n";
-                display->create(msj_txt.c_str());
+                //display->create(msj_txt.c_str());
                 #endif
 
                 
