@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <others/src/rfflush.h>
 #include <others/src/color.h>
+#include <app/src/config.h>
 
 namespace FFLUSH{
 
