@@ -112,8 +112,8 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
 QR_OLED qr_oled;
 qr_oled.height=qr->width;
 qr_oled.width=qr->width;
-qr_oled.data=qr->data;
-printf("qr_oled.data: %d\n",sizeof( qr_oled.data));
+//qr_oled.data=qr->data;
+printf("qr_oled.data: %d\n",sizeof( qr->data));
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
