@@ -20,7 +20,7 @@ namespace QR{
     typedef struct qr_oled{
             int width;
             int height;
-            char data[(64*64/8)];
+            bool* data;
     }QR_OLED;
 
 
