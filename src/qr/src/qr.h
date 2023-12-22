@@ -15,6 +15,8 @@ namespace TYME{
 namespace QR{
 
 
+
+
     typedef struct qr_oled{
             int width;
             int height;

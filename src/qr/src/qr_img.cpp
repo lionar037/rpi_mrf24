@@ -66,6 +66,8 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
             pixel[0] = pixel[1] = pixel[2] = (qr->data[y * qr->width + x] & 1) ? 0 : 255;
             pixel[3] = 255;
         }
+
+        
         // Rellena el borde derecho con blanco
         memset(&row[(borderSize + qr->width) * 4], 255, borderSize * 4);
         png_write_row(png, row);
@@ -106,6 +108,11 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         std::cout << "\n";
         }
 
+
+QR_OLED qr_oled;
+qr_oled.height=qr->width;
+qr_oled.width=qr->width;
+qr_oled.data=qr->data;
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
