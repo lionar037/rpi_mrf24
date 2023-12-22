@@ -50,7 +50,7 @@ namespace MRF24J40{
         public:
             explicit            Radio_t();
                                 ~Radio_t();
-            void                Init(bool&);
+            void                Start(bool&);
             void                interrupt_routine();
             void                Run(void);
             friend void         update();  

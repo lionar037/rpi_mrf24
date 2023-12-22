@@ -94,13 +94,13 @@ void Radio_t::Run(void){
         //system("clear");
         gpio->app(m_flag);              
         mrf24j40_spi.interrupt_handler();
-        Init(m_flag);        
+        Start(m_flag);        
     }
 }
 
 
 
-void Radio_t::Init(bool& flag) {
+void Radio_t::Start(bool& flag) {
 
     flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
     const unsigned long current_time = 1000000;//1000000 original
@@ -125,17 +125,21 @@ void Radio_t::Init(bool& flag) {
         #endif
         buffer_transmiter.head=HEAD; 
         buffer_transmiter.size=(~strlen(MSJ))&0xffff ;
-        std::cout<<"\n strlen(MSJ) : "<<  strlen(MSJ)<<"\n";    
+        #ifdef ENABLE_PRINTS_DBG
+        std::cout<<"\n strlen(MSJ) : "<<  strlen(MSJ)<<"\n";  
+        #endif  
         std::strcpy(buffer_transmiter.data , MSJ);
 
         const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
         //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
+        #ifdef ENABLE_PRINTS_DBG
         std::cout<<"\n MSJ : size ( "<<  strlen(msj) <<" , "<<sizeof(msj) << " )\n" ;
         std::cout<<"\n" ;
-      
+      #endif
         const std::string pf(msj);
-          
-      for(const auto& byte : pf) std::cout << byte ; 
+        #ifdef ENABLE_PRINTS_DBG
+            for(const auto& byte : pf) std::cout << byte ; 
+        #endif
         std::cout<<"\n" ;         
         #ifdef USE_MRF24_TX 
             #ifdef MACADDR64
