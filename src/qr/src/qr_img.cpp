@@ -109,7 +109,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         }
 
 
-QRcode* qr = QRcode_encodeString("onfownoweindodmwoedmoewmcowe", 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
+//QRcode* qr = QRcode_encodeString("onfownoweindodmwoedmoewmcowe", 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
 QR_OLED qr_oled;
 qr_oled.height=qr->width;
 qr_oled.width=qr->width;
