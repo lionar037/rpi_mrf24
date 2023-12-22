@@ -113,12 +113,12 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
 QR_OLED qr_oled;
 qr_oled.height=qr->width;
 qr_oled.width=qr->width;
-for(int i=0;i<(qr_oled.width*qr_oled.height);i++){
+for(int i=0;i<((qr_oled.width*qr_oled.height)/8);i++){
     qr_oled.data[i]=qr->data[i];
 }
 //
 printf("\t\t\t\tqr_oled.data: %zu\n",sizeof( qr_oled.data));
-printf("\t\t\t\tqr_oled.data: %d\n", qr_oled.width*qr_oled.height);
+printf("\t\t\t\tqr_oled.data: %d\n", );
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
