@@ -3,7 +3,7 @@
 namespace DEVICES{
 
     
-    void Msj_t::passMessage(QR_OLED_BUFF* qr_oled_msjp){
+    void Msj_t::passMessage(QR::QR_OLED_BUFF* qr_oled_msjp){
         return ;
     }
         
