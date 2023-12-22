@@ -115,7 +115,7 @@ qr_oled.height=qr->width;
 qr_oled.width=qr->width;
 auto value =(qr_oled.width*qr_oled.height);
 for(int i=0;i<value;i++){
-    qr_oled.data++=reinterpreted_cast<bool *>(qr->data[i]&1);
+    qr_oled.data++=reinterpreted_cast<bool >(qr->data[i]&1);
 }
 int j=0;
         for (int y = 0; y < qr->width; y++) {
