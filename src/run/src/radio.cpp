@@ -112,9 +112,7 @@ void Radio_t::Start(bool& flag) {
                 std::cout<<"Exit tx\n";
                 return ; 
                 }
-                else{ 
-                    std::cout<<"Success tx\n";
-                }
+                else{ std::cout<<"Success tx\n"; }
             #endif
         #ifdef DBG
             #ifdef MACADDR64
