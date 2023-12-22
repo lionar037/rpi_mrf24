@@ -92,22 +92,20 @@ namespace QR{
 
 
 
-    bool Qr_img_t::create(const std::string_view& fname) {
+bool Qr_img_t::create(const std::string_view& fname) {
 
-    // Configuración del código QR
-    //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
-//        auto qr {std::make_unique <QRcode_encodeString>(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1)};                
+// Configuración del código QR
+//QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
+//auto qr {std::make_unique <QRcode_encodeString>(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1)};                
 //auto qr = std::unique_ptr<QRcode>(QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1));
-    auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
-        QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1),
-        &QRcode_free
-    );
+auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
+    QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1),
+    &QRcode_free
+);
 
         // Imprime el código QR en la consola
-           SET_COLOR(SET_COLOR_WHITE_TEXT);           
-        std::cout << "\n";
-        
-
+        SET_COLOR(SET_COLOR_WHITE_TEXT);           
+        std::cout << "\n";        
         
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++)   {             
@@ -116,6 +114,7 @@ namespace QR{
             }
         std::cout << "\n";
         }
+
         QR_OLED_BUFF m_buffer_qr_oled;
         m_buffer_qr_oled.height = qr->width;
         m_buffer_qr_oled.width  = qr->width;
@@ -129,10 +128,11 @@ namespace QR{
         
         // Guarda el código QR como imagen PNG
         const std::string file_tmp = "log/qr_" + tyme->get_tyme()  + ".png";
-        saveQRCodeImage(&qr, file_tmp.c_str());
+        
+       // saveQRCodeImage(qr, file_tmp.c_str());
         // Libera la memoria
         //QRcode_free(qr);
-        //qr->QRcode_free();
+        
             delete[] m_buffer_qr_oled.data;
             m_buffer_qr_oled.data = nullptr;
         return true;
