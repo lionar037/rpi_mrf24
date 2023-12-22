@@ -125,7 +125,8 @@ namespace QR{
         saveQRCodeImage(qr, file_tmp.c_str());
         // Libera la memoria
         QRcode_free(qr);
-
+            delete[] m_buffer_qr_oled.data;
+            m_buffer_qr_oled.data = nullptr;
         return true;
     }
 
@@ -145,8 +146,7 @@ namespace QR{
         // }
 
     Qr_img_t::~Qr_img_t(){
-        delete[] m_buffer_qr_oled.data;
-        m_buffer_qr_oled.data = nullptr;
+
     }
             
 
