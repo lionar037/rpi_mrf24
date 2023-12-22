@@ -42,9 +42,10 @@ void Run_t::start()
 
                 #ifdef USE_OLED2
                 thread3.join();
+                display->create(msj_txt.c_str());
                 #endif
 
-                display->create(msj_txt.c_str());
+                
             }
         catch(...){
                     std::cerr<<"\nerror :(\n";
