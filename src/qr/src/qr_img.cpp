@@ -119,7 +119,7 @@ for(int i=0;i<value;i++){
 }
 //
 printf("\t\t\t\tqr_oled.data: %zu\n",sizeof( qr_oled.data));
-printf("\t\t\t\tqr_oled.data: %d\n", );
+printf("\t\t\t\tqr_oled.data: %d\n",value  );
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
