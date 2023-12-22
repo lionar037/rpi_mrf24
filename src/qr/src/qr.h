@@ -20,7 +20,7 @@ namespace QR{
     typedef struct qr_oled{
             int width;
             int height;
-            bool* data;
+            bool* data = nullptr;
     }QR_OLED;
 
 
@@ -41,7 +41,10 @@ namespace QR{
      struct QrOled_t 
     {
             QrOled_t()=default;
-            ~QrOled_t()=default;
+            ~QrOled_t(){
+                delete[] alma.buffer;
+                alma.buffer = nullptr;
+            }
             
             template <typename T>
             void create_qr (std::string_view& str_view ,  std::vector<T>& variable) {
@@ -63,5 +66,6 @@ namespace QR{
             bool    create2              (const std::string_view&);
         private :
             std::unique_ptr<TYME::Time_t>tyme{};
+            static QR_OLED qr_oled{};
     };
 }
