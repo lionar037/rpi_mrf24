@@ -103,7 +103,7 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++)   {             
-               std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+              // std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
             }
         std::cout << "\n";
         }
@@ -117,6 +117,13 @@ auto value =(qr_oled.width*qr_oled.height)/8;
 for(int i=0;i<value;i++){
     qr_oled.data[i]=qr->data[i];
 }
+
+        for (int y = 0; y < qr->width; y++) {
+            for (int x = 0; x < qr->width; x++)   {             
+               std::cout << (qr_oled.data[y * qr->width + x] & 1 ? "██" : "  ");
+            }
+        std::cout << "\n";
+        }
 //
 printf("\t\t\t\tqr_oled.data: %d\n",value  );
 printf("\t\t\t\tqr_oled.data: %zu\n",sizeof( qr_oled.data));
