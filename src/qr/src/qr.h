@@ -63,6 +63,6 @@ namespace QR{
             bool    create2              (const std::string_view&);
         private :
             std::unique_ptr<TYME::Time_t>tyme{};
-            QR_OLED qr_oled;
+            static QR_OLED qr_oled;
     };
 }
