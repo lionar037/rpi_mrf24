@@ -96,7 +96,7 @@ namespace QR{
 
     // Configuración del código QR
     //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
-        auto qr {std::make_unique <QRcode_encodeString> (fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1)};                
+        auto qr {std::make_unique <QRcode_encodeString>(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1)};                
         // Imprime el código QR en la consola
            SET_COLOR(SET_COLOR_WHITE_TEXT);           
         std::cout << "\n";
