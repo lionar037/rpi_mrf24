@@ -103,17 +103,21 @@ void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++)   {             
-              // std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+               std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
             }
         std::cout << "\n";
         }
 
 
+QRcode* qr = QRcode_encodeString("onfownoweindodmwoedmoewmcowe", 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
 QR_OLED qr_oled;
 qr_oled.height=qr->width;
 qr_oled.width=qr->width;
-//qr_oled.data=qr->data;
-printf("\t\t\t\t\t\t\tqr_oled.data: %d\n",sizeof( qr->data));
+for(int i=0;i<(qr_oled.width*qr_oled.height);i++){
+    qr_oled.data[i]=qr->data[i];
+}
+//
+printf("\t\t\t\tqr_oled.data: %d\n",sizeof( qr_oled.data));
 
         // std::vector<bool> buffBoolOledTmp;int index { 0 };
 // 
