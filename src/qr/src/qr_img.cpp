@@ -109,17 +109,15 @@ namespace QR{
             }
         std::cout << "\n";
         }
-
         
-        qr_oled.height=qr->width;
-        qr_oled.width=qr->width;
-        auto value =(qr_oled.width*qr_oled.height);
-        
-        if(!qr_oled.data)qr_oled.data= new bool[value]; 
+        m_buffer_qr_oled.height =qr->width;
+        m_buffer_qr_oled.width  =qr->width;
 
+        auto value =(m_buffer_qr_oled.width*m_buffer_qr_oled.height);        
+        if(!m_buffer_qr_oled.data)m_buffer_qr_oled.data= new bool[value]; 
 
         for(int i=0;i<value;i++){
-            qr_oled.data[i] =(bool*) (qr->data[i]&1 ? true : false);
+            m_buffer_qr_oled.data[i] =(bool*) (qr->data[i]&1 ? true : false);
         }
         
         // Guarda el código QR como imagen PNG
@@ -147,8 +145,8 @@ namespace QR{
         // }
 
     Qr_img_t::~Qr_img_t(){
-        delete[] qr_oled.data;
-        qr_oled.data = nullptr;
+        delete[] m_buffer_qr_oled.data;
+        m_buffer_qr_oled.data = nullptr;
     }
             
 
