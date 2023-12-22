@@ -95,7 +95,8 @@ namespace QR{
     bool Qr_img_t::create(const std::string_view& fname) {
 
     // Configuración del código QR
-    QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
+    //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
+        auto* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
         // Imprime el código QR en la consola
            SET_COLOR(SET_COLOR_WHITE_TEXT);           
         std::cout << "\n";
@@ -109,7 +110,7 @@ namespace QR{
             }
         std::cout << "\n";
         }
-        QR_OLED m_buffer_qr_oled;
+        QR_OLED_BUFF m_buffer_qr_oled;
         m_buffer_qr_oled.height = qr->width;
         m_buffer_qr_oled.width  = qr->width;
 
