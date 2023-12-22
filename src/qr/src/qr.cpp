@@ -8,14 +8,6 @@
 
 namespace QR{
 
-// template<typename T>
-// const bool* funcionCreateBufferOled(){
-// 
-            // std::vector<T> buffBoolOledTmp;//(QRcode_getBufferSize(qr));
-        // int index { 0 };
-        // buffBoolOledTmp.push_back((qr->data[index] & 1) != 0);
-        // return reinterpreted_cast<const bool*>(buffBoolOledTmp);
-// }
 
     bool Qr_t::create(const std::string_view& fname ) {
     auto            monitor     {std::make_unique <FFLUSH::Fflush_t>()};
@@ -49,27 +41,6 @@ namespace QR{
         return true;
     }
 
-// template <typename T>
-// const T* QrOled_t::create_qr(const std::string_view& str_view, std::vector<unsigned char>& vt) 
-// {
-    // 
-    // std::cout<<"\n";
-//     QRcode* qr = QRcode_encodeString(str_view.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
-    
-//     for (int y = 0; y < qr->width; y++) {
-//         for (int x = 0; x < qr->width; x++) {
-//          vt.push_back((qr->data[y * qr->width + x] & 1) ? 1 : 0); 
-//         }
-//     }
-
-//     QRcode_free(qr);
-  
-// QrOled = std::make_unique<T>();
-// QrOled->height=33;
-// QrOled->width=33;
-//    return {QrOled.release()};//vt.data();
-// return std::tuple{true};//{reinterpret_cast<const T>(QrOled)};
-// }
 
 
 

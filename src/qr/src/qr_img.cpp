@@ -97,6 +97,7 @@ namespace QR{
     // Configuración del código QR
     //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
 //        auto qr {std::make_unique <QRcode_encodeString>(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1)};                
+//auto qr = std::unique_ptr<QRcode>(QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1));
     auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
         QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1),
         &QRcode_free
@@ -131,7 +132,7 @@ namespace QR{
         saveQRCodeImage(&qr, file_tmp.c_str());
         // Libera la memoria
         //QRcode_free(qr);
-        qr->QRcode_free();
+        //qr->QRcode_free();
             delete[] m_buffer_qr_oled.data;
             m_buffer_qr_oled.data = nullptr;
         return true;
