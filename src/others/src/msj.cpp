@@ -24,7 +24,7 @@ namespace DEVICES{
         
     void Msj_t::printOled (bool flag , std::string_view msj){
         
-        auto qr_oled{std::make_unique<Qr_img_t>()};
+        auto qr_oled{std::make_unique<QR::Qr_img_t>()};
         qr_oled->create(msj);
         return;
     }
