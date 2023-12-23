@@ -17,7 +17,10 @@ struct Fflush_t
         //void updateValue(int, int, int, int) ;
         int funcThread() ;
         void print(std::string_view, int, int) ;
-    //private:
+        void sendMsj(std::string_view , int , int ) ;
+        
+    private:
+        static std::vector<std::string> memoria;
     protected:
         std::mutex m_mtx;
 

@@ -39,6 +39,13 @@ namespace FFLUSH{
     return ;    
     }
 
+
+void Fflush_t::sendMsj(std::string_view str_txt, int row, int col) {
+
+
+}
+
+
 int Fflush_t::funcThread() 
 {
     // Limpia la pantalla y muestra "VALOR 1" y "VALOR 2" en ubicaciones específicas
