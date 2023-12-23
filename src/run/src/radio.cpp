@@ -16,7 +16,7 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
-
+static bool m_flag_rx_enable_msj{false};
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 #ifdef USE_MRF24_TX
@@ -217,6 +217,7 @@ void Radio_t::handle_tx() {
 //@params
  
 void Radio_t::handle_rx() {
+    
     m_flag_rx_enable_msj=false;
     #ifdef MRF24_RECEIVER_ENABLE
     int files {POSITIOM_INIT_PRINTS};
