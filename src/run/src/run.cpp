@@ -35,13 +35,17 @@ void Run_t::start()
                 static auto display { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
                 #endif          
 
-                std::thread thread1(&MRF24J40::Radio_t , mrf);
+                //std::thread thread1(&MRF24J40::Radio_t , mrf);
+                
+                std::thread thread1([mrf = std::move(mrf)]() {});
                 std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
 
                 #ifdef USE_OLED2            
                 std::thread thread3(&OLED::Oled_t::init , display.get());
                 #endif
-
+                
+                //std::thread hiloA([class_a = std::move(class_a)]() {});
+                
                 //Esperar a que todos los hilos terminen
                 thread1.join();
                 thread2.join();
@@ -51,10 +55,14 @@ void Run_t::start()
                 std::cout<<"MSJ OLED : \n";
                 
                 #endif
+                bool flag;
 while(true){
                         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
         display->create(msj_txt.c_str());
+        mrf->gpio->app(flag);
+        mrf24j40_spi.interrupt_handler();
+        mrf->Start(flag);
         //gpio->app(m_flag);              
         //mrf24j40_spi.interrupt_handler();
         //Start(m_flag);  
