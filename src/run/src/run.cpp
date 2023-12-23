@@ -52,10 +52,10 @@ void Run_t::start()
 
                 #ifdef USE_OLED2
                 thread3.join();
-                std::cout<<"MSJ OLED : \n";
+                //std::cout<<"MSJ OLED : \n";
                 
                 #endif
-                bool flag;
+                bool flag{false};
 while(true){
                         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
