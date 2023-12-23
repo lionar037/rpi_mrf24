@@ -61,7 +61,8 @@ while(true){
         //system("clear");
         display->create(msj_txt.c_str());
         mrf->gpio->app(flag);
-        mrf24j40_spi.interrupt_handler();
+        //mrf24j40_spi.interrupt_handler();
+        MRF24J40::mrf24j40_spi.interrupt_handler();
         mrf->Start(flag);
         //gpio->app(m_flag);              
         //mrf24j40_spi.interrupt_handler();
