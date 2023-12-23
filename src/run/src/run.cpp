@@ -35,7 +35,7 @@ void Run_t::start()
                 static auto display { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
                 #endif          
 
-                std::thread thread1(&MRF24J40::Radio_t::Run, mrf.get());
+                std::thread thread1(&MRF24J40::Radio_t , &mrf);
                 std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
 
                 #ifdef USE_OLED2            
