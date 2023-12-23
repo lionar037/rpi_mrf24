@@ -1,6 +1,7 @@
 #pragma once
 #include <string_view>
 #include <mutex>
+#include <vector>
 //#include <ncurses.h>
 
 namespace FFLUSH{
