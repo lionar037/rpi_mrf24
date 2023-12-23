@@ -7,6 +7,7 @@
 #include <run/src/radio.h>
 #include <others/src/msj.h>
 #include <app/src/config.h>
+#include <mrf24/src/mrf24j40.h>
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
  #ifdef USE_OLED2
     #include <display/src/oled.h>
