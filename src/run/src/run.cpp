@@ -24,6 +24,7 @@ namespace RUN{
 
 void Run_t::start()
 {
+    bool flag{false};
     std::string msj_txt="@ABCDEFGHIJKLMNO1234567890#";
         system("clear"); 
     
@@ -51,22 +52,17 @@ void Run_t::start()
                 thread2.join();
 
                 #ifdef USE_OLED2
-                thread3.join();
-                //std::cout<<"MSJ OLED : \n";
-                
+                thread3.join();                                
                 #endif
-                bool flag{false};
+                
 while(true){
-                        //std::cout << "\033[2J\033[H" << std::flush;
-        //system("clear");
+                                
         display->create(msj_txt.c_str());
-        mrf->gpio->app(flag);
-        //mrf24j40_spi.interrupt_handler();
-        MRF24J40::mrf24j40_spi.interrupt_handler();
-        mrf->Start(flag);
-        //gpio->app(m_flag);              
-        //mrf24j40_spi.interrupt_handler();
-        //Start(m_flag);  
+        mrf->Run();
+        //mrf->gpio->app(flag);        
+        //MRF24J40::mrf24j40_spi.interrupt_handler();
+        
+        //mrf->Start(flag);                                   
      }
 
                 
