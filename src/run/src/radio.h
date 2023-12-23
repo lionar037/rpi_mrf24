@@ -65,7 +65,7 @@ namespace MRF24J40{
             unsigned long       m_tx_interval{1000}; 
             bool                m_status{false};
             bool                m_flag {false};
-            bool                m_flag_rx_enable_msj{false};
+            static bool         m_flag_rx_enable_msj{false};
                                             
             
         #ifdef ENABLE_INTERRUPT_MRF24 // rx

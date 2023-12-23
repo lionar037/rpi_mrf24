@@ -46,23 +46,23 @@ void Fflush_t::sendMsj(std::string_view str_txt, int row, int col) {
 }
 
 
-int Fflush_t::funcThread() 
-{
-    // Limpia la pantalla y muestra "VALOR 1" y "VALOR 2" en ubicaciones específicas
-   // std::cout << "\033[2J\033[HVALOR 1 :\nVALOR 2 :" << std::flush;
-
-//std::cout << "\033[2J\033[H" << std::flush;
-
-    // Inicia los hilos para actualizar los valores
-    // std::thread thread1(updateValue, 1, 1000000, 2, 9);  // Fila 2, Columna 9
-    // std::thread thread2(updateValue, 2, 2000000, 3, 9);  // Fila 3, Columna 9
-// 
-    // thread1.join();
-    // thread2.join();
-// 
-    // std::cout << std::endl;
-    return 0;
-}
+    int Fflush_t::funcThread() 
+    {
+        // Limpia la pantalla y muestra "VALOR 1" y "VALOR 2" en ubicaciones específicas
+       // std::cout << "\033[2J\033[HVALOR 1 :\nVALOR 2 :" << std::flush;
+    
+    //std::cout << "\033[2J\033[H" << std::flush;
+    
+        // Inicia los hilos para actualizar los valores
+        // std::thread thread1(updateValue, 1, 1000000, 2, 9);  // Fila 2, Columna 9
+        // std::thread thread2(updateValue, 2, 2000000, 3, 9);  // Fila 3, Columna 9
+    // 
+        // thread1.join();
+        // thread2.join();
+    // 
+        // std::cout << std::endl;
+        return 0;
+    }
 
 
     
