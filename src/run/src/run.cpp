@@ -13,8 +13,13 @@
 #endif
 
  
+namespace MRF24J40{
+    extern Mrf24j mrf24j40_spi ;
+    extern bool m_flag_rx_enable_msj{false};
+}
 
 namespace RUN{
+
 
 void Run_t::start()
 {
@@ -43,8 +48,16 @@ void Run_t::start()
                 #ifdef USE_OLED2
                 thread3.join();
                 std::cout<<"MSJ OLED : \n";
-                //display->create(msj_txt.c_str());
+                
                 #endif
+while(true){
+                        //std::cout << "\033[2J\033[H" << std::flush;
+        //system("clear");
+        display->create(msj_txt.c_str());
+        //gpio->app(m_flag);              
+        //mrf24j40_spi.interrupt_handler();
+        //Start(m_flag);  
+     }
 
                 
             }

@@ -87,7 +87,7 @@ Radio_t::Radio_t()
 void Radio_t::Run(void){
     //#ifdef ENABLE_INTERRUPT_MRF24
     #ifdef USE_MRF24_RX
-        while(true)
+       // while(true)
     #endif
     {   
         //std::cout << "\033[2J\033[H" << std::flush;
