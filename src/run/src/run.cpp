@@ -24,7 +24,7 @@ namespace RUN{
 
 void Run_t::start()
 {
-    bool flag{false};
+    bool flag{true};
     std::string msj_txt="@ABCDEFGHIJKLMNO1234567890#";
         system("clear"); 
     
@@ -57,8 +57,8 @@ void Run_t::start()
                 
 while(true){
                                 
-        display->create(msj_txt.c_str());
-        mrf->Run();
+        if(flag==true)display->create(msj_txt.c_str());
+        flag= mrf->Run();
         //mrf->gpio->app(flag);        
         //MRF24J40::mrf24j40_spi.interrupt_handler();
         

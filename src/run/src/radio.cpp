@@ -84,7 +84,7 @@ Radio_t::Radio_t()
 
 }
 
-void Radio_t::Run(void){
+bool Radio_t::Run(void){
     //#ifdef ENABLE_INTERRUPT_MRF24
     #ifdef USE_MRF24_RX
        // while(true)
@@ -95,7 +95,7 @@ void Radio_t::Run(void){
         gpio->app(m_flag);              
         mrf24j40_spi.interrupt_handler();
         Start(m_flag);        
-    
+ return m_flag;   
 }
 
 
