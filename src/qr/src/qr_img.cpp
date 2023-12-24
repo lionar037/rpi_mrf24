@@ -114,8 +114,8 @@ QR_OLED_BUFF codeQrGlobal;
         
         codeQrGlobal.height = qr->width;
         codeQrGlobal.width  = qr->width;
-std::cout << "codeQrGlobal.height " <<  std::to_string(codeQrGlobal.height ) <<"\n";
-std::cout << "codeQrGlobal.width " <<  std::to_string(codeQrGlobal.width ) <<"\n";
+// std::cout << "codeQrGlobal.height " <<  std::to_string(codeQrGlobal.height ) <<"\n";
+// std::cout << "codeQrGlobal.width " <<  std::to_string(codeQrGlobal.width ) <<"\n";
         auto value =(codeQrGlobal.width*codeQrGlobal.height);        
         if(!codeQrGlobal.data)codeQrGlobal.data= new bool[value]; 
         if(!codeQrGlobal.bufferComplete)codeQrGlobal.bufferComplete= new uint8_t[value]; 
