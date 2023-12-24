@@ -58,5 +58,5 @@ namespace QR{
     };
 
 //extern volatile QR_OLED_BUFF codeQrGlobal;
-
+static QR_OLED_BUFF codeQrGlobal;
 }
