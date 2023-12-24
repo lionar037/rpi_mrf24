@@ -88,11 +88,13 @@ Radio_t::Radio_t()
        
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
+        while(true){
         gpio->app(m_flag);              
         mrf24j40_spi.interrupt_handler();
         Start(m_flag);        
-
-        return m_flag;   
+        if (m_flag==true)return m_flag; 
+        }
+          
     }
 
 
