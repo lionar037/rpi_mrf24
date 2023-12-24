@@ -150,14 +150,15 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 if(i<=y*x)buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ;                 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 
-                std::cout<<  ((buff[l]>>Position  )& 1  ? "::" : "  ") ;  
+                std::cout<< ((buff[l]>>Position)& 1  ? "::" : "  ") ;  
 
-                Position++;// module ++;
-                if((!(i%x)&& !0x00) |!(Position%8)){l++;Position=0;
-                        {if(!(i%x) )
-                        //buff[l]&= 0b11111;
-                        std::cout<<"\n";// module=0;
-                        }
+                Position++;
+                if((!(i%x)&& !0x00)|| !(Position%8))
+                {
+                        l++;
+                        Position=0;                        
+                        if(!(i%x))std::cout<<"\n";
+                        
                 }
                 
                 
