@@ -56,8 +56,7 @@ std::vector<std::string> Msj_t::msj_memory;
         return;
     }
 
-    Msj_t::Msj_t()
-    //: msj { std::vector<std::string> ()}
+    Msj_t::Msj_t()    
     {
 
     }
