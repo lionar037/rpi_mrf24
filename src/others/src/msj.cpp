@@ -1,9 +1,11 @@
+#include <vector>
 #include <others/src/msj.h>
 #include<app/src/config.h>
 
 namespace DEVICES{    
 
 static int m_call{ 0 };
+static std::vector<std::string> msj_memory;
 
     void Msj_t::passMessage(QR::QR_OLED_BUFF* qr_oled_msjp){
         return ;
