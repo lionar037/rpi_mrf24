@@ -287,7 +287,7 @@ void Radio_t::handle_rx() {
         SET_COLOR(SET_COLOR_YELLOW_TEXT);
         std::cout<<temperatureToString.data(); 
         
-        m_flag_rx_enable_msj=true;
+        //m_flag_rx_enable_msj=true;
         return;    
     }
 
