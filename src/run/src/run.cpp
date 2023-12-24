@@ -70,7 +70,7 @@ void Run_t::start()
 
                 auto x = QR::codeQrGlobal.height;
                 auto y = QR::codeQrGlobal.width;                            
-
+std::cout<<"imprime QR : " << std::to_string(x*y)<<"\n\n";
                 oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
             }
         #endif                                
