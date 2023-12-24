@@ -68,7 +68,7 @@ void Run_t::start()
                 const auto x = QR::codeQrGlobal.height;
                 const auto y = QR::codeQrGlobal.width;
                 const auto z = QR::codeQrGlobal.data;
-                const bool d=true;
+                const bool d = true;
                 display->Graphics(x,y,d);
             }
         #endif                                
