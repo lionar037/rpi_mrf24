@@ -161,10 +161,10 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                         Position++;
                         module ++;
                         if(Position >= 8) { Position=0; poss++; }
-                        if(module >=29){std::cout<<"\n"; module=0;}
+                        if(module >=x){std::cout<<"\n"; module=0;}
 
                 }
-            std::cout << "\n";
+            //std::cout << "\n";
             }
         
         uint8_t fullscreenBuffer[1024]; 
