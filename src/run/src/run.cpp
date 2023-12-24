@@ -22,7 +22,7 @@ namespace RUN{
 
 void Run_t::start()
 {
-    bool flag{true};
+    [[nodiscard]] bool flag{true};
     
         system("clear"); 
     
@@ -49,7 +49,7 @@ void Run_t::start()
                 #ifdef USE_OLED2
                 thread3.join();                                
                 #endif
-                
+
     #ifdef USE_MRF24_RX     
     while(true)
     #endif
