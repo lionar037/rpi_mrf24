@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-#include <qr/src/qr.h>
+//#include <qr/src/qr.h>
 #include <run/src/run.h>
 #include <run/src/radio.h>
 #include <others/src/msj.h>
