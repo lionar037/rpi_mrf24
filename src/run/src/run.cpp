@@ -41,9 +41,7 @@ void Run_t::start()
                 #ifdef USE_OLED2            
                 std::thread thread3(&OLED::Oled_t::init , display.get());
                 #endif
-                
-                //std::thread hiloA([class_a = std::move(class_a)]() {});
-                
+                                                
                 //Esperar a que todos los hilos terminen
                 //thread1.join();
                 thread2.join();
