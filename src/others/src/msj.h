@@ -20,6 +20,7 @@ namespace DEVICES{
         void        printQr             ( bool , std::string_view );
         void        printOled           ( bool , std::string_view );
         void        setMaxLines         (int);
+        
     private:
         std::string             m_txt;
         QR::QR_OLED_BUFF        m_qr_oled_buff_msj;

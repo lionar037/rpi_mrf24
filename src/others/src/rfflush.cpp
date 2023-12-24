@@ -35,7 +35,7 @@ static DEVICES::Msj_t msj;
         #endif
         return ;
     }
-    void Fflush_t::setMaxLines(int x){
+    void Fflush_t::maxLines(int x){
         msj.setMaxLines(x);
     }
 

@@ -20,7 +20,8 @@ struct Fflush_t
         void        print           ( std::string_view, int, int) ;
         void        sendMsj         ( std::string_view , int , int ) ;
         void        view            ( );
-        
+        void        maxLines        ( int );
+
     private:
         static std::vector<std::string> memoria;
     protected:

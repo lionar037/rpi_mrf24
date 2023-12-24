@@ -21,8 +21,7 @@ std::vector<std::string> Msj_t::msj_memory;
         
         msj_memory.push_back(msj_tmp.data());   
         callGobal++;     
-        if(callGobal>=maxLinesGlobal)
-        {
+        if(callGobal>=maxLinesGlobal){
             msj_memory.clear();
             callGobal=0;
         }
