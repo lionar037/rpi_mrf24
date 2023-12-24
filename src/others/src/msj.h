@@ -20,12 +20,12 @@ namespace DEVICES{
         void        printOled           ( bool , std::string_view );
         void        setMaxLines         (int);
     private:
-        std::string             txt;
+        std::string             m_txt;
         QR::QR_OLED_BUFF        m_qr_oled_buff_msj;
-        bool                    flag { false };
+        bool                    m_flag { false };
         static std::vector<std::string> msj_memory{};
-        static int call{0};
-        static int maxLines{0};
+        static int m_call{ 0 };
+        static int m_maxLines{ 0 };
     };
 
 
