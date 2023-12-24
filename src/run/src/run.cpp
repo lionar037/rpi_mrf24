@@ -74,7 +74,7 @@ void Run_t::start()
                 const bool d = true;
         //std::cout << "codeQrGlobal.width : "<<std::to_string(QR::codeQrGlobal.width)<<"\n";
 
-                display->Graphics(x,y,QR::codeQrGlobal.data);
+                oled->Graphics(x,y,QR::codeQrGlobal.data);
             }
         #endif                                
     }
