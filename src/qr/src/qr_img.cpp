@@ -117,9 +117,11 @@ namespace QR{
 
         auto value =(codeQrGlobal.width*codeQrGlobal.height);        
         if(!codeQrGlobal.data)codeQrGlobal.data= new bool[value]; 
+        if(!codeQrGlobal.bufferComplete)codeQrGlobal.bufferComplete= new bool[value]; 
 
         for(int i=0;i<value;i++){
             codeQrGlobal.data[i] =(bool*) (qr->data[i]&1 ? true : false);
+            codeQrGlobal.bufferComplete[i] =(uint8_t*) qr->data[i];
         }
         
         // Guarda el código QR como imagen PNG
@@ -128,9 +130,7 @@ namespace QR{
         saveQRCodeImage(qr.get(), file_tmp.c_str());
         // Libera la memoria
         //QRcode_free(qr);//utilizando unique_ptr no es necesario llamar a QRcode_free()
-        
-            
-            
+                                
         return true;
     }
 

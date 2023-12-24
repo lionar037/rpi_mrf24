@@ -18,6 +18,7 @@ namespace QR{
             int width;
             int height;
             bool* data = nullptr;
+            uint8_t* bufferComplete = nullptr;
     }QR_OLED_BUFF;
 
 
