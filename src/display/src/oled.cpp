@@ -145,7 +145,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
         //std::cout<<"imprime QR : " << std::to_string(x*y)<<"\n\n";
         for(int i=0 ; i<( y*x ); i++){
-                buff[l] |= (w[i] == '1' ? 1 : 0) << Position;                 
+                buff[l] |= (  (w[i] == '1' ? 1 : 0) << Position );                 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 std::cout<<  ((buff[l]>>Position  )& 1  ? "::" : " .") ;  
                 Position++; module ++;
@@ -154,19 +154,10 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         }
         int poss=0;
         module =0;
-        for (int i = 0; i < y*x; i++) {
-                //for (int j = 0; j < x; j++)   
-                {                                             
-
-                       // std::cout << (buff[i * x + j] & 1 ? "::" : "  ");                
-                      //  std::cout << (buff[poss] >> Position & 1  ? "::" : "  " );
-                        Position++;
-                        module ++;
-                        if(Position >= 8) { Position=0; poss++; }
-                        //if(module >=x){std::cout<<"\n"; module=0;}
-
-                }
-            //std::cout << "\n";
+        for (int i = 0; i < (y*x)/8; i++) {
+            std::cout<< std::hex << buff[i]<<" ";    
+                module++;
+ if(module >=x){std::cout<<"\n"; module=0;}
             }
         
         uint8_t fullscreenBuffer[1024]; 
