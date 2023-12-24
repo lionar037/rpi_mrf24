@@ -152,9 +152,6 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 if (Position >= 8) {Position=0;l++;}                
                 
         }
-
-
-//        std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";     
         
         for (int i = 0; i < y; i++) {
                 for (int j = 0; j < x; j++)   {                                             
