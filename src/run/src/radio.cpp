@@ -92,7 +92,7 @@ Radio_t::Radio_t()
         gpio->app(m_flag);              
         mrf24j40_spi.interrupt_handler();
         Start(m_flag);        
-        if (m_flag==true)return m_flag; 
+        if (m_flag==false)return m_flag; 
         }
           
     }
