@@ -49,7 +49,6 @@ namespace DEVICES{
     }
 
     Msj_t::Msj_t()
-    :m_call{0}
     //: msj { std::vector<std::string> ()}
     {
 
