@@ -144,8 +144,8 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         static int move{0};
         for(int i=0;i<y*x;i++){
                 buff[l] |= (z[i] == '1' ? 1 : 0) << Position; 
-                //std::cout<<  (z[i] == '1' ? "::" : "  ") ;                                           
-                std::cout<<"::";
+                std::cout<<  (z[i] == '1' ? "::" : "  ") ;                                           
+                //std::cout<<"::";
                 Position++; module ++;
                 if(module >=33){std::cout<<"\n"; module=0;}
                 if (Position >= 8) {Position=0;l++;}                
