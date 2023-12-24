@@ -4,7 +4,7 @@
 #include <vector>
 #include <qr/src/qr.h>
 
-#DEFINE MAX_LINES_SAVED 12
+#define MAX_LINES_SAVED 12
 namespace DEVICES{
 
 
