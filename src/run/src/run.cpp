@@ -6,6 +6,8 @@
 #include <others/src/msj.h>
 #include <app/src/config.h>
 #include <mrf24/src/mrf24j40.h>
+#include <qr/src/qr.h>
+
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
  #ifdef USE_MRF24_RX
     #include <display/src/oled.h>
@@ -16,12 +18,9 @@ namespace MRF24J40{
     extern std::string msj_txt;
 }
 
-namespace QR {
-    extern  QR_OLED_BUFF codeQrGlobal;
-}
 
 namespace RUN{
-    
+    extern  QR::QR_OLED_BUFF codeQrGlobal;
     extern MRF24J40::Mrf24j mrf24j40_spi ;    
     
 void Run_t::start()
