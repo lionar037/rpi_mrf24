@@ -13,13 +13,13 @@
 
  
 namespace MRF24J40{
-    extern Mrf24j mrf24j40_spi ;    
     extern std::string msj_txt;
 }
 
 namespace RUN{
-
-
+    extern  QR::QR_OLED_BUFF codeQrGlobal;
+    extern MRF24J40::Mrf24j mrf24j40_spi ;    
+    
 void Run_t::start()
 {
     [[nodiscard]] bool flag{true};
