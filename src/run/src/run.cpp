@@ -20,7 +20,7 @@ namespace MRF24J40{
 }
 
 namespace QR{
-    extern QR_OLED_BUFF codeQrGlobal;
+   // extern QR_OLED_BUFF codeQrGlobal;
 }
 
 namespace RUN{
