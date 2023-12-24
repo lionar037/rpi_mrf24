@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <string_view>
 
 #include <qr/src/qr.h>
 
@@ -12,7 +13,7 @@ namespace DEVICES{
          Msj_t();
         ~Msj_t()=default;
         void        get                 ( );
-        void        set                 ( std::string& );
+        void        set                 ( std::string_view );
         void        Start               ( ){std::cout<<"Msj : Start() \n";}
         void        passMessage         ( QR::QR_OLED_BUFF* );
         void        printData           ( );
