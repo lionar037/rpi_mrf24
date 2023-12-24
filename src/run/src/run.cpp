@@ -22,7 +22,7 @@ namespace RUN{
     
 void Run_t::start()
 {
-    [[nodiscard]] bool flag{true};
+    bool flag{true};
     
         system("clear"); 
     

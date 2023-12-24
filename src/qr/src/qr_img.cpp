@@ -136,6 +136,18 @@ static QR_OLED_BUFF codeQrGlobal;
     }
 
 
+
+    void Qr_img_t::print(){
+        codeQrGlobal.width
+                for (int y = 0; y < codeQrGlobal.height; y++) {
+                for (int x = 0; x < codeQrGlobal.width; x++)   {             
+                
+                   std::cout << (codeQrGlobal.data[y * codeQrGlobal.width + x] & 1 ? "::" : "  ");// std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+                }
+            std::cout << "\n";
+            }
+    }
+
     Qr_img_t::Qr_img_t()    
     :   tyme { std::make_unique<TYME::Time_t>()}
     {   
