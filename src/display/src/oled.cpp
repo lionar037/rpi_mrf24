@@ -158,7 +158,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 //std::cout << (buff[i * x + j] & true ? "::" : "  ");                
                 std::cout << ((buff[poss] & 1 <<Position ) ? "::" : "  " );
                 Position++;
-                if (Position >= 8) {Position=0;poss++ }
+                if (Position >= 8) { Position=0; poss++; }
 
                 }
             std::cout << "\n";
