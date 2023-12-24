@@ -57,6 +57,6 @@ namespace QR{
             std::unique_ptr<TYME::Time_t>tyme{};            
     };
 
-extern QR_OLED_BUFF codeQrGlobal;
+//extern volatile QR_OLED_BUFF codeQrGlobal;
 
 }
