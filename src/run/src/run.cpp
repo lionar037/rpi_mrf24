@@ -55,7 +55,9 @@ void Run_t::start()
     while(true)
     #endif
     {                                
+        #ifdef USE_MRF24_RX
         if(flag==true)display->create(msj_txt.c_str());
+        #endif
         flag= mrf->Run();                                     
     }
 
