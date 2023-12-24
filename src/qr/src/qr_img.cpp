@@ -138,7 +138,7 @@ static QR_OLED_BUFF codeQrGlobal;
 
 
     void Qr_img_t::print(){
-        codeQrGlobal.width
+        
                 for (int y = 0; y < codeQrGlobal.height; y++) {
                 for (int x = 0; x < codeQrGlobal.width; x++)   {             
                 
