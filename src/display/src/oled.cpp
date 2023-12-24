@@ -14,7 +14,7 @@ namespace OLED{
 #ifdef USE_MRF24_RX
 
 SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object         
-
+static int count { 0 };
 
 bool Oled_t::create(const std::string_view& textOnOled){
 
