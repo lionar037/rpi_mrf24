@@ -16,7 +16,7 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
-static bool m_flag_rx_enable_msj{false};
+//static bool m_flag_rx_enable_msj{false};
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 #ifdef USE_MRF24_TX
@@ -92,7 +92,8 @@ Radio_t::Radio_t()
         {
         gpio->app(m_flag);              
         std::cout << "pasa por aqui 2\n";
-        mrf24j40_spi.interrupt_handler();
+        //mrf24j40_spi.interrupt_handler();
+        interrupt_routine() ;
         std::cout << "pasa por aqui 3\n";
         Start(m_flag);        
         std::cout << "pasa por aqui 4 \n";
