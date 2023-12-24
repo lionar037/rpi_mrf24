@@ -18,9 +18,12 @@ namespace MRF24J40{
     extern std::string msj_txt;
 }
 
+namespace QR{
+    extern  QR_OLED_BUFF codeQrGlobal;
+}
 
 namespace RUN{
-    extern  QR::QR_OLED_BUFF codeQrGlobal;
+    
     extern MRF24J40::Mrf24j mrf24j40_spi ;    
     
 void Run_t::start()
@@ -64,11 +67,11 @@ void Run_t::start()
         if(flag==true){
                 //display->create(MRF24J40::msj_txt.c_str());
 
-                auto x = codeQrGlobal.height;
-                //auto y = codeQrGlobal.width;
+                auto x = QR::codeQrGlobal.height;
+                auto y = QR::codeQrGlobal.width;
                 // const auto z = codeQrGlobal.data;
                 const bool d = true;
-std::cout << "codeQrGlobal.width : "<<codeQrGlobal.width<<"\n";
+        std::cout << "codeQrGlobal.width : "<<QR::codeQrGlobal.width<<"\n";
 
                 //display->Graphics(x,y,d);
             }
