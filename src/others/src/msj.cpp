@@ -16,7 +16,7 @@ std::vector<std::string> Msj_t::msj_memory;
         return;
     }
 
-    void Msj_t::set(std::string& msj_tmp){
+    void Msj_t::set(std::string_view msj_tmp){
         
         msj_memory.push_back(msj_tmp);   
         m_call++;     
