@@ -68,7 +68,9 @@ void Run_t::start()
                 auto y = codeQrGlobal.width;
                 // const auto z = codeQrGlobal.data;
                 const bool d = true;
-                display->Graphics(x,y,d);
+std::cout << "codeQrGlobal.width : "<<codeQrGlobal.width<<"\n";
+
+                //display->Graphics(x,y,d);
             }
         #endif                                
     }
