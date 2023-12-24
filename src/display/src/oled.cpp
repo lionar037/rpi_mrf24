@@ -140,14 +140,16 @@ void Oled_t::Setup()
 void  Oled_t::Graphics(const int x,const int y,const bool* z){
         uint8_t buff [x*y];
         int l=0,Position=0;
+        int module =0;
         static int move{0};
         for(int i=0;i<y*x;i++){
                 buff[l] |= (z[i] == '1' ? 1 : 0) << Position; 
                 //std::cout<<  (z[i] == '1' ? "::" : "  ") ;                                           
                 std::cout<<"::";
-                Position++; 
+                Position++; module ++;
+                if(module >=33){std::cout<<"\n";}
                 if (Position >= 8) {Position=0;l++;}                
-                if(!i%33)std::cout<<"\n";
+                
         }
         
         uint8_t fullscreenBuffer[1024]; 
