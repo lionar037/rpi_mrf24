@@ -19,7 +19,8 @@ std::vector<std::string> Msj_t::msj_memory;
 
     void Msj_t::set(std::string_view msj_tmp){
         
-        msj_memory.push_back(msj_tmp.data());   
+        msj_memory.push_back(msj_tmp.data());  
+         
         callGobal++;     
         if(callGobal>=maxLinesGlobal){
             msj_memory.clear();

@@ -125,15 +125,15 @@ void Radio_t::Start(bool& flag) {
         buffer_transmiter.head=HEAD; 
         buffer_transmiter.size=(~strlen(MSJ))&0xffff ;
         #ifdef ENABLE_PRINTS_DBG
-        std::cout<<"\n strlen(MSJ) : "<<  strlen(MSJ)<<"\n";  
+        //std::cout<<"\n strlen(MSJ) : "<<  strlen(MSJ)<<"\n";  
         #endif  
         std::strcpy(buffer_transmiter.data , MSJ);
 
         const char* msj = reinterpret_cast<const char* >(&buffer_transmiter);
         //  const auto* buff {reinterpret_cast<const char *>(mrf24j40_spi.get_rxinfo()->rx_data)};
         #ifdef ENABLE_PRINTS_DBG
-        std::cout<<"\n MSJ : size ( "<<  strlen(msj) <<" , "<<sizeof(msj) << " )\n" ;
-        std::cout<<"\n" ;
+        //std::cout<<"\n MSJ : size ( "<<  strlen(msj) <<" , "<<sizeof(msj) << " )\n" ;
+        //std::cout<<"\n" ;
       #endif
         const std::string pf(msj);
         #ifdef ENABLE_PRINTS_DBG
@@ -174,11 +174,11 @@ void Radio_t::Start(bool& flag) {
         auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
         #endif
         auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
-        #ifdef MRF24_RECEIVER_ENABLE
-            #ifdef USE_OLED            
-            static auto  oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
-            #endif
-        #endif
+        // #ifdef MRF24_RECEIVER_ENABLE
+            // #ifdef USE_OLED            
+            // static auto  oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+            // #endif
+        // #endif
         const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
 
         std::string  PacketDataTmp (packet_data += positionAdvance);
@@ -186,11 +186,11 @@ void Radio_t::Start(bool& flag) {
 
         SET_COLOR(SET_COLOR_GRAY_TEXT);
         
-        #ifdef MRF24_RECEIVER_ENABLE
-            #ifdef USE_OLED
-            oled->create(PacketDataTmp.c_str());  
-            #endif
-        #endif
+        //#ifdef MRF24_RECEIVER_ENABLE
+            // #ifdef USE_OLED
+            // oled->create(PacketDataTmp.c_str());  
+            // #endif
+        //#endif
         fs->create(packet_data);
         std::cout<<"\n";
         #ifdef ENABLE_QR
@@ -213,9 +213,8 @@ void Radio_t::handle_tx() {
     return;
     }
 
-//@brief 
-//@params
-//@params
+ 
+
  
 void Radio_t::handle_rx() {        
     #ifdef MRF24_RECEIVER_ENABLE
@@ -280,7 +279,10 @@ void Radio_t::handle_rx() {
 
         update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ); //update(tempString.data());
         SET_COLOR(SET_COLOR_YELLOW_TEXT);
-        std::cout<<temperatureToString.data(); 
+        
+        //std::cout<<temperatureToString.data(); 
+        monitor->print(temperatureToString.data(),files++,col));
+        
         msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
         
         monitor->maxLines(files);
