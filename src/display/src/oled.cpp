@@ -153,8 +153,8 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         }
         int poss=0;
         module =0;
-        for (int i = 0; i < y*x; i++) {
-                //for (int j = 0; j < x; j++)   
+        for (int i = 0; i < y; i++) {
+                for (int j = 0; j < x; j++)   
                 {                                             
 
                         std::cout << (buff[i * x + j] & true ? "::" : "  ");                
