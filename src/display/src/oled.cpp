@@ -138,15 +138,20 @@ void Oled_t::Setup()
 
     
 void  Oled_t::Graphics(const int x,const int y,const bool& z){
-        for(int i=0;i<y;i++){
-                for(int j=0;j<x;j++){
-                        //std::cout<<*z++;
-                }
+        uint8_t buff [x*y];
+        int s=0,l=0,Position=0;
+        for(int i=0;i<y*x;i++){
 
+                       buff[l] = z[i]<<Position;
+                       Position++; i++;
+                       if(i%8){Position=0;l++;}                
         }
+
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
-        myOLED.OLEDBitmap(0, 0 , 64, 64, bigImage, false);
+
+
+        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
         myOLED.OLEDupdate();
 }
 
