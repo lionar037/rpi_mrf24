@@ -128,14 +128,11 @@ void Oled_t::Setup()
 
     void Test1(void)
 {
-        uint8_t fullscreenBuffer[1024]; 
-        myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
-        myOLED.OLEDBitmap(0, 0 , 64, 64, bigImage, false);
-        myOLED.OLEDupdate();
+
         
-        bcm2835_delay(5000);
-        myOLED.OLEDFillScreen(0x00, 0);
-        myOLED.OLEDclearBuffer();
+        //bcm2835_delay(1000);
+        //myOLED.OLEDFillScreen(0x00, 0);
+        //myOLED.OLEDclearBuffer();
 }
 
 
@@ -147,7 +144,10 @@ void  Oled_t::Graphics(const int x,const int y,const bool& z){
                 }
 
         }
-        Test1();
+        uint8_t fullscreenBuffer[1024]; 
+        myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
+        myOLED.OLEDBitmap(0, 0 , x, y, z, false);
+        myOLED.OLEDupdate();
 }
 
 
