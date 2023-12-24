@@ -15,6 +15,7 @@
 namespace MRF24J40{
     extern Mrf24j mrf24j40_spi ;
     extern bool m_flag_rx_enable_msj;
+    extern std::string msj_txt;
 }
 
 namespace RUN{
@@ -23,7 +24,7 @@ namespace RUN{
 void Run_t::start()
 {
     bool flag{true};
-    std::string msj_txt="@ABCDEFGHIJKLMNO1234567890#";
+    
         system("clear"); 
     
      try    {
