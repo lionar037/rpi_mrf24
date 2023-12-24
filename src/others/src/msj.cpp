@@ -24,8 +24,9 @@ namespace DEVICES{
     {
         maxLines = max;
     }
+    
     void Msj_t::printData ()
-        {
+    {
         for (const auto& text : msj_memory) {
             std::cout << text << std::endl;
         }

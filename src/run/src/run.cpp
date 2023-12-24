@@ -49,6 +49,7 @@ void Run_t::start()
                 #ifdef USE_OLED2
                 thread3.join();                                
                 #endif
+                
     #ifdef USE_MRF24_RX     
     while(true)
     #endif
