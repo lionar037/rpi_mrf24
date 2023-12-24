@@ -6,7 +6,7 @@
 namespace DEVICES{    
 
 static int m_call{ 0 };
-static std::vector<std::string> Msj_t::msj_memory;
+std::vector<std::string> Msj_t::msj_memory;
 
     void Msj_t::passMessage(QR::QR_OLED_BUFF* qr_oled_msjp){
         return ;
