@@ -20,7 +20,7 @@ namespace MRF24J40{
 }
 
 namespace QR{
-   // extern QR_OLED_BUFF codeQrGlobal;
+    extern QR_OLED_BUFF codeQrGlobal;
 }
 
 namespace RUN{
@@ -70,7 +70,7 @@ void Run_t::start()
 
                 auto x = QR::codeQrGlobal.height;
                 auto y = QR::codeQrGlobal.width;                            
-std::cout<<"imprime QR : " << std::to_string(x*y)<<"\n\n";
+std::cout<<"1 imprime QR : " << std::to_string(x*y)<<"\n\n";
                 oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
             }
         #endif                                
