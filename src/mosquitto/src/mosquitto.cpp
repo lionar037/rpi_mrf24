@@ -29,6 +29,7 @@ namespace MOSQUITTO{
 
 
     int Mosquitto_t::sub() {
+        std::cout << "\033[" << "0" << ";" << "0" << "H" ;
     	int rc, id=12;
     	mosquitto_lib_init();
     	struct mosquitto *mosq;
@@ -40,7 +41,7 @@ namespace MOSQUITTO{
     	rc = mosquitto_connect(mosq, HOST_SERVER_MOSQUITTO, 1883, 10);
         
     	if(rc) {
-    		printf("\t\tSub \tCould not connect to Broker with return code %d\n", rc);
+    		printf("\t\t\t\t\t\t\tSub : Could not connect to Broker with return code %d\n", rc);
     		return -1;
     	}
     	//mosquitto_loop_start(mosq);
@@ -56,7 +57,7 @@ namespace MOSQUITTO{
 
 
     int Mosquitto_t::pub(){
-        
+        std::cout << "\033[" << "0" << ";" << "0" << "H" ;
         static int temperature_day { 11 };
         static int conter_msj{0};
         
@@ -66,7 +67,7 @@ namespace MOSQUITTO{
         return 1;
     }
 
-std::cout << "\033[" << "0" << ";" << "0" << "H" ;
+
 
         mosquitto_username_pw_set(mosq, "pi", "zero");
 
@@ -77,7 +78,7 @@ std::cout << "\033[" << "0" << ";" << "0" << "H" ;
             mosquitto_destroy(mosq);
             return -1;
         }else{
-        printf("\t\t\t\t\t\t\t\t\t\tPub  \tWe are now connected to the broker!\n");
+        printf("\t\t\t\t\t\t\t\t\tPub : We are now connected to the broker!\n");
         }
 
         const std::string text= "{\t temp : " + std::to_string(temperature_day) +" }";
@@ -87,7 +88,7 @@ std::cout << "\033[" << "0" << ";" << "0" << "H" ;
         if (rc != 0) {
             fprintf(stderr, "\t\t\t\t\t\t\t\t\tError publishing message! Error Code: %d\n", rc);
             } else {
-                printf("\t\t\t\t\t\t\t\t\tMessage published successfully!\t\tmsj: %d \n",conter_msj);
+                printf("\t\t\t\t\t\t\tMessage published successfully!\t\tmsj: %d \n",conter_msj);
             }
 
         mosquitto_disconnect(mosq);
