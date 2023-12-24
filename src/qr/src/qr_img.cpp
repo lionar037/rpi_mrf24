@@ -15,8 +15,7 @@ extern "C"{
 
 namespace QR{
 
-
-static QR_OLED_BUFF codeQrGlobal{};
+static QR_OLED_BUFF codeQrGlobal;
 
     void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         // Tamaño del borde blanco (en píxeles)

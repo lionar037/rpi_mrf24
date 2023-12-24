@@ -44,9 +44,6 @@ namespace QR{
     };       
 
 
-
-
-
     struct Qr_img_t : public WORK::Work_t
     {
             Qr_img_t();

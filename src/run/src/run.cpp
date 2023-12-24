@@ -19,7 +19,7 @@ namespace MRF24J40{
 }
 
 namespace QR{
-    extern  QR_OLED_BUFF codeQrGlobal;
+    extern QR_OLED_BUFF codeQrGlobal;
 }
 
 namespace RUN{
@@ -37,7 +37,7 @@ void Run_t::start()
                 auto msj { std::make_unique<DEVICES::Msj_t>()};  
             
                 #ifdef USE_MRF24_RX                 
-                static auto display { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+                static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
                 #endif          
                                  
                 //std::thread thread1([mrf = std::move(mrf)]() {});
@@ -45,7 +45,7 @@ void Run_t::start()
                 std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
 
                 #ifdef USE_MRF24_RX            
-                std::thread thread3(&OLED::Oled_t::init , display.get());
+                std::thread thread3(&OLED::Oled_t::init , oled.get());
                 #endif
                                                 
                 //Esperar a que todos los hilos terminen
@@ -57,7 +57,7 @@ void Run_t::start()
                 #endif
 
     #ifdef USE_MRF24_RX     
-    display->create(MRF24J40::msj_txt.c_str());
+    oled->create(MRF24J40::msj_txt.c_str());
     while(true)
     #endif
     {                                
@@ -71,7 +71,7 @@ void Run_t::start()
                 //auto y = QR::codeQrGlobal.width;
                 // const auto z = codeQrGlobal.data;
                 const bool d = true;
-        std::cout << "codeQrGlobal.width : "<<QR::codeQrGlobal.width<<"\n";
+        std::cout << "codeQrGlobal.width : "<<std::to_string(QR::codeQrGlobal.width)<<"\n";
 
                 //display->Graphics(x,y,d);
             }
