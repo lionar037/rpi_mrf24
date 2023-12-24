@@ -149,15 +149,15 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 buff[l] |= (  ((w[i] & 1 )? 1 : 0) << Position );                 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 
-                //std::cout<<  ((buff[l]>>Position  )& 1  ? "::" : " .") ;  
+                std::cout<<  ((buff[l]>>Position  )& 1  ? "::" : " .") ;  
                 Position++; module ++;
-                //if(module >=x){std::cout<<"\n"; module=0;}
+                if(module >=x){std::cout<<"\n"; module=0;}
                 if (Position >= 8) {Position=0;l++;}                                
         }
         
         
-        for (int i = 0; i < (y*x)/8; i++) 
-            std::cout<< std::to_string (buff[i] )<<",";    
+        //for (int i = 0; i < (y*x)/8; i++) 
+        //    std::cout<< std::to_string (buff[i] )<<",";    
              
         
         uint8_t fullscreenBuffer[1024]; 
