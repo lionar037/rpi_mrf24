@@ -68,7 +68,7 @@ void Run_t::start()
                 const auto y = codeQrGlobal.width;
                 const auto z = codeQrGlobal.data;
                 const bool d = true;
-                display->Graphics(x,y,d);
+                //display->Graphics(x,y,d);
             }
         #endif                                
     }
