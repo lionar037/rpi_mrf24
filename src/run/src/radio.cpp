@@ -88,7 +88,8 @@ Radio_t::Radio_t()
        std::cout << "pasa por aqui 1\n";
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-        while(true){
+        //while(true)
+        {
         gpio->app(m_flag);              
         std::cout << "pasa por aqui 2\n";
         mrf24j40_spi.interrupt_handler();
@@ -97,7 +98,7 @@ Radio_t::Radio_t()
         std::cout << "pasa por aqui 4 \n";
         if (m_flag==false)return m_flag; 
         }
-          
+        return m_flag; 
     }
 
 

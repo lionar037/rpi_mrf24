@@ -80,9 +80,8 @@ namespace MRF24J40{
         struct DATA::packet_tx                  buffer_transmiter{};
         
         static std::unique_ptr < SECURITY::Security_t >     security;
-        static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  
-        public:
-            std::unique_ptr <GPIO::Gpio> gpio{nullptr};                      
+        static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;          
+        std::unique_ptr <GPIO::Gpio> gpio{};                      
     };
 
 
