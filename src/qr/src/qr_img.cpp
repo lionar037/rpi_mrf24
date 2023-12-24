@@ -130,8 +130,8 @@ static QR_OLED_BUFF codeQrGlobal;
         // Libera la memoria
         //QRcode_free(qr);//utilizando unique_ptr no es necesario llamar a QRcode_free()
         
-            delete[] codeQrGlobal.data;
-            codeQrGlobal.data = nullptr;
+            
+            
         return true;
     }
 
@@ -162,6 +162,9 @@ static QR_OLED_BUFF codeQrGlobal;
         #ifdef DBG
             std::cout<<"~Qr_img_t()\n";
         #endif 
+
+        delete[] codeQrGlobal.data;
+        codeQrGlobal.data = nullptr;
         }
 
 }
