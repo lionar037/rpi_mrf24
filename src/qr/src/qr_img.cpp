@@ -159,9 +159,9 @@ namespace QR{
     }
         
         Qr_img_t::~Qr_img_t(){  
-        #ifdef DBG
-            std::cout<<"~Qr_img_t()\n";
-        #endif 
+        //#ifdef DBG
+            std::cout<<"DESTROY \t~Qr_img_t()\n";
+        //#endif 
 
         delete[] codeQrGlobal.data;
         codeQrGlobal.data = nullptr;
