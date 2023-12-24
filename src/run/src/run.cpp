@@ -1,8 +1,6 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-//#define USE_OLED2
-
 #include <run/src/run.h>
 #include <run/src/radio.h>
 #include <others/src/msj.h>
@@ -35,10 +33,9 @@ void Run_t::start()
                 #ifdef USE_OLED2                 
                 static auto display { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
                 #endif          
-
-                //std::thread thread1(&MRF24J40::Radio_t , mrf);
-                
+                                
                 std::thread thread1([mrf = std::move(mrf)]() {});
+                
                 std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
 
                 #ifdef USE_OLED2            
@@ -54,16 +51,13 @@ void Run_t::start()
                 #ifdef USE_OLED2
                 thread3.join();                                
                 #endif
-                
-while(true){
-                                
+    #ifdef USE_MRF24_RX     
+    while(true)
+    #endif
+    {                                
         if(flag==true)display->create(msj_txt.c_str());
-        flag= mrf->Run();
-        //mrf->gpio->app(flag);        
-        //MRF24J40::mrf24j40_spi.interrupt_handler();
-        
-        //mrf->Start(flag);                                   
-     }
+        flag= mrf->Run();                                     
+    }
 
                 
             }
