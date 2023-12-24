@@ -16,9 +16,10 @@ struct Fflush_t
         /* data */
         //friend void updateValue(int, int, int, int) ;
         //void updateValue(int, int, int, int) ;
-        int funcThread() ;
-        void print(std::string_view, int, int) ;
-        void sendMsj(std::string_view , int , int ) ;
+        int         funcThread      ( );
+        void        print           ( std::string_view, int, int) ;
+        void        sendMsj         ( std::string_view , int , int ) ;
+        void        view            ( );
         
     private:
         static std::vector<std::string> memoria;

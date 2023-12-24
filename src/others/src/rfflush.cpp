@@ -5,8 +5,11 @@
 #include <others/src/rfflush.h>
 #include <others/src/color.h>
 #include <app/src/config.h>
+#include <others/src/msj.h>
 
 namespace FFLUSH{
+
+static DEVICES::Msj_t msj;
 
      void updateValue(int id, int delay, int row, int col) 
      { //row fila  // col : columna 
@@ -25,23 +28,18 @@ namespace FFLUSH{
 
     void Fflush_t::print(std::string_view str_txt, int row, int col) 
     { 
-        #ifdef ENABLE_PRINTS_DBG
-        //row fila  // col : columna         
-     //SET_COLOR(SET_COLOR_GRAY_TEXT);
-    // move(row,col);
-    std::cout << "\033[" << row << ";" << col << "H"<<str_txt.data();
-            //std::unique_lock<std::mutex> lock(m_mtx);
-            // Mover el cursor a la ubicación de las coordenadas (row, col) y actualizar el valor
-            //std::cout << "\033[" << row << ";" << col << "H" << str_txt.data();//<< std::flush;
-            //lock.unlock();                
-            //std::cout<<str_txt.data();
-            #endif
-    return ;    
+        #ifdef ENABLE_PRINTS_DBG    
+        msj.set("\033[" + row + ";" + col + "H" + str_txt.data());
+        //std::cout << "\033[" << row << ";" << col << "H"<<str_txt.data();    
+        #endif
+        return ;    
     }
 
+    void Fflush_t::view(){
+        msj.printData();
+    }
 
 void Fflush_t::sendMsj(std::string_view str_txt, int row, int col) {
-
 
 }
 
