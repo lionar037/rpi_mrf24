@@ -7,7 +7,7 @@
 #include <app/src/config.h>
 #include <mrf24/src/mrf24j40.h>
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
- #ifdef USE_OLED2
+ #ifdef USE_MRF24_RX
     #include <display/src/oled.h>
 #endif
 
@@ -30,15 +30,15 @@ void Run_t::start()
                 auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
                 auto msj { std::make_unique<DEVICES::Msj_t>()};  
             
-                #ifdef USE_OLED2                 
+                #ifdef USE_MRF24_RX                 
                 static auto display { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
                 #endif          
-                                
+                                 
                 //std::thread thread1([mrf = std::move(mrf)]() {});
                 
                 std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
 
-                #ifdef USE_OLED2            
+                #ifdef USE_MRF24_RX            
                 std::thread thread3(&OLED::Oled_t::init , display.get());
                 #endif
                                                 
@@ -46,18 +46,23 @@ void Run_t::start()
                 //thread1.join();
                 thread2.join();
 
-                #ifdef USE_OLED2
+                #ifdef USE_MRF24_RX
                 thread3.join();                                
                 #endif
 
     #ifdef USE_MRF24_RX     
+    display->create(MRF24J40::msj_txt.c_str());
     while(true)
     #endif
     {                                
+
+        flag= mrf->Run();     
         #ifdef USE_MRF24_RX
-        if(flag==true)display->create(MRF24J40::msj_txt.c_str());
-        #endif
-        flag= mrf->Run();                                     
+        if(flag==true){
+                //display->create(MRF24J40::msj_txt.c_str());
+                display->Graphics(codeQrGlobal.height , codeQrGlobal.width ,codeQrGlobal.data);
+            }
+        #endif                                
     }
 
                 

@@ -19,7 +19,7 @@ namespace MRF24J40{
 Mrf24j mrf24j40_spi ;
 
 
-std::string msj_txt="@1234567890#";
+std::string msj_txt="MRF24J40 received";
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 
@@ -91,12 +91,9 @@ Radio_t::Radio_t()
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
                 
-        gpio->app(m_flag);                      
-        
-        interrupt_routine() ;
-        
-        Start(m_flag);        
-        
+        gpio->app(m_flag);                              
+        interrupt_routine() ;        
+        Start(m_flag);                
         return m_flag; 
     }
 
@@ -175,28 +172,19 @@ void Radio_t::Start(bool& flag) {
         auto            qr_img      { std::make_unique<QR::Qr_img_t>() };
         #endif
         auto            monitor     { std::make_unique <FFLUSH::Fflush_t>()};
-        // #ifdef MRF24_RECEIVER_ENABLE
-            // #ifdef USE_OLED            
-            // static auto  oled        { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
-            // #endif
-        // #endif
+
         const auto*     packet_data = reinterpret_cast<const char*>(str_view.data());
 
         std::string  PacketDataTmp (packet_data += positionAdvance);
         PacketDataTmp.resize(38);
 
         SET_COLOR(SET_COLOR_GRAY_TEXT);
-        
-        //#ifdef MRF24_RECEIVER_ENABLE
-            // #ifdef USE_OLED
-            // oled->create(PacketDataTmp.c_str());  
-            // #endif
-        //#endif
+
         fs->create(packet_data);
         std::cout<<"\n";
         #ifdef ENABLE_QR
             qr_img->create(packet_data);
-            qr_img->print();
+            //qr_img->print();
         #endif
 
     return ;    
@@ -291,6 +279,7 @@ void Radio_t::handle_rx() {
         
         monitor->maxLines(files);
         monitor->view();
+        
         
 
         return;    

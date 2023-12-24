@@ -8,10 +8,9 @@
 #include <SSD1306_OLED.hpp>
 #endif
 
+//GLOBAL namespace OLED
 namespace OLED{
 #ifdef USE_MRF24_RX
-
-//GLOBAL namespace OLED
 
 SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object         
 
@@ -71,9 +70,6 @@ bool Oled_t::create(const std::string_view& textOnOled){
 void Oled_t::Setup() 
 {
         bcm2835_delay(100);
-        #ifdef DBG_DISPLAY_OLED
-        printf("\nOLED Begin\r\n");
-        #endif
         myOLED.OLEDbegin(I2C_Speed, I2C_Address); // initialize the OLED
         myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
         bcm2835_delay(100);
@@ -129,6 +125,15 @@ void Oled_t::Setup()
             return;
     }
     
+void  Oled_t::Graphics(const int x,const int y,const bool* z){
+        for(int i=0;i<y;i++){
+                for(int j=0;j<x;j++){
+
+                }
+
+        }
+}
+
 
     Oled_t::Oled_t(){
         init();        
