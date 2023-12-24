@@ -14,7 +14,7 @@ namespace DEVICES{
         ~Msj_t()=default;
         void        get                 ( );
         void        set                 ( std::string_view );
-        //void        Start               ( ){std::cout<<"Msj : Start() \n";}
+        
         void        Start               ( ){system("clear");}; 
         void        passMessage         ( QR::QR_OLED_BUFF* );
         void        printData           ( );

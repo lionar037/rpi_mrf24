@@ -4,8 +4,7 @@
 
 extern "C"{
     #include <png.h>
-    #include <zlib.h>
-    //#include <ncurses.h>
+    #include <zlib.h>    
 }
 
 #include <others/src/rfflush.h>
@@ -16,6 +15,8 @@ extern "C"{
 
 namespace QR{
 
+
+static QR_OLED_BUFF codeQrGlobal;
 
     void Qr_img_t::saveQRCodeImage(const QRcode* qr, const char* filename) {
         // Tamaño del borde blanco (en píxeles)
@@ -92,38 +93,34 @@ namespace QR{
 
 
 
-bool Qr_img_t::create(const std::string_view& fname) {
-
-// Configuración del código QR
-//QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                
-//auto qr {std::make_unique <QRcode_encodeString>(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1)};                
-//auto qr = std::unique_ptr<QRcode>(QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1));
-auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
-    QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1),
-    &QRcode_free
-);
+    bool Qr_img_t::create(const std::string_view& fname) {
+        // Configuración del código QR
+        //QRcode* qr = QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);                        
+        auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
+        QRcode_encodeString(fname.data(), 0, QR_ECLEVEL_L, QR_MODE_8, 1), &QRcode_free);
 
         // Imprime el código QR en la consola
+        #ifdef ENABLE_PRINTS_DBG  
         SET_COLOR(SET_COLOR_WHITE_TEXT);           
         std::cout << "\n";        
         
         for (int y = 0; y < qr->width; y++) {
             for (int x = 0; x < qr->width; x++)   {             
-              // std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-               std::cout << (qr->data[y * qr->width + x] & 1 ? "::" : "  ");
+              
+               std::cout << (qr->data[y * qr->width + x] & 1 ? "::" : "  ");// std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
             }
         std::cout << "\n";
         }
+        #endif
+        
+        codeQrGlobal.height = qr->width;
+        codeQrGlobal.width  = qr->width;
 
-        QR_OLED_BUFF m_buffer_qr_oled;
-        m_buffer_qr_oled.height = qr->width;
-        m_buffer_qr_oled.width  = qr->width;
-
-        auto value =(m_buffer_qr_oled.width*m_buffer_qr_oled.height);        
-        if(!m_buffer_qr_oled.data)m_buffer_qr_oled.data= new bool[value]; 
+        auto value =(codeQrGlobal.width*codeQrGlobal.height);        
+        if(!codeQrGlobal.data)codeQrGlobal.data= new bool[value]; 
 
         for(int i=0;i<value;i++){
-            m_buffer_qr_oled.data[i] =(bool*) (qr->data[i]&1 ? true : false);
+            codeQrGlobal.data[i] =(bool*) (qr->data[i]&1 ? true : false);
         }
         
         // Guarda el código QR como imagen PNG
@@ -133,8 +130,8 @@ auto qr = std::unique_ptr<QRcode, decltype(&QRcode_free)>(
         // Libera la memoria
         //QRcode_free(qr);//utilizando unique_ptr no es necesario llamar a QRcode_free()
         
-            delete[] m_buffer_qr_oled.data;
-            m_buffer_qr_oled.data = nullptr;
+            delete[] codeQrGlobal.data;
+            codeQrGlobal.data = nullptr;
         return true;
     }
 

@@ -39,9 +39,6 @@
         struct Mosquitto_t;
     }
 
-    // namespace SECURITY{
-        // struct Security_t;
-    // }
 
 namespace MRF24J40{
 

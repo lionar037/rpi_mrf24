@@ -14,9 +14,6 @@ namespace TYME{
 
 namespace QR{
 
-
-
-
     typedef struct qr_oled{
             int width;
             int height;
@@ -29,9 +26,6 @@ namespace QR{
             Qr_t()=default;
             ~Qr_t()=default;
             bool                create                  (const std::string_view&);
-            //template <typename T>
-            //const T* create_qr (const char* /*,  std::vector<unsigned char>&*/) ;            
-            //unsigned char*      get_buffer_pointer      (std::vector<unsigned char>&); 
         private:
             std::vector<unsigned char>vs;  
             std::unique_ptr<QR_OLED_BUFF> QrOled;
