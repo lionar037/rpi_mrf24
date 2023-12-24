@@ -33,7 +33,10 @@ static DEVICES::Msj_t msj;
         msj.set(dat.data());
         //std::cout << "\033[" << row << ";" << col << "H"<<str_txt.data();    
         #endif
-        return ;    
+        return ;
+    }
+    void Fflush_t::setMaxLines(int x){
+        msj.setMaxLines(x);
     }
 
     void Fflush_t::view(){

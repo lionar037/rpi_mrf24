@@ -5,7 +5,8 @@
 
 namespace DEVICES{    
 
-static int m_call{ 0 };
+static int callGobal{ 0 };
+static int maxLinesGlobal{0};
 std::vector<std::string> Msj_t::msj_memory;
 
     void Msj_t::passMessage(QR::QR_OLED_BUFF* qr_oled_msjp){
@@ -19,17 +20,18 @@ std::vector<std::string> Msj_t::msj_memory;
     void Msj_t::set(std::string_view msj_tmp){
         
         msj_memory.push_back(msj_tmp.data());   
-        m_call++;     
-        if(m_call>=MAX_LINES_SAVED)
+        callGobal++;     
+        if(callGobal>=maxLinesGlobal)
         {
             msj_memory.clear();
+            callGobal=0;
         }
         
         return;
     }    
     void Msj_t::setMaxLines(int max)
     {
-        m_call = max;
+        maxLinesGlobal = max;
     }
     
     void Msj_t::printData ()
