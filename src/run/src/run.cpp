@@ -71,7 +71,7 @@ void Run_t::start()
                 auto x = QR::codeQrGlobal.height;
                 auto y = QR::codeQrGlobal.width;                            
 
-                oled->Graphics(x,y,QR::codeQrGlobal.data);
+                oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
             }
         #endif                                
     }

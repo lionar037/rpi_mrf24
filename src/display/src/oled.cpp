@@ -137,7 +137,7 @@ void Oled_t::Setup()
 
 
     
-void  Oled_t::Graphics(const int x,const int y,const bool* z){
+void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t buff [x*y];
         int l=0,Position=0;
         int module =0;

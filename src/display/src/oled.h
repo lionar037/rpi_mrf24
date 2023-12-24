@@ -19,7 +19,7 @@ namespace OLED{
             void            End();
             void            Setup(); 
             void            Start();
-            void            Graphics(const int,const int,const bool*);
+            void            Graphics(const int,const int,const bool*,const uint8_t*);
 
         private :
             const uint16_t  I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
