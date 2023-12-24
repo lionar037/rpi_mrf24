@@ -34,7 +34,7 @@ void Run_t::start()
                 static auto display { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
                 #endif          
                                 
-                std::thread thread1([mrf = std::move(mrf)]() {});
+                //std::thread thread1([mrf = std::move(mrf)]() {});
                 
                 std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
 
