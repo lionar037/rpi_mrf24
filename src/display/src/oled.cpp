@@ -145,7 +145,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
         
         for(int i=0 ; i<( y*x ); i++){
-                buff[l] |= (  (w[i] == '1' ? 1 : 0) << Position );                 
+                buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );                 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 
                 //std::cout<<  ((buff[l]>>Position  )& 1  ? "::" : " .") ;  
@@ -153,13 +153,11 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 //if(module >=x){std::cout<<"\n"; module=0;}
                 if (Position >= 8) {Position=0;l++;}                                
         }
-        int poss=0;
-        module =0;
-        for (int i = 0; i < (y*x)/8; i++) {
-            std::cout<< std::to_string (buff[i] )<<" ";    
-                module++;
- if(module >=x){std::cout<<"\n"; module=0;}
-            }
+        
+        
+        for (int i = 0; i < (y*x)/8; i++) 
+            std::cout<< std::to_string (buff[i] )<<",";    
+             
         
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
