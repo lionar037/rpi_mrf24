@@ -247,7 +247,7 @@ void Radio_t::handle_rx() {
         monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);        
         monitor->print("\n",files++,col);
         //std::cout<<"\n";   
-        monitor->print(mrf24j40_spi.get_rxinfo()->rx_data ,files++,col);
+        monitor->print(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data ),files++,col);
         //for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
         //std::cout<<"\n";   
         monitor->print("\n",files++,col);
