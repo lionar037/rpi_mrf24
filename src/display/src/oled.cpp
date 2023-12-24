@@ -156,7 +156,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         int poss=0;
         module =0;
         for (int i = 0; i < (y*x)/8; i++) {
-            std::cout<< std::to_integer (buff[i] )<<" ";    
+            std::cout<< std::to_string (buff[i] )<<" ";    
                 module++;
  if(module >=x){std::cout<<"\n"; module=0;}
             }
