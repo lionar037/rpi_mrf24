@@ -286,7 +286,7 @@ void Radio_t::handle_rx() {
         update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ); //update(tempString.data());
         SET_COLOR(SET_COLOR_YELLOW_TEXT);
         std::cout<<temperatureToString.data(); 
-        
+        msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
         //m_flag_rx_enable_msj=true;
         return;    
     }
