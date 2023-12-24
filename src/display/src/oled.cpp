@@ -146,9 +146,8 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         //std::cout<<"imprime QR : " << std::to_string(x*y)<<"\n\n";
         for(int i=0 ; i<( y*x ); i++){
                 buff[l] |= (w[i] == '1' ? 1 : 0) << Position; 
-                std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                           
-                //std::cout<<"::";
                 Position++; module ++;
+                //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 //if(module >=29){std::cout<<"\n"; module=0;}
                 if (Position >= 8) {Position=0;l++;}                
                 
