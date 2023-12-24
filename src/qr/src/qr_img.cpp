@@ -163,8 +163,12 @@ namespace QR{
           //  std::cout<<"DESTROY \t~Qr_img_t()\n";
         //#endif 
 
-        //delete[] codeQrGlobal.data;
-        //codeQrGlobal.data = nullptr;
+
+        }
+
+        void removeQR(){
+            delete[] codeQrGlobal.data;
+            codeQrGlobal.data = nullptr;
         }
 
 }
