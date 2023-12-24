@@ -117,7 +117,7 @@ namespace QR{
 
         auto value =(codeQrGlobal.width*codeQrGlobal.height);        
         if(!codeQrGlobal.data)codeQrGlobal.data= new bool[value]; 
-        if(!codeQrGlobal.bufferComplete)codeQrGlobal.bufferComplete= new bool[value]; 
+        if(!codeQrGlobal.bufferComplete)codeQrGlobal.bufferComplete= new uint8_t[value]; 
 
         for(int i=0;i<value;i++){
             codeQrGlobal.data[i] =(bool*) (qr->data[i]&1 ? true : false);
