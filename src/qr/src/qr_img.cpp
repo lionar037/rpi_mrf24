@@ -144,8 +144,9 @@ static QR_OLED_BUFF codeQrGlobal;
                 for (int x = 0; x < codeQrGlobal.width; x++)   {             
                 //if(codeQrGlobal.data[c++]){std::cout << "::";}
                 //else{std::cout << "  ";}
-                std::cout << (codeQrGlobal.data[y * codeQrGlobal.width + x] & true ? "::" : "  ");// std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
-                //}
+                std::cout << (codeQrGlobal.data[y * codeQrGlobal.width + x] & true ? "::" : "  ");
+                // std::cout << (qr->data[y * qr->width + x] & 1 ? "██" : "  ");
+                }
             std::cout << "\n";
             }
     }
