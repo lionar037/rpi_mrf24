@@ -64,9 +64,9 @@ void Run_t::start()
         if(flag==true){
                 //display->create(MRF24J40::msj_txt.c_str());
 
-                const auto x = QR::codeQrGlobal.height;
-                const auto y = QR::codeQrGlobal.width;
-                const auto z = QR::codeQrGlobal.data;
+                const auto x = codeQrGlobal.height;
+                const auto y = codeQrGlobal.width;
+                const auto z = codeQrGlobal.data;
                 const bool d = true;
                 //display->Graphics(x,y,d);
             }
