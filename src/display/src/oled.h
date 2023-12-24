@@ -13,17 +13,18 @@ namespace OLED{
     {
         explicit Oled_t();
         ~Oled_t();
-        //bool create(const char*)override;
-        bool        create(const std::string_view&)override;
-        bool        init();
-        void        End();
-        void        Setup(); 
-        void        Start();
-        void        Graphics(const int,const int,const bool);
+            //bool create(const char*)override;
+            bool            create(const std::string_view&)override;
+            bool            init();
+            void            End();
+            void            Setup(); 
+            void            Start();
+            void            Graphics(const int,const int,const bool);
+            
         private :
-        const uint16_t I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
-        const uint8_t I2C_Address   { 0x3C };
-        void printOled(std::string_view );
+            const uint16_t  I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
+            const uint8_t   I2C_Address   { 0x3C };
+            void            printOled(std::string_view );
     };
     #endif
 
