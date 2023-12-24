@@ -273,7 +273,7 @@ void Radio_t::handle_rx() {
         SET_COLOR(SET_COLOR_RED_TEXT);
         //files++;  files++;
         monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
-        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files,col+20);  //std::cout<<"\r\n";
+        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
     #endif
         RST_COLOR() ;   
         SET_COLOR(SET_COLOR_RED_TEXT);
