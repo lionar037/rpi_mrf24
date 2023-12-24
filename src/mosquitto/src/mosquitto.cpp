@@ -81,7 +81,7 @@ namespace MOSQUITTO{
         printf("\t\t\t\t\t\t\t\t\tPub : We are now connected to the broker!\n");
         }
 
-        const std::string text= "{\t temp : " + std::to_string(temperature_day) +" }";
+        const std::string text= "{ temp : " + std::to_string(temperature_day) +" }";
         
         rc = mosquitto_publish(mosq, NULL, "house/room", text.size() ,text.data() , 0, false);
 
