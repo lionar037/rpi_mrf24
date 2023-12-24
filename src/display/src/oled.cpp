@@ -142,6 +142,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         int l=0,Position=0;
         int module =0;
         static int move{0};
+        std::cout<<"imprime QR \n\n";
         for(int i=0;i<y*x;i++){
                 buff[l] |= (z[i] == '1' ? 1 : 0) << Position; 
                 std::cout<<  (z[i] == '1' ? "::" : " .") ;                                           
