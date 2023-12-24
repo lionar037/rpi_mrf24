@@ -60,7 +60,11 @@ void Run_t::start()
         #ifdef USE_MRF24_RX
         if(flag==true){
                 //display->create(MRF24J40::msj_txt.c_str());
-                display->Graphics(codeQrGlobal.height , codeQrGlobal.width ,codeQrGlobal.data);
+
+                const auto x = codeQrGlobal.height;
+                const auto y = codeQrGlobal.width;
+                const auto z = codeQrGlobal.data;
+                display->Graphics(x,y,z);
             }
         #endif                                
     }
