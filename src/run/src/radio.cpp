@@ -18,7 +18,7 @@ namespace MRF24J40{
 Mrf24j mrf24j40_spi ;
 //static bool m_flag_rx_enable_msj{false};
 
-extern std::string msj_txt="@ABCDEFGHIJKLMNO1234567890#";
+std::string msj_txt="@ABCDEFGHIJKLMNO1234567890#";
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 #ifdef USE_MRF24_TX
