@@ -90,7 +90,7 @@ void Oled_t::Setup()
 
         void Oled_t::Start()
         {
-                static int count { 0 };
+                
                 // Define a buffer to cover whole screen 
                 static uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
                         myOLED.buffer = (uint8_t*) &screenBuffer;  // set that to library buffer pointer
@@ -157,6 +157,11 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         myOLED.OLEDclearBuffer();  
         //myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
         myOLED.OLEDBitmap(move++, 0 , 16, 8, MsgIcon, false);
+        
+        myOLED.setCursor(36, 14);
+        //printf(" count : %d\n",count);
+        myOLED.print(reinterpret_cast<int>(count));
+        
         myOLED.OLEDupdate();
 }
 
