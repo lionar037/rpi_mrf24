@@ -21,7 +21,7 @@ Mrf24j mrf24j40_spi ;
 
 std::string msj_txt="@1234567890#";
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
-extern  QR::QR_OLED_BUFF codeQrGlobal;
+
 
 #ifdef USE_MRF24_TX
     std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
@@ -245,10 +245,12 @@ void Radio_t::handle_rx() {
         monitor->print("ASCII data (relevant data) :",files++,col); //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
         monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);        
-
-    std::cout<<"\n";   
-    for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-    std::cout<<"\n";   
+        monitor->print("\n",files++,col);
+        //std::cout<<"\n";   
+        monitor->print(mrf24j40_spi.get_rxinfo()->rx_data ,files++,col);
+        //for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
+        //std::cout<<"\n";   
+        monitor->print("\n",files++,col);
 
     #ifdef DBG_PRINT_GET_INFO 
       
