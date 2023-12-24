@@ -66,7 +66,7 @@ namespace MOSQUITTO{
         return 1;
     }
 
-std::cout << "\033[" + "0"+ ";" + "0" + "H" ;
+std::cout << "\033[" << "0" << ";" << "0" << "H" ;
 
         mosquitto_username_pw_set(mosq, "pi", "zero");
 
