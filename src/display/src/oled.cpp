@@ -153,7 +153,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 std::cout<< ((buff[l]>>Position)& 1  ? "::" : "  ") ;  
 
                 Position++;
-                if((!(i%x)&& !0x00)|| !(Position%8))
+                if((!(i%x)&& !0x00) || (!(Position%8)&& !0x00))
                 {
                         l++;
                         Position=0;                        
