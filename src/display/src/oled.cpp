@@ -148,8 +148,9 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
-myOLED.OLEDclearBuffer();  
-        myOLED.OLEDBitmap(0, 0 , 16, 8, MsgIcon, false);
+        myOLED.OLEDclearBuffer();  
+        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
+        //myOLED.OLEDBitmap(0, 0 , 16, 8, MsgIcon, false);
         myOLED.OLEDupdate();
 }
 
