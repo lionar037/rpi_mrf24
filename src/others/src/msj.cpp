@@ -37,7 +37,7 @@ std::vector<std::string> Msj_t::msj_memory;
     void Msj_t::printData ()
     {
         for (const auto& text : msj_memory) {
-            std::cout << text << std::endl;
+            std::cout << text ;
         }
         msj_memory.clear();
         return;
