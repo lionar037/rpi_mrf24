@@ -18,7 +18,7 @@ std::vector<std::string> Msj_t::msj_memory;
 
     void Msj_t::set(std::string_view msj_tmp){
         
-        msj_memory.push_back(msj_tmp);   
+        msj_memory.push_back(msj_tmp.data());   
         m_call++;     
         if(m_call>=MAX_LINES_SAVED)
         {
