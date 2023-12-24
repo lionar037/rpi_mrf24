@@ -196,6 +196,7 @@ void Radio_t::Start(bool& flag) {
         std::cout<<"\n";
         #ifdef ENABLE_QR
             qr_img->create(packet_data);
+            qr_img->print();
         #endif
 
     return ;    
@@ -290,6 +291,7 @@ void Radio_t::handle_rx() {
         
         monitor->maxLines(files);
         monitor->view();
+        
 
         return;    
     }
