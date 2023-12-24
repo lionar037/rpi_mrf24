@@ -159,7 +159,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         //myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
         myOLED.OLEDBitmap(move++, 0 , 16, 8, MsgIcon, false);
         
-        myOLED.setCursor(128-32, 64-16);
+        myOLED.setCursor(128-24, 64-12);
         myOLED.setFontNum(OLEDFontType_Wide);
         
         myOLED.print(reinterpret_cast<int>(count++));
