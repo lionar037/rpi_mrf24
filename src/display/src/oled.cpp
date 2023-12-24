@@ -144,7 +144,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         static int move{0};
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
         
-        for(int i=0 ; i<( (y+3)*(x+3) ); i++){
+        for(int i=0 ; i<( (y+2)*(x+2) ); i++){
                 //buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );                 
                 buff[l] |=   (w[i] & 1 ? 1 : 0) << Position ;                 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
