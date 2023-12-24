@@ -85,7 +85,7 @@ Radio_t::Radio_t()
 }
 
     bool Radio_t::Run(void){
-       
+       std::cout << "pasa por aqui \n";
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
         while(true){
