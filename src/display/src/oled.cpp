@@ -147,7 +147,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
                 //std::cout<<  (z[i] == '1' ? "::" : "  ") ;                                           
                 std::cout<<"::";
                 Position++; module ++;
-                if(module >=33){std::cout<<"\n";}
+                if(module >=33){std::cout<<"\n"; module=0;}
                 if (Position >= 8) {Position=0;l++;}                
                 
         }
