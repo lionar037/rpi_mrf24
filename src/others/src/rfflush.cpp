@@ -28,11 +28,11 @@ static DEVICES::Msj_t msj;
 
     void Fflush_t::print(std::string_view str_txt, int row, int col) 
     { 
-        #ifdef ENABLE_PRINTS_DBG  
+        
         std::string dat = "\033[" + std::to_string(row) + ";" + std::to_string(col) + "H" + str_txt.data();  
         msj.set(dat.data());
         //std::cout << "\033[" << row << ";" << col << "H"<<str_txt.data();    
-        #endif
+        
         return ;
     }
     void Fflush_t::maxLines(int x){
@@ -40,7 +40,9 @@ static DEVICES::Msj_t msj;
     }
 
     void Fflush_t::view(){
+        #ifdef ENABLE_PRINTS_DBG  
         msj.printData();
+        #endif
     }
 
 void Fflush_t::sendMsj(std::string_view str_txt, int row, int col) {

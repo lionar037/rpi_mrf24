@@ -286,6 +286,7 @@ void Radio_t::handle_rx() {
         msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
         
         monitor->maxLines(files);
+        monitor->view();
         return;    
     }
 
