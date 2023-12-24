@@ -65,7 +65,7 @@ void Run_t::start()
                 //display->create(MRF24J40::msj_txt.c_str());
 
                 auto x = codeQrGlobal.height;
-                auto y = codeQrGlobal.width;
+                //auto y = codeQrGlobal.width;
                 // const auto z = codeQrGlobal.data;
                 const bool d = true;
 std::cout << "codeQrGlobal.width : "<<codeQrGlobal.width<<"\n";
