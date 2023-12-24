@@ -121,7 +121,7 @@ namespace QR{
 
         for(int i=0;i<value;i++){
             codeQrGlobal.data[i] =(bool*) (qr->data[i]&1 ? true : false);
-            codeQrGlobal.bufferComplete[i] =(uint8_t*) qr->data[i];
+            codeQrGlobal.bufferComplete[i] = reinterpret_cast<const unsigned char*> qr->data[i];
         }
         
         // Guarda el código QR como imagen PNG
