@@ -125,10 +125,10 @@ void Oled_t::Setup()
             return;
     }
     
-void  Oled_t::Graphics(const int x,const int y,const bool* z){
+void  Oled_t::Graphics(const int x,const int y,const bool z){
         for(int i=0;i<y;i++){
                 for(int j=0;j<x;j++){
-                        std::cout<<*z++;
+                        //std::cout<<*z++;
                 }
 
         }
