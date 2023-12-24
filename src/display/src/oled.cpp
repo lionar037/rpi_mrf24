@@ -145,7 +145,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         //std::cout<<"imprime QR : " << std::to_string(x*y)<<"\n\n";
         for(int i=0 ; i<( y*x ); i++){
                 buff[l] |= (z[i] == '1' ? 1 : 0) << Position; 
-                std::cout<<  (w[i] & 1  ? "::" : " .") ;                                           
+                //std::cout<<  (w[i] & 1  ? "::" : " .") ;                                           
                 //std::cout<<"::";
                 Position++; module ++;
                 if(module >=33){std::cout<<"\n"; module=0;}
@@ -156,8 +156,8 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDclearBuffer();  
-        //myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
-        myOLED.OLEDBitmap(move++, 0 , 16, 8, MsgIcon, false);
+        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
+        //myOLED.OLEDBitmap(move++, 0 , 16, 8, MsgIcon, false);
         
         myOLED.setCursor(128-24, 64-12);
         myOLED.setFontNum(OLEDFontType_Wide);
