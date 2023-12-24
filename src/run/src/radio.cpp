@@ -16,7 +16,7 @@
 namespace MRF24J40{ 
 
 Mrf24j mrf24j40_spi ;
-//static bool m_flag_rx_enable_msj{false};
+
 
 std::string msj_txt="@1234567890#";
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
@@ -43,8 +43,7 @@ Radio_t::Radio_t()
     
     #ifdef ENABLE_INTERRUPT_MRF24
     
-    #else
-            //qr->create(QR_CODE_SRT);
+    #else            
             security    =   std::make_unique<SECURITY::Security_t >();
     #endif
           
@@ -89,16 +88,13 @@ Radio_t::Radio_t()
     bool Radio_t::Run(void){
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-        
-        
+                
         gpio->app(m_flag);                      
         
         interrupt_routine() ;
         
         Start(m_flag);        
         
-        // if (m_flag==false)return m_flag; 
-        // }
         return m_flag; 
     }
 
@@ -220,9 +216,7 @@ void Radio_t::handle_tx() {
 //@params
 //@params
  
-void Radio_t::handle_rx() {
-    
-    //m_flag_rx_enable_msj=false;
+void Radio_t::handle_rx() {        
     #ifdef MRF24_RECEIVER_ENABLE
     int files {POSITIOM_INIT_PRINTS};
     int col {0};
@@ -287,7 +281,7 @@ void Radio_t::handle_rx() {
         SET_COLOR(SET_COLOR_YELLOW_TEXT);
         std::cout<<temperatureToString.data(); 
         msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
-        //m_flag_rx_enable_msj=true;
+        
         return;    
     }
 

@@ -10,11 +10,26 @@ namespace DEVICES{
         return;
     }
 
-    void Msj_t::set(std::string& msj){
+    void Msj_t::set(std::string& msj_tmp){
+        
+        msj_memory.push(msj_tmp);
+        call++;
+        if(call=maxLines){
+            msj_memory.clear();
+        }
+        
         return;
     }    
-    
-    void Msj_t::printData (bool flag , std::string_view msj){
+    void Msj_t::setMaxLines(int max)
+    {
+        maxLines = max;
+    }
+    void Msj_t::printData ()
+        {
+        for (const auto& text : msj_memory) {
+            std::cout << text << std::endl;
+        }
+        msj_memory.clear();
         return;
     }
         
@@ -29,6 +44,12 @@ namespace DEVICES{
         qr_oled->create(msj);
         #endif
         return;
+    }
+
+    Msj_t::Msj_t
+    //: msj { std::vector<std::string> ()}
+    {
+
     }
         
 }

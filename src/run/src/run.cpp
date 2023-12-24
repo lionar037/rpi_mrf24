@@ -13,8 +13,7 @@
 
  
 namespace MRF24J40{
-    extern Mrf24j mrf24j40_spi ;
-    extern bool m_flag_rx_enable_msj;
+    extern Mrf24j mrf24j40_spi ;    
     extern std::string msj_txt;
 }
 
