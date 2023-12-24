@@ -157,7 +157,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 for (int j = 0; j < x; j++)   
                 {                                             
 
-                        std::cout << (buff[i * x + j] & true ? "::" : "  ");                
+                        std::cout << (w[i * x + j] & true ? "::" : "  ");                
                        // std::cout << ((buff[poss] & 1 << Position ) ? "::" : "  " );
                        // Position++;
                        // module ++;
