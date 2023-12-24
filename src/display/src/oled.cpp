@@ -141,19 +141,14 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         uint8_t buff [x*y];
         int l=0,Position=0;
         for(int i=0;i<y*x;i++){
-
-                      // buff[l] = z[i] << Position;
-                       buff[l] |= (z[i] == '1' ? 1 : 0) << Position;
-                       //buff[l] |= (z[i]&1 ? 1 : 0 ) << Position;
-                       //buff[l] |= z[i] << Position;
-                       Position++; 
-                       if (Position >= 8) {Position=0;l++;}                
+                buff[l] |= (z[i] == '1' ? 1 : 0) << Position;                                              
+                Position++; 
+                if (Position >= 8) {Position=0;l++;}                
         }
         
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
-
-
+myOLED.OLEDclearBuffer();  
         myOLED.OLEDBitmap(0, 0 , 16, 8, MsgIcon, false);
         myOLED.OLEDupdate();
 }
