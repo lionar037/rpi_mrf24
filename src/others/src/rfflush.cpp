@@ -28,8 +28,9 @@ static DEVICES::Msj_t msj;
 
     void Fflush_t::print(std::string_view str_txt, int row, int col) 
     { 
-        #ifdef ENABLE_PRINTS_DBG    
-        msj.set("\033[" + row + ";" + col + "H" + str_txt.data());
+        #ifdef ENABLE_PRINTS_DBG  
+        std::string dat = "\033[" + row + ";" + col + "H" + str_txt.data();  
+        msj.set(dat.data());
         //std::cout << "\033[" << row << ";" << col << "H"<<str_txt.data();    
         #endif
         return ;    
