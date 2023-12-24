@@ -114,7 +114,7 @@ namespace QR{
         
         codeQrGlobal.height = qr->width;
         codeQrGlobal.width  = qr->width;
-
+std::cout << "codeQrGlobal.height " <<  std::to_string(codeQrGlobal.height ) <<"\n";
         auto value =(codeQrGlobal.width*codeQrGlobal.height);        
         if(!codeQrGlobal.data)codeQrGlobal.data= new bool[value]; 
         if(!codeQrGlobal.bufferComplete)codeQrGlobal.bufferComplete= new uint8_t[value]; 
