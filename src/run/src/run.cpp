@@ -69,10 +69,7 @@ void Run_t::start()
                 //display->create(MRF24J40::msj_txt.c_str());
 
                 auto x = QR::codeQrGlobal.height;
-                auto y = QR::codeQrGlobal.width;
-                //const auto z = codeQrGlobal.data;
-                const bool d = true;
-        //std::cout << "codeQrGlobal.width : "<<std::to_string(QR::codeQrGlobal.width)<<"\n";
+                auto y = QR::codeQrGlobal.width;                            
 
                 oled->Graphics(x,y,QR::codeQrGlobal.data);
             }

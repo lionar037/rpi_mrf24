@@ -7,6 +7,7 @@
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
 #endif
+#include <display/src/Bitmap_test_data.h>
 
 //GLOBAL namespace OLED
 namespace OLED{
@@ -124,6 +125,19 @@ void Oled_t::Setup()
             
             return;
     }
+
+    void Test1(void)
+{
+        myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
+        myOLED.OLEDBitmap(0, 0 , 64, 64, bigImage, false);
+        myOLED.OLEDupdate();
+        
+        bcm2835_delay(5000);
+        myOLED.OLEDFillScreen(0x00, 0);
+        myOLED.OLEDclearBuffer();
+}
+
+
     
 void  Oled_t::Graphics(const int x,const int y,const bool& z){
         for(int i=0;i<y;i++){
@@ -132,7 +146,9 @@ void  Oled_t::Graphics(const int x,const int y,const bool& z){
                 }
 
         }
+        Test1();
 }
+
 
 
     Oled_t::Oled_t(){
