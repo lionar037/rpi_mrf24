@@ -245,12 +245,12 @@ void Radio_t::handle_rx() {
         SET_COLOR(SET_COLOR_CYAN_TEXT);
         monitor->print("ASCII data (relevant data) :",files++,col); //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
-        monitor->print("\t\tdata_length : " + std::to_string(recevive_data_length) ,files++,col);        
+        monitor->print("\tdata_length : " + std::to_string(recevive_data_length) ,files,col+24);        
         monitor->print("\n",files++,col);
-        //std::cout<<"\n";   
+        
         monitor->print(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data ),files++,col);
         //for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
-        //std::cout<<"\n";   
+        
         monitor->print("\n",files++,col);
 
     #ifdef DBG_PRINT_GET_INFO 
@@ -271,9 +271,9 @@ void Radio_t::handle_rx() {
     #endif    
         RST_COLOR() ; 
         SET_COLOR(SET_COLOR_RED_TEXT);
-        files++;  files++; // files++;
+        //files++;  files++;
         monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
-        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
+        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files,col+14);  //std::cout<<"\r\n";
     #endif
         RST_COLOR() ;   
         SET_COLOR(SET_COLOR_RED_TEXT);
