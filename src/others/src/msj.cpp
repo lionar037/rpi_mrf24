@@ -12,7 +12,7 @@ namespace DEVICES{
 
     void Msj_t::set(std::string& msj_tmp){
         
-        msj_memory.push(msj_tmp);
+        msj_memory.push_back(msj_tmp);
         m_call++;
         if(m_call=m_maxLines){
             msj_memory.clear();
