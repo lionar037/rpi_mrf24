@@ -128,6 +128,7 @@ void Oled_t::Setup()
 
     void Test1(void)
 {
+        uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDBitmap(0, 0 , 64, 64, bigImage, false);
         myOLED.OLEDupdate();
