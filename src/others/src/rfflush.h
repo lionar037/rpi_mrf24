@@ -12,7 +12,7 @@ struct Fflush_t
         /* data */        
                 
         void        print           ( std::string_view, int, int) ;
-        void        sendMsj         ( std::string_view , int , int ) ;
+        //void        sendMsj         ( std::string_view , int , int ) ;
         void        view            ( );
         void        maxLines        ( int );
 

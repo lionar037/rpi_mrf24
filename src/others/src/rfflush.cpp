@@ -22,13 +22,10 @@ static DEVICES::Msj_t msj;
     }
 
     void Fflush_t::view(){
+        
         //#ifdef ENABLE_PRINTS_DBG  
         msj.printData();
         //#endif
-    }
-
-    void Fflush_t::sendMsj(std::string_view str_txt, int row, int col) {
-
     }
     
 }

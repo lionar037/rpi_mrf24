@@ -242,7 +242,7 @@ void Radio_t::handle_rx() {
       #endif
     }
         //std::cout << "\n";
-        SET_COLOR(SET_COLOR_CYAN_TEXT);
+        
         monitor->print("ASCII data (relevant data) :",files++,col); //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi.rx_datalength();
         monitor->print("\tdata_length : " + std::to_string(recevive_data_length) ,files,col+36);        
@@ -256,33 +256,33 @@ void Radio_t::handle_rx() {
     #ifdef DBG_PRINT_GET_INFO 
       
         if(ADDRESS_LONG_SLAVE == add){
-            std::cout<< "\nmac es igual\n" ;
+            monitor->print("\nmac es igual\n" ,files++,col);
         }
         else{
-            std::cout<< "\nmac no es igual\n" ;
+            monitor->print("\nmac no es igual\n",files++ ,col) ;
         }
-        std::cout<< "\ndata_receiver->mac : " << std::hex<< add<<"\n";
-        std::cout<< "buffer_receiver->head : " << packet_data_tmp->head <<"\n";
+        monitor->print("\ndata_receiver->mac : " + std::to_string (add )+ "\n",files++ ,col);
+        monitor->print("buffer_receiver->head : " + packet_data_tmp->head + "n",files++ ,col);
         auto bs = (~packet_data_tmp->size)&0xffff;
-        std::cout<< "buffer_receiver->size : " << reinterpret_cast<const int *>(bs)<<"\n";
-        std::cout<< "data_receiver->data : " <<reinterpret_cast<const char *>(packet_data_tmp->data)<<"\n";
-        std::cout<<"\nbuff: \n"<<buff;
-        std::cout<<"\r\n";
+        monitor->print("buffer_receiver->size : " + reinterpret_cast<const int *>(bs) + "\n" ,files++,col);
+        monitor->print("data_receiver->data : " + reinterpret_cast<const char *>(packet_data_tmp->data) + "\n" ,files++,col);
+        monitor->print("\nbuff: \n" + buff ,files++,col);
+        monitor->print("\r\n" ,files++,col);
     #endif    
-        RST_COLOR() ; 
-        SET_COLOR(SET_COLOR_RED_TEXT);
-        //files++;  files++;
+        
+        
+        
         monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
         monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
     #endif
-        RST_COLOR() ;   
-        SET_COLOR(SET_COLOR_RED_TEXT);
+        
+        
         const int temperature = mosq->pub();
 
         const std::string temperatureToString=  "{ temp :" + std::to_string(temperature)+ " }";
 
         update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ); //update(tempString.data());
-        SET_COLOR(SET_COLOR_YELLOW_TEXT);
+        
         
         //std::cout<<temperatureToString.data(); 
         monitor->print(temperatureToString.data(),files++,col+36);

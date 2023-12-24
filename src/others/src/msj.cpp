@@ -1,6 +1,7 @@
 #include <vector>
 #include<string>
 #include <others/src/msj.h>
+#include <others/src/color.h>
 #include<app/src/config.h>
 
 namespace DEVICES{    
@@ -36,6 +37,7 @@ std::vector<std::string> Msj_t::msj_memory;
     
     void Msj_t::printData ()
     {
+        SET_COLOR(SET_COLOR_CYAN_TEXT);
         for (const auto& text : msj_memory) {
             std::cout << text ;
         }
