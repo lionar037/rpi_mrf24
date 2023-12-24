@@ -163,7 +163,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDclearBuffer();  
-        myOLED.OLEDBitmap(0, 0 , x, y, w, false);
+        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
         //myOLED.OLEDBitmap(move++, 0 , 16, 8, MsgIcon, false);
         
         myOLED.setCursor(128-24, 64-12);
