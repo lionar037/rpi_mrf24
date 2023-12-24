@@ -222,7 +222,7 @@ void Radio_t::handle_tx() {
  
 void Radio_t::handle_rx() {
     
-    m_flag_rx_enable_msj=false;
+    //m_flag_rx_enable_msj=false;
     #ifdef MRF24_RECEIVER_ENABLE
     int files {POSITIOM_INIT_PRINTS};
     int col {0};
