@@ -139,7 +139,7 @@ static QR_OLED_BUFF codeQrGlobal;
 
     void Qr_img_t::print(){
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";     
-        int c{0};   
+        
                 for (int y = 0; y < codeQrGlobal.height; y++) {
                 for (int x = 0; x < codeQrGlobal.width; x++)   {             
                 //if(codeQrGlobal.data[c++]){std::cout << "::";}
