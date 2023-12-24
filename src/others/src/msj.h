@@ -4,7 +4,7 @@
 #include <vector>
 #include <qr/src/qr.h>
 
-
+#DEFINE MAX_LINES_SAVED 12
 namespace DEVICES{
 
 
@@ -25,7 +25,7 @@ namespace DEVICES{
         bool                    m_flag { false };
         static std::vector<std::string> msj_memory{};
         static int m_call{ 0 };
-        static int m_maxLines{ 0 };
+        
     };
 
 

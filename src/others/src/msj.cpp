@@ -12,10 +12,10 @@ namespace DEVICES{
 
     void Msj_t::set(std::string& msj_tmp){
         
-        msj_memory.push_back(msj_tmp);
-        
-        m_call++;
-        if(m_call==m_maxLines){
+        msj_memory.push_back(msj_tmp);   
+        m_call++;     
+        if(m_call>=MAX_LINES_SAVED)
+        {
             msj_memory.clear();
         }
         
@@ -23,7 +23,7 @@ namespace DEVICES{
     }    
     void Msj_t::setMaxLines(int max)
     {
-        m_maxLines = max;
+        m_call = max;
     }
     
     void Msj_t::printData ()
