@@ -160,8 +160,8 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z){
         
         myOLED.setCursor(128-32, 64-16);
         myOLED.setFontNum(OLEDFontType_Wide);
-        //printf(" count : %d\n",count);
-        myOLED.print(reinterpret_cast<int>(count));
+        
+        myOLED.print(reinterpret_cast<int>(count++));
         
         myOLED.OLEDupdate();
 }
