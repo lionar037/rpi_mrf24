@@ -63,8 +63,8 @@
 //#define DBG_GPIO //DBG_GPIO
 //#define DBG_FILES //imprime Debugger en files
 //#define DBG_DISPLAY_OLED
-#define DBG_MRF
-#define ENABLE_PRINTS_DBG
+//#define DBG_MRF
+//#define ENABLE_PRINTS_DBG
 //#define DBG_PRINT_GET_INFO
 
 //config QR string 
