@@ -62,7 +62,7 @@ namespace MOSQUITTO{
         
         mosq = mosquitto_new("publisher-test", true, NULL);
     if (!mosq) {
-        fprintf(stderr, "\t\t\t\t\t\tError: Out of memory.\n");
+        fprintf(stderr, "\t\t\t\t\t\t\t\t\t\t\t\tError: Out of memory.\n");
         return 1;
     }
 
@@ -71,11 +71,11 @@ namespace MOSQUITTO{
         rc = mosquitto_connect(mosq, HOST_SERVER_MOSQUITTO , 1883, 60);
         
         if(rc != 0){
-            printf("\t\t\t\t\t\tClient could not connect to broker! Error Code: %d\n", rc);
+            printf("\t\t\t\t\t\t\t\t\t\t\t\tClient could not connect to broker! Error Code: %d\n", rc);
             mosquitto_destroy(mosq);
             return -1;
         }else{
-        printf("\t\t\t\t\t\tPub  \tWe are now connected to the broker!\n");
+        printf("\t\t\t\t\t\t\t\t\t\t\t\tPub  \tWe are now connected to the broker!\n");
         }
 
         const std::string text= "{\t temp : " + std::to_string(temperature_day) +" }";
@@ -83,9 +83,9 @@ namespace MOSQUITTO{
         rc = mosquitto_publish(mosq, NULL, "house/room", text.size() ,text.data() , 0, false);
 
         if (rc != 0) {
-            fprintf(stderr, "\t\t\t\t\t\tError publishing message! Error Code: %d\n", rc);
+            fprintf(stderr, "\t\t\t\t\t\t\t\t\t\t\t\tError publishing message! Error Code: %d\n", rc);
             } else {
-                printf("\t\t\t\t\t\tMessage published successfully!\t\tmsj: %d \n",conter_msj);
+                printf("\t\t\t\t\t\t\t\t\t\t\t\tMessage published successfully!\t\tmsj: %d \n",conter_msj);
             }
 
         mosquitto_disconnect(mosq);
