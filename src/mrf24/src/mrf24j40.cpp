@@ -180,8 +180,6 @@ namespace MRF24J40{
 		write_short(MRF_BBREG4, 0x5C);	// CSTH carrier sense threshold to turbo optimal
 	#endif
 
-
-
         // max power is by default.. just leave it...
         // Set transmitter power - See “REGISTER 2-62: RF CONTROL 3 REGISTER (ADDRESS: 0x203)”.
         write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
@@ -237,13 +235,25 @@ namespace MRF24J40{
 
         if (last_interrupt & MRF_I_TXNIF) {
             m_flag_got_tx++;
-            const auto tmp = read_short(MRF_TXSTAT);
+            const auto tx_status = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
-            tx_info.tx_ok = !(tmp & ~(1 << TXNSTAT));
-            tx_info.retries = tmp >> 6;
-            tx_info.channel_busy = (tmp & (1 << CCAFAIL));
+            tx_info.tx_ok = !(tx_status & ~(1 << TXNSTAT));
+            tx_info.retries = tx_status >> 6;
+            tx_info.channel_busy = (tx_status & (1 << CCAFAIL));
         }
     }
+
+
+
+		//	uint8_t TXSTAT = lowRead(READ_TXSR);							// read TXSTAT, transmit status register
+		//	RadioStatus.TX_FAIL    = TXSTAT & 1;						// read TXNSTAT (TX failure status)
+		//	RadioStatus.TX_RETRIES = TXSTAT >> 6;						// read TXNRETRY, number of retries of last sent packet (0..3)
+		//	RadioStatus.TX_CCAFAIL = TXSTAT & 0b00100000;				// read CCAFAIL
+
+		//	RadioStatus.TX_PENDING_ACK = 0;
+
+
+
 
 
 int Mrf24j::getStatusInfoTx(void)
@@ -451,10 +461,8 @@ void Mrf24j::settings_mrf(void){
         else{
             #ifdef DBG_MRF
             std::cout <<"es un mac de 16 bytes\n";
-        
-        src = address16_read();
-
             #endif
+            src = address16_read();
         }
         write_long(i++, src & 0xff); // src16 low
         write_long(i++, src >> 8); // src16 high
@@ -470,9 +478,9 @@ void Mrf24j::settings_mrf(void){
             write_long(i++, (src >> 48 ) & 0xff); 
             write_long(i++, (src >> 56 ) & 0xff); 
         }
-                // All testing seems to indicate that the next two bytes are ignored.
-                //2 bytes on FCS appended by TXMAC
-         i+=ignoreBytes;
+        // All testing seems to indicate that the next two bytes are ignored.
+        //2 bytes on FCS appended by TXMAC
+        i+=ignoreBytes;
 
         for(const auto& byte : pf) write_long(i++,static_cast<char>(byte));
         
@@ -505,32 +513,26 @@ void Mrf24j::settings_mrf(void){
 
 
 
+    void Mrf24j::RadioSetSleep(uint8_t powerState){
+        #ifdef ENABLE_SLEEP    
+    	if (powerState)
+    	{
+    		#if defined(ENABLE_PA_LNA)
+    			highWrite(TESTMODE, 0x08);      // Disable automatic switch on PA/LNA
+    			lowWrite(MRF_GPIODIR, 0x0F);	// Set GPIO direction to OUTPUT (control PA/LNA)
+    			lowWrite(MRF_GPIO, 0x00);     // Disable PA and LNA
+    		#endif
 
+    		lowWrite(MRF_SOFTRST, 0x04);		// power management reset to ensure device goes to sleep
+    		lowWrite(MRF_WAKECON,0x80);		// WAKECON; enable immediate wakeup
+    		lowWrite(MRF_SLPACK,0x80);		// SLPACK; force radio to sleep now
 
-
-
-
-
-void Mrf24j::RadioSetSleep(uint8_t powerState){
-#ifdef ENABLE_SLEEP    
-	if (powerState)
-	{
-		#if defined(ENABLE_PA_LNA)
-			highWrite(TESTMODE, 0x08);      // Disable automatic switch on PA/LNA
-			lowWrite(MRF_GPIODIR, 0x0F);	// Set GPIO direction to OUTPUT (control PA/LNA)
-			lowWrite(MRF_GPIO, 0x00);     // Disable PA and LNA
-		#endif
-
-		lowWrite(MRF_SOFTRST, 0x04);		// power management reset to ensure device goes to sleep
-		lowWrite(MRF_WAKECON,0x80);		// WAKECON; enable immediate wakeup
-		lowWrite(MRF_SLPACK,0x80);		// SLPACK; force radio to sleep now
-
-		RadioStatus.SLEEPING = 1;			// radio is sleeping
-	}	
-	else
-		initMRF24J40();		// could wakeup with WAKE pin or by toggling REGWAKE (1 then 0), but this is simpler
-#endif
-}
+    		RadioStatus.SLEEPING = 1;			// radio is sleeping
+    	}	
+    	else
+    		initMRF24J40();		// could wakeup with WAKE pin or by toggling REGWAKE (1 then 0), but this is simpler
+    #endif
+    }
 
 
 }//END NAMESPACE MRF24

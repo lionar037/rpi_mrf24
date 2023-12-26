@@ -147,10 +147,10 @@ void Radio_t::Start(bool& flag) {
                       
 //         const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful         
          const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
-          if (status==1) {//0 = Succeeded
-              std::cout<<"\tTX  Ok ,response ack \n";
-          } else {
+          if (status==1) {
               std::cout<<"\nTX failed\n";
+          } else {//0 = Succeeded
+              std::cout<<"\tTX  Ok ,response ack \n";
             //  std::cout<<" retries : "<<std::to_string(mrf24j40_spi.get_txinfo()->retries);
             //  std::cout<<"\n";
         }
@@ -201,6 +201,15 @@ void Radio_t::handle_tx() {
              std::cout<<" \n";
          }
     return;
+   
+		// if(RadioStatus.TX_PENDING_ACK)									// if we were waiting for an ACK
+		// {
+			// uint8_t TXSTAT = lowRead(READ_TXSR); //#define READ_TXSR 0x48							// read TXSTAT, transmit status register
+			// RadioStatus.TX_FAIL    = TXSTAT & 1;						// read TXNSTAT (TX failure status)
+			// RadioStatus.TX_RETRIES = TXSTAT >> 6;						// read TXNRETRY, number of retries of last sent packet (0..3)
+			// RadioStatus.TX_CCAFAIL = TXSTAT & 0b00100000;				// read CCAFAIL
+			// RadioStatus.TX_PENDING_ACK = 0;								// TX finished, clear that I am pending an ACK, already got it (if I was gonna get it)
+		// }
     }
 
  
@@ -256,10 +265,7 @@ void Radio_t::handle_rx() {
         monitor->print("data_receiver->data : " + reinterpret_cast<const char *>(packet_data_tmp->data) + "\n" ,files++,col);
         monitor->print("\nbuff: \n" + buff ,files++,col);
         monitor->print("\r\n" ,files++,col);
-    #endif    
-        
-        
-        
+    #endif            
         monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
         monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
     #endif
