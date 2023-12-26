@@ -1,5 +1,8 @@
 #include <iostream>
 #include <cstring>
+#include <algorithm>
+#include <cctype>
+
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <sys/socket.h>
@@ -59,6 +62,9 @@ namespace NETWORK{
                 char addressBuffer[INET_ADDRSTRLEN];
                 inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
     hname += addressBuffer;
+
+        std::transform(hname.begin(), hname.end(), hname.begin(), ::toupper);
+
                 std::cout << "Interface: " << ifa->ifa_name << "\tAddress: " << addressBuffer << std::endl;
             }
         }
