@@ -68,7 +68,7 @@ std::string addressBuffer2;
                 
             }
         }
-        
+        hname += "     ";
         hname += addressBuffer2;
         
 
