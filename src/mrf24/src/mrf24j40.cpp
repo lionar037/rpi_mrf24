@@ -260,6 +260,9 @@ namespace MRF24J40{
 
 int Mrf24j::getStatusInfoTx(void)
 {
+
+    const auto tx_status = read_short(MRF_TXSTAT);
+    std::cout<<"\t\read MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
     return tx_info.tx_ok ;
 }
     /**
