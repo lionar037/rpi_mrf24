@@ -61,13 +61,16 @@ namespace NETWORK{
                 tmpAddrPtr = &((struct sockaddr_in *)ifa->ifa_addr)->sin_addr;
                 char addressBuffer[INET_ADDRSTRLEN];
                 inet_ntop(AF_INET, tmpAddrPtr, addressBuffer, INET_ADDRSTRLEN);
-    hname += addressBuffer;
 
-        std::transform(hname.begin(), hname.end(), hname.begin(), ::toupper);
+
 
                 std::cout << "Interface: " << ifa->ifa_name << "\tAddress: " << addressBuffer << std::endl;
             }
         }
+        
+        hname += addressBuffer;
+
+        std::transform(hname.begin(), hname.end(), hname.begin(), ::toupper);
 
         if (ifAddrStruct != nullptr) freeifaddrs(ifAddrStruct);
 
