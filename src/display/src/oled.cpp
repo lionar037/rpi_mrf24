@@ -98,7 +98,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
                         //myOLED.setFontNum(OLEDFontType_Default);
                 	//myOLED.OLEDInvert(1); // Inverted
                         myOLED.setTextColor(WHITE);
-                        myOLED.setCursor(0, 10);
+                        myOLED.setCursor(12, 32);
 
                         myOLED.print("MRF24J40");
                         //myOLED.setCursor(36, 14);
