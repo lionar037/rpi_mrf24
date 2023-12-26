@@ -219,7 +219,7 @@ namespace MRF24J40{
             // printf(" frame length : %d \n",frame_length);
             // printf(" rx datalength : %d \n",rx_datalength());
 
-        for (uint8_t i = 0; i < frame_length ; i++) {//original
+        for (uint16_t i = 0; i < frame_length ; i++) {
            // for (uint16_t i = 0; i < frame_length + rx_datalength(); i++) {//original
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + m_bytes_MHR + i);
             }
@@ -233,11 +233,12 @@ namespace MRF24J40{
             interrupts();
         }
 
-        if (last_interrupt & MRF_I_TXNIF) {
+        //if (last_interrupt & MRF_I_TXNIF) 
+        {
             m_flag_got_tx++;
             const auto tx_status = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
-                std::cout<<"status : "<<std::to_string(tx_status)<<"\n";
+                std::cout<<"\t\tStatus : "<<std::to_string(tx_status)<<"\n";
             tx_info.tx_ok = !(tx_status & ~(1 << TXNSTAT));
             tx_info.retries = tx_status >> 6;
             tx_info.channel_busy = (tx_status & (1 << CCAFAIL));
