@@ -142,32 +142,30 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
         
-    for(int i=0 ; i<( (y)*(x) ); i++){buff[l++];}
+    for(int i=0 ; i<( (y)*(x) ); i++){buff[l++]=0x00;}
 l=0;
-        for(int i=0 ; i<( (y)*(x) ); i++){
-                //buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );    
-                ///buff[l]=0x00;             
-                //if(i<=y*x)
+        for(int i=0 ; i<( (y+2)*(x+2) ); i++){
+                //buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );              
 
-                buff[l] |=  (z[i] & 1 ? 1 : 0) << Position ;                 
+                buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ;                 
                 Position++;
-                if(!(i%8)&&i!=0){
-                        Position=0; 
-                        l++;
-                        std::cout<<std::to_string (buff[l])<<",";}
+               // if(!(i%8)&&i!=0){
+                //        Position=0; 
+                //        l++;
+                //        std::cout<<std::to_string (buff[l])<<",";}
 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 
                 //std::cout<< ((buff[l]>>Position)& 1  ? "::" : "  ") ;  
 
-                //Position++;
-                // if((!(i%x)&& !0x00) || (!(Position%8)&& !0x00))
-                // {
-                        // l++;
-                        // Position=0;                        
-                        // if(!(i%x))std::cout<<"\n";
-                        // 
-                // }
+                
+                if((!(i%x)&& !0x00) || (!(Position%8)&& !0x00))
+                {
+                        l++;
+                        Position=0;                        
+                        if(!(i%x))std::cout<<"\n";
+                        
+                }
                 
                 
 
@@ -178,7 +176,7 @@ l=0;
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDclearBuffer();  
-        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
+        myOLED.OLEDBitmap(0, 0 , x+2, y+2, buff, false);
         static int move{0};
         //myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
         
