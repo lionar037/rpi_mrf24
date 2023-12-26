@@ -238,7 +238,6 @@ namespace MRF24J40{
             m_flag_got_tx++;
             const auto tx_status = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
-              //  std::cout<<"\t\tStatus : "<<std::to_string(tx_status)<<"\n";
             tx_info.tx_ok = !(tx_status & ~(1 << TXNSTAT));
             tx_info.retries = tx_status >> 6;
             tx_info.channel_busy = (tx_status & (1 << CCAFAIL));
@@ -247,22 +246,11 @@ namespace MRF24J40{
 
 
 
-		//	uint8_t TXSTAT = lowRead(READ_TXSR);							// read TXSTAT, transmit status register
-		//	RadioStatus.TX_FAIL    = TXSTAT & 1;						// read TXNSTAT (TX failure status)
-		//	RadioStatus.TX_RETRIES = TXSTAT >> 6;						// read TXNRETRY, number of retries of last sent packet (0..3)
-		//	RadioStatus.TX_CCAFAIL = TXSTAT & 0b00100000;				// read CCAFAIL
-
-		//	RadioStatus.TX_PENDING_ACK = 0;
-
-
-
-
-
 int Mrf24j::getStatusInfoTx(void)
 {
 
     const auto tx_status = read_short(MRF_TXSTAT);
-    std::cout<<"\t\read MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
+    std::cout<<"\t\rRead MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
     return tx_info.tx_ok ;
 }
     /**
