@@ -152,7 +152,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 if(!(i%8)&&i!=0){
                         Position=0; 
                         l++;
-                        std::cout<<std::to_string (l)<<"\n";}
+                        std::cout<<std::to_string (buff[l])<<",";}
 
                 //std::cout<<  (w[i] & 1  ? "::" : "  ") ;                                                                           
                 
@@ -176,7 +176,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDclearBuffer();  
-        myOLED.OLEDBitmap(0, 0 , x, y, w, false);
+        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
         static int move{0};
         //myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
         
