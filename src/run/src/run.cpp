@@ -7,6 +7,7 @@
 #include <others/src/msj.h>
 #include <app/src/config.h>
 #include <mrf24/src/mrf24j40.h>
+#include <network/src/hostname.h>
 
 
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
@@ -34,6 +35,7 @@ void Run_t::start()
     try{
             auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
             auto msj { std::make_unique<DEVICES::Msj_t>()};  
+            auto ip { std::make_unique<NETWORK::Hostname_t>()};  
         
             #ifdef USE_MRF24_RX                 
             static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
@@ -42,13 +44,15 @@ void Run_t::start()
             //std::thread thread1([mrf = std::move(mrf)]() {});
             
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
+            
             #ifdef USE_MRF24_RX            
             std::thread thread3(&OLED::Oled_t::init , oled.get());
             #endif
-                                            
+            std::thread thread4(&NETWORK::Hostname_t::print, ip.get());                                
             //Esperar a que todos los hilos terminen
             //thread1.join();
             thread2.join();
+            thread4.join();
 
             #ifdef USE_MRF24_RX
             thread3.join();                                                        
