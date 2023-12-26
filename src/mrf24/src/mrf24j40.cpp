@@ -233,7 +233,7 @@ namespace MRF24J40{
             interrupts();
         }
 
-        if (last_interrupt & MRF_I_TXNIF) 
+        //if (last_interrupt & MRF_I_TXNIF) 
         {
             m_flag_got_tx++;
             const auto tx_status = read_short(MRF_TXSTAT);
