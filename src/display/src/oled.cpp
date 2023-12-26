@@ -147,7 +147,9 @@ l=0;
         for(int i=0 ; i<( (y+2)*(x+2) ); i++){
                 //buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );              
 
-                if(((x+2)*y)>i){buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ; }
+                if(((x+2)*y)>i){
+                                buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ; 
+                        }
                 Position++;
                // if(!(i%8)&&i!=0){
                 //        Position=0; 
@@ -159,7 +161,7 @@ l=0;
                 //std::cout<< ((buff[l]>>Position)& 1  ? "::" : "  ") ;  
 
                 
-                if((!(i%x)&& !0x00) || (!(Position%8)&& !0x00))
+                if((!(i%x)&& != 0 ) || (!(Position%8)&& != 0))
                 {
                         l++;
                         Position=0;                        
