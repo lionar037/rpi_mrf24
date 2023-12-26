@@ -120,13 +120,13 @@ bool Oled_t::create(const std::string_view& textOnOled){
 
 
         void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
-                uint8_t buff [(x+3)*(y+3)];
+                uint8_t buff [(x+3)*(y+3)]{0x00};
                 int l{-1},Position{0};
                 //int module =0;
 
                 //std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
 
-                for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}
+                //for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}
                 l=-1;
 
                 for( int i=0 ; i<(y)*(x) ; )
