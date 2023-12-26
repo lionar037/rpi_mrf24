@@ -54,7 +54,7 @@ void Run_t::start()
             thread2.join();
             //thread4.join();
             //ip->print();
-            ip->GetHostname(RF24J40::msj_txt);
+            ip->GetHostname(MRF24J40::msj_txt);
             #ifdef USE_MRF24_RX
             thread3.join();                                                        
             oled->create(MRF24J40::msj_txt.c_str());
