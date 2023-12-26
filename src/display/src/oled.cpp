@@ -148,7 +148,7 @@ l=0;
                 
                 if(i<(x*y)) buff[l]|=(z[i] & true ? 1 : 0) << Position ;                         
                 
-                if((!(i % 30) && (i!=0) ) || Position==0)
+                if((!(i % 28) && (i!=0) ) || Position==0)
                 {
                         l++;
                         Position=8;                                                                      
