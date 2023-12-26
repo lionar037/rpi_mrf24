@@ -161,7 +161,7 @@ l=0;
                 //std::cout<< ((buff[l]>>Position)& 1  ? "::" : "  ") ;  
 
                 
-                if((!(i%x)&& != 0 ) || (!(Position%8)&& != 0))
+                if((!(i%x)&& !0 ) || (!(Position%8)&& !0))
                 {
                         l++;
                         Position=0;                        
