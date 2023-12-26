@@ -57,7 +57,9 @@ void Run_t::start()
             #ifdef USE_MRF24_RX
             thread3.join();                                                        
             oled->create(MRF24J40::msj_txt.c_str());
-            while(true)
+            while(true);
+
+            
             #endif
             {                                
                 flag= mrf->Run();     
