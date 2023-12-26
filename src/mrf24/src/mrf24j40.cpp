@@ -237,6 +237,7 @@ namespace MRF24J40{
             m_flag_got_tx++;
             const auto tx_status = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
+                std::cout<<"status : "<<std::to_string(tx_status)<<"\n";
             tx_info.tx_ok = !(tx_status & ~(1 << TXNSTAT));
             tx_info.retries = tx_status >> 6;
             tx_info.channel_busy = (tx_status & (1 << CCAFAIL));
