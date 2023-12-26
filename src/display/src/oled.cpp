@@ -147,7 +147,7 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
                 //buff[l]=0x00;             
                 //if(i<=y*x)
 
-                buff[l] |=  (z[i] & 1 ? 1 : 0) << Position ;                 
+                buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ;                 
                 Position++;
                 if(!(i%8)&&i!=0){
                         Position=0; 
