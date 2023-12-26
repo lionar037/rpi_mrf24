@@ -152,7 +152,7 @@ void Radio_t::Start(bool& flag) {
               std::cout<<"\nTX failed\n";
           } 
           if (status==0)  {//0 = Succeeded
-              std::cout<<"\tTX  Ok ,response ack \n";
+              std::cout<<"\tTX ACK Ok   \n";
             //  std::cout<<" retries : "<<std::to_string(mrf24j40_spi.get_txinfo()->retries);
             //  std::cout<<"\n";
         }
@@ -198,9 +198,9 @@ void Radio_t::handle_tx() {
          if (status) {
              std::cout<<"\t\t\thandle_tx() : TX went ok, got ACK success ! \n";
          } else {
-             std::cout<<"\n\tTX failed after \n";
-             std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
-             std::cout<<" \n";
+            std::cout<<"\n\tTX failed after \n";
+            std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
+            std::cout<<" \n";
          }
     return;
    
