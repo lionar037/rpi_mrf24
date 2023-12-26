@@ -279,9 +279,7 @@ void Radio_t::handle_rx() {
         
         monitor->maxLines(files);
         monitor->view();
-        
-        
-
+                
         return;    
     }
 

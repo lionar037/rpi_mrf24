@@ -7,7 +7,7 @@
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
 #endif
-//#include <display/src/Bitmap_test_data.h>
+
 
 //GLOBAL namespace OLED
 namespace OLED{
@@ -126,7 +126,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
 
                 for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}l=-1;
 
-                for( int i=0 ; i<(y+2)*(x+2) ; )
+                for( int i=0 ; i<(y)*(x) ; )
                 {                
                         if((!(i % 29) ) || Position==0)                
                         {

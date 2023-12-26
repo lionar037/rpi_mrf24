@@ -24,60 +24,50 @@ namespace QR{
 }
 
 namespace RUN{
-    
     extern MRF24J40::Mrf24j mrf24j40_spi ;    
     
 void Run_t::start()
 {
-    bool flag{true};
-    
+        bool flag{true};
         system("clear"); 
     
-     try    {
-                auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
-                auto msj { std::make_unique<DEVICES::Msj_t>()};  
+    try{
+            auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
+            auto msj { std::make_unique<DEVICES::Msj_t>()};  
+        
+            #ifdef USE_MRF24_RX                 
+            static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+            #endif          
+                             
+            //std::thread thread1([mrf = std::move(mrf)]() {});
             
-                #ifdef USE_MRF24_RX                 
-                static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
-                #endif          
-                                 
-                //std::thread thread1([mrf = std::move(mrf)]() {});
-                
-                std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
+            std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
+            #ifdef USE_MRF24_RX            
+            std::thread thread3(&OLED::Oled_t::init , oled.get());
+            #endif
+                                            
+            //Esperar a que todos los hilos terminen
+            //thread1.join();
+            thread2.join();
 
-                #ifdef USE_MRF24_RX            
-                std::thread thread3(&OLED::Oled_t::init , oled.get());
-                #endif
-                                                
-                //Esperar a que todos los hilos terminen
-                //thread1.join();
-                thread2.join();
-
+            #ifdef USE_MRF24_RX
+            thread3.join();                                                        
+            oled->create(MRF24J40::msj_txt.c_str());
+            while(true)
+            #endif
+            {                                
+                flag= mrf->Run();     
                 #ifdef USE_MRF24_RX
-                thread3.join();                                
-                #endif
-
-    #ifdef USE_MRF24_RX     
-    oled->create(MRF24J40::msj_txt.c_str());
-    while(true)
-    #endif
-    {                                
-
-        flag= mrf->Run();     
-        #ifdef USE_MRF24_RX
-        if(flag==true){
-                //display->create(MRF24J40::msj_txt.c_str());
-
-                auto x = QR::codeQrGlobal.height;
-                auto y = QR::codeQrGlobal.width;                            
-                //std::cout<<"1 imprime QR : " << std::to_string(x*y)<<"\n\n";
-                oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
+                if(flag==true){                
+                    auto x = QR::codeQrGlobal.height;
+                    auto y = QR::codeQrGlobal.width;                                            
+                    oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
+                }
+                #endif                                
             }
-        #endif                                
-    }
 
                 
-            }
+        }//end try
         catch(...){
                     std::cerr<<"\nerror :(\n";
         }
