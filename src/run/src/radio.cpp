@@ -196,7 +196,7 @@ void Radio_t::Start(bool& flag) {
 void Radio_t::handle_tx() {    
     const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
          if (status) {
-             std::cout<<"\t\t\thandle_tx() : TX went ok, got ACK success ! \n";
+             std::cout<<"\thandle_tx() : TX went ok, got ACK success ! \n";
          } else {
             std::cout<<"\n\tTX failed after \n";
             std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
