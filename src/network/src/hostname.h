@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 namespace NETWORK
 {
@@ -9,6 +10,7 @@ Hostname_t()=default;
 ~Hostname_t()=default;
 
 void print();
+void GetHostname(std::string&);
 
 };
 
