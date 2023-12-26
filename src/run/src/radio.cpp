@@ -149,7 +149,8 @@ void Radio_t::Start(bool& flag) {
          const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
           if (status==1) {
               std::cout<<"\nTX failed\n";
-          } else {//0 = Succeeded
+          } 
+          if (status==0)  {//0 = Succeeded
               std::cout<<"\tTX  Ok ,response ack \n";
             //  std::cout<<" retries : "<<std::to_string(mrf24j40_spi.get_txinfo()->retries);
             //  std::cout<<"\n";
