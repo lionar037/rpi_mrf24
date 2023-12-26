@@ -135,7 +135,8 @@ bool Oled_t::create(const std::string_view& textOnOled){
                                 Position=8;                                                                      
                         }
                         Position--; 
-                        if(i<(x*y)) buff[l] |= (w[i] & true ? 1 : 0) << Position ;                                                                                    
+                        //if(i<(x*y)) 
+                        buff[l] |= (w[i] & true ? 1 : 0) << Position ;                                                                                    
                         i++;                                                                                
                 }        
                 uint8_t fullscreenBuffer[1024]; 
