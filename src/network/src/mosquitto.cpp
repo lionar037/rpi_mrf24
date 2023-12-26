@@ -5,7 +5,7 @@ extern "C"{
     #include <stdio.h>
     #include <stdlib.h>
 }
-#include <mosquitto/src/mosquitto.h>
+#include <network/src/mosquitto.h>
 //#include <app/src/config.h>
 
 

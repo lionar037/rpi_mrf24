@@ -9,7 +9,7 @@
     #include <display/src/oled.h>
 #endif
 #include <others/src/rfflush.h>
-#include <mosquitto/src/mosquitto.h>
+#include <network/src/mosquitto.h>
 
 
 
