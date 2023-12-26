@@ -75,7 +75,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
         {
                 myOLED.OLEDPowerDown(); //Switch off display
                 bcm2835_close(); // Close the library
-                printf("OLED End\r\n");
+                //printf("OLED End\r\n");
         return;
         }
 
@@ -112,6 +112,8 @@ bool Oled_t::create(const std::string_view& textOnOled){
                         // myOLED.OLEDContrast(0xFF);
                         // bcm2835_delay(1000);
                         // myOLED.OLEDContrast(0x81);
+
+                        while(1);
             
             return;
     }
