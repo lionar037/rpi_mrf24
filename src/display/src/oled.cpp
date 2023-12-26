@@ -147,7 +147,7 @@ l=0;
         for(int i=0 ; i<( (y+2)*(x+2) ); i++){
                 //buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );              
 
-                buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ;                 
+                if(i=<x*y){buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ; }
                 Position++;
                // if(!(i%8)&&i!=0){
                 //        Position=0; 
