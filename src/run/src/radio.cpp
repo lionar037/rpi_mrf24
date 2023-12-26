@@ -19,7 +19,7 @@ namespace MRF24J40{
 Mrf24j mrf24j40_spi ;
 
 
-std::string msj_txt="MRF24J40 RECEVIVED";
+std::string msj_txt="MRF24J40 RECEIVED";
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 
