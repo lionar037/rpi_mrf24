@@ -92,8 +92,9 @@ Radio_t::Radio_t()
         //system("clear");
                 
         gpio->app(m_flag);                              
-        interrupt_routine() ;        
+              
         Start(m_flag);                
+        interrupt_routine() ;  
         return m_flag; 
     }
 
