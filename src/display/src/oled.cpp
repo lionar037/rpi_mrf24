@@ -126,8 +126,8 @@ bool Oled_t::create(const std::string_view& textOnOled){
 
                 //std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
 
-                //for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}
-                //l=-1;
+                for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}
+                l=-1;
 
                 for( int i=0 ; i<(y)*(x) ; )
                 {                
