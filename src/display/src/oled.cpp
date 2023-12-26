@@ -149,7 +149,7 @@ l=0;
                 ///buff[l]=0x00;             
                 //if(i<=y*x)
 
-                buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ;                 
+                buff[l] |=  (z[i] & 1 ? 1 : 0) << Position ;                 
                 Position++;
                 if(!(i%8)&&i!=0){
                         Position=0; 
