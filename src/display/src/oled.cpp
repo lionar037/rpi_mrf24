@@ -113,7 +113,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
                         // bcm2835_delay(1000);
                         // myOLED.OLEDContrast(0x81);
 
-                        while(1);
+                       
             
             return;
     }
