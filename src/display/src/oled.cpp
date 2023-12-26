@@ -163,7 +163,7 @@ l=0;
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDclearBuffer();  
         static int move{0};
-        myOLED.OLEDBitmap(move++, 0 , x+3, y, buff, false);        
+        myOLED.OLEDBitmap(move++, 0 , x+2, y, buff, false);        
         //myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
         //myOLED.OLEDBitmap(move++, 0 , 32, 32, cuadrado, false);
         
