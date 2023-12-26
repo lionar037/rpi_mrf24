@@ -127,9 +127,7 @@ void Oled_t::Setup()
     }
 
     void Test1(void)
-{
-
-        
+{        
         //bcm2835_delay(1000);
         //myOLED.OLEDFillScreen(0x00, 0);
         //myOLED.OLEDclearBuffer();
@@ -141,10 +139,10 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t buff [(x+3)*(y+3)];
         int l=0,Position=0;
         int module =0;
-        static int move{0};
+        
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
         
-        for(int i=0 ; i<( (y+3)*(x+3) ); i++){
+        for(int i=0 ; i<( (y)*(x) ); i++){
                 //buff[l] |= (  (w[i] == '1' ? 1 : 0) >> Position );    
                 buff[l]=0b0;             
                 if(i<=y*x)buff[l] |=  (w[i] & 1 ? 1 : 0) << Position ;                 
@@ -170,8 +168,9 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t fullscreenBuffer[1024]; 
         myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
         myOLED.OLEDclearBuffer();  
-        //myOLED.OLEDBitmap(0, 0 , x+3, y+3, buff, false);
-        myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
+        myOLED.OLEDBitmap(0, 0 , x, y, buff, false);
+        static int move{0};
+        //myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
         
         myOLED.setCursor(128-24, 64-12);
         myOLED.setFontNum(OLEDFontType_Wide);
