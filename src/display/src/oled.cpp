@@ -7,7 +7,7 @@
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
 #endif
-#include <display/src/Bitmap_test_data.h>
+//#include <display/src/Bitmap_test_data.h>
 
 //GLOBAL namespace OLED
 namespace OLED{
@@ -17,8 +17,7 @@ SSD1306 myOLED(myOLEDwidth , myOLEDheight) ; // instantiate  an object
 static int count { 0 };
 
 bool Oled_t::create(const std::string_view& textOnOled){
-
-        //std::cout<<"texto : \t\t\t\t\t"<< textOnOled.data()<<"\n";
+        
         static int Step { 0 };        
         uint8_t  screenBuffer[myOLEDwidth * (myOLEDheight/8)+1]; 
                 
@@ -39,9 +38,6 @@ bool Oled_t::create(const std::string_view& textOnOled){
             return true;
         }
 
-
-
-
         bool Oled_t::init(){
                     if(!bcm2835_init())
                 {
@@ -50,9 +46,6 @@ bool Oled_t::create(const std::string_view& textOnOled){
                 }
 
                 Setup();
-
-        
-
         return true;
         }
 
@@ -68,23 +61,23 @@ bool Oled_t::create(const std::string_view& textOnOled){
         }
 
         // ===================== Function Space =====================
-void Oled_t::Setup() 
-{
-        bcm2835_delay(100);
-        myOLED.OLEDbegin(I2C_Speed, I2C_Address); // initialize the OLED
-        myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
-        bcm2835_delay(100);
-        //myOLED.OLEDclearBuffer();
-        return;
-}
+        void Oled_t::Setup() 
+        {
+                bcm2835_delay(100);
+                myOLED.OLEDbegin(I2C_Speed, I2C_Address); // initialize the OLED
+                myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
+                bcm2835_delay(100);
+                //myOLED.OLEDclearBuffer();
+                return;
+        }
 
-    void Oled_t::End()
-    {
-            myOLED.OLEDPowerDown(); //Switch off display
-            bcm2835_close(); // Close the library
-            printf("OLED End\r\n");
+        void Oled_t::End()
+        {
+                myOLED.OLEDPowerDown(); //Switch off display
+                bcm2835_close(); // Close the library
+                printf("OLED End\r\n");
         return;
-    }
+        }
 
 
 
@@ -114,11 +107,8 @@ void Oled_t::Setup()
                         myOLED.OLEDupdate();
                         count++;
                         //myOLED.setRotation(3);
-
-                        // myOLED.OLEDContrast(0x00);
-                        // bcm2835_delay(1000);
-                        // myOLED.OLEDContrast(0x80);
-                        // bcm2835_delay(1000);
+                        // myOLED.OLEDContrast(0x00);                        
+                        // myOLED.OLEDContrast(0x80);                        
                         // myOLED.OLEDContrast(0xFF);
                         // bcm2835_delay(1000);
                         // myOLED.OLEDContrast(0x81);
@@ -126,60 +116,40 @@ void Oled_t::Setup()
             return;
     }
 
-    void Test1(void)
-{        
-        //bcm2835_delay(1000);
-        //myOLED.OLEDFillScreen(0x00, 0);
-        //myOLED.OLEDclearBuffer();
-}
 
+        void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
+                uint8_t buff [(x+3)*(y+3)];
+                int l=0,Position=8;
+                int module =0;
 
-    
-void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
-        uint8_t buff [(x+3)*(y+3)];
-        int l=0,Position=8;
-        int module =0;
-        
-        std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
-        
-        for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}l=-1;
+                std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
 
-        for( int i=0 ; i<(y+2)*(x+2) ; )
-        {                
-                if((!(i % 29) ) || Position==0)
-                //if((!(i % 29) && (i!=0) ) || Position==0)
-                {
-                        l++;
-                        Position=8;                                                                      
-                }
-                Position--; 
+                for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}l=-1;
 
-                if(i<(x*y)) buff[l] |= (w[i] & true ? 1 : 0) << Position ;                         
+                for( int i=0 ; i<(y+2)*(x+2) ; )
+                {                
+                        if((!(i % 29) ) || Position==0)                
+                        {
+                                l++;
+                                Position=8;                                                                      
+                        }
+                        Position--; 
+                        if(i<(x*y)) buff[l] |= (w[i] & true ? 1 : 0) << Position ;                                                                                    
+                        i++;                                                                                
+                }        
+                uint8_t fullscreenBuffer[1024]; 
+                myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
+                myOLED.OLEDclearBuffer();  
+                static int move{0};
                 
-                
+                if(move==32)move=0;
 
-                           
-                i++;                                                                                
+                myOLED.OLEDBitmap(move++, 0 , x, y, buff, false);                
+                myOLED.setCursor(128-24, 64-12);
+                myOLED.setFontNum(OLEDFontType_Wide);
+                myOLED.print(reinterpret_cast<int>(count++));                
+                myOLED.OLEDupdate();
         }
-        
-
-
-        
-        uint8_t fullscreenBuffer[1024]; 
-        myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
-        myOLED.OLEDclearBuffer();  
-        static int move{0};
-        myOLED.OLEDBitmap(move++, 0 , x, y, buff, false);        
-        //myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
-        //myOLED.OLEDBitmap(move++, 0 , 32, 32, cuadrado, false);
-        
-        myOLED.setCursor(128-24, 64-12);
-        myOLED.setFontNum(OLEDFontType_Wide);
-        
-        myOLED.print(reinterpret_cast<int>(count++));
-        
-        myOLED.OLEDupdate();
-}
 
 
 
