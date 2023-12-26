@@ -144,11 +144,11 @@ void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         
     for(int i=0 ; i< (y+3)*(x+3); i++){buff[l++]=0x00;}
 l=0;
-        for(int i=0 ; i<( (y+3)*(x+3) ); i++){                
+        for(int i=0 ; i<( (y+2)*(x+2) ); i++){                
                 
                 if(i<(x*y)) buff[l]|=(z[i] & true ? 1 : 0) << Position ;                         
                 
-                if((!(i % 28) && (i!=0) ) || Position==0)
+                if((!(i % 29) && (i!=0) ) || Position==0)
                 {
                         l++;
                         Position=8;                                                                      
