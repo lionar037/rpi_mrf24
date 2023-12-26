@@ -120,7 +120,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
 
 
         void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
-                uint8_t buff [(x+3)*(y+3)]{0x00};
+                uint8_t buff [(x+3)*(y+3)]={0x00};
                 int l{-1},Position{0};
                 //int module =0;
 
