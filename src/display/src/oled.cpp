@@ -200,7 +200,7 @@ l=0;
         static int move{0};
         myOLED.OLEDBitmap(move++, 0 , x+2, y, buff, false);        
         //myOLED.OLEDBitmap(move++, 0 , 64, 64, bigImage, false);
-        myOLED.OLEDBitmap(move++, 0 , 32, 32, cuadrado, false);
+        //myOLED.OLEDBitmap(move++, 0 , 32, 32, cuadrado, false);
         
         myOLED.setCursor(128-24, 64-12);
         myOLED.setFontNum(OLEDFontType_Wide);
