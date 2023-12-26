@@ -48,11 +48,11 @@ void Run_t::start()
             #ifdef USE_MRF24_RX            
             std::thread thread3(&OLED::Oled_t::init , oled.get());
             #endif
-            //std::thread thread4(&NETWORK::Hostname_t::print, ip.get());                                
+            std::thread thread4(&NETWORK::Hostname_t::print, ip.get());                                
             //Esperar a que todos los hilos terminen
             //thread1.join();
             thread2.join();
-            //thread4.join();
+            thread4.join();
             //ip->print();
             ip->GetHostname(MRF24J40::msj_txt);
             #ifdef USE_MRF24_RX
