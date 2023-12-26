@@ -137,7 +137,7 @@ void Oled_t::Setup()
     
 void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
         uint8_t buff [(x+3)*(y+3)];
-        int l=0,Position=0;
+        int l=0,Position=7;
         int module =0;
         
         std::cout << "\033[" << "15" << ";" << "0" << "H" <<"\n";  
@@ -147,12 +147,13 @@ l=0;
         for(int i=0 ; i<( (y+3)*(x+3) ); i++){                
                 
                 if(i<(x*y)) buff[l]|=(w[i] & true ? 1 : 0) << Position ;                         
-                Position++;                
-                if((!(i % x) && (i!=0) ) || Position==8)
+                
+                if((!(i % x) && (i!=0) ) || Position==0)
                 {
                         l++;
-                        Position=0;                                                                      
-                }                                                                            
+                        Position=8;                                                                      
+                }
+                Position--;                                                                                            
         }
         
 
