@@ -91,8 +91,7 @@ Radio_t::Radio_t()
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
                 
-        gpio->app(m_flag);                              
-              
+        gpio->app(m_flag);                                  
         Start(m_flag);                
         interrupt_routine() ;  
         return m_flag; 
@@ -185,16 +184,16 @@ void Radio_t::Start(bool& flag) {
         fs->create(packet_data);
         std::cout<<"\n";
         #ifdef ENABLE_QR
-            qr_img->create(packet_data);
-            //qr_img->print();
+            qr_img->create(packet_data);            
         #endif
-
     return ;    
     }
 
 
 void Radio_t::handle_tx() {    
-    const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
+    //const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
+    const auto status = mrf24j40_spi.address16_read(0x48);
+
          if (status) {
              std::cout<<"\thandle_tx() : TX went ok, got ACK success ! \n";
          } else {
