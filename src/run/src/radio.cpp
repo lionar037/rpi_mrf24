@@ -145,8 +145,8 @@ void Radio_t::Start(bool& flag) {
                 mrf24j40_spi.send(ADDRESS_SLAVE, msj);                                
             #endif
                       
-//         const auto status = mrf24j40_spi.read_short(MRF_TXSTAT);//or TXNSTAT =0: Transmissionwassuccessful         
-         const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
+         const auto status = mrf24j40_spi.read_short(0x48);//or TXNSTAT =0: Transmissionwassuccessful         
+//         const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
           if (status==0) {
               std::cout<<"\nTX ACK failed\n";
           } 
