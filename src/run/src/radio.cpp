@@ -192,7 +192,7 @@ void Radio_t::Start(bool& flag) {
 
 void Radio_t::handle_tx() {    
     //const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
-    const auto status = mrf24j40_spi.address16_read(0x48);
+    const auto status = mrf24j40_spi.read_short(0x48);
 
          if (status) {
              std::cout<<"\thandle_tx() : TX went ok, got ACK success ! \n";
