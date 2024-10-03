@@ -4,7 +4,6 @@ node_modules/
 /config/config.yml
 build/
 obj/
-bin/
 .vscode/
 olds/
 move/

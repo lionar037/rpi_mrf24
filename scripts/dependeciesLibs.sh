@@ -16,9 +16,13 @@ sudo apt-get install -y libmysqlcppconn-dev
 #instal bcm2835 / 64 bits
 sudo apt-get install -y libbcm2835-dev
 
-do apt-get install qrencode libqrencode-dev -y
 # pip install qrcode
 
+sudo apt-get install qrencode libqrencode-dev -y
+
+sudo apt install libssl-dev -y
+
+sudo apt install libmosquitto-dev -y
 
 
 
