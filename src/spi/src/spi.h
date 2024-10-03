@@ -33,16 +33,16 @@ namespace SPI{
     void msj_fail();  
 
   private:
-
+ const uint32_t m_spi_speed { 0 } ;
     uint8_t m_tx_buffer[4]{ 0 };
     uint8_t m_rx_buffer[4]{ 0 };
 
     const uint32_t m_len_data  { 32 };
-    const uint32_t m_spi_speed { 0 } ;
-    
+//    const uint32_t m_spi_speed { 0 } ;
+
     int fs{0};
     int ret{0};
-        
+
     uint8_t looper{0};
     uint32_t scratch32{0};
     std::unique_ptr<struct spi_ioc_transfer >spi{nullptr} ;
