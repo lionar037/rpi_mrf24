@@ -10,3 +10,5 @@ move/
 data.txt
 data1.txt
 examples/
+usr/oled/olds/
+usr/oled/obj/
