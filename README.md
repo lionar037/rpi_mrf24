@@ -32,6 +32,8 @@ sudo apt-get install qrencode libqrencode-dev -y
 # pip install qrcode
 
 # Library PNG
+sudo apt install libpng16-16 -y
+
 sudo apt-get install libpng-dev -y
 
 sudo apt-get install zlib1g-dev -y

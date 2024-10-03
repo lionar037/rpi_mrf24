@@ -4,10 +4,47 @@
 sudo apt update -y
 sudo apt upgrade -y
 
+sudo apt install aptitude -y
+
 # Library PNG
 sudo apt-get install libpng-dev -y
-
+#sudo apt install libpng16-16 -y
 sudo apt-get install zlib1g-dev -y
+sudo aptitude install -y libpng-dev
+
+ARCH=$(uname -m)
+if [[ $ARCH == "armv7l" ]]; then 
+sudo apt install aptitude -y
+apt-cache policy zlib1g
+apt-cache policy zlib1g-dev
+sudo apt install zlib1g=1:1.2.11.dfsg-1+deb10u2
+sudo apt-get install zlib1g-dev --fix-missing
+sudo apt install libpng16-16 -y
+sudo aptitude install libpng-dev -y
+
+sudo apt install libpng16-16 -ysudo apt clean
+sudo apt autoclean
+sudo apt autoremove
+apt-mark showhold
+
+sudo apt remove zlib1g
+sudo apt install zlib1g
+
+
+
+
+cd /tmp
+wget http://download.sourceforge.net/libpng/libpng-1.6.39.tar.gz
+tar -xzvf libpng-1.6.39.tar.gz
+cd libpng-1.6.39
+./configure
+make
+sudo make install
+dpkg -l | grep libpng
+
+
+fi
+
 
 #install dependencies :
 #include <mysql_driver.h>

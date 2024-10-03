@@ -60,7 +60,7 @@ LIBS := $(CFLAGS)
 INCDIRS := -I$(SRC) -I$(LIBDIR)
 #LIBS		+= -lX11 -lXext
 
-LIBS += -pthread -lmysqlcppconn -lqrencode -lpng 
+LIBS += -pthread -lmysqlcppconn -lqrencode -lpng -lz
 LIBS += -lbcm2835 -lrt -lmosquitto -lcrypto
 
 
