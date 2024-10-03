@@ -12,3 +12,4 @@ data1.txt
 examples/
 usr/oled/olds/
 usr/oled/obj/
+bin/mrf24_app
