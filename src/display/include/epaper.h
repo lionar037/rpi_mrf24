@@ -1,6 +1,6 @@
 #pragma once
 #include <string_view>
-#include <app/src/work.h>
+#include <app/include/work.h>
 
 namespace EPAPER{
 struct Epaper_t : public SPI::Spi , WORK::Work_t{

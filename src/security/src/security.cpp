@@ -6,7 +6,7 @@
 #include <openssl/sha.h>
 #include <cstring>
 #include <termios.h>
-#include <security/src/security.h>
+#include <security/include/security.h>
 
 
 namespace SECURITY{

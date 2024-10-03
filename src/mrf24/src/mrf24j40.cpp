@@ -1,11 +1,11 @@
-#include <mrf24/src/mrf24j40_cmd.h>
-#include <mrf24/src/mrf24j40_settings.h>
-#include <mrf24/src/mrf24j40_control_register.h>
-#include <others/src/tyme.h>
-#include <app/src/config.h>
-#include <app/src/data_analisis.h>
-#include <mrf24/src/mrf24j40.h>
-#include <spi/src/spi.h>
+#include <mrf24/include/mrf24j40_cmd.h>
+#include <mrf24/include/mrf24j40_settings.h>
+#include <mrf24/include/mrf24j40_control_register.h>
+#include <others/include/tyme.h>
+#include <app/include/config.h>
+#include <app/include/data_analisis.h>
+#include <mrf24/include/mrf24j40.h>
+#include <spi/include/spi.h>
 
 
 namespace MRF24J40{
@@ -148,7 +148,7 @@ namespace MRF24J40{
         // ; // wait for soft reset to finish
     // }
 
-           #include <app/src/config.h>
+           #include <app/include/config.h>
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else

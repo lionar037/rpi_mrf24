@@ -69,11 +69,11 @@ LIBS += -lbcm2835 -lrt -lmosquitto -lcrypto
 
 ifeq ($(ARCH),x86_64)
     # Si es de 64 bits (x86_64), utilizar la biblioteca SSD1306_OLED_RPI
-    ##LIBS += -lSSD1306_OLED_RPI  
+    LIBS += -lSSD1306_OLED_RPI  
     $(info x86_64 detectado, 64 bits)
 else ifeq ($(ARCH),aarch64)
     # Si es de 64 bits (ARM), utilizar la biblioteca SSD1306_OLED_RPI
-    ##LIBS += -lSSD1306_OLED_RPI  
+    LIBS += -lSSD1306_OLED_RPI  
     $(info aarch64 detectado, 64 bits)
 else ifeq ($(ARCH),armv7l) # O cualquier otra arquitectura de 32 bits que necesites verificar
     # Si es de 32 bits (ARM), no usar la biblioteca SSD1306_OLED_RPI

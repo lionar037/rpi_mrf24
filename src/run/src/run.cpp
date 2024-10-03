@@ -2,12 +2,12 @@
 #include <thread>
 #include <vector>
 //#include <qr/src/qr.h>
-#include <run/src/run.h>
-#include <run/src/radio.h>
-#include <others/src/msj.h>
-#include <app/src/config.h>
-#include <mrf24/src/mrf24j40.h>
-#include <network/src/hostname.h>
+#include <run/include/run.h>
+#include <run/include/radio.h>
+#include <others/include/msj.h>
+#include <app/include/config.h>
+#include <mrf24/include/mrf24j40.h>
+#include <network/include/hostname.h>
 
 
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))

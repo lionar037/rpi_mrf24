@@ -1,15 +1,15 @@
 #include <string_view>
-#include <run/src/radio.h>
-#include <mrf24/src/mrf24j40.h>
-#include <qr/src/qr.h>
-#include <files/src/file.h>
-#include <others/src/color.h>
-#include <mrf24/src/mrf24j40_template.tpp>
+#include <run/include/radio.h>
+#include <mrf24/include/mrf24j40.h>
+#include <qr/include/qr.h>
+#include <files/include/file.h>
+#include <others/include/color.h>
+#include <mrf24/include/mrf24j40_template.tpp>
 #ifdef USE_OLED
-    #include <display/src/oled.h>
+    #include <display/include/oled.h>
 #endif
-#include <others/src/rfflush.h>
-#include <network/src/mosquitto.h>
+#include <others/include/rfflush.h>
+#include <network/include/mosquitto.h>
 
 
 

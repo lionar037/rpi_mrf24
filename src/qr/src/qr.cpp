@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cstring>
 //#include <tuple>
-#include <qr/src/qr.h>
-#include <others/src/color.h>
-#include <others/src/rfflush.h>
+#include <qr/include/qr.h>
+#include <others/include/color.h>
+#include <others/include/rfflush.h>
 #include <vector>
 
 namespace QR{

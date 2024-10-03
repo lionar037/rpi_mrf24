@@ -1,6 +1,6 @@
 
-#include <spi/src/spi.h>
-#include <display/src/epaper.h>
+#include <spi/include/spi.h>
+#include <display/include/epaper.h>
 
 namespace EPAPER{
 

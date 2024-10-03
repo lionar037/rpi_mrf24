@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <qr/src/qr.h>
+#include <qr/include/qr.h>
 extern "C"{
     #ifdef _WIN32
     #include <conio.h>

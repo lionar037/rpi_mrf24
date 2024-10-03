@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <ifaddrs.h>
-#include <network/src/hostname.h>
+#include <network/include/hostname.h>
 
 
 namespace NETWORK{

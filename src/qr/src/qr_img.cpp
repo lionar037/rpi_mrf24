@@ -7,11 +7,11 @@ extern "C"{
     #include <zlib.h>    
 }
 
-#include <others/src/rfflush.h>
-#include <others/src/color.h>
-#include <app/src/config.h>
-#include <others/src/tyme.h>
-#include <qr/src/qr.h>
+#include <others/include/rfflush.h>
+#include <others/include/color.h>
+#include <app/include/config.h>
+#include <others/include/tyme.h>
+#include <qr/include/qr.h>
 
 namespace QR{
 

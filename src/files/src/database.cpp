@@ -13,7 +13,7 @@
 #include <cppconn/statement.h>
 
 
-#include <files/src/database.h>
+#include <files/include/database.h>
 
 namespace DATABASE{
 

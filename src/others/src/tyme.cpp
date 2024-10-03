@@ -12,8 +12,8 @@
 #include <unistd.h>
 #include <netdb.h>
 
-#include <app/src/config.h>
-#include <others/src/tyme.h>
+#include <app/include/config.h>
+#include <others/include/tyme.h>
 
 //#include <unistd.h> // Libreria para usleep
 

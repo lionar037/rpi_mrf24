@@ -13,13 +13,13 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-#include <others/src/gpio.h>
-#include <files/src/database.h>
-#include <app/src/config.h>
-#include <app/src/work.h>
-#include <app/src/data_analisis.h>
-#include <qr/src/qr.h>
-#include <security/src/security.h>
+#include <others/include/gpio.h>
+#include <files/include/database.h>
+#include <app/include/config.h>
+#include <app/include/work.h>
+#include <app/include/data_analisis.h>
+#include <qr/include/qr.h>
+#include <security/include/security.h>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64

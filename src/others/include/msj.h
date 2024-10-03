@@ -2,10 +2,15 @@
 #include <iostream>
 #include <string>
 #include <string_view>
-
-#include <qr/src/qr.h>
+#include <qr/include/qr.h>
 
 #define MAX_LINES_SAVED 12
+
+
+//namespace {
+// struct QR::QR_OLED_BUFF;
+//}
+
 namespace DEVICES{
 
 

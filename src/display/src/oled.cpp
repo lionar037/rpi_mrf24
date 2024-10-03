@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-#include <display/src/oled.h>
+#include <display/include/oled.h>
 #ifdef USE_MRF24_RX
 #include <SSD1306_OLED.hpp>
 #endif

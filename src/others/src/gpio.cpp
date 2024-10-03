@@ -12,8 +12,8 @@ extern "C"{
 #include <thread>
 #include <string_view>
 #include <string>
-#include <others/src/gpio.h>
-#include <app/src/config.h>
+#include <others/include/gpio.h>
+#include <app/include/config.h>
 
 
 namespace GPIO{

@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <mosquitto.h>
-#include <app/src/config.h>
+#include <app/include/config.h>
 
 #ifdef ENABLE_MOSQUITTO    
     //#redefine HOST_SERVER_MOSQUITTO "192.168.1.38"

@@ -1,8 +1,8 @@
 #include <vector>
 #include<string>
-#include <others/src/msj.h>
-#include <others/src/color.h>
-#include<app/src/config.h>
+#include <others/include/msj.h>
+#include <others/include/color.h>
+#include<app/include/config.h>
 
 namespace DEVICES{    
 

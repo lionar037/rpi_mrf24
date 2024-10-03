@@ -4,8 +4,8 @@
 #include <vector>
 #include <string_view>
 #include <qrencode.h>
-#include <app/src/work.h>
-#include <app/src/data_analisis.h>
+#include <app/include/work.h>
+//#include <app/include/data_analisis.h>
 
 
 namespace TYME{

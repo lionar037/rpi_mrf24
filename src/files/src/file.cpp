@@ -10,9 +10,9 @@ extern "C"
   #include <stdlib.h>
   #include <stdint.h>
 }
-#include <files/src/file.h>
-#include <app/src/config.h>
-#include <others/src/color.h>
+#include <files/include/file.h>
+#include <app/include/config.h>
+#include <others/include/color.h>
 
 
 namespace FILESYSTEM{

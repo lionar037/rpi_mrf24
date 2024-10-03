@@ -1,10 +1,10 @@
 #include <iostream>
 #include <memory>
 #include <unistd.h>
-#include <others/src/rfflush.h>
-#include <others/src/color.h>
-#include <app/src/config.h>
-#include <others/src/msj.h>
+#include <others/include/rfflush.h>
+#include <others/include/color.h>
+#include <app/include/config.h>
+#include <others/include/msj.h>
 
 namespace FFLUSH{
 
