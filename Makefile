@@ -24,7 +24,7 @@ endef
 ################################################################################################
 ################################################################################################
 ################################################################################################v
-APP         := bin/app
+APP         := bin/mrf24_app
 CFLAGS     := -Wall -pedantic
 CCFLAGS     	:= $(CFLAGS) -std=c++17
 CC          := g++
@@ -78,6 +78,7 @@ else ifeq ($(ARCH),aarch64)
 else ifeq ($(ARCH),armv7l) # O cualquier otra arquitectura de 32 bits que necesites verificar
     # Si es de 32 bits (ARM), no usar la biblioteca SSD1306_OLED_RPI
     $(info armv7l detectado, 32 bits)
+    LIBS += -lSSD1306_OLED_RPI
     # No se agrega LIBS para 32 bits
 else
     # Si es una arquitectura de 32 bits no específica
