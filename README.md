@@ -36,6 +36,12 @@ sudo apt-get install libpng-dev -y
 
 sudo apt-get install zlib1g-dev -y
 
+#install dependencies :
+#include <mysql_driver.h>
+sudo apt-get install -y libmysqlcppconn-dev
+
+#instal bcm2835 / 64 bits
+sudo apt-get install -y libbcm2835-dev
 
 
 comunication
@@ -81,3 +87,7 @@ help Mosquitto IOT
 
 	#visual Studio Code para mac os
 	>Shell Command: Install 'code' command in PATH
+
+
+
+git remote set-url origin git@github.com:lionar037/rpi_mrf24.git

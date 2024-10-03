@@ -34,6 +34,17 @@ SRC         := src
 OBJ         := obj
 LIBDIR := src
 
+
+# Detectar si es de 32 o 64 bits
+ARCH := $(shell uname -m)
+
+# Compilar con clang++ si es de 64 bits
+ifeq ($(ARCH),x86_64)
+	CC := clang++
+else
+	CC := g++
+endif
+
 #LIBS	:= $(LIBDIR)/spi/lib_spi.a
 #LIBS += $(LIBDIR)/oled/lib_oled.a
 
@@ -50,7 +61,16 @@ INCDIRS := -I$(SRC) -I$(LIBDIR)
 
 LIBS += -pthread -lmysqlcppconn -lqrencode -lpng 
 LIBS += -lbcm2835 -lrt -lmosquitto -lcrypto
-LIBS += -lSSD1306_OLED_RPI 
+
+#LIBS += -lSSD1306_OLED_RPI 
+
+ifeq ($(ARCH),x86_64)
+	# Si es de 64 bits, mantener lSSD1306_OLED_RPI
+#	LIBS += -lSSD1306_OLED_RPI
+else
+	# Si es de 32 bits, no usar lSSD1306_OLED_RPI
+	 LIBS += -lSSD1306_OLED_RPI
+endif
 
 
 #para el uso commando es make DEBUG=1
