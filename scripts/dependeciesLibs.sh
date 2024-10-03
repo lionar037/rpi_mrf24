@@ -84,3 +84,8 @@ cd SSD1306_OLED_RPI
 #make 
 #sudo make install
 
+
+#git clone https://github.com/gavinlyonsrepo/Display_Lib_RPI.git
+#cd Display_Lib_RPI.git
+#make
+#sudo make install
