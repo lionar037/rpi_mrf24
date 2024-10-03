@@ -13,6 +13,13 @@ sudo apt-get install zlib1g-dev -y
 sudo aptitude install -y libpng-dev
 
 ARCH=$(uname -m)
+
+if [[ $ARCH == "aarch64" ]]; then 
+	echo -e " \nes de 64bits\n" 
+else 
+	echo -e "\nes de 32 bits\n"
+fi
+
 if [[ $ARCH == "armv7l" ]]; then 
 sudo apt install aptitude -y
 apt-cache policy zlib1g
