@@ -24,7 +24,9 @@ endef
 ################################################################################################
 ################################################################################################
 ################################################################################################v
-FOLDER :=	project
+PROJECT_NAME 	:=	project
+OLED 			:= 	usr
+
 
 APP         := bin/mrf24_app
 CFLAGS     := -Wall -pedantic
@@ -32,7 +34,7 @@ CCFLAGS     	:= $(CFLAGS) -std=c++17
 CC          := g++
 C			:= gcc
 MKDIR       := mkdir -p
-SRC         := $(FOLDER)
+SRC         := $(PROJECT_NAME)
 OBJ         := obj
 LIBDIR := src
 
@@ -97,9 +99,9 @@ else
 endif
 
 
-ALLCPPS 	:= $(shell find $(FOLDER)/ -type f -iname *.cpp)
+ALLCPPS 	:= $(shell find $(PROJECT_NAME)/ -type f -iname *.cpp)
 #ALLOCPPSOBJ  	:= $(patsubst %.cpp,%.o,$(ALLCPPS))
-ALLCS		:= $(shell find $(FOLDER)/ -type f -iname *.c)
+ALLCS		:= $(shell find $(PROJECT_NAME)/ -type f -iname *.c)
 #ALLCSOBJ	:= $(patsubst %.c,%.o,$(ALLCS))
 SUBDIRS 	:= $(shell find $(SRC) -type d)
 OBJSUBDIRS 	:= $(patsubst $(SRC)%,$(OBJ)%,$(SUBDIRS))
@@ -130,9 +132,16 @@ clean:
 
 cleanall: clean
 	$(RM) "./$(APP)"
+
+usr-libs:
+	$(MAKE) -C $(OLED)/
+
 libs:
 	$(MAKE)	-C $(LIBDIR)
+	$(MAKE) -C $(OLED)/
 libs-clean:
 	$(MAKE) -C $(LIBDIR) clean
+	$(MAKE) clean -C $(OLED)/
 libs-cleanall:
 	$(MAKE) -C $(LIBDIR) cleanall
+	$(MAKE) cleanall -C $(OLED)/
