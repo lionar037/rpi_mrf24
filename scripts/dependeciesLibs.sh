@@ -3,12 +3,11 @@
 
 sudo apt update -y
 sudo apt upgrade -y
+sudo aptitude install -y  curl
 
 sudo apt install aptitude -y
 
 # Library PNG
-sudo apt-get install libpng-dev -y
-#sudo apt install libpng16-16 -y
 sudo apt-get install zlib1g-dev -y
 sudo aptitude install -y libpng-dev
 
@@ -37,9 +36,6 @@ apt-mark showhold
 sudo apt remove zlib1g
 sudo apt install zlib1g
 
-
-
-
 cd /tmp
 wget http://download.sourceforge.net/libpng/libpng-1.6.39.tar.gz
 tar -xzvf libpng-1.6.39.tar.gz
@@ -49,17 +45,27 @@ make
 sudo make install
 dpkg -l | grep libpng
 
-
 fi
 
 
-#install dependencies :
-#include <mysql_driver.h>
+#install dependencies : #include <mysql_driver.h>
 sudo apt-get install -y libmysqlcppconn-dev
 
+if [[ $ARCH == "aarch64" ]]; then
 #instal bcm2835 / 64 bits
-sudo apt-get install -y libbcm2835-dev
+	sudo apt-get install -y libbcm2835-dev
+else
 
+cd /tmp
+#cd ~
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz  # Cambia a la última versión si es necesario
+tar xzf bcm2835-1.68.tar.gz
+cd bcm2835-1.68
+./configure
+make
+sudo make install
+
+fi
 # pip install qrcode
 
 sudo apt-get install qrencode libqrencode-dev -y
