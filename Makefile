@@ -24,13 +24,15 @@ endef
 ################################################################################################
 ################################################################################################
 ################################################################################################v
+FOLDER :=	project
+
 APP         := bin/mrf24_app
 CFLAGS     := -Wall -pedantic
 CCFLAGS     	:= $(CFLAGS) -std=c++17
 CC          := g++
 C			:= gcc
 MKDIR       := mkdir -p
-SRC         := src
+SRC         := $(FOLDER)
 OBJ         := obj
 LIBDIR := src
 
@@ -95,9 +97,9 @@ else
 endif
 
 
-ALLCPPS 	:= $(shell find src/ -type f -iname *.cpp)
+ALLCPPS 	:= $(shell find $(FOLDER)/ -type f -iname *.cpp)
 #ALLOCPPSOBJ  	:= $(patsubst %.cpp,%.o,$(ALLCPPS))
-ALLCS		:= $(shell find src/ -type f -iname *.c)
+ALLCS		:= $(shell find $(FOLDER)/ -type f -iname *.c)
 #ALLCSOBJ	:= $(patsubst %.c,%.o,$(ALLCS))
 SUBDIRS 	:= $(shell find $(SRC) -type d)
 OBJSUBDIRS 	:= $(patsubst $(SRC)%,$(OBJ)%,$(SUBDIRS))
