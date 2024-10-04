@@ -29,14 +29,14 @@ OLED 			:= 	usr
 
 
 APP         := bin/mrf24_app
-CFLAGS     := -Wall -pedantic
-CCFLAGS     	:= $(CFLAGS) -std=c++17
+CFLAGS     	:= -Wall -pedantic
+CCFLAGS     := $(CFLAGS) -std=c++17
 CC          := g++
 C			:= gcc
 MKDIR       := mkdir -p
 SRC         := $(PROJECT_NAME)
 OBJ         := obj
-LIBDIR := src
+LIBDIR 		:= $(PROJECT_NAME)
 
 
 # Detectar si es de 32 o 64 bits
@@ -44,7 +44,7 @@ ARCH := $(shell uname -m)
 
 # Compilar con clang++ si es de 64 bits
 ifeq ($(ARCH),x86_64)
-#	CC := clang++
+	CC := g++
 	CC := g++
 else
 	CC := g++
@@ -136,12 +136,17 @@ cleanall: clean
 usr-libs:
 	$(MAKE) -C $(OLED)/
 
+oled:
+	$(MAKE) -C $(OLED)/	
+
 libs:
-	$(MAKE)	-C $(LIBDIR)
+	$(MAKE)	-C $(LIBDIR)/
 	$(MAKE) -C $(OLED)/
+
 libs-clean:
-	$(MAKE) -C $(LIBDIR) clean
+	$(MAKE) clean -C $(LIBDIR)/ 
 	$(MAKE) clean -C $(OLED)/
+
 libs-cleanall:
-	$(MAKE) -C $(LIBDIR) cleanall
-	$(MAKE) cleanall -C $(OLED)/
+	$(MAKE) cleanall -C $(LIBDIR)/ 
+

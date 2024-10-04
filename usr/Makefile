@@ -1,13 +1,12 @@
 .PHONY: all clean cleanall
 
 all:
-        $(MAKE) -C oled/
-		sudo $(MAKE) install -C oled/
-
+	sudo $(MAKE) -C oled/
+	sudo $(MAKE) install -C oled/
 clean:
-        $(MAKE) -C oled clean
+	sudo $(MAKE) clean -C oled/ 
 
-cleanall:
-        $(MAKE) -C oled cleanall
+#cleanall:
+#	sudo $(MAKE) cleanall -C oled/ 
 
 
