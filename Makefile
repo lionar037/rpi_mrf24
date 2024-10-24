@@ -11,9 +11,7 @@ define COMPILE
 $(2) : $(3) $(4)
 	$(1) -c -o $(2) $(3) $(5)
 endef
-#$(1)   Source file
-#$(1)   src/tinyPTC/xbcde.cpp
-#$(1)   obj/tinyPTC/xbcde.o
+
 define C2O
 $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1))))
 endef
@@ -50,15 +48,6 @@ else
 	CC := g++
 endif
 
-#LIBS	:= $(LIBDIR)/spi/lib_spi.a
-#LIBS += $(LIBDIR)/oled/lib_oled.a
-
-#LIBS += $(LIBDIR)/others/lib_others.a
-#LIBS += $(LIBDIR)/files/lib_files.a
-#LIBS += $(LIBDIR)/app/lib_app.a
-#LIBS += $(LIBDIR)/qr/lib_qr.a
-#LIBS += $(LIBDIR)/mrf24/lib_mrf24.a
-
 
 LIBS := $(CFLAGS)
 INCDIRS := -I$(SRC) -I$(LIBDIR)
@@ -74,21 +63,20 @@ LIBS += -lbcm2835 -lrt -lmosquitto -lcrypto
 ifeq ($(ARCH),x86_64)
     # Si es de 64 bits (x86_64), utilizar la biblioteca SSD1306_OLED_RPI
     LIBS += -lSSD1306_OLED_RPI  
-    $(info x86_64 detectado, 64 bits)
+    $(info x86_64 detectado OS de 64 bits)
 else ifeq ($(ARCH),aarch64)
     # Si es de 64 bits (ARM), utilizar la biblioteca SSD1306_OLED_RPI
     LIBS += -lSSD1306_OLED_RPI  
-    $(info aarch64 detectado, 64 bits)
+    $(info aarch64 detectado OS de 64 bits)
 else ifeq ($(ARCH),armv7l) # O cualquier otra arquitectura de 32 bits que necesites verificar
     # Si es de 32 bits (ARM), no usar la biblioteca SSD1306_OLED_RPI
-    $(info armv7l detectado, 32 bits)
+    $(info armv7l detectado OS de 32 bits)
     LIBS += -lSSD1306_OLED_RPI
     # No se agrega LIBS para 32 bits
 else
     # Si es una arquitectura de 32 bits no específica
-    $(info 32 bits detectado)
+    $(info OS de 32 bits detectado)
 endif
-
 
 
 #para el uso commando es make DEBUG=1

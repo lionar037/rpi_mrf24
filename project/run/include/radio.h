@@ -1,10 +1,6 @@
 #pragma once
 #include <iostream>
-#include <memory>
-#include <vector>
-#include <sstream>
-#include <iomanip>
-#include <functional>
+
 
 #include <mysql_driver.h>
 #include <mysql_connection.h>
@@ -13,13 +9,19 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-#include <others/include/gpio.h>
+#include <gpio/include/gpio.h>
 #include <files/include/database.h>
 #include <app/include/config.h>
 #include <app/include/work.h>
 #include <app/include/data_analisis.h>
 #include <qr/include/qr.h>
 #include <security/include/security.h>
+
+#include <memory>
+#include <vector>
+#include <sstream>
+#include <iomanip>
+#include <functional>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -74,7 +76,7 @@ namespace MRF24J40{
             #endif
         #endif             
         struct DATA::packet_tx                  buffer_transmiter{};
-        std::unique_ptr <GPIO::Gpio> gpio{};    
+        std::unique_ptr <GPIO::Gpio_t> gpio{};    
         static std::unique_ptr < SECURITY::Security_t >     security;
         static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;                    
     };

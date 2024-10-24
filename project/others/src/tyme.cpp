@@ -155,4 +155,21 @@ namespace TYME{
 
         return 0;
     }
+
+
+
+
+    void delay(int ms){
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms));  
+    }
+    void delay_us(int us){
+        std::this_thread::sleep_for(std::chrono::microseconds (us)); 
+    }
+    void delay_ms(int ms){
+        std::this_thread::sleep_for(std::chrono::milliseconds(ms));  
+    }
+    void delay_sec   ( int sec){
+        std::this_thread::sleep_for(std::chrono::seconds(sec));  
+    }
+
 }

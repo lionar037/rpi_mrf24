@@ -1,5 +1,24 @@
+//////////////////////////////////////////////////////////////////////////////
+//     
+//          filename            :   spi.cpp
+//          License             :   GNU 
+//          Author              :   Lio
+//          Change History      :
+//          Processor           :   ARM
+//          Hardware            :		
+//          Complier            :   ARM
+//          Company             :
+//          Dependencies        :
+//          Description         :
+//          brief               :	
+//
+//////////////////////////////////////////////////////////////////////////////
+
 #include <spi/include/spi.h>
 #include <app/include/config.h>
+
+#include <cstring>
+#include <iomanip>
 
 #define SPI_DEVICE  "/dev/spidev0.0"
 
@@ -79,9 +98,11 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     m_rx_buffer[2]=m_rx_buffer[3]=0x00;
     memcpy(m_tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
-    if((cmd>>8&0xff)==0x00)
+    if((cmd>>8&0xff)==0x00){
+      #ifdef DBG
         printDBGSpi(); 
-      //if(ret != 0) return rx_buffer[1];  
+      #endif
+    }
   return m_rx_buffer[1];
   }
 
@@ -104,8 +125,6 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
       return;
     }
 
-// uint8_t tx_buffer[4]{nullptr};
-// uint8_t rx_buffer[4]{nullptr};
 
     Spi::Spi()
     : m_spi_speed ( SPI_SPEED )
@@ -128,6 +147,36 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
       #endif
       exit(EXIT_SUCCESS);
     }
+
+  uint32_t Spi::get_spi_speed(){
+  return m_spi_speed;
+  }
+
+  const uint8_t Spi::Transfer1bytes(const uint8_t cmd){
+      if (fs < 0) {
+        std::cerr << "SPI device not open." << std::endl;
+        return -1;
+      }
+        std::memset(m_rx_buffer, 0xff, LARGE_SECTOR_SIZE);
+        std::memset(m_tx_buffer, 0xff, LARGE_SECTOR_SIZE);
+        std::memset(spi.get(), 0, sizeof(struct spi_ioc_transfer));  // Limpiar la estructura a la que apunta spi
+        spi->len = 1;
+        m_tx_buffer[0] = cmd;
+        spi->tx_buf = reinterpret_cast <unsigned long> (m_tx_buffer);
+        spi->rx_buf = reinterpret_cast <unsigned long> (m_rx_buffer);
+        spi->speed_hz = get_spi_speed();
+        spi->bits_per_word = 8;
+        spi->cs_change = 0;
+        spi->delay_usecs = 0;
+
+        int ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
+        if (ret < 0) {
+            std::cerr << "Error en Transfer1bytes: " << strerror(errno) << std::endl;
+            return -1;
+        }
+        return 0;
+    }//end cmd_byte_spi
+
 
 
 }//end namespace SPI_H
