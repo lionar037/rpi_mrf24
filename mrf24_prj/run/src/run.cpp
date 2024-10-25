@@ -47,7 +47,7 @@ int Run_t::start(){
                 TYME::delay_ms(3000);
                 //bcm2835_delay(900);
                 #endif  
-/*
+
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_MRF24_RX            
             std::thread thread3(&OLED::Oled_t::init , oled.get());
@@ -65,16 +65,16 @@ int Run_t::start(){
             while(true)
             #endif
             {                                
-                flag= mrf->Run();     
+                flag= zigbee->Run();     
                 #ifdef USE_MRF24_RX
                 if(flag==true){                
-                    auto x = QR::codeQrGlobal.height;
-                    auto y = QR::codeQrGlobal.width;                                            
+                    const auto x = QR::codeQrGlobal.height;
+                    const auto y = QR::codeQrGlobal.width;                                            
                     oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
                 }
                 #endif                                
             }
-*/
+
                 
         }//end try
         catch(...){
