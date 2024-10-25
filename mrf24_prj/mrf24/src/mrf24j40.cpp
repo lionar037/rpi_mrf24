@@ -6,10 +6,10 @@
 #include <app/include/data_analisis.h>
 #include <mrf24/include/mrf24j40.h>
 #include <spi/include/spi.h>
-//#include <app/include/debugger.h>
 
 namespace DEBUGGER{
     extern void debug();
+    extern void debug(std::string_view);
 }
 
 namespace MRF24J40{
@@ -41,8 +41,12 @@ namespace MRF24J40{
 
     void Mrf24j::write_short(const uint8_t address,const uint8_t data) {
             // 0 for top short address, 1 bottom for write
+DEBUGGER::debug("write_short");
+
     const uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
+DEBUGGER::debug("write_short");
         prt_spi->Transfer2bytes(lsb_tmp);
+DEBUGGER::debug("write_short");
         return;
     }
 
