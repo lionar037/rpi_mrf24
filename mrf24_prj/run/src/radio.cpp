@@ -249,7 +249,8 @@ void Radio_t::handle_rx() {
         monitor->print("\tdata_length : " + std::to_string(recevive_data_length) ,files,col+36);        
         monitor->print("\n",files++,col);
         
-        monitor->print(reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data ),files++,col);
+        const auto fil0=reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data );
+        monitor->print( fil0 , files++ , col );
         //for (auto& byte : mrf24j40_spi->get_rxinfo()->rx_data)std::cout<<byte;
         
         monitor->print("\n",files++,col);
@@ -263,15 +264,18 @@ void Radio_t::handle_rx() {
         else{
             monitor->print("\nmac no es igual\n",files++ ,col) ;
         }
-        monitor->print("\ndata_receiver->mac : " + std::to_string (m_add )+ "\n",files++ ,col);
+        std::string txt ="\ndata_receiver->mac : " + std::to_string (m_add )+ "\n" ;
 
-auto packet_data_tmp = buffer_transmiter;
+        monitor->print(txt.c_str() , files++ ,col);
 
-        monitor->print("buffer_receiver->head : " + packet_data_tmp.head + "\n",files++ ,col);
+        auto packet_data_tmp = buffer_transmiter;
+
+        txt ="buffer_receiver->head : " + packet_data_tmp.head + "\n";
+        monitor->print(txt.c_str() , files++ ,col);
         
         auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no 
         
-        std::string txt = "buffer_receiver.size : " + std::to_string(bs) + "\n" ;
+        txt = "buffer_receiver.size : " + std::to_string(bs) + "\n" ;
         
         monitor->print( txt.c_str() ,files++,col);
         //monitor->print("data_receiver.data : " + reinterpret_cast<const char *>(packet_data_tmp.data) + "\n" ,files++,col);
