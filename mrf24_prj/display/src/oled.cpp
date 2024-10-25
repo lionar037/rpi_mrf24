@@ -24,10 +24,16 @@ namespace OLED{
 		i2c_debug_(false), 
 		screenBuffer_(nullptr),
 		myOLED(width, height) // Inicializar el objeto SSD1306 aquí
-    {}
+    {
+		#ifdef DBG
+		std::cout<<"    Oled_t::Oled_t(const uint16_t width, const uint16_t height , const uint16_t i2c_speed , const uint8_t i2c_address)
+\n";
+		#endif
+	}
 
     Oled_t::~Oled_t() {
         powerDown();
+		std::cout<<"    Oled_t::~Oled_t()\n";
     }
 
     bool Oled_t::begin(bool i2c_debug) {
