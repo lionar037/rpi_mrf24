@@ -24,9 +24,16 @@ namespace RUN{
                 oled->clearScreen();
                 oled->displayText("MRF24J40 ", 0, 0);
                     TYME::delay_ms(3000);
-
+            #ifdef DBG
+                std::cout<<"Runt_t::Runt_t() \n";
+            #endif
         }
-        ~Run_t(){std::cout<<"~Runt_t() \n";}//=default;
+
+        ~Run_t(){
+            #ifdef DBG
+            std::cout<<"~Runt_t() \n";
+            #endif
+        }
         int start();
     };
 }
