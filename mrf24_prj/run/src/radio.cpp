@@ -19,6 +19,7 @@ namespace MRF24J40{
 std::string msj_txt; //es static              
 uint64_t m_add; 
 
+struct DATA::packet_tx buffer_transmiter;
 
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
