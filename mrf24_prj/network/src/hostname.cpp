@@ -1,13 +1,14 @@
-#include <iostream>
-#include <cstring>
-#include <algorithm>
-#include <cctype>
 
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <sys/socket.h>
 #include <ifaddrs.h>
 #include <network/include/hostname.h>
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <cctype>
+
 
 
 namespace NETWORK{

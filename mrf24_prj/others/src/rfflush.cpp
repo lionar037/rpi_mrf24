@@ -23,9 +23,9 @@ static DEVICES::Msj_t msj;
 
     void Fflush_t::view(){
         
-        //#ifdef ENABLE_PRINTS_DBG  
-        msj.printData();
-        //#endif
+        #ifdef ENABLE_PRINTS_DBG  
+            msj.printData();
+        #endif
     }
     
 }

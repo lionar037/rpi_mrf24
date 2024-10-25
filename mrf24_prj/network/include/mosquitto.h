@@ -4,7 +4,8 @@
 #include <app/include/config.h>
 
 #ifdef ENABLE_MOSQUITTO    
-    //#redefine HOST_SERVER_MOSQUITTO "192.168.1.38"
+    //#redefine HOST_SERVER_MOSQUITTO "192.168.1.41"
+    //#define HOST_SERVER_MOSQUITTO "raspberry.local"
 #else 
     #define HOST_SERVER_MOSQUITTO "mosquitto.local"
 #endif

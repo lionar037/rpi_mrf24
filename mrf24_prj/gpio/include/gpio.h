@@ -28,8 +28,16 @@
 
 namespace GPIO {
 
-constexpr int IN_INTERRUPT = 531;
-constexpr int OUT_INTERRUPT = 532;
+#if defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4)
+    // Si es de 32 bits
+    constexpr int IN_INTERRUPT = 19;
+    constexpr int OUT_INTERRUPT = 20;
+#else
+    constexpr int IN_INTERRUPT = 531;
+    constexpr int OUT_INTERRUPT = 532;
+#endif
+
+
 constexpr int READING_STEPS = 2;
 
 const std::string SYSFS_GPIO_PATH = "/sys/class/gpio";
