@@ -12,7 +12,7 @@
 
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
  #ifdef USE_MRF24_RX
-    #include <display/src/oled.h>
+    #include <display/include/oled.h>
 #endif
 
  
