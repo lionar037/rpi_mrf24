@@ -39,7 +39,8 @@ void Run_t::start()
             auto ip { std::make_unique<NETWORK::Hostname_t>()};  
         
             #ifdef USE_MRF24_RX                 
-            static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+            ///static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
+            static auto  oled = std::make_unique<OLED::Oled_t>(128, 32, BCM2835_I2C_CLOCK_DIVIDER_626, 0x3C);
             #endif          
 /*
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());

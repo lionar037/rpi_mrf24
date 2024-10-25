@@ -11,16 +11,11 @@
 #include <time.h>
 #include <stdio.h>
 #include <iostream>
-//#include <cstdio>
-//#include <string>
-//#ifdef USE_MRF24_RX
-//	#include <display/include/SSD1306_OLED.hpp>
-//#endif
 
 
 namespace OLED{
 
-    Oled_t::Oled_t(uint16_t width, uint16_t height, uint16_t i2c_speed, uint8_t i2c_address)
+    Oled_t::Oled_t(const uint16_t width, const uint16_t height , const uint16_t i2c_speed , const uint8_t i2c_address)
         : 
 		myOLEDwidth(width), 
 		myOLEDheight(height), 
@@ -51,7 +46,7 @@ namespace OLED{
         myOLED.OLEDbegin(i2c_speed_, i2c_address_, i2c_debug_);
         screenBuffer_ = new uint8_t[FULLSCREEN];
         myOLED.OLEDSetBufferPtr(myOLEDwidth, myOLEDheight, screenBuffer_, FULLSCREEN);
-        //myOLED.OLEDFillScreen(0xF0, 0);
+        myOLED.OLEDFillScreen(0xF0, 0);
         bcm2835_delay(100);
 
         return true;

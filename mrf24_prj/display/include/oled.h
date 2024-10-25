@@ -26,7 +26,7 @@
 namespace OLED{
     class Oled_t {
     public:
-        Oled_t(uint16_t width, uint16_t height, uint16_t i2c_speed, uint8_t i2c_address);
+        explicit Oled_t(const uint16_t width , const  uint16_t height , const  uint16_t i2c_speed , const  uint8_t i2c_address);
         ~Oled_t();
 
         bool begin(bool i2c_debug = false);
