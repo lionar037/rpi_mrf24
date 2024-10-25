@@ -33,7 +33,9 @@ namespace OLED{
 
     Oled_t::~Oled_t() {
         powerDown();
-		std::cout<<"    Oled_t::~Oled_t()\n";
+		#ifdef DBG_OLED
+			std::cout<<"    Oled_t::~Oled_t()\n";
+		#endif
     }
 
     bool Oled_t::begin(bool i2c_debug) {

@@ -35,7 +35,7 @@ else ifeq ($(ARCH),armv7l)
     $(info armv7l mrf24_rx_app)
     APP := bin/mrf24_rx_app
 else ifeq ($(ARCH),x86_64)
-    APP := bin/mrf24_app_rx
+    APP := bin/mrf24_app
     $(info x86_64 detectado OS de 64 bits) 
 else
     $(info ningun OS detectado)
@@ -56,7 +56,7 @@ LIBDIR 		:= $(PROJECT_NAME)
 # Compilar con clang++ si es de 64 bits
 ifeq ($(ARCH),x86_64)
 	CC := g++
-	CC := g++
+#CC := clang++
 else
 	CC := g++
 endif
