@@ -83,7 +83,6 @@ namespace MRF24J40{
         static std::unique_ptr < SECURITY::Security_t >     security;
         static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  
         uint64_t add {0};   
-        static std::string msj_txt;               
     };
 
 
