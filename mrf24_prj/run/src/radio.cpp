@@ -59,7 +59,7 @@ Radio_t::Radio_t()
     mrf24j40_spi->settingsSecurity();
 
     mrf24j40_spi->interrupt_handler();
-//DEBUGGER::debug();
+
     mrf24j40_spi->set_pan(PAN_ID);
     // This is _our_ address
 

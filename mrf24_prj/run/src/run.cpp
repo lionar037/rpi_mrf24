@@ -32,8 +32,8 @@ int Run_t::start(){
     
     try{
             auto zigbee { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo            
-            //auto msj { std::make_unique<DEVICES::Msj_t>()};  
-            //auto ip { std::make_unique<NETWORK::Hostname_t>()};  
+            auto msj { std::make_unique<DEVICES::Msj_t>()};  
+            auto ip { std::make_unique<NETWORK::Hostname_t>()};  
         
             #ifdef USE_MRF24_RX                 
             ///static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
