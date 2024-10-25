@@ -64,15 +64,15 @@
 
 // Prints Debugger
 
-#define DBG//DBG_GPIO
-#define DBG_BUFFER
-#define DBG_FILES //imprime Debugger en files
-#define DBG_DISPLAY_OLED
-#define DBG_MRF
+//#define DBG//DBG_GPIO
+//#define DBG_BUFFER
+//#define DBG_FILES //imprime Debugger en files
+//#define DBG_DISPLAY_OLED
+//#define DBG_MRF
 //#define ENABLE_PRINTS_DBG
-#define DBG_PRINT_GET_INFO
-#define DBG_GPIO
-#define DBG_OLED
+//#define DBG_PRINT_GET_INFO
+//#define DBG_GPIO
+//#define DBG_OLED
 
 //config QR string 
 //Linea de configuracion para codigo Qr de una red wifi
