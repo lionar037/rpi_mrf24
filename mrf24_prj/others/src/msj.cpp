@@ -8,7 +8,7 @@ namespace DEVICES{
 
 int callGobal{ 0 };
 int maxLinesGlobal{0};
-std::vector<std::string> Msj_t::msj_memory;
+static std::vector<std::string> Msj_t::msj_memory;
 
     void Msj_t::passMessage(QR::QR_OLED_BUFF* qr_oled_msjp){
         return ;
