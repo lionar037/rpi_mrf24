@@ -37,11 +37,11 @@ void Run_t::start()
             
             auto msj { std::make_unique<DEVICES::Msj_t>()};  
             auto ip { std::make_unique<NETWORK::Hostname_t>()};  
-        
+        /*
             #ifdef USE_MRF24_RX                 
             static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
             #endif          
-/*
+
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_MRF24_RX            
             std::thread thread3(&OLED::Oled_t::init , oled.get());
