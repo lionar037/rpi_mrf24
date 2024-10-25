@@ -271,12 +271,12 @@ auto packet_data_tmp = buffer_transmiter;
         
         auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no 
         
-        std::string txt = std::to_string(bs) + "\n" ;
+        std::string txt = "buffer_receiver.size : " + std::to_string(bs) + "\n" ;
         
-        monitor->print("buffer_receiver.size : " + txt.c_str() ,files++,col);
+        monitor->print( txt.c_str() ,files++,col);
         //monitor->print("data_receiver.data : " + reinterpret_cast<const char *>(packet_data_tmp.data) + "\n" ,files++,col);
-        txt = "\n";  
-        monitor->print("\nbuff: \n" + txt.c_str() ,files++,col);
+        txt = "\nbuff: \n";  
+        monitor->print( txt.c_str() ,files++,col);
         monitor->print("\r\n" ,files++,col);
     #endif            
         monitor->print("LQI : " + std::to_string(mrf24j40_spi->get_rxinfo()->lqi) ,files++,col);
