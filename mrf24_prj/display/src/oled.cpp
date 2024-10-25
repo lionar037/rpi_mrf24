@@ -220,8 +220,17 @@ namespace OLED{
 		myOLED.OLEDupdate();
 	}
 
-	void Oled_t::Graphics(const int x,const int y , const std::string_view msj  , const std::string_view qr_msj){
-		
+	void Oled_t::Graphics(const int pos_x,const int pos_y ,const bool status , const std::string_view qr_msj){		
+		const auto color = BLACK;
+		const auto white = WHITE;
+		myOLED.setCursor(pos_x, pos_y);
+		myOLED.print(qr_msj.data());
+		std::cout<< qr_msj.data() <<"\n";
+		for(uint16_t x=0 ;x < pos_x;++x)
+			for(uint16_t y=0 ;y < pos_y;++y){
+				myOLED.drawPixel(x,y,color);//drawPixel(x+i, y+j, color);
+			}
+			
+		myOLED.OLEDupdate();	
 	}
-
 }

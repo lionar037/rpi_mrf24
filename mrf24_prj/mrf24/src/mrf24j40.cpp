@@ -42,13 +42,9 @@ namespace MRF24J40{
     }
 
     void Mrf24j::write_short(const uint8_t address,const uint8_t data) {
-            // 0 for top short address, 1 bottom for write
-DEBUGGER::debug("write_short");
-
-    const uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
-DEBUGGER::debug("write_short");
+        // 0 for top short address, 1 bottom for write
+        const uint16_t lsb_tmp = ( (address<<1 & 0b01111110) | 0x01 ) | (data<<8);
         prt_spi->Transfer2bytes(lsb_tmp);
-DEBUGGER::debug("write_short");
         return;
     }
 

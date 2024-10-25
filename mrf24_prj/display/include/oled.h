@@ -36,7 +36,7 @@ namespace OLED{
         void powerDown();
         void demo();
         void create(const std::string_view);
-        void Graphics(const int x,const int y , const std::string_view msj  , const std::string_view qr_msj);
+        void Graphics(const int ,const int , const bool , const std::string_view qr_msj);
         const std::vector <std::string>& convertToMayuscule(std::vector <std::string>& display_text);
     
     protected:
