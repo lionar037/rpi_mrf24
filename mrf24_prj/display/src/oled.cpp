@@ -216,7 +216,7 @@ namespace OLED{
 
 	void Oled_t::create(const std::string_view msjForOled){
 		// ** Texto  inverse **
-		myOLED.setCursor(0, 0);
+		myOLED.setCursor(0, 16);
 		myOLED.print(msjForOled.data());
 		std::cout<< msjForOled.data() <<"\n";
 		myOLED.OLEDupdate();
@@ -226,9 +226,9 @@ namespace OLED{
 		myOLED.setCursor(pos_x, pos_y);
 		for(uint16_t x=0 ;x < pos_x;++x)
 			for(uint16_t y=0 ;y < pos_y;++y){
-				myOLED.drawPixel(x,y,*p_qr_msj++);
+				//myOLED.drawPixel(x,y,*p_qr_msj++);
 			}
 			
-		myOLED.OLEDupdate();	
+		//myOLED.OLEDupdate();	
 	}
 }
