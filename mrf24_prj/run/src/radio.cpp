@@ -4,6 +4,7 @@
 #include <qr/include/qr.h>
 #include <files/include/file.h>
 #include <others/include/color.h>
+#include <app/include/debugger.h>
 
 //#include <mrf24/include/mrf24j40_template.tpp>
 #ifdef USE_OLED
@@ -42,7 +43,10 @@ Radio_t::Radio_t()
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 
 {    
+        
+DEBUGGER::debug();
     mrf24j40_spi  = std::make_unique<Mrf24j>() ;
+DEBUGGER::debug();
 
     #ifdef ENABLE_INTERRUPT_MRF24
     
@@ -51,12 +55,16 @@ Radio_t::Radio_t()
     #endif
           
     #ifdef DBG
-    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
+//    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
+DEBUGGER::debug();
     #endif
 
     mrf24j40_spi->init();
+DEBUGGER::debug();
     mrf24j40_spi->settingsSecurity();
+DEBUGGER::debug();
     mrf24j40_spi->interrupt_handler();
+DEBUGGER::debug();
     mrf24j40_spi->set_pan(PAN_ID);
     // This is _our_ address
 
