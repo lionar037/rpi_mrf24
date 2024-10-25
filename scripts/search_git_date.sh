@@ -10,6 +10,7 @@ UNTIL="2023-09-01"
 
 if [[ $GIT_COMMIT == "date" ]]; then 
     git log --since=$SINCE --until=$UNTIL
+    exit 1
 fi 
 
 if [[ -z $GIT_COMMIT ]]; then 
