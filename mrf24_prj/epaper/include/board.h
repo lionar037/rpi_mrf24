@@ -5,7 +5,6 @@ namespace EPAPER{
 
 ///struct pins_t;
 
-
     typedef struct epaperSettingsPins {
         int BS      {22};      //gpio22
         int BUSY    {27};      //gpio27
