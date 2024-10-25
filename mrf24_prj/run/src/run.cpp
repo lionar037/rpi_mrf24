@@ -31,10 +31,9 @@ int Run_t::start(){
        // system("clear"); 
     
     try{
-            //auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
-            //
-            //auto msj { std::make_unique<DEVICES::Msj_t>()};  
-            //auto ip { std::make_unique<NETWORK::Hostname_t>()};  
+            //auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo            
+            auto msj { std::make_unique<DEVICES::Msj_t>()};  
+            auto ip { std::make_unique<NETWORK::Hostname_t>()};  
         
             #ifdef USE_MRF24_RX                 
             ///static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
@@ -44,7 +43,8 @@ int Run_t::start(){
                     return -1;
                 }        
                 oled->clearScreen();
-                oled->displayText("MP3 to Bluetooth ", 0, 0);
+                oled->displayText("MRF24J40 ZigBee ", 0, 0);
+                TYME::delay_ms(3000);
                 //bcm2835_delay(900);
                 #endif  
 /*
