@@ -41,7 +41,7 @@ Radio_t::Radio_t()
 #endif
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
-,   msj_txt         { "MRF24J40 RX" }
+
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
@@ -85,7 +85,7 @@ Radio_t::Radio_t()
     mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
     
     m_flag=true;
-
+   msj_txt = "MRF24J40 RX" ;
 }
 
     bool Radio_t::Run(void){
