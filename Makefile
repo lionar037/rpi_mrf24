@@ -29,7 +29,7 @@ OLED 			:= 	oled
 APP         := bin/mrf24_app
 CFLAGS     	:= -Wall -pedantic
 CCFLAGS     := $(CFLAGS) -std=c++17
-CC          := clang++
+CC          := g++
 C			:= gcc
 MKDIR       := mkdir -p
 SRC         := $(PROJECT_NAME)
