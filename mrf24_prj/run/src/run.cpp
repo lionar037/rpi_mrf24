@@ -40,8 +40,14 @@ void Run_t::start()
         
             #ifdef USE_MRF24_RX                 
             ///static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
-            static auto  oled = std::make_unique<OLED::Oled_t>(128, 32, BCM2835_I2C_CLOCK_DIVIDER_626, 0x3C);
-            #endif          
+             auto  oled = std::make_unique<OLED::Oled_t>(128, 64, BCM2835_I2C_CLOCK_DIVIDER_626, 0x3C);
+            #endif  
+                if (!oled->begin()) {
+                    return -1;
+                }        
+                oled->clearScreen();
+                oled->displayText("MP3 to Bluetooth ", 0, 0);
+                //bcm2835_delay(900);
 /*
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_MRF24_RX            
