@@ -25,8 +25,24 @@ endef
 PROJECT_NAME 	:=	mrf24_prj
 OLED 			:= 	oled
 
+# Detectar si es de 32 o 64 bits
+ARCH := $(shell uname -m)
 
-APP         := bin/mrf24_app
+ifeq ($(ARCH),aarch64)
+    APP := bin/mrf24_tx_app
+    $(info aarch64 mrf24_tx_app )
+else ifeq ($(ARCH),armv7l) 
+    $(info armv7l mrf24_rx_app)
+    APP := bin/mrf24_rx_app
+else ifeq ($(ARCH),x86_64)
+    APP := bin/mrf24_app_rx
+    $(info x86_64 detectado OS de 64 bits) 
+else
+    $(info ningun OS detectado)
+	APP := bin/mrf24_app
+endif
+
+#APP         := bin/mrf24_app
 CFLAGS     	:= -Wall -pedantic
 CCFLAGS     := $(CFLAGS) -std=c++17
 CC          := g++
@@ -36,9 +52,6 @@ SRC         := $(PROJECT_NAME)
 OBJ         := obj
 LIBDIR 		:= $(PROJECT_NAME)
 
-
-# Detectar si es de 32 o 64 bits
-ARCH := $(shell uname -m)
 
 # Compilar con clang++ si es de 64 bits
 ifeq ($(ARCH),x86_64)
