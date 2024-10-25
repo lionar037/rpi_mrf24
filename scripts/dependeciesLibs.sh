@@ -37,30 +37,30 @@ else
 fi
 
 if [[ $ARCH == "armv7l" ]]; then 
-sudo apt install aptitude -y
-apt-cache policy zlib1g
-apt-cache policy zlib1g-dev
-sudo apt install zlib1g=1:1.2.11.dfsg-1+deb10u2
-sudo apt-get install zlib1g-dev --fix-missing
-sudo apt install libpng16-16 -y
-sudo aptitude install libpng-dev -y
+	sudo apt install aptitude -y
+	apt-cache policy zlib1g
+	apt-cache policy zlib1g-dev
+	sudo apt install zlib1g=1:1.2.11.dfsg-1+deb10u2
+	sudo apt-get install zlib1g-dev --fix-missing
+	sudo apt install libpng16-16 -y
+	sudo aptitude install libpng-dev -y
 
-sudo apt install libpng16-16 -ysudo apt clean
-sudo apt autoclean
-sudo apt autoremove
-apt-mark showhold
+	sudo apt install libpng16-16 -ysudo apt clean
+	sudo apt autoclean
+	sudo apt autoremove
+	apt-mark showhold
 
-sudo apt remove zlib1g
-sudo apt install zlib1g
+	sudo apt remove zlib1g
+	sudo apt install zlib1g
 
-cd /tmp
-wget http://download.sourceforge.net/libpng/libpng-1.6.39.tar.gz
-tar -xzvf libpng-1.6.39.tar.gz
-cd libpng-1.6.39
-./configure
-make
-sudo make install
-dpkg -l | grep libpng
+	cd /tmp
+	wget http://download.sourceforge.net/libpng/libpng-1.6.39.tar.gz
+	tar -xzvf libpng-1.6.39.tar.gz
+	cd libpng-1.6.39
+	./configure
+	make
+	sudo make install
+	dpkg -l | grep libpng
 
 fi
 
@@ -69,19 +69,17 @@ fi
 sudo apt-get install -y libmysqlcppconn-dev
 
 if [[ $ARCH == "aarch64" ]]; then
-#instal bcm2835 / 64 bits
+	echo "instal bcm2835 / 64 bits"
 	sudo apt-get install -y libbcm2835-dev
 else
-
-cd /tmp
-#cd ~
-wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz  # Cambia a la última versión si es necesario
-tar xzf bcm2835-1.68.tar.gz
-cd bcm2835-1.68
-./configure
-make
-sudo make install
-
+	cd /tmp
+	#cd ~
+	wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.68.tar.gz  # Cambia a la última versión si es necesario
+	tar xzf bcm2835-1.68.tar.gz
+	cd bcm2835-1.68
+	./configure
+	make
+	sudo make install
 fi
 # pip install qrcode
 
@@ -93,16 +91,15 @@ sudo apt install libmosquitto-dev -y
 
 
 
+if [[ $APP == "oled" ]]; then
+	cd ~/src
+	git clone https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI.git
+	cd ~/src/SSD1306_OLED_RPI
+	make 
+	sudo make install
 
-cd ~/src
-
-#git clone https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI.git
-cd SSD1306_OLED_RPI
-#make 
-#sudo make install
-
-
-#git clone https://github.com/gavinlyonsrepo/Display_Lib_RPI.git
-#cd Display_Lib_RPI.git
-#make
-#sudo make install
+	#git clone https://github.com/gavinlyonsrepo/Display_Lib_RPI.git
+	#cd Display_Lib_RPI.git
+	#make
+	#sudo make install
+fi
