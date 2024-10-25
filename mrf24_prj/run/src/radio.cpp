@@ -38,7 +38,7 @@ Radio_t::Radio_t()
 #endif
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
-
+,   mrf24j40_spi    { std::make_unique<Mrf24j>() }
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
