@@ -2,7 +2,7 @@
 #include <string>
 
 #define ID_SEARCH 64
-#define HOSTNAME_DATABASE "192.168.1.40"
+#define HOSTNAME_DATABASE "192.168.1.38"
 
 namespace DATABASE{
 

@@ -18,13 +18,19 @@ extern "C"
 namespace FILESYSTEM{
 
     File_t::File_t()
-    : m_filename {LOG_FILENAME} , m_buffer{"@ABCDEF"} , m_size_data{m_buffer.size() * sizeof(char)}
+    :   m_filename  { LOG_FILENAME } , 
+        m_buffer    { "@ABCDEF" } , 
+        m_size_data { m_buffer.size() * sizeof(char) }
     {
-
+        #ifdef DBG
+            std::cout<<"File_t::File_t()\n";
+        #endif
     }
 
     File_t::~File_t(){
-
+        #ifdef DBG
+            std::cout<<"~File_t()\n";
+        #endif
     }
 
 

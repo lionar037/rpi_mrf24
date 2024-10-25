@@ -143,9 +143,9 @@ void Radio_t::Start(bool& flag) {
         std::cout<<"\n" ;         
         #ifdef USE_MRF24_TX 
             #ifdef MACADDR64
-                mrf24j40_spi.send(ADDRESS_LONG_SLAVE, msj);               
+                mrf24j40_spi->send(ADDRESS_LONG_SLAVE, msj);               
             #elif defined(MACADDR16)
-                mrf24j40_spi.send(ADDRESS_SLAVE, msj);                                
+                mrf24j40_spi->send(ADDRESS_SLAVE, msj);                                
             #endif
                       
          const auto status = mrf24j40_spi->read_short(0x48);//or TXNSTAT =0: Transmissionwassuccessful         
