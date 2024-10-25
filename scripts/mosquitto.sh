@@ -4,7 +4,7 @@ MOSQ=$1
 
 # Verificar el argumento
 if [[ -z "$MOSQ" ]]; then
-    echo "Uso: $0 {status|start|stop|restart}"
+    echo "Uso: $0 {status|start|stop|restart|enable}"
     exit 1
 fi
 
@@ -21,6 +21,9 @@ case $MOSQ in
         ;;
     restart)
         sudo systemctl restart mosquitto
+        ;;
+    enable)
+        sudo systemctl enable mosquitto
         ;;
     *)
         echo "Opción no válida. Usa: status, start, stop, restart."
