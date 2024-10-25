@@ -1,15 +1,17 @@
-#include <string_view>
+
 #include <run/include/radio.h>
-#include <mrf24/include/mrf24j40.h>
+///#include <mrf24/include/mrf24j40.h>
 #include <qr/include/qr.h>
 #include <files/include/file.h>
 #include <others/include/color.h>
-#include <mrf24/include/mrf24j40_template.tpp>
+
+//#include <mrf24/include/mrf24j40_template.tpp>
 #ifdef USE_OLED
     #include <display/include/oled.h>
 #endif
 #include <others/include/rfflush.h>
 #include <network/include/mosquitto.h>
+#include <string_view>
 
 namespace MRF24J40{ 
 
@@ -38,6 +40,7 @@ Radio_t::Radio_t()
 #endif
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
+//,   m_module        { std::make_unique<Mrf24j>() }
 ,   mrf24j40_spi    { std::make_unique<Mrf24j>() }
 {
     
