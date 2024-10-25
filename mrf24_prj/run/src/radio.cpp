@@ -11,12 +11,7 @@
 #include <others/include/rfflush.h>
 #include <network/include/mosquitto.h>
 
-
-
-
 namespace MRF24J40{ 
-
-
 
 std::string msj_txt; //es static              
 uint64_t m_add; 

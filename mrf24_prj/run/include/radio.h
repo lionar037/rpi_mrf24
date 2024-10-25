@@ -17,7 +17,7 @@
 #include <qr/include/qr.h>
 #include <security/include/security.h>
 
-#include <mrf24/include/mrf24j40.h>
+//#include <mrf24/include/mrf24j40.h>
 
 #include <memory>
 #include <vector>
@@ -48,6 +48,7 @@
 
 
 namespace MRF24J40{
+struct Mrf24j;
 
    struct Radio_t
    {
@@ -85,6 +86,6 @@ namespace MRF24J40{
         static std::unique_ptr < SECURITY::Security_t >     security;
         static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  
         //static std::unique_ptr < Mrf24j >   mrf24j40_spi;
-        Mrf24j mrf24j40_spi ;
+        static Mrf24j mrf24j40_spi ;
     };
 }//end MRF24J40
