@@ -81,7 +81,7 @@ namespace MRF24J40{
                 std::unique_ptr<WORK::Work_t>               qr{};                    
             #endif
         #endif             
-        struct DATA::packet_tx                              buffer_transmiter{};
+        static struct DATA::packet_tx                       buffer_transmiter;
         std::unique_ptr <GPIO::Gpio_t>                      gpio{};    
         static std::unique_ptr < SECURITY::Security_t >     security;
         static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  

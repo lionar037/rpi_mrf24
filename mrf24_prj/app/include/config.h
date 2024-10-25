@@ -5,7 +5,7 @@
     #define USE_MRF24_RX
 #else
     // Si es de 64 bits
-    #define USE_MRF24_TX
+    #define USE_MRF24_RX
 #endif
 
 
@@ -70,7 +70,7 @@
 //#define DBG_DISPLAY_OLED
 //#define DBG_MRF
 //#define ENABLE_PRINTS_DBG
-//#define DBG_PRINT_GET_INFO
+#define DBG_PRINT_GET_INFO
 //#define DBG_GPIO
 //#define DBG_OLED
 
