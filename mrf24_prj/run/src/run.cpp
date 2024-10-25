@@ -1,5 +1,5 @@
 
-#include <qr/src/qr.h>
+#include <qr/include/qr.h>
 #include <run/include/run.h>
 #include <run/include/radio.h>
 #include <others/include/msj.h>
