@@ -269,8 +269,8 @@ void Radio_t::handle_rx() {
         
         //auto bs = (~packet_data_tmp->size)&0xffff;//ver cual es la correcta ~ o no 
         
-        monitor->print("buffer_receiver->size : " + reinterpret_cast<const int *>(bs) + "\n" ,files++,col);
-        monitor->print("data_receiver->data : " + reinterpret_cast<const char *>(packet_data_tmp->data) + "\n" ,files++,col);
+        //monitor->print("buffer_receiver->size : " + reinterpret_cast<const int *>(bs) + "\n" ,files++,col);
+        //monitor->print("data_receiver->data : " + reinterpret_cast<const char *>(packet_data_tmp->data) + "\n" ,files++,col);
         monitor->print("\nbuff: \n" + buff ,files++,col);
         monitor->print("\r\n" ,files++,col);
     #endif            
