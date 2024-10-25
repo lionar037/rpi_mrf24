@@ -24,7 +24,7 @@
 #include <unordered_map>
 #include <filesystem>
 
-#define DBG_GPIO
+//#define DBG_GPIO
 
 namespace GPIO {
 
