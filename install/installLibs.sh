@@ -1,5 +1,7 @@
 #!/bin/bash
 
+APP=$1
+
 sudo apt update -y
 
 sudo apt upgrade -y
@@ -38,39 +40,35 @@ sudo systemctl start mosquitto
 
 #sudo systemctl restart mosquitto
 
-
-###!/bin/bash
-cd ~/Downloads
-
-wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.71.tar.gz
-
-tar zxvf bcm2835-1.71.tar.gz
-
-cd bcm2835-1.71
-
-./configure
-make
-sudo make check
-sudo make install
+if [[ $APP == "bcm" ]]; then
+    cd ~/Downloads
+    wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.71.tar.gz
+    tar zxvf bcm2835-1.71.tar.gz
+    cd bcm2835-1.71
+    ./configure
+    make
+    sudo make check
+    sudo make install
 
 rm -Rf  ~/Downloads/*
 
+fi
+
 ls /usr/local/include/bcm2835.h
 
+if [[ $APP == "oled" ]]; then
+    echo "instalando oled"
+    cd ~/src
+    git clone https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI.git
+    cd SSD1306_OLED_RPI-1.6.1
+    make
+    sudo make install
+fi
+
 cd ~/src
-git clone https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI.git
 
-cd SSD1306_OLED_RPI-1.6.1
-make
-sudo make install
-
-
-cd ~/src
-
-
-#sudo systemctl status mysql
-
-#sudo mysql_secure_installation
-
-#sudo mysql -u root -p
-
+if [[ $APP == "mysql" ]]; then
+    sudo systemctl status mysql
+    sudo mysql_secure_installation
+    sudo mysql -u root -p
+fi

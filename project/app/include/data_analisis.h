@@ -4,10 +4,8 @@ namespace DATA{
 #pragma pack(push, 1)
     typedef struct MacAdress
     {
-        //uint8_t ignore[3];
-
         uint8_t ignore;
-    }MACADDRESS;
+    } MACADDRESS;
 
 
     typedef struct packet_rx

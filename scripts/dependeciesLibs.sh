@@ -10,6 +10,23 @@ sudo apt install aptitude -y
 # Library PNG
 sudo apt-get install zlib1g-dev -y
 sudo aptitude install -y libpng-dev
+sudo apt install libmosquitto-dev -y
+
+sudo apt-get install qrencode libqrencode-dev -y
+
+sudo apt-get install libpng-dev -y
+
+sudo apt-get install zlib1g-dev -y
+
+sudo apt install mosquitto mosquitto-clients -y
+
+sudo apt install libmariadb-dev-compat libmariadb-dev -y
+
+sudo apt install mysql-server -y
+
+sudo systemctl enable mosquitto
+
+sudo systemctl start mosquitto
 
 ARCH=$(uname -m)
 

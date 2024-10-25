@@ -92,11 +92,11 @@ help Mosquitto IOT
 
 
 
-git remote set-url origin git@github.com:lionar037/rpi_mrf24.git
 
 #intall libraries OLED
 git clone https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI.git
 
-#
+#config git
+git remote set-url origin git@github.com:lionar037/rpi_mrf24.git
 git config --global user.name "lionar037"
 git config --global user.email "8897224+lionar037@users.noreply.github.com"

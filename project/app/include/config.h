@@ -1,8 +1,5 @@
 #pragma once
 
-//////#define USE_MRF24_TX
-//#define USE_MRF24_RX
-
 #if defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4)
     // Si es de 32 bits
     #define USE_MRF24_RX

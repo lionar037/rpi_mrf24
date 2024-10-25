@@ -3,10 +3,16 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <cstdio>
 #include <display/include/oled.h>
 #ifdef USE_MRF24_RX
-#include <SSD1306_OLED.hpp>
+        #include <SSD1306_OLED.hpp>
 #endif
+
+
+//#include <memory>
+//#include <vector>
+//#include <algorithm>
 
 
 //GLOBAL namespace OLED
@@ -75,7 +81,6 @@ bool Oled_t::create(const std::string_view& textOnOled){
         {
                 myOLED.OLEDPowerDown(); //Switch off display
                 bcm2835_close(); // Close the library
-                //printf("OLED End\r\n");
         return;
         }
 
@@ -92,10 +97,10 @@ bool Oled_t::create(const std::string_view& textOnOled){
             	        myOLED.setTextSize(1);
                 	//myOLED.setFontNum(OLEDFontType_Thick);
                         //myOLED.setFontNum(OLEDFontType_SevenSeg);
-                        myOLED.setFontNum(OLEDFontType_Wide);
+                        //myOLED.setFontNum(OLEDFontType_Wide);
                         //myOLED.setFontNum(OLEDFontType_Tiny);
                         //myOLED.setFontNum(OLEDFontType_Homespun);
-                        //myOLED.setFontNum(OLEDFontType_Default);
+                        myOLED.setFontNum(OLEDFontType_Default);
                 	//myOLED.OLEDInvert(1); // Inverted
                         myOLED.setTextColor(WHITE);
                         myOLED.setCursor(12, 32);
@@ -106,15 +111,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
                         //myOLED.print(reinterpret_cast<int>(count));
                         myOLED.OLEDupdate();
                         count++;
-                        //myOLED.setRotation(3);
-                        // myOLED.OLEDContrast(0x00);                        
-                        // myOLED.OLEDContrast(0x80);                        
-                        // myOLED.OLEDContrast(0xFF);
-                        // bcm2835_delay(1000);
-                        // myOLED.OLEDContrast(0x81);
 
-                       
-            
             return;
     }
 

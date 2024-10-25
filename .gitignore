@@ -7,9 +7,8 @@ obj/
 .vscode/
 olds/
 move/
-data.txt
-data1.txt
 examples/
 usr/oled/olds/
 usr/oled/obj/
-bin/mrf24_app
+bin/
+install/bcm2835-1.71/
