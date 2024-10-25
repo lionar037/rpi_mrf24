@@ -1,6 +1,4 @@
-#include <iostream>
-#include <thread>
-#include <vector>
+
 //#include <qr/src/qr.h>
 #include <run/include/run.h>
 #include <run/include/radio.h>
@@ -8,7 +6,9 @@
 #include <app/include/config.h>
 #include <mrf24/include/mrf24j40.h>
 #include <network/include/hostname.h>
-
+#include <iostream>
+#include <thread>
+#include <vector>
 
 //#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
  #ifdef USE_MRF24_RX
@@ -33,21 +33,22 @@ int Run_t::start()
        // system("clear"); 
     
     try{
-            auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
-            
-            auto msj { std::make_unique<DEVICES::Msj_t>()};  
-            auto ip { std::make_unique<NETWORK::Hostname_t>()};  
+            //auto mrf { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo
+            //
+            //auto msj { std::make_unique<DEVICES::Msj_t>()};  
+            //auto ip { std::make_unique<NETWORK::Hostname_t>()};  
         
             #ifdef USE_MRF24_RX                 
             ///static auto oled { std::make_unique<OLED::Oled_t>() };    //inicializar una sola vez 
              auto  oled = std::make_unique<OLED::Oled_t>(128, 64, BCM2835_I2C_CLOCK_DIVIDER_626, 0x3C);
-            #endif  
+        
                 if (!oled->begin()) {
                     return -1;
                 }        
                 oled->clearScreen();
                 oled->displayText("MP3 to Bluetooth ", 0, 0);
                 //bcm2835_delay(900);
+                #endif  
 /*
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
             #ifdef USE_MRF24_RX            
