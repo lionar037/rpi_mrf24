@@ -6,6 +6,7 @@
 #include <app/include/data_analisis.h>
 #include <mrf24/include/mrf24j40.h>
 #include <spi/include/spi.h>
+#include <string_view>
 
 namespace DEBUGGER{
     extern void debug();
