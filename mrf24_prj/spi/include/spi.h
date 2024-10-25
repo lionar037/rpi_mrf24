@@ -41,7 +41,7 @@ namespace SPI{
     uint32_t get_spi_speed(); 
 
   private:
- const uint32_t m_spi_speed { 0 } ;
+    const uint32_t m_spi_speed { 0 } ;
     uint8_t m_tx_buffer[LARGE_SECTOR_SIZE]{ 0 };
     uint8_t m_rx_buffer[LARGE_SECTOR_SIZE]{ 0 };
 

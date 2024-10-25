@@ -15,6 +15,8 @@
 //////////////////////////////////////////////////////////////////////////////
 
 #include <gpio/include/gpio.h>
+#include <app/include/config.h>
+
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -252,7 +254,7 @@ namespace GPIO {
 
             if(m_res < 0) {
                 #ifdef DBG_GPIO
-                printf("Poll failed...%d\r\n",res);   
+                printf("Poll failed...%d\r\n",m_res);   
                 #endif         
                 }
             if(m_res == 0) {
