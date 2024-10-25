@@ -1,19 +1,17 @@
 
-//#include <qr/src/qr.h>
+#include <qr/src/qr.h>
 #include <run/include/run.h>
 #include <run/include/radio.h>
 #include <others/include/msj.h>
 #include <app/include/config.h>
 #include <mrf24/include/mrf24j40.h>
 #include <network/include/hostname.h>
-#include <iostream>
-#include <thread>
-#include <vector>
-
-//#if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))
  #ifdef USE_MRF24_RX
     #include <display/include/oled.h>
 #endif
+#include <iostream>
+#include <thread>
+#include <vector>
 
  
 namespace MRF24J40{
@@ -24,11 +22,11 @@ namespace QR{
     extern QR_OLED_BUFF codeQrGlobal;
 }
 
-namespace RUN{
+namespace RUN
+{
     extern MRF24J40::Mrf24j mrf24j40_spi ;    
     
-int Run_t::start()
-{
+int Run_t::start(){
 [[gnu::unused]]        bool flag{true};
        // system("clear"); 
     
