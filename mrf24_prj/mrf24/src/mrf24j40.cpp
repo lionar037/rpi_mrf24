@@ -153,7 +153,7 @@ namespace MRF24J40{
         // ; // wait for soft reset to finish
     // }
 
-           #include <app/include/config.h>
+           //#include <app/include/config.h>
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else
@@ -164,7 +164,7 @@ namespace MRF24J40{
                       delay(192); 
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
         write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
-
+DEBUGGER::debug();
         write_long(MRF_RFCON0, 0x03);   // – Initialize RFOPT = 0x03.
         write_long(MRF_RFCON1, 0x01);   // – Initialize VCOOPT = 0x02.
         write_long(MRF_RFCON2, 0x80);   // – Enable PLL (PLLEN = 1).
@@ -172,7 +172,7 @@ namespace MRF24J40{
         write_long(MRF_RFCON7, 0x80);   // – Initialize SLPCLKSEL = 0x2 (100 kHz Internal oscillator).
         write_long(MRF_RFCON8, 0x10);   // – Initialize RFVCO = 1.
         write_long(MRF_SLPCON1,0x21);  // – Initialize CLKOUTEN = 1 and SLPCLKDIV = 0x01.
-
+DEBUGGER::debug();
         //  Configuration for nonbeacon-enabled devices (see Section 3.8 “Beacon-Enabled and
         //  Nonbeacon-Enabled Networks”):
         write_short(MRF_BBREG2, 0x80);      // Set CCA mode to ED
@@ -180,7 +180,7 @@ namespace MRF24J40{
         write_short(MRF_BBREG6, 0x40);      // – Set appended RSSI value to RXFIFO.
         set_interrupts();
         set_channel(CHANNEL);                    //original 12
-
+DEBUGGER::debug();
     #ifdef TURBO_MODE					// propriatary TURBO_MODE runs at 625 kbps (vs. 802.15.4 compliant 250 kbps)
 		write_short(MRF_BBREG0, 0x01);	// TURBO mode enable
 		write_short(MRF_BBREG3, 0x38);	// PREVALIDTH to turbo optimized setting
