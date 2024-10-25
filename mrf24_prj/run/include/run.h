@@ -17,7 +17,7 @@ namespace RUN{
         auto  oled = std::make_unique<OLED::Oled_t>(128, 64, BCM2835_I2C_CLOCK_DIVIDER_626, 0x3C);
         
                 if (!oled->begin()) {
-                    return -1;
+                    return ;
                 }        
                 oled->clearScreen();
                 oled->displayText("MP3 to Bluetooth ", 0, 0);
