@@ -27,6 +27,6 @@ namespace DEVICES{
         std::string             m_txt;
         QR::QR_OLED_BUFF        m_qr_oled_buff_msj;
         bool                    m_flag { false };
-        //static std::vector<std::string> msj_memory;          
+        static std::vector<std::string> m_msj_memory;          
     };
 }//end DEVICES
