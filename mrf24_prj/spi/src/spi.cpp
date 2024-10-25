@@ -34,6 +34,21 @@
 
 namespace SPI {
 
+    Spi::Spi()
+    : m_spi_speed ( SPI_SPEED )
+    , m_tx_buffer  { 0x00 }
+    , m_rx_buffer  { 0x00 }
+    , spi       { std::make_unique<struct spi_ioc_transfer >() } 
+    {
+          #ifdef DBG
+              std::cout<<"Spi::Spi()\n";
+          #endif
+          settings_spi();   
+          init(); 
+        return;
+    }
+
+
   void Spi::settings_spi(){
       spi->tx_buf = (unsigned long)m_tx_buffer;
       spi->rx_buf = (unsigned long)m_rx_buffer;
@@ -126,27 +141,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     }
 
 
-    Spi::Spi()
-    : m_spi_speed ( SPI_SPEED )
-    , m_tx_buffer  { 0x00 }
-    , m_rx_buffer  { 0x00 }
-    , spi       { std::make_unique<struct spi_ioc_transfer >() } 
-    {
-          #ifdef DBG
-              std::cout<<"Spi()\n";
-          #endif
-          settings_spi();   
-          init(); 
-        return;
-    }
 
-      Spi::~Spi(){
-      spi_close();
-      #ifdef DBG
-          std::cout<<"~Spi()\n";
-      #endif
-      exit(EXIT_SUCCESS);
-    }
 
   uint32_t Spi::get_spi_speed(){
   return m_spi_speed;
@@ -178,5 +173,12 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     }//end cmd_byte_spi
 
 
+    Spi::~Spi(){
+      spi_close();
+      #ifdef DBG
+          std::cout<<"~Spi()\n";
+      #endif
+      exit(EXIT_SUCCESS);
+    }
 
 }//end namespace SPI_H

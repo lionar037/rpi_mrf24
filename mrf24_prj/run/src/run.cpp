@@ -80,5 +80,6 @@ int Run_t::start(){
         catch(...){
                     std::cerr<<"\nerror :(\n";
         }
+    return 0;
     }
 }

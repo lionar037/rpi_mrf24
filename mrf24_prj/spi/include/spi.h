@@ -26,8 +26,8 @@
 
 namespace SPI{
   struct  Spi{
-
-    [[nodiscard]] explicit Spi();
+    //[[nodiscard]] 
+    explicit Spi();
       ~Spi();
 
     void init();
