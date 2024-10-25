@@ -270,7 +270,7 @@ void Radio_t::handle_rx() {
 
         auto packet_data_tmp = buffer_transmiter;
 
-        txt ="buffer_receiver->head : " + packet_data_tmp.head + "\n";
+        txt ="buffer_receiver->head : " + std::to_string(packet_data_tmp.head) + "\n";
         monitor->print(txt.c_str() , files++ ,col);
         
         auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no 
