@@ -84,8 +84,7 @@ namespace DATABASE{
 
     int idToRetrieve = 64;
     databaseInstance->fetchData(idToRetrieve);
-
-    return ;
+    
     }
 }
 
