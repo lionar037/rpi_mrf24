@@ -41,7 +41,7 @@ Radio_t::Radio_t()
 #endif
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
-,   msj_txt         {"MRF24J40 RX"}
+,   msj_txt         { "MRF24J40 RX" }
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
@@ -255,7 +255,7 @@ void Radio_t::handle_rx() {
         
 
     #ifdef DBG_PRINT_GET_INFO 
-      add = ADDRESS_LONG;
+      //add = ADDRESS_LONG;
         if(ADDRESS_LONG_SLAVE == add){
             monitor->print("\nmac es igual\n" ,files++,col);
         }
