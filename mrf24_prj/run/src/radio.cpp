@@ -258,6 +258,7 @@ void Radio_t::handle_rx() {
         
 
     #ifdef DBG_PRINT_GET_INFO 
+    /*
         if(ADDRESS_LONG_SLAVE == m_add){
             monitor->print("\nmac es igual\n" ,files++,col);
         }
@@ -282,6 +283,7 @@ void Radio_t::handle_rx() {
         txt = "\nbuff: \n";  
         monitor->print( txt.c_str() ,files++,col);
         monitor->print("\r\n" ,files++,col);
+        */
     #endif            
         monitor->print("LQI : " + std::to_string(mrf24j40_spi->get_rxinfo()->lqi) ,files++,col);
         monitor->print("RSSI : " + std::to_string(mrf24j40_spi->get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
