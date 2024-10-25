@@ -10,8 +10,16 @@
 namespace SECURITY{
 
    struct Security_t{
-        Security_t()   {std::cout<<"Security_t()\n" ;} ;//=default;
-        ~Security_t()  {std::cout<<"~Security_t()\n";} ;//=default;
+        Security_t()   {
+        #ifdef DBG    
+            std::cout<<"Security_t::Security_t()\n" ;
+        #endif
+        } ;
+        ~Security_t()  {
+        #ifdef DBG            
+            std::cout<<"~Security_t()\n";
+        #endif
+        } ;
         std::string sha256(const std::string&) ;
         std::string getHiddenInput() ;
         int init() ;
