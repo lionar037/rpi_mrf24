@@ -58,13 +58,13 @@ Radio_t::Radio_t()
 //    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
 
     #endif
-DEBUGGER::debug();
+//DEBUGGER::debug();
     mrf24j40_spi->init();
-DEBUGGER::debug();
+//DEBUGGER::debug();
     mrf24j40_spi->settingsSecurity();
-DEBUGGER::debug();
+//DEBUGGER::debug();
     mrf24j40_spi->interrupt_handler();
-DEBUGGER::debug();
+//DEBUGGER::debug();
     mrf24j40_spi->set_pan(PAN_ID);
     // This is _our_ address
 
