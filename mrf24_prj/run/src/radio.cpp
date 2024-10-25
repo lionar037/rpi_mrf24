@@ -18,7 +18,7 @@ namespace MRF24J40{
 
 std::string msj_txt; //es static              
 uint64_t m_add; 
-std::string buff;  
+
 
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
@@ -271,9 +271,12 @@ auto packet_data_tmp = buffer_transmiter;
         
         auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no 
         
-        monitor->print("buffer_receiver.size : " + reinterpret_cast<const int *>(bs) + "\n" ,files++,col);
-        monitor->print("data_receiver.data : " + reinterpret_cast<const char *>(packet_data_tmp.data) + "\n" ,files++,col);
-        monitor->print("\nbuff: \n" + buff ,files++,col);
+        std::string txt=  reinterpret_cast<const int *>(bs) + "\n" ;
+        //std::string buff={"\n"};  
+        monitor->print("buffer_receiver.size : " + txt.data() ,files++,col);
+        //monitor->print("data_receiver.data : " + reinterpret_cast<const char *>(packet_data_tmp.data) + "\n" ,files++,col);
+        txt={"\n"};  
+        monitor->print("\nbuff: \n" + txt.data() ,files++,col);
         monitor->print("\r\n" ,files++,col);
     #endif            
         monitor->print("LQI : " + std::to_string(mrf24j40_spi->get_rxinfo()->lqi) ,files++,col);
