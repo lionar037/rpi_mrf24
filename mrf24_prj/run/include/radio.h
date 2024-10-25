@@ -17,7 +17,7 @@
 #include <qr/include/qr.h>
 #include <security/include/security.h>
 
-#include <spi/include/spi.h>
+#include <mrf24/include/mrf24j40.h>
 
 #include <memory>
 #include <vector>
