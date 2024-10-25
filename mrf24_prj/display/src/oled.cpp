@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include <display/include/oled.h>
+#include <app/include/config.h>
 #include <bcm2835.h>
 #include <time.h>
 #include <stdio.h>
@@ -25,9 +26,8 @@ namespace OLED{
 		screenBuffer_(nullptr),
 		myOLED(width, height) // Inicializar el objeto SSD1306 aquí
     {
-		#ifdef DBG
-		std::cout<<"    Oled_t::Oled_t(const uint16_t width, const uint16_t height , const uint16_t i2c_speed , const uint8_t i2c_address)
-\n";
+		#ifdef DBG_OLED
+		std::cout<<"Oled_t::Oled_t \nconst uint16_t width, const uint16_t height , const uint16_t i2c_speed , const uint8_t i2c_address\n";
 		#endif
 	}
 

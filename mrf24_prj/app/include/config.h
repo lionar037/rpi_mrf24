@@ -72,6 +72,7 @@
 //#define ENABLE_PRINTS_DBG
 #define DBG_PRINT_GET_INFO
 #define DBG_GPIO
+#define DBG_OLED
 
 //config QR string 
 //Linea de configuracion para codigo Qr de una red wifi
