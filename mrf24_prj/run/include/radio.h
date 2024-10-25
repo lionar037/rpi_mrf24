@@ -23,6 +23,8 @@
 #include <iomanip>
 #include <functional>
 #include <cstdint>
+#include <string>
+
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -80,7 +82,8 @@ namespace MRF24J40{
         std::unique_ptr <GPIO::Gpio_t> gpio{};    
         static std::unique_ptr < SECURITY::Security_t >     security;
         static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  
-        uint64_t add;                  
+        uint64_t add;   
+        static std::string msj_txt{"MRF24J40 RX"};               
     };
 
 
