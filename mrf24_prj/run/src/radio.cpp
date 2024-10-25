@@ -44,9 +44,9 @@ Radio_t::Radio_t()
 
 {    
         
-DEBUGGER::debug();
+
     mrf24j40_spi  = std::make_unique<Mrf24j>() ;
-DEBUGGER::debug();
+
 
     #ifdef ENABLE_INTERRUPT_MRF24
     
@@ -56,9 +56,9 @@ DEBUGGER::debug();
           
     #ifdef DBG
 //    std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
-DEBUGGER::debug();
-    #endif
 
+    #endif
+DEBUGGER::debug();
     mrf24j40_spi->init();
 DEBUGGER::debug();
     mrf24j40_spi->settingsSecurity();

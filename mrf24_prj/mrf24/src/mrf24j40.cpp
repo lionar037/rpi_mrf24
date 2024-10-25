@@ -6,7 +6,11 @@
 #include <app/include/data_analisis.h>
 #include <mrf24/include/mrf24j40.h>
 #include <spi/include/spi.h>
+//#include <app/include/debugger.h>
 
+namespace DEBUGGER{
+    extern void debug();
+}
 
 namespace MRF24J40{
             // aMaxPHYPacketSize = 127, from the 802.15.4-2006 standard.
@@ -155,6 +159,8 @@ namespace MRF24J40{
             #else
             //write_short(MRF_SOFTRST, 0x7); 
            #endif
+
+           DEBUGGER::debug();
                       delay(192); 
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
         write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
@@ -186,6 +192,7 @@ namespace MRF24J40{
         write_short(MRF_RFCTL, 0x04);       //  – Reset RF state machine.
         write_short(MRF_RFCTL, 0x00);       // part 2
         delay(192);                           // delay at least 192usec
+        DEBUGGER::debug();
     }
 
     /**
