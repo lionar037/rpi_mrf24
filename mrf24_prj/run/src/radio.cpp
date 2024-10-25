@@ -51,27 +51,27 @@ Radio_t::Radio_t()
     std::cout << "Size msj : ( "<<std::dec<<sizeof(MSJ)<<" )\n";
     #endif
 
-    mrf24j40_spi.init();
-    mrf24j40_spi.settingsSecurity();
-    mrf24j40_spi.interrupt_handler();
-    mrf24j40_spi.set_pan(PAN_ID);
+    mrf24j40_spi->init();
+    mrf24j40_spi->settingsSecurity();
+    mrf24j40_spi->interrupt_handler();
+    mrf24j40_spi->set_pan(PAN_ID);
     // This is _our_ address
 
     #ifdef MACADDR16
-        mrf24j40_spi.address16_write(ADDRESS); 
+        mrf24j40_spi->address16_write(ADDRESS); 
     #elif defined (MACADDR64)
-        mrf24j40_spi.address64_write(ADDRESS_LONG);
+        mrf24j40_spi->address64_write(ADDRESS_LONG);
     #endif
 
     // uncomment if you want to receive any packet on this channel
-    mrf24j40_spi.set_promiscuous(true);
+    mrf24j40_spi->set_promiscuous(true);
     //mrf24j40_spi.settings_mrf();
   
     // uncomment if you want to enable PA/LNA external control
-    mrf24j40_spi.set_palna(true);
+    mrf24j40_spi->set_palna(true);
   
     // uncomment if you want to buffer all PHY Payload
-    mrf24j40_spi.set_bufferPHY(true);
+    mrf24j40_spi->set_bufferPHY(true);
 
     //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
     //last_time = millis();
@@ -98,7 +98,7 @@ Radio_t::Radio_t()
 
 void Radio_t::Start(bool& flag) {
 
-    flag = mrf24j40_spi.check_flags(&handle_rx, &handle_tx);
+    flag = mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
     const unsigned long current_time = 1000000;//1000000 original
     if (current_time - m_last_time > m_tx_interval) {
         m_last_time = current_time;
@@ -142,7 +142,7 @@ void Radio_t::Start(bool& flag) {
                 mrf24j40_spi.send(ADDRESS_SLAVE, msj);                                
             #endif
                       
-         const auto status = mrf24j40_spi.read_short(0x48);//or TXNSTAT =0: Transmissionwassuccessful         
+         const auto status = mrf24j40_spi->read_short(0x48);//or TXNSTAT =0: Transmissionwassuccessful         
 //         const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
           if (status==0) {
               std::cout<<"\nTX ACK failed\n";
@@ -159,7 +159,7 @@ void Radio_t::Start(bool& flag) {
 }
 
     void Radio_t::interrupt_routine() {
-        mrf24j40_spi.interrupt_handler(); // mrf24 object interrupt routine
+        mrf24j40_spi->interrupt_handler(); // mrf24 object interrupt routine
     }
 
     void update(std::string_view str_view)
@@ -189,13 +189,13 @@ void Radio_t::Start(bool& flag) {
 
 void Radio_t::handle_tx() {    
     //const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
-    const auto status = mrf24j40_spi.read_short(0x48);
+    const auto status = mrf24j40_spi->read_short(0x48);
 
          if (status) {
              std::cout<<"\thandle_tx() : TX went ok, got ACK success ! \n";
          } else {
             std::cout<<"\n\tTX failed after \n";
-            std::cout<<"retries : "<<mrf24j40_spi.get_txinfo()->retries;
+            std::cout<<"retries : "<<mrf24j40_spi->get_txinfo()->retries;
             std::cout<<" \n";
          }
     return;
@@ -224,13 +224,13 @@ void Radio_t::handle_rx() {
     files=POSITIOM_INIT_PRINTS;
 
     monitor->print("received a packet ... ",files++,col);    //std::cout << " \nreceived a packet ... ";
-    sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi.get_rxinfo()->frame_length);
+    sprintf(bufferMonitor,"0x%x\n",mrf24j40_spi->get_rxinfo()->frame_length);
     monitor->print(bufferMonitor,files++,col);//    std::cout << " bytes long " ;
     
-    if(mrf24j40_spi.get_bufferPHY()){
+    if(mrf24j40_spi->get_bufferPHY()){
         monitor->print(" Packet data (PHY Payload) :",files++,col);//  std::cout << " Packet data (PHY Payload) :";
       #ifdef DBG_PRINT_GET_INFO
-      for (int i = 0; i < mrf24j40_spi.get_rxinfo()->frame_length; i++) 
+      for (int i = 0; i < mrf24j40_spi->get_rxinfo()->frame_length; i++) 
       {        
           //std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];//monitor->set(" Packet data (PHY Payload) :",files,col);
       }
@@ -239,12 +239,12 @@ void Radio_t::handle_rx() {
         //std::cout << "\n";
         
         monitor->print("ASCII data (relevant data) :",files++,col); //std::cout<<"\r\nASCII data (relevant data) :\n";
-        const auto recevive_data_length = mrf24j40_spi.rx_datalength();
+        const auto recevive_data_length = mrf24j40_spi->rx_datalength();
         monitor->print("\tdata_length : " + std::to_string(recevive_data_length) ,files,col+36);        
         monitor->print("\n",files++,col);
         
-        monitor->print(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data ),files++,col);
-        //for (auto& byte : mrf24j40_spi.get_rxinfo()->rx_data)std::cout<<byte;
+        monitor->print(reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data ),files++,col);
+        //for (auto& byte : mrf24j40_spi->get_rxinfo()->rx_data)std::cout<<byte;
         
         monitor->print("\n",files++,col);
         
@@ -270,8 +270,8 @@ void Radio_t::handle_rx() {
         monitor->print("\nbuff: \n" + buff ,files++,col);
         monitor->print("\r\n" ,files++,col);
     #endif            
-        monitor->print("LQI : " + std::to_string(mrf24j40_spi.get_rxinfo()->lqi) ,files++,col);
-        monitor->print("RSSI : " + std::to_string(mrf24j40_spi.get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
+        monitor->print("LQI : " + std::to_string(mrf24j40_spi->get_rxinfo()->lqi) ,files++,col);
+        monitor->print("RSSI : " + std::to_string(mrf24j40_spi->get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
     #endif
         
         
@@ -279,13 +279,13 @@ void Radio_t::handle_rx() {
 
         const std::string temperatureToString=  "{ temp :" + std::to_string(temperature)+ " }";
 
-        update(reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ); //update(tempString.data());
+        update(reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data) ); //update(tempString.data());
         
         
         //std::cout<<temperatureToString.data(); 
         monitor->print(temperatureToString.data(),files++,col+36);
         
-        msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
+        msj_txt=reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data) ;
         
         monitor->maxLines(files);
         monitor->view();
