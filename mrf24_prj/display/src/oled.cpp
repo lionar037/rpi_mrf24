@@ -122,8 +122,10 @@ namespace OLED{
 	//myOLED.setFontNum(OLEDFont_ArialRound);
 	myOLED.setRotation(OLED_Degrees_0);
 	// Define a buffer to cover whole screen 
-	uint8_t  screenBuffer[FULLSCREEN]; 
-	if (!myOLED.OLEDSetBufferPtr(myOLEDwidth, myOLEDheight, screenBuffer, sizeof(screenBuffer))) return;
+	//uint8_t  screenBuffer[FULLSCREEN]; 
+	std::vector <uint8_t>screenBuffer;
+	screenBuffer.resize(FULLSCREEN);
+	if (!myOLED.OLEDSetBufferPtr(myOLEDwidth, myOLEDheight, screenBuffer.data(), screenBuffer.size())) return;
 	myOLED.OLEDclearBuffer(); // clear the buffer
 
 	// Set text parameters
@@ -220,15 +222,11 @@ namespace OLED{
 		myOLED.OLEDupdate();
 	}
 
-	void Oled_t::Graphics(const int pos_x,const int pos_y ,const bool status , const std::string_view qr_msj){		
-		const auto color = BLACK;
-		const auto white = WHITE;
+	void Oled_t::Graphics(const int pos_x,const int pos_y ,const bool status , uint8_t* p_qr_msj){		
 		myOLED.setCursor(pos_x, pos_y);
-		myOLED.print(qr_msj.data());
-		std::cout<< qr_msj.data() <<"\n";
 		for(uint16_t x=0 ;x < pos_x;++x)
 			for(uint16_t y=0 ;y < pos_y;++y){
-				myOLED.drawPixel(x,y,color);//drawPixel(x+i, y+j, color);
+				myOLED.drawPixel(x,y,*p_qr_msj++);
 			}
 			
 		myOLED.OLEDupdate();	

@@ -28,7 +28,7 @@ namespace OLED{
     public:
         explicit Oled_t(const uint16_t width , const  uint16_t height , const  uint16_t i2c_speed , const  uint8_t i2c_address);
         ~Oled_t();
-
+        void init(){}
         bool begin(bool i2c_debug = false);
         void clearScreen();
         void displayText(const char* text, int x, int y);
@@ -36,7 +36,7 @@ namespace OLED{
         void powerDown();
         void demo();
         void create(const std::string_view);
-        void Graphics(const int ,const int , const bool , const std::string_view qr_msj);
+        void Graphics(const int ,const int , const bool , uint8_t* );
         const std::vector <std::string>& convertToMayuscule(std::vector <std::string>& display_text);
     
     protected:
