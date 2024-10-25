@@ -6,7 +6,7 @@
 #ifdef ENABLE_MOSQUITTO    
     //#redefine HOST_SERVER_MOSQUITTO "192.168.1.41"
     //#redefine HOST_SERVER_MOSQUITTO "raspberry.local"
-    #redefine HOST_SERVER_MOSQUITTO "mosquitto.local"
+    //#redefine HOST_SERVER_MOSQUITTO "mosquitto.local"
 #else 
     #define HOST_SERVER_MOSQUITTO "mosquitto.local"
 #endif
