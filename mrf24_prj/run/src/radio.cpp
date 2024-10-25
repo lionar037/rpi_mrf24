@@ -19,7 +19,7 @@ namespace MRF24J40{
 Mrf24j mrf24j40_spi ;
 
 
-std::string msj_txt="MRF24J40 RX";
+const std::string msj_txt="MRF24J40 RX";
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
 
 
@@ -41,6 +41,7 @@ Radio_t::Radio_t()
 #endif
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
+,   add {ADDRESS_LONG}
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
