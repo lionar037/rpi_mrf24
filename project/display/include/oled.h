@@ -8,6 +8,8 @@
 #define myOLEDwidth  128
 #define myOLEDheight 64
 
+#define FULLSCREEN (myOLEDwidth * (myOLEDheight/8))
+
 namespace OLED{
     #ifdef USE_MRF24_RX
     struct Oled_t : public WORK::Work_t
@@ -21,6 +23,11 @@ namespace OLED{
             void            Setup(); 
             void            Start();
             void            Graphics(const int,const int,const bool*,const uint8_t*);
+
+        protected:
+            void                function();
+            void                test();
+            void                DisplayGraphics();
 
         private :
             const uint16_t  I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
