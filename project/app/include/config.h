@@ -5,7 +5,7 @@
     #define USE_MRF24_RX
 #else
     // Si es de 64 bits
-    #define USE_MRF24_TX
+    #define USE_MRF24_RX
 #endif
 
 

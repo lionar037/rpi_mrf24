@@ -110,7 +110,7 @@ bool Oled_t::create(const std::string_view& textOnOled){
                 bcm2835_delay(100);
                 myOLED.OLEDbegin(I2C_Speed, I2C_Address); // initialize the OLED
                 myOLED.OLEDFillScreen(0xF0, 0); // splash screen bars
-                bcm2835_delay(100);
+                bcm2835_delay(10);
                 myOLED.OLEDclearBuffer();
                 return;
         }
