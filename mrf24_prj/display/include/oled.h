@@ -1,40 +1,52 @@
+////////////////////////////////////////////////////////////////////////////                
+//                
+//
+//                          oled.hpp
+//
+//
+////////////////////////////////////////////////////////////////////////////
+
 #pragma once
-#include <app/include/work.h>
-#include <app/include/config.h>
-#include <string_view>
 
-#define DELAY 150
 
-#define myOLEDwidth  128
-#define myOLEDheight 64
+#include <cstdio>
+#include <memory>
+#include <vector>
+#include <algorithm>
+#include <string>
+//#include <bcm2835.h>
+#ifdef USE_MRF24_RX
+        #include <SSD1306_OLED.hpp>
+#endif
 
-#define FULLSCREEN (myOLEDwidth * (myOLEDheight/8))
+#define FULLSCREEN (myOLEDwidth * (myOLEDheight / 8))
+
 
 namespace OLED{
-    #ifdef USE_MRF24_RX
-    struct Oled_t : public WORK::Work_t
-    {
-        explicit Oled_t();
+    class Oled_t {
+    public:
+        Oled_t(uint16_t width, uint16_t height, uint16_t i2c_speed, uint8_t i2c_address);
         ~Oled_t();
-            //bool create(const char*)override;
-            bool            create(const std::string_view&)override;
-            bool            init();
-            void            End();
-            void            Setup(); 
-            void            Start();
-            void            Graphics(const int,const int,const bool*,const uint8_t*);
 
-        protected:
-            void                function();
-            void                test();
-            void                DisplayGraphics();
+        bool begin(bool i2c_debug = false);
+        void clearScreen();
+        void displayText(const char* text, int x, int y);
+        void displayTextScroll(const char* text, int x, int y) ;
+        void powerDown();
+        void demo();
+        const std::vector <std::string>& convertToMayuscule(std::vector <std::string>& display_text);
+    
+    protected:
+        bool initI2C();
+        void closeI2C();
 
-        private :
-            const uint16_t  I2C_Speed    { 626 }; //  bcm2835I2CClockDivider 
-            const uint8_t   I2C_Address   { 0x3C };
-            void            printOled(std::string_view );
-            
+    private:
+        uint16_t myOLEDwidth;
+        uint16_t myOLEDheight;                           
+        uint16_t i2c_speed_;
+        uint8_t i2c_address_;
+        bool i2c_debug_;
+        uint8_t* screenBuffer_;
+        SSD1306 myOLED;
     };
-    #endif
-
 }
