@@ -91,9 +91,10 @@ else
     $(info OS de 32 bits detectado)
 endif
 
+#CXXFLAGS = -g -O0
 
 #para el uso commando es make DEBUG=1
-ifdef DEBUG 
+ifdef DBG 
 	CCFLAGS += -g
 else
 	CCFLAGS += -O3

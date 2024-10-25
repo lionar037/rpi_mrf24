@@ -98,7 +98,7 @@ struct Mrf24j : public SPI::Spi
         void                    settingsSecurity();
         void                    RadioSetSleep(uint8_t);
     private:
-        std::unique_ptr<SPI::Spi> prt_spi {};
+        //std::unique_ptr<SPI::Spi> prt_spi {};
 
             // essential for obtaining the data frame only
             // bytes_MHR = 2 Frame control + 1 sequence number + 2 panid + 2 shortAddr Destination + 2 shortAddr Source
