@@ -66,6 +66,14 @@ help Mosquitto IOT
 
 	sudo nano /etc/mosquitto/mosquitto.conf 
 
+
+allow_anonymous true
+listener 1883 0.0.0.0
+#con password
+password_file /etc/mosquitto/passwd
+
+
+
 	sudo systemctl restart mosquitto
 
 
