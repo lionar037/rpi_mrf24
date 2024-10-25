@@ -20,7 +20,7 @@ uint64_t m_add;
 std::string buff;  
 
 std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
-
+std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
 
 #ifdef USE_MRF24_TX
     std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
@@ -41,9 +41,10 @@ Radio_t::Radio_t()
 #endif
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 //,   m_module        { std::make_unique<Mrf24j>() }
-,   mrf24j40_spi    { std::make_unique<Mrf24j>() }
-{
-    
+//,   mrf24j40_spi    { std::make_unique<Mrf24j>() }
+{    
+    mrf24j40_spi  = std::make_unique<Mrf24j>() ;
+
     #ifdef ENABLE_INTERRUPT_MRF24
     
     #else            
