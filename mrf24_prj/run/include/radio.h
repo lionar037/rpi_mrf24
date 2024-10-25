@@ -22,6 +22,7 @@
 #include <sstream>
 #include <iomanip>
 #include <functional>
+#include <cstdint>
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64

@@ -252,10 +252,10 @@ void Radio_t::handle_rx() {
         
         monitor->print("\n",files++,col);
         
-        add = ADDRESS_LONG;
+        
 
     #ifdef DBG_PRINT_GET_INFO 
-      
+      add = ADDRESS_LONG;
         if(ADDRESS_LONG_SLAVE == add){
             monitor->print("\nmac es igual\n" ,files++,col);
         }
