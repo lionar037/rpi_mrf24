@@ -24,7 +24,7 @@ namespace MRF24J40{
     static RXMCR rxmcr{0x00};
 
     Mrf24j::Mrf24j()
-    : //prt_spi {std::make_unique<SPI::Spi>()} , 
+    : prt_spi {std::make_unique<SPI::Spi>()} , 
     m_bytes_nodata { m_bytes_MHR + m_bytes_FCS}
     {
         #ifdef DBG
