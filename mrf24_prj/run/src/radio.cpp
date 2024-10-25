@@ -256,13 +256,13 @@ void Radio_t::handle_rx() {
 
     #ifdef DBG_PRINT_GET_INFO 
       //add = ADDRESS_LONG;
-        if(ADDRESS_LONG_SLAVE == add){
+        if(ADDRESS_LONG_SLAVE == m_add){
             monitor->print("\nmac es igual\n" ,files++,col);
         }
         else{
             monitor->print("\nmac no es igual\n",files++ ,col) ;
         }
-        monitor->print("\ndata_receiver->mac : " + std::to_string (add )+ "\n",files++ ,col);
+        monitor->print("\ndata_receiver->mac : " + std::to_string (m_add )+ "\n",files++ ,col);
         monitor->print("buffer_receiver->head : " + packet_data_tmp->head + "n",files++ ,col);
         //auto bs = (~packet_data_tmp->size)&0xffff;//ver cual es la correcta ~ o no 
         auto bs = (packet_data_tmp->size)&0xffff;
@@ -287,7 +287,7 @@ void Radio_t::handle_rx() {
         monitor->print(temperatureToString.data(),files++,col+36);
         
         msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
-        //msj_txt="MRF24J40";
+        
         monitor->maxLines(files);
         monitor->view();
                 
