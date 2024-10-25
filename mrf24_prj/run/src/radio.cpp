@@ -85,7 +85,7 @@ Radio_t::Radio_t()
     mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
     
     m_flag=true;
-   msj_txt = "MRF24J40 RX" ;
+   //msj_txt = "MRF24J40 RX" ;
 }
 
     bool Radio_t::Run(void){
