@@ -24,7 +24,7 @@ namespace QR{
 
 namespace RUN
 {
-    extern MRF24J40::Mrf24j mrf24j40_spi ;    
+    //extern MRF24J40::Mrf24j mrf24j40_spi ;    
     
 int Run_t::start(){
 [[gnu::unused]]        bool flag{true};

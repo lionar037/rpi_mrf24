@@ -17,6 +17,8 @@
 #include <qr/include/qr.h>
 #include <security/include/security.h>
 
+#include <spi/include/spi.h>
+
 #include <memory>
 #include <vector>
 #include <sstream>
@@ -82,5 +84,7 @@ namespace MRF24J40{
         std::unique_ptr <GPIO::Gpio_t>                      gpio{};    
         static std::unique_ptr < SECURITY::Security_t >     security;
         static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  
+        //static std::unique_ptr < Mrf24j >   mrf24j40_spi;
+        Mrf24j mrf24j40_spi ;
     };
 }//end MRF24J40
