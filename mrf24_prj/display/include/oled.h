@@ -8,16 +8,17 @@
 
 #pragma once
 
-
+//#ifdef USE_MRF24_RX
+        //#include <SSD1306_OLED.hpp>
+#include <display/include/SSD1306_OLED.hpp>
+//#endif
 #include <cstdio>
 #include <memory>
 #include <vector>
 #include <algorithm>
 #include <string>
 //#include <bcm2835.h>
-#ifdef USE_MRF24_RX
-        #include <SSD1306_OLED.hpp>
-#endif
+
 
 #define FULLSCREEN (myOLEDwidth * (myOLEDheight / 8))
 

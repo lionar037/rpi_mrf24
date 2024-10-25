@@ -5,8 +5,8 @@
 * @details https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI
 */
 
-#include "SSD1306_OLED_graphics.hpp"
-
+//#include "SSD1306_OLED_graphics.hpp"
+#include <display/include/SSD1306_OLED_graphics.hpp>
 /*!
 	@brief init the OLED  Graphics class object
 	@param w width defined  in sub-class

@@ -12,8 +12,11 @@
 #include <cstdio>
 #include <cstdint>
 #include <cmath> // for "abs"
-#include "SSD1306_OLED_Print.hpp"
-#include "SSD1306_OLED_font.hpp"
+//#include "SSD1306_OLED_Print.hpp"
+//#include "SSD1306_OLED_font.hpp"
+
+#include <display/include/SSD1306_OLED_Print.hpp>
+#include <display/include/SSD1306_OLED_font.hpp>
 
 #define swapOLEDRPI(a, b) { int16_t t = a; a = b; b = t; }
 

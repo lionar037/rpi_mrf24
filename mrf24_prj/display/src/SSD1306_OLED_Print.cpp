@@ -4,8 +4,8 @@
 	@note  Port of arduino built-in print class, G Lyons 2022.
 */
 
-#include "SSD1306_OLED_Print.hpp"
-
+//#include "SSD1306_OLED_Print.hpp"
+#include <display/include/SSD1306_OLED_Print.hpp>
 // Public Methods //////////////////////////
 
 /* default implementation: may be overridden */

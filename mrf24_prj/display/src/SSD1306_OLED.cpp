@@ -5,8 +5,8 @@
 * @details <https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI>
 */
 
-#include "SSD1306_OLED.hpp"
-
+//#include "SSD1306_OLED.hpp"
+#include <display/include/SSD1306_OLED.hpp>
 /*!
 	@brief init the screen object
 	@param oledwidth width of OLED in pixels 

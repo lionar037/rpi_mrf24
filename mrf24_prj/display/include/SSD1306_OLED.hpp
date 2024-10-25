@@ -13,7 +13,8 @@
 #include <cstdint>
 #include <cstdbool>
 #include <bcm2835.h>
-#include "SSD1306_OLED_graphics.hpp"
+#include <display/include/SSD1306_OLED_graphics.hpp>
+//#include "SSD1306_OLED_graphics.hpp"
 
 
 //  SSD1306 Command Set

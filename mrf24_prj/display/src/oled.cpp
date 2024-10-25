@@ -14,7 +14,7 @@
 //#include <cstdio>
 //#include <string>
 //#ifdef USE_MRF24_RX
-//	#include <SSD1306_OLED.hpp>
+//	#include <display/include/SSD1306_OLED.hpp>
 //#endif
 
 

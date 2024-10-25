@@ -5,7 +5,8 @@
 * @details <https://github.com/gavinlyonsrepo/SSD1306_OLED_RPI>
 */
 
-#include "SSD1306_OLED_font.hpp"
+//#include "SSD1306_OLED_font.hpp"
+#include <display/include/SSD1306_OLED_font.hpp>
 
 // Standard ASCII 5x8 font , Column padding added by software
 static const unsigned char Font_One[]  = {
