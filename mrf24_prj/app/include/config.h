@@ -5,18 +5,16 @@
     #define USE_MRF24_RX
 #else
     // Si es de 64 bits
-    #define USE_MRF24_RX
+    #define USE_MRF24_TX
 #endif
-
 
 //#define USE_MAC_ADDRESS_LONG
 #define USE_MAC_ADDRESS_SHORT
 
-    //Enable database 
+//Enable database 
 //#define ENABLE_DATABASE
 
 #define ENABLE_MOSQUITTO
-
 
 #define CHANNEL 24
 #define HEAD 0x40 //inicial MSJ
@@ -28,7 +26,7 @@
     #define MODULE_IS_RX 
     #define MODULE_RX_RST
 #endif
-//namespace CONFIG{
+
 #ifdef USE_MAC_ADDRESS_SHORT
     //#define MSJ "ABCDEFGHIJKLMKNOFGHIJKLMKNOPQRS@ABCDEFGHIJKLMKNOPQRS@ABCDEFGHIJKLMKNOPQRS" 
     #define MSJ "ABCDEFGHIJKLMKNOFGHIJKLMKNOPQRSTUVWXYZ0MNO_____________"
@@ -36,7 +34,6 @@
     #define MSJ "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmno_____________"
     //#define MSJ "ABCDEFGHIJKLMKNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456@ABCDEFGHIJKLMKNOPQRS@ABCDEFGHIJKLMKNOPQ" 
 #endif
-//}
 
 #ifdef MODULE_IS_TX
     #define ADDRESS_LONG 0x1122334455667702
@@ -58,9 +55,7 @@
     #define ENABLE_INTERRUPT_MRF24
 #endif
 
-
 #define LOG_FILENAME "log_mrf_"
-
 
 // Prints Debugger
 
@@ -86,7 +81,6 @@
     //#define HOST_SERVER_MOSQUITTO "rpi2w.local"
 #endif
 
-
 #define QR_START
 
 #ifdef QR_START
@@ -96,11 +90,9 @@
 //habilita la encriptacion de mensajes 
 //#define ENABLE_SECURITY 
 #ifdef USE_MRF24_RX
-    //#if defined(__LP64__) || defined(_LP64) || defined(__LLP64__)
-    
+    //#if defined(__LP64__) || defined(_LP64) || defined(__LLP64__) 
     #if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))//es de 32 bits?
         #define USE_OLED2
-    #endif
-    
+    #endif    
 #else
 #endif

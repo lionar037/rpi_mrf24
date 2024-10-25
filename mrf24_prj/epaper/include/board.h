@@ -16,8 +16,6 @@ namespace EPAPER{
         int SDA     {2};        //gpio2 //pin 3
     }configEpaperPin_t;
 
-    
-
   const pins_t boardRaspberryPi_EXT =
   {
       .panelBusy        =   27, 

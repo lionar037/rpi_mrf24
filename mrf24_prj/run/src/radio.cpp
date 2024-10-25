@@ -239,25 +239,20 @@ void Radio_t::handle_rx() {
       #ifdef DBG_PRINT_GET_INFO
       for (int i = 0; i < mrf24j40_spi->get_rxinfo()->frame_length; i++) 
       {        
-          //std::cout <<" "<<std::hex<< mrf24j40_spi.get_rxbuf()[i];//monitor->set(" Packet data (PHY Payload) :",files,col);
+          std::cout <<" "<<std::hex<< mrf24j40_spi->get_rxbuf()[i];//monitor->set(" Packet data (PHY Payload) :",files,col);
       }
       #endif
     }
-        //std::cout << "\n";
-        
+        //std::cout << "\n";        
         monitor->print("ASCII data (relevant data) :",files++,col); //std::cout<<"\r\nASCII data (relevant data) :\n";
         const auto recevive_data_length = mrf24j40_spi->rx_datalength();
         monitor->print("\tdata_length : " + std::to_string(recevive_data_length) ,files,col+36);        
-        monitor->print("\n",files++,col);
-        
+        monitor->print("\n",files++,col);        
         const auto fil0=reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data );
         monitor->print( fil0 , files++ , col );
-        //for (auto& byte : mrf24j40_spi->get_rxinfo()->rx_data)std::cout<<byte;
-        
+        //for (auto& byte : mrf24j40_spi->get_rxinfo()->rx_data)std::cout<<byte;        
         monitor->print("\n",files++,col);
         
-        
-
     #ifdef DBG_PRINT_GET_INFO 
     
         if(ADDRESS_LONG_SLAVE == m_add){
@@ -269,16 +264,11 @@ void Radio_t::handle_rx() {
         std::string txt ="\ndata_receiver->mac : " + std::to_string (m_add )+ "\n" ;
 
         monitor->print(txt.c_str() , files++ ,col);
-
         auto packet_data_tmp = buffer_transmiter;
-
         txt ="buffer_receiver->head : " + std::to_string(packet_data_tmp.head) + "\n";
-        monitor->print(txt.c_str() , files++ ,col);
-        
-        auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no 
-        
-        txt = "buffer_receiver.size : " + std::to_string(bs) + "\n" ;
-        
+        monitor->print(txt.c_str() , files++ ,col);        
+        auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no         
+        txt = "buffer_receiver.size : " + std::to_string(bs) + "\n" ;        
         monitor->print( txt.c_str() ,files++,col);
         //monitor->print("data_receiver.data : " + reinterpret_cast<const char *>(packet_data_tmp.data) + "\n" ,files++,col);
         txt = "\nbuff: \n";  
@@ -288,16 +278,10 @@ void Radio_t::handle_rx() {
     #endif            
         monitor->print("LQI : " + std::to_string(mrf24j40_spi->get_rxinfo()->lqi) ,files++,col);
         monitor->print("RSSI : " + std::to_string(mrf24j40_spi->get_rxinfo()->rssi) ,files++,col);  //std::cout<<"\r\n";
-    #endif
-        
-        
+    #endif                
         const int temperature = mosq->pub();
-
         const std::string temperatureToString=  "{ temp :" + std::to_string(temperature)+ " }";
-
-        update(reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data) ); //update(tempString.data());
-        
-        
+        update(reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data) ); //update(tempString.data());                
         //std::cout<<temperatureToString.data(); 
         monitor->print(temperatureToString.data(),files++,col+36);
         
