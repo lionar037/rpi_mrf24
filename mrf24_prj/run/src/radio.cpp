@@ -286,7 +286,7 @@ void Radio_t::handle_rx() {
         //std::cout<<temperatureToString.data(); 
         monitor->print(temperatureToString.data(),files++,col+36);
         
-        msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
+        //msj_txt=reinterpret_cast<const char*>(mrf24j40_spi.get_rxinfo()->rx_data) ;
         
         monitor->maxLines(files);
         monitor->view();
