@@ -90,17 +90,20 @@ DEBUGGER::debug("Radio_t::Radio_t");
     bool Radio_t::Run(void){
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-                
-        gpio->app(m_flag);                                  
+DEBUGGER::debug("Radio_t::Run");                
+        gpio->app(m_flag);      
+DEBUGGER::debug("Radio_t::Run");                            
         Start(m_flag);                
+DEBUGGER::debug("Radio_t::Run");
         interrupt_routine() ;  
+DEBUGGER::debug("Radio_t::Run");        
         return m_flag; 
     }
 
 
 
 void Radio_t::Start(bool& flag) {
-
+DEBUGGER::debug("Radio_t::Start");
     flag = mrf24j40_spi->check_flags(&handle_rx, &handle_tx);
     const unsigned long current_time = 1000000;//1000000 original
     if (current_time - m_last_time > m_tx_interval) {
