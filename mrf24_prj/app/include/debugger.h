@@ -1,9 +1,10 @@
 #pragma once
+
+#include <app/include/config.h>
+#include <iomanip>
+#include <type_traits>
 #include <iostream>
 #include <cstdint>
-#include <app/include/config.h>
-
-
 namespace DEBUGGER{
 
 uint16_t Next{0};

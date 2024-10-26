@@ -23,6 +23,8 @@
 #include <mrf24/include/mrf24j40.h>
 #include <spi/include/spi.h>
 #include <string_view>
+#include <iomanip>
+#include <type_traits>
 
 namespace DEBUGGER{
     extern void debug();
