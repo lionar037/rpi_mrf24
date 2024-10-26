@@ -4,7 +4,6 @@
 sudo apt update -y
 sudo apt upgrade -y
 sudo aptitude install -y  curl
-
 sudo apt install aptitude -y
 
 # Library PNG
@@ -27,6 +26,9 @@ sudo apt install mysql-server -y
 sudo systemctl enable mosquitto
 
 sudo systemctl start mosquitto
+
+#security
+sudo apt-get install -y libssl-dev
 
 ARCH=$(uname -m)
 
@@ -85,7 +87,7 @@ fi
 
 sudo apt-get install qrencode libqrencode-dev -y
 
-sudo apt install libssl-dev -y
+#sudo apt install libssl-dev -y
 
 sudo apt install libmosquitto-dev -y
 

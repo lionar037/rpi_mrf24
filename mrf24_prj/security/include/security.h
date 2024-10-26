@@ -5,7 +5,8 @@
 
 #define PASSWORD_SAVE "0" 
 #define SUCCESS_PASS    0
-#define USER    "Admin"
+//#define USER    "Admin"
+#define USER    "admin"
 
 namespace SECURITY{
 
