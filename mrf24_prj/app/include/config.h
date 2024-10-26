@@ -48,7 +48,7 @@
     #define ADDRESS_LONG 0x1122334455667701
     #define ADDRESS_LONG_SLAVE 0x1122334455667702
     #define ADDRESS 0x6002
-    #define PAN_ID 0x1234
+    #define PAN_ID 0x1235
     #define ADDRESS_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
     #define MRF24_TRANSMITER_ENABLE
@@ -91,7 +91,7 @@
 
 #ifdef USE_MRF24_TX
 //habilita la encriptacion de mensajes 
-    #define ENABLE_SECURITY 
+    //#define ENABLE_SECURITY 
 #endif
 #ifdef USE_MRF24_RX
     //#if defined(__LP64__) || defined(_LP64) || defined(__LLP64__) 

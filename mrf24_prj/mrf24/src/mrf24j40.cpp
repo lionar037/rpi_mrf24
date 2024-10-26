@@ -171,12 +171,12 @@ namespace MRF24J40{
         // ; // wait for soft reset to finish
     // }
 
-           //#include <app/include/config.h>
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else
-            //write_short(MRF_SOFTRST, 0x7); 
-           #endif           
+            write_short(MRF_SOFTRST, 0x7); 
+           #endif       
+
         delay(192); 
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
         write_short(MRF_TXSTBL, 0x95);  // – Initialize RFSTBL = 0x9.
@@ -260,7 +260,7 @@ namespace MRF24J40{
             m_flag_got_tx++;
             const auto tx_status = read_short(MRF_TXSTAT);
                 // 1 means it failed, we want 1 to mean it worked.
-                std::cout<<"\t\rRead MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
+            std::cout<<"\t\rRead MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
             tx_info.tx_ok = !(tx_status & ~(1 << TXNSTAT));
             tx_info.retries = tx_status >> 6;
             tx_info.channel_busy = (tx_status & (1 << CCAFAIL));
@@ -269,13 +269,13 @@ namespace MRF24J40{
 
 
 
-int Mrf24j::getStatusInfoTx(void)
-{
-
-[[gnu::unused]]    const auto& tx_status = read_short(MRF_TXSTAT);
-    //std::cout<<"\t\rRead MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
-    return tx_info.tx_ok ;
-}
+    int Mrf24j::getStatusInfoTx(void){
+    [[gnu::unused]]    const auto& tx_status = read_short(MRF_TXSTAT);
+    #ifdef DBG_MRF
+        std::cout<<"\t\rRead MRF_TXSTAT : "<<std::to_string(tx_status)<<"\n";
+    #endif        
+        return tx_info.tx_ok ;
+    }
     /**
      * Call this function periodically, it will invoke your nominated handlers
      */
@@ -449,7 +449,7 @@ void Mrf24j::settings_mrf(void){
         write_long(i++, 1);  // sequence number 1
 
         const uint16_t panid = get_pan();
-        #ifdef DBG
+        #ifdef DBG_MRF
             printf("\npanid: 0x%X\n",panid);
         #endif
 
@@ -476,7 +476,7 @@ void Mrf24j::settings_mrf(void){
         }
         else{
             #ifdef DBG_MRF
-            std::cout <<"es un mac de 16 bytes\n";
+                std::cout <<"es un mac de 16 bytes\n";
             #endif
             src = address16_read();
         }
@@ -549,6 +549,5 @@ void Mrf24j::settings_mrf(void){
     		initMRF24J40();		// could wakeup with WAKE pin or by toggling REGWAKE (1 then 0), but this is simpler
     #endif
     }
-
 
 }//END NAMESPACE MRF24
