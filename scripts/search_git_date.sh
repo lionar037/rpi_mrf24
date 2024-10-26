@@ -4,9 +4,9 @@
 GIT_COMMIT=$1
 
 #YYYY-MM-DD
-SINCE="2024-10-25"
+SINCE="2023-01-01"
 #YYYY-MM-DD
-UNTIL="2023-01-01"
+UNTIL="2024-10-01"
 
 if [[ $GIT_COMMIT == "date" ]]; then 
     git log --since=$SINCE --until=$UNTIL
