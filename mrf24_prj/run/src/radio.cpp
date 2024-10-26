@@ -16,75 +16,75 @@
 
 namespace MRF24J40{ 
 
-std::string msj_txt; //es static              
-uint64_t m_add; 
+    std::string msj_txt; //es static              
+    uint64_t m_add; 
 
-struct DATA::packet_tx buffer_transmiter;
+    struct DATA::packet_tx buffer_transmiter;
 
-std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
-std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
+    std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
+    std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
 
-#ifdef USE_MRF24_TX
-    std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
-#endif
-
-Radio_t::Radio_t() 
-#ifdef ENABLE_INTERRUPT_MRF24
-:   m_status          (true)
-//,   fs              { std::make_unique<FILESYSTEM::File_t>() }
-    #ifdef ENABLE_DATABASE
-,   database        { std::make_unique<DATABASE::Database_t>() }
+    #ifdef USE_MRF24_TX
+        std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
     #endif
-#else
-:   m_status          (false)
-#ifdef ENABLE_QR
-,   qr              { std::make_unique<QR::Qr_t>() }
-#endif
-#endif
-,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 
-{            
-        mrf24j40_spi  = std::make_unique<Mrf24j>() ;
+    Radio_t::Radio_t() 
     #ifdef ENABLE_INTERRUPT_MRF24
-    
-    #else            
-        security    =   std::make_unique<SECURITY::Security_t >();
+    :   m_status          (true)
+    ,   fs              { std::make_unique<FILESYSTEM::File_t>() }
+        #ifdef ENABLE_DATABASE
+    ,   database        { std::make_unique<DATABASE::Database_t>() }
+        #endif
+    #else
+    :   m_status          (false)
+    #ifdef ENABLE_QR
+    ,   qr              { std::make_unique<QR::Qr_t>() }
     #endif
-          
-    mrf24j40_spi->init();
-
-    mrf24j40_spi->settingsSecurity();
-
-    mrf24j40_spi->interrupt_handler();
-
-    mrf24j40_spi->set_pan(PAN_ID);
-    // This is _our_ address
-
-    #ifdef MACADDR16
-        mrf24j40_spi->address16_write(ADDRESS); 
-    #elif defined (MACADDR64)
-        mrf24j40_spi->address64_write(ADDRESS_LONG);
     #endif
+    ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 
-    // uncomment if you want to receive any packet on this channel
-    mrf24j40_spi->set_promiscuous(true);
+    {            
+            mrf24j40_spi  = std::make_unique<Mrf24j>() ;
+        #ifdef ENABLE_INTERRUPT_MRF24
+        
+        #else            
+            security    =   std::make_unique<SECURITY::Security_t >();
+        #endif
+            
+        mrf24j40_spi->init();
 
-    mrf24j40_spi->settings_mrf();//esta linea estaba comentada originalmente
+        mrf24j40_spi->settingsSecurity();
 
-    // uncomment if you want to enable PA/LNA external control
-    mrf24j40_spi->set_palna(true);
+        mrf24j40_spi->interrupt_handler();
 
-    // uncomment if you want to buffer all PHY Payload
-    mrf24j40_spi->set_bufferPHY(true);
+        mrf24j40_spi->set_pan(PAN_ID);
+        // This is _our_ address
 
-    //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
-    //last_time = millis();
+        #ifdef MACADDR16
+            mrf24j40_spi->address16_write(ADDRESS); 
+        #elif defined (MACADDR64)
+            mrf24j40_spi->address64_write(ADDRESS_LONG);
+        #endif
 
-    //Single send cmd
-    //mrf24j40_spi->Transfer3bytes(0xE0C1);
-    mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
-    m_flag=true;
-}
+        // uncomment if you want to receive any packet on this channel
+        mrf24j40_spi->set_promiscuous(true);
+
+        mrf24j40_spi->settings_mrf();//esta linea estaba comentada originalmente
+
+        // uncomment if you want to enable PA/LNA external control
+        mrf24j40_spi->set_palna(true);
+
+        // uncomment if you want to buffer all PHY Payload
+        mrf24j40_spi->set_bufferPHY(true);
+
+        //attachInterrupt(0, interrupt_routine, CHANGE); // interrupt 0 equivalent to pin 2(INT0) on ATmega8/168/328
+        //last_time = millis();
+
+        //Single send cmd
+        //mrf24j40_spi->Transfer3bytes(0xE0C1);
+        mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
+        m_flag=true;
+    }
 
     bool Radio_t::Run(void){
         //std::cout << "\033[2J\033[H" << std::flush;
