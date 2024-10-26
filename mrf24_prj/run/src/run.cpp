@@ -31,8 +31,9 @@ namespace RUN
     //extern MRF24J40::Mrf24j mrf24j40_spi ;    
     
 int Run_t::start(){
-[[gnu::unused]]        bool flag{true};
-       // system("clear"); 
+    //[[gnu::unused]]        
+    bool flag{true};
+    // system("clear"); 
     
     try{
             auto zigbee { std::make_unique<MRF24J40::Radio_t>()};        // Inicializar hilos y ejecutar las clases en paralelo            
@@ -60,19 +61,16 @@ int Run_t::start(){
                                          
             //std::thread thread1([mrf = std::move(mrf)]() {});            
             //thread1.join();
-            thread2.join();            
-            DEBUGGER::debug("thread2.join"); 
+            thread2.join();                    
 
             ip->GetHostname( MRF24J40::msj_txt);
-            const auto host =MRF24J40::msj_txt;
-            DEBUGGER::debug(host); 
+            //const auto host =MRF24J40::msj_txt;            
             #ifdef USE_MRF24_RX
                 thread3.join();                                                        
                 oled->create(MRF24J40::msj_txt.c_str());
                 while(true)
             #endif
-            {   
-                DEBUGGER::debug("flag = zigbee->Run");                              
+            {               
                 flag = zigbee->Run();     
                 #ifdef USE_MRF24_RX
                 if(flag==true){                

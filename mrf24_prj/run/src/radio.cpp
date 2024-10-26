@@ -44,11 +44,11 @@ Radio_t::Radio_t()
 ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 
 {            
-    mrf24j40_spi  = std::make_unique<Mrf24j>() ;
+        mrf24j40_spi  = std::make_unique<Mrf24j>() ;
     #ifdef ENABLE_INTERRUPT_MRF24
     
     #else            
-            security    =   std::make_unique<SECURITY::Security_t >();
+        security    =   std::make_unique<SECURITY::Security_t >();
     #endif
           
     mrf24j40_spi->init();
@@ -68,11 +68,12 @@ Radio_t::Radio_t()
 
     // uncomment if you want to receive any packet on this channel
     mrf24j40_spi->set_promiscuous(true);
-    //mrf24j40_spi.settings_mrf();
-DEBUGGER::debug("Radio_t::Radio_t");  
+
+    mrf24j40_spi->settings_mrf();//esta linea estaba comentada originalmente
+
     // uncomment if you want to enable PA/LNA external control
     mrf24j40_spi->set_palna(true);
-DEBUGGER::debug("Radio_t::Radio_t");  
+
     // uncomment if you want to buffer all PHY Payload
     mrf24j40_spi->set_bufferPHY(true);
 
@@ -81,22 +82,16 @@ DEBUGGER::debug("Radio_t::Radio_t");
 
     //Single send cmd
     //mrf24j40_spi->Transfer3bytes(0xE0C1);
-DEBUGGER::debug("Radio_t::Radio_t");  
     mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
-DEBUGGER::debug("Radio_t::Radio_t");  
     m_flag=true;
 }
 
     bool Radio_t::Run(void){
         //std::cout << "\033[2J\033[H" << std::flush;
         //system("clear");
-DEBUGGER::debug("Radio_t::Run");                
         gpio->app(m_flag);      
-DEBUGGER::debug("Radio_t::Run");                            
         Start(m_flag);                
-DEBUGGER::debug("Radio_t::Run");
-        interrupt_routine() ;  
-DEBUGGER::debug("Radio_t::Run");        
+        interrupt_routine() ;    
         return m_flag; 
     }
 
