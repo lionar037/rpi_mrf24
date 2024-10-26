@@ -146,6 +146,7 @@ run: $(APP)
 
 clean:
 	$(RM) -r "./$(OBJ)"
+	$(RM) -rf log/*
 
 cleanall: clean
 	$(RM) "./$(APP)"
