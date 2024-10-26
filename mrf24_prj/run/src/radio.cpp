@@ -40,7 +40,7 @@ Radio_t::Radio_t()
 ,   qr              { std::make_unique<QR::Qr_t>() }
 #endif
 #endif
-,   gpio            { std::make_unique<GPIO::Gpio>(m_status) }
+,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 {
     
     #ifdef ENABLE_INTERRUPT_MRF24
