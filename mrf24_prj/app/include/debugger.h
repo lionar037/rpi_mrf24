@@ -42,3 +42,5 @@ uint16_t Next{0};
     }
 
 }
+
+    template<typename T> void printHex(T value)
