@@ -55,7 +55,9 @@ void Run_t::start()
             
             ip->GetHostname(MRF24J40::msj_txt);
             #ifdef USE_MRF24_RX
-            thread3.join(); 
+            #ifdef USE_OLED  
+                thread3.join(); 
+            #endif
             #ifdef USE_OLED                                                       
                 oled->create(MRF24J40::msj_txt.c_str());
             #endif
