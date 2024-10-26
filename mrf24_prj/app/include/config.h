@@ -48,10 +48,10 @@
     #define ADDRESS_LONG 0x1122334455667701
     #define ADDRESS_LONG_SLAVE 0x1122334455667702
     #define ADDRESS 0x6002
-    #define PAN_ID 0x1235
+    #define PAN_ID 0x1234
     #define ADDRESS_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
-    //#define MRF24_TRANSMITER_ENABLE
+    #define MRF24_TRANSMITER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
 #endif
 
@@ -61,10 +61,10 @@
 
 //#define DBG
 //#define DBG_BUFFER
-#define DBG_FILES //imprime Debugger en files
+//#define DBG_FILES //imprime Debugger en files
 //#define DBG_DISPLAY_OLED
-#define DBG_MRF
-#define DBG_RADIO
+//#define DBG_MRF
+//#define DBG_RADIO
 //#define ENABLE_PRINTS_DBG
 //#define DBG_PRINT_GET_INFO
 //#define DBG_GPIO
@@ -90,7 +90,7 @@
 #endif
 
 //habilita la encriptacion de mensajes 
-//#define ENABLE_SECURITY 
+#define ENABLE_SECURITY 
 #ifdef USE_MRF24_RX
     //#if defined(__LP64__) || defined(_LP64) || defined(__LLP64__) 
     #if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))//es de 32 bits?
