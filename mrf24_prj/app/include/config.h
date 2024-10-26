@@ -51,7 +51,7 @@
     #define PAN_ID 0x1235
     #define ADDRESS_SLAVE  0x6001
     #define MRF24_RECEIVER_ENABLE
-    #define MRF24_TRANSMITER_ENABLE
+    //#define MRF24_TRANSMITER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
 #endif
 
@@ -64,10 +64,12 @@
 #define DBG_FILES //imprime Debugger en files
 //#define DBG_DISPLAY_OLED
 #define DBG_MRF
+#define DBG_RADIO
 //#define ENABLE_PRINTS_DBG
 //#define DBG_PRINT_GET_INFO
 //#define DBG_GPIO
 //#define DBG_OLED
+
 
 //config QR string 
 //Linea de configuracion para codigo Qr de una red wifi
