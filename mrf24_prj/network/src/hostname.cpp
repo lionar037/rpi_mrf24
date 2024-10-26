@@ -9,8 +9,6 @@
 #include <algorithm>
 #include <cctype>
 
-
-
 namespace NETWORK{
     void Hostname_t::print() {
         char hostname[256];

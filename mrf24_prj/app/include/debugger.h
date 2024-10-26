@@ -25,9 +25,9 @@ uint16_t Next{0};
             #endif
         }     
         void debug(std::string_view txt){
-            #ifdef DBG
+            //#ifdef DBG
                 //static uint16_t Next{0};
                 std::cout << " step : "<< std::to_string(++Next)<< " :: "<<txt <<"\n";
-            #endif
+            //#endif
         }  
 }
