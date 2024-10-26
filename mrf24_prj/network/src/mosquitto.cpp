@@ -47,7 +47,7 @@ namespace MOSQUITTO { // Declaración del espacio de nombres MOSQUITTO
         mosq = mosquitto_new("subscribe-test", true, &id); // Crea una nueva instancia de Mosquitto
         
         // Establece el nombre de usuario y la contraseña para la conexión
-        mosquitto_username_pw_set(mosq, user , pswd );
+        mosquitto_username_pw_set(mosq, user.c_str() , pswd.c_str() );
 
         // Configura los callbacks para conexión y recepción de mensajes
         mosquitto_connect_callback_set(mosq, on_connect);
