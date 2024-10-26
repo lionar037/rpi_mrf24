@@ -24,8 +24,10 @@ namespace MRF24J40{
     std::unique_ptr< MOSQUITTO::Mosquitto_t > Radio_t::mosq = nullptr;
     std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
 
-    #ifdef USE_MRF24_TX
+    #ifdef ENABLE_SECURITY
         std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
+    #else
+        //std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
     #endif
 
     Radio_t::Radio_t() 
@@ -83,6 +85,9 @@ namespace MRF24J40{
         //Single send cmd
         //mrf24j40_spi->Transfer3bytes(0xE0C1);
         mosq  =  std::make_unique<MOSQUITTO::Mosquitto_t>();
+        #ifdef ENABLE_SECURITY
+            Radio_t::security  = std::make_unique< SECURITY::Security_t > ();
+        #endif
         m_flag=true;
     }
 
@@ -106,10 +111,10 @@ void Radio_t::Start(bool& flag) {
     #ifdef MRF24_TRANSMITER_ENABLE   //if si es TX 
             #ifdef ENABLE_SECURITY 
              if( security->init() != SUCCESS_PASS){
-                std::cout<<"Exit tx\n";
+                std::cout<<"security->init : Exit Tx\n";
                 return ; 
                 }
-                else{ std::cout<<"Success tx\n"; }
+                else{ std::cout<<"security->init : Success Tx\n"; }
             #endif
         #ifdef DBG_RADIO
             #ifdef MACADDR64
