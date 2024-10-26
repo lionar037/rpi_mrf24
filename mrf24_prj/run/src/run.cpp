@@ -44,7 +44,7 @@ void Run_t::start()
             #endif          
 
             std::thread thread2(&DEVICES::Msj_t::Start, msj.get());
-            #ifdef USE_MRF24_RX            
+            #ifdef USE_OLED            
             std::thread thread3(&OLED::Oled_t::init , oled.get());
             #endif            
             //Esperar a que todos los hilos terminen

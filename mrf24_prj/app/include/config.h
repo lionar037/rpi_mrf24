@@ -97,7 +97,9 @@
 #ifdef USE_MRF24_RX
     //#if defined(__LP64__) || defined(_LP64) || defined(__LLP64__) 
     #if (defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4))//es de 32 bits?
-        #define USE_OLED2
+        //#define USE_OLED2
     #endif    
+    //#define USE_OLED
 #else
+
 #endif
