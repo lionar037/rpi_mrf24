@@ -164,7 +164,7 @@ namespace GPIO{
 
             if(m_res < 0) {
                 #ifdef DBG_GPIO
-                printf("Poll failed...%d\r\n",res);   
+                printf("Poll failed...%d\r\n",m_res);   
                 #endif         
                 }
             if(m_res == 0) {
