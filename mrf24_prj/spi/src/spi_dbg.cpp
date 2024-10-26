@@ -5,18 +5,18 @@
 namespace SPI{
 
     void Spi::msj_fail(){
-            #ifdef DBG
+            #ifdef DBG_SPI
                 printf("Could not open the Spi device...\r\n");
             #endif
             return;
         }
 
     void Spi::printDBGSpi(){    
-        #ifdef DBG_BUFFER
+        #ifdef DBG_SPI
             std::cout << " spi.tx_buf   hex : 0x"<< std::hex<< spi->tx_buf <<"\n";
             std::cout << " spi.rx_buf   hex : 0x"<< std::hex<< spi->rx_buf <<"\n";
         #endif
-        #ifdef DBG
+        #ifdef DBG_SPI
             std::cout << " spi.len  : "<< std::dec<<spi->len <<"\n";
             std::cout << " spi.delay_usecs  : "<< std::dec<<spi->delay_usecs <<"\n";
             std::cout << " spi.speed_hz  : "<< std::dec<<spi->speed_hz <<"\n";
@@ -27,7 +27,7 @@ namespace SPI{
         #endif
         
             #ifdef DBG_SPI
-                if (rx_buffer[2]!=0xff)printf("rx buffer dec : %d\r\n"  ,rx_buffer[2]);
+                if (m_rx_buffer[2]!=0xff)printf("rx buffer dec : %d\r\n"  ,m_rx_buffer[2]);
                 printf("\tTransfer3bytes - SPI transfer returned : %d ...\r\n", ret);
             #endif
     }

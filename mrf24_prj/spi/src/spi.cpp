@@ -40,7 +40,7 @@ namespace SPI {
     , m_rx_buffer  { 0x00 }
     , spi       { std::make_unique<struct spi_ioc_transfer >() } 
     {
-          #ifdef DBG
+          #ifdef DBG_SPI
               std::cout<<"Spi::Spi()\n";
           #endif
           settings_spi();   
@@ -114,7 +114,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     memcpy(m_tx_buffer, &cmd, sizeof(cmd));
     ret = ioctl(fs, SPI_IOC_MESSAGE(1), spi.get());
     if((cmd>>8&0xff)==0x00){
-      #ifdef DBG
+      #ifdef DBG_SPI
         printDBGSpi(); 
       #endif
     }
@@ -172,7 +172,7 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
 
     Spi::~Spi(){
       spi_close();
-      #ifdef DBG
+      #ifdef DBG_SPI
           std::cout<<"~Spi()\n";
       #endif
       exit(EXIT_SUCCESS);

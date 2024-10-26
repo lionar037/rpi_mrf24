@@ -54,6 +54,9 @@ namespace MRF24J40{
 
         // envia 16 , los mas significativos en 0x00 , los menos significativos envia el comando
         const uint8_t ret = prt_spi->Transfer2bytes(tmp); 
+        #ifdef DBG_MRF
+            std::printf("mrf : read short \n");
+        #endif
         return ret;
     }
 
@@ -85,7 +88,15 @@ namespace MRF24J40{
 
     uint16_t Mrf24j::get_pan(void) {
         const uint8_t panh = read_short(MRF_PANIDH);
-        return (panh << 8 | read_short(MRF_PANIDL));
+        const uint8_t panl =read_short(MRF_PANIDL);
+
+        #ifdef DBG_MRF
+            //std::cout << "pan id :  " << std::to_string(panh) ;
+            //std::cout << ":" << std::to_string(read_short(MRF_PANIDL))<<"\n" ;
+            std::cout<< "pan id :  0x" << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(panh) ;
+            std::cout<< std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(panl)<< std::endl;
+        #endif
+        return (panh << 8 | panl);
     }
 
     void Mrf24j::set_pan(const uint16_t panid) {
@@ -155,6 +166,9 @@ namespace MRF24J40{
 
     void Mrf24j::set_interrupts(void) {
             // interrupts for rx and tx normal complete
+        #ifdef DBG_MRF
+            std::printf("set interrupt \n");
+        #endif
         write_short(MRF_INTCON, 0b11110110);
     }
 
@@ -171,11 +185,16 @@ namespace MRF24J40{
         // ; // wait for soft reset to finish
     // }
 
-           #ifdef MODULE_TX_RST
-            write_short(MRF_SOFTRST, 0x7); 
-            #else
-            //write_short(MRF_SOFTRST, 0x7); 
-           #endif       
+        #ifdef MODULE_TX_RST
+           #define ENABLE_RESET_MRF24
+        #endif       
+
+            #ifdef ENABLE_RESET_MRF24
+               write_short(MRF_SOFTRST, 0x7); // from manual
+            #ifdef DBG_MRF
+                std::printf("soft module to reset : mrf \n");
+            #endif
+            #endif
 
         delay(192); 
         write_short(MRF_PACON2, 0x98);  // – Initialize FIFOEN = 1 and TXONTS = 0x6.
@@ -200,6 +219,9 @@ namespace MRF24J40{
 		write_short(MRF_BBREG0, 0x01);	// TURBO mode enable
 		write_short(MRF_BBREG3, 0x38);	// PREVALIDTH to turbo optimized setting
 		write_short(MRF_BBREG4, 0x5C);	// CSTH carrier sense threshold to turbo optimal
+        #ifdef DBG_MRF
+        std::printf("mrf : Turbo mode ");
+        #endif
 	#endif
 
         // max power is by default.. just leave it...
@@ -237,10 +259,10 @@ namespace MRF24J40{
             // buffer data bytes
             int rd_ptr = 0;
             // from (0x301 + bytes_MHR) to (0x301 + frame_length - bytes_nodata - 1)
-
-            // printf(" frame length : %d \n",frame_length);
-            // printf(" rx datalength : %d \n",rx_datalength());
-
+#ifdef DBG_MRF
+             printf(" frame length : %d \n",frame_length);
+             printf(" rx datalength : %d \n",rx_datalength());
+#endif
         for (uint16_t i = 0; i < frame_length ; i++) {
            // for (uint16_t i = 0; i < frame_length + rx_datalength(); i++) {//original
                 rx_info.rx_data[rd_ptr++] = read_long(0x301 + m_bytes_MHR + i);
@@ -340,7 +362,7 @@ void Mrf24j::settings_mrf(void){
         
         rxmcr.NOACKRSP=false;    //1 = Disables automatic Acknowledgement response
                                 //0 = Enables automatic Acknowledgement response. Acknowledgements are returned when they are requested (default).
-        #ifdef DBG
+        #ifdef DBG_MRF
             printf("*reinterpret_cast : 0x%x\n",*reinterpret_cast<uint8_t*>(&rxmcr));
         #endif
         write_short(MRF_RXMCR, *reinterpret_cast<uint8_t*>(&rxmcr));
