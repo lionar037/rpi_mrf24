@@ -4,14 +4,14 @@
 GIT_COMMIT=$1
 
 #YYYY-MM-DD
-SINCE="2024-09-01"
+SINCE="2024-10-25"
 #YYYY-MM-DD
-UNTIL="2023-09-01"
+UNTIL="2023-01-01"
 
 if [[ $GIT_COMMIT == "date" ]]; then 
     git log --since=$SINCE --until=$UNTIL
-    exit 1
-fi 
+#    exit 1
+fi
 
 if [[ -z $GIT_COMMIT ]]; then 
     echo "insertar el dato del comentario Git"
@@ -19,5 +19,5 @@ if [[ -z $GIT_COMMIT ]]; then
 else
     git checkout $GIT_COMMIT
 
-    git reset --hard $GIT_COMMIT
+ #   git reset --hard $GIT_COMMIT
 fi

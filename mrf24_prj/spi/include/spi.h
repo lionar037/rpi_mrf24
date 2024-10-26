@@ -16,7 +16,7 @@
 #include <vector>
 #include <memory>
 
-#define SPI_SPEED   1000000 
+#define SPI_SPEED   10000 
 //#define SPI_SPEED   1600000 //speed epaper
 #define     STATUS_BUSY         0x1     
 #define     SECTOR_SIZE_4       4

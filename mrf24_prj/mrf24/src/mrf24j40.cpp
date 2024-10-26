@@ -174,7 +174,7 @@ namespace MRF24J40{
            #ifdef MODULE_TX_RST
             write_short(MRF_SOFTRST, 0x7); 
             #else
-            write_short(MRF_SOFTRST, 0x7); 
+            //write_short(MRF_SOFTRST, 0x7); 
            #endif       
 
         delay(192); 
