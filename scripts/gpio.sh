@@ -24,8 +24,10 @@ if [[ $ARCH == "armv7l" || $ARCH == "arm" ]]; then
     #INIT=524
     #END=569
 else
-    INIT=524
-    END=569
+    #INIT=524
+    #END=569
+    INIT=0
+    END=53
 fi
 
 
