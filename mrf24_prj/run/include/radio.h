@@ -74,7 +74,7 @@ namespace MRF24J40{
             
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<DATABASE::Database_t>   database{};
-            //std::unique_ptr<WORK::Work_t>           fs{};
+            std::unique_ptr<WORK::Work_t>           fs{};
             struct DATA::packet_rx                  buffer_receiver{};
         #else   //IS_TX
             #ifdef ENABLE_QR 
