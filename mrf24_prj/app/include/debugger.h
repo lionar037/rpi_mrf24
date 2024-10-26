@@ -5,6 +5,7 @@
 #include <type_traits>
 #include <iostream>
 #include <cstdint>
+
 namespace DEBUGGER{
 
 uint16_t Next{0};
@@ -44,4 +45,3 @@ uint16_t Next{0};
 
 }
 
-    template<typename T> void printHex(T value)
