@@ -14,7 +14,6 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 
-
 #include <mrf24/include/mrf24j40_cmd.h>
 #include <mrf24/include/mrf24j40_settings.h>
 #include <mrf24/include/mrf24j40_control_register.h>

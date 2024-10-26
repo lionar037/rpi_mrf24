@@ -196,10 +196,11 @@ void Radio_t::Start(bool& flag) {
 
 void Radio_t::handle_tx() {    
     //const auto status = mrf24j40_spi.get_txinfo()->tx_ok;
+    std::cout<<"\thandle_tx() : \n";
     const auto status = mrf24j40_spi->read_short(0x48);
 
          if (status) {
-             std::cout<<"\thandle_tx() : TX went ok, got ACK success ! \n";
+             std::cout<<"\t\t TX went ok, got ACK success ! \n";
          } else {
             std::cout<<"\n\tTX failed after \n";
             std::cout<<"retries : "<<mrf24j40_spi->get_txinfo()->retries;
@@ -270,7 +271,6 @@ void Radio_t::handle_rx() {
         auto bs = (~packet_data_tmp.size)&0xffff;//ver cual es la correcta ~ o no         
         txt = "buffer_receiver.size : " + std::to_string(bs) + "\n" ;        
         monitor->print( txt.c_str() ,files++,col);
-        //monitor->print("data_receiver.data : " + reinterpret_cast<const char *>(packet_data_tmp.data) + "\n" ,files++,col);
         txt = "\nbuff: \n";  
         monitor->print( txt.c_str() ,files++,col);
         monitor->print("\r\n" ,files++,col);
@@ -285,8 +285,9 @@ void Radio_t::handle_rx() {
         //std::cout<<temperatureToString.data(); 
         monitor->print(temperatureToString.data(),files++,col+36);
         
-        msj_txt=reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data) ;
+        msj_txt = reinterpret_cast<const char*>(mrf24j40_spi->get_rxinfo()->rx_data) ;
         
+        monitor->print(msj_txt.c_str());
         monitor->maxLines(files);
         monitor->view();
                 
