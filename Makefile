@@ -7,9 +7,14 @@
 #$(3)   Source file
 #$(4)   Additional dependencies
 #$(5)   Compiler flags
+#define COMPILE
+#$(2) : $(3) $(4)
+#	$(1) -c -o $(2) $(3) $(5)
+#endef
+
 define COMPILE
 $(2) : $(3) $(4)
-	$(1) -c -o $(2) $(3) $(5)
+	$(1) -c -o $(2) $(3) $(filter-out -I$(SRC),$(5)) $(INCDIRS)
 endef
 
 define C2O
@@ -63,7 +68,17 @@ endif
 
 
 LIBS := $(CFLAGS)
-INCDIRS := -I$(SRC) -I$(LIBDIR)
+
+#se duplica , correccion 
+#INCDIRS := -I$(SRC) -I$(LIBDIR)
+ifeq ($(SRC),$(LIBDIR))
+    INCDIRS := -I$(SRC)
+else
+    INCDIRS := -I$(SRC) -I$(LIBDIR)
+endif
+
+
+
 #LIBS		+= -lX11 -lXext
 
 LIBS += -pthread -lmysqlcppconn -lqrencode -lpng -lz
@@ -152,3 +167,6 @@ libs-clean:
 libs-cleanall:
 	$(MAKE) cleanall -C $(LIBDIR)/ 
 
+print-vars:
+	@echo "INCDIRS = $(INCDIRS)"
+	@echo "CFLAGS = $(CFLAGS)"
