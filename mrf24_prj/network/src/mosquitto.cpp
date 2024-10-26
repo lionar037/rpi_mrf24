@@ -10,6 +10,11 @@ extern "C" {
 
 namespace MOSQUITTO { // Declaración del espacio de nombres MOSQUITTO
 
+
+    Mosquitto_t::Mosquitto_t()
+    :   user{ MOSQUITTO_USER },   pswd{ MOSQUITTO_PSWD }
+    { }
+
     // Callback que se invoca cuando se establece la conexión con el broker MQTT
     void on_connect(struct mosquitto *mosq, void *obj, int rc) {
         // Imprimir el ID del cliente
@@ -42,7 +47,7 @@ namespace MOSQUITTO { // Declaración del espacio de nombres MOSQUITTO
         mosq = mosquitto_new("subscribe-test", true, &id); // Crea una nueva instancia de Mosquitto
         
         // Establece el nombre de usuario y la contraseña para la conexión
-        mosquitto_username_pw_set(mosq, "pi", "zero");
+        mosquitto_username_pw_set(mosq, user , pswd );
 
         // Configura los callbacks para conexión y recepción de mensajes
         mosquitto_connect_callback_set(mosq, on_connect);
