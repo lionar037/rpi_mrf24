@@ -29,7 +29,7 @@ namespace RUN{
     
 void Run_t::start()
 {
-        bool flag{true};
+        [[gnu::unused]]  bool flag{true};
         system("clear"); 
     
     try{
