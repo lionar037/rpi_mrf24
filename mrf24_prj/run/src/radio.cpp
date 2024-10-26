@@ -25,9 +25,7 @@ namespace MRF24J40{
     std::unique_ptr < Mrf24j >mrf24j40_spi = nullptr ;
 
     #ifdef ENABLE_SECURITY
-        std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
-    #else
-        //std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;
+        std::unique_ptr< SECURITY::Security_t > Radio_t::security = nullptr;        
     #endif
 
     Radio_t::Radio_t() 
@@ -46,10 +44,8 @@ namespace MRF24J40{
     ,   gpio            { std::make_unique<GPIO::Gpio_t>(m_status) }
 
     {            
-            mrf24j40_spi  = std::make_unique<Mrf24j>() ;
-        #ifdef ENABLE_INTERRUPT_MRF24
-        
-        #else            
+            mrf24j40_spi  = std::make_unique<Mrf24j>() ;        
+        #ifdef ENABLE_SECURITY   
             security    =   std::make_unique<SECURITY::Security_t >();
         #endif
             
@@ -155,11 +151,12 @@ void Radio_t::Start(bool& flag) {
             #endif
                       
          const auto status = mrf24j40_spi->read_short(0x48);//or TXNSTAT =0: Transmissionwassuccessful         
-//         const auto status = mrf24j40_spi.getStatusInfoTx();//mrf24j40_spi.check_ack(&handle_tx);
+//       const auto status = mrf24j40_spi->getStatusInfoTx();//mrf24j40_spi->check_ack(&handle_tx);
           if (status==0) {//0 = no Succeeded
               std::cout<<"\nTX ACK failed\n";
               #ifdef DBG_RADIO
               #endif
+              return;
           } 
           if (status==1)  {//1 = Succeeded
               std::cout<<"\tTX ACK Ok   \n";
@@ -169,8 +166,7 @@ void Radio_t::Start(bool& flag) {
             #endif
         }
         #endif
-    #endif
-    
+    #endif    
     }
 }
 
