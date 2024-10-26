@@ -7,7 +7,7 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-#include <others/include/gpio.h>
+#include <gpio/include/gpio.h>
 #include <files/include/database.h>
 #include <app/include/config.h>
 #include <app/include/work.h>
