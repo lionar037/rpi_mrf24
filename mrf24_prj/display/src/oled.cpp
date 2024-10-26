@@ -1,10 +1,18 @@
-////////////////////////////////////////////////////////////////////////////                
-//          
-//      
-//                oled.cpp
+//////////////////////////////////////////////////////////////////////////////
+//     
+//          filename            :   oled.cpp
+//          License             :   GNU 
+//          Author              :   Lio
+//          Change History      :
+//          Processor           :   ARM
+//          Hardware            :		
+//          Complier            :   ARM
+//          Company             :	lionar037
+//          Dependencies        :	bcm2835
+//          Description         :	libreria para display oled ssd1307
+//          @brief              :	
 //
-//
-////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 #include <display/include/oled.h>
 #include <app/include/config.h>
@@ -109,108 +117,91 @@ namespace OLED{
     }
 
     void Oled_t::demo(){
-    //bool colour = 1;
-    //myOLED.fillRect(0, 10, 20, 20, colour);
-    //myOLED.fillCircle(40, 20, 10, WHITE);
-    //// Q2
-    //myOLED.fillTriangle(80, 25, 90, 5, 100, 25, !colour);
-    //myOLED.drawRect(105, 10, 15, 15, WHITE);
-    //// Q3
-    //myOLED.fillRoundRect(0, 40, 40, 20, 10, !colour);
-    //myOLED.drawRect(70 + i, 40 + i, 50 - i * 2, 20 - i * 2, WHITE);
-    //myOLED.OLEDupdate();
-	//myOLED.setFontNum(OLEDFont_ArialRound);
-	myOLED.setRotation(OLED_Degrees_0);
-	// Define a buffer to cover whole screen 
-	//uint8_t  screenBuffer[FULLSCREEN]; 
-	std::vector <uint8_t>screenBuffer;
-	screenBuffer.resize(FULLSCREEN);
-	if (!myOLED.OLEDSetBufferPtr(myOLEDwidth, myOLEDheight, screenBuffer.data(), screenBuffer.size())) return;
-	myOLED.OLEDclearBuffer(); // clear the buffer
+		myOLED.setRotation(OLED_Degrees_0);
+		// Define a buffer to cover whole screen 
+		std::vector <uint8_t>screenBuffer;
+		screenBuffer.resize(FULLSCREEN);
+		if (!myOLED.OLEDSetBufferPtr(myOLEDwidth, myOLEDheight, screenBuffer.data(), screenBuffer.size())) return;
+		myOLED.OLEDclearBuffer(); // clear the buffer
 
-	// Set text parameters
-	myOLED.setTextColor(BLACK);
-	//myOLED.setTextSize(1);
+		// Set text parameters
+		myOLED.setTextColor(BLACK);
+		//  ** Test 501 OLED display enable and disable **
+		myOLED.setCursor(0, 0);
+		myOLED.print("Disable test 501");
+		printf("OLED Disable test 501\r\n");
+		myOLED.OLEDupdate();
 
-	//  ** Test 501 OLED display enable and disable **
-	myOLED.setCursor(0, 0);
-	myOLED.print("Disable test 501");
-	printf("OLED Disable test 501\r\n");
-	myOLED.OLEDupdate();
+		bcm2835_delay(900); 
+		myOLED.OLEDEnable(0); 
+		bcm2835_delay(900); 
+		myOLED.OLEDEnable(1); 
+		bcm2835_delay(900); 
+		myOLED.OLEDclearBuffer();
 
-	bcm2835_delay(900); 
-	myOLED.OLEDEnable(0); 
-	bcm2835_delay(900); 
-	myOLED.OLEDEnable(1); 
-	bcm2835_delay(900); 
-	myOLED.OLEDclearBuffer();
+		// ** Test 502 inverse **
+		myOLED.setCursor(0, 0);
+		myOLED.print("Inverse test 502");
+		printf("OLED Inverse test 502\r\n");
+		myOLED.OLEDupdate();
+		bcm2835_delay(900);
+		myOLED.OLEDInvert(1); // Inverted
+		bcm2835_delay(900);
+		myOLED.OLEDInvert(0);
+		bcm2835_delay(900);
 
-	// ** Test 502 inverse **
-	myOLED.setCursor(0, 0);
-	myOLED.print("Inverse test 502");
-	printf("OLED Inverse test 502\r\n");
-	myOLED.OLEDupdate();
-	bcm2835_delay(900);
-	myOLED.OLEDInvert(1); // Inverted
-	bcm2835_delay(900);
-	myOLED.OLEDInvert(0);
-	bcm2835_delay(900);
+		// ** Test 503 contrast **
+		myOLED.OLEDclearBuffer();
+		myOLED.setCursor(0, 0);
+		myOLED.print("Contrast test 503");
+		printf("OLED Contrast test 503\r\n");
+		myOLED.OLEDupdate();
+		bcm2835_delay(1500);
+		myOLED.OLEDFillScreen(0x77, 0); 
+		myOLED.OLEDContrast(0x00);
+		bcm2835_delay(1000);
+		myOLED.OLEDContrast(0x80);
+		bcm2835_delay(1000);
+		myOLED.OLEDContrast(0xFF);
+		bcm2835_delay(1000);
+		myOLED.OLEDContrast(0x81);
+		bcm2835_delay(1000);
+		myOLED.OLEDclearBuffer();
 
-	// ** Test 503 contrast **
-	myOLED.OLEDclearBuffer();
-	myOLED.setCursor(0, 0);
-	myOLED.print("Contrast test 503");
-	printf("OLED Contrast test 503\r\n");
-	myOLED.OLEDupdate();
-	bcm2835_delay(1500);
-	myOLED.OLEDFillScreen(0x77, 0); 
-	myOLED.OLEDContrast(0x00);
-	bcm2835_delay(1000);
-	myOLED.OLEDContrast(0x80);
-	bcm2835_delay(1000);
-	myOLED.OLEDContrast(0xFF);
-	bcm2835_delay(1000);
-	myOLED.OLEDContrast(0x81);
-	bcm2835_delay(1000);
-	myOLED.OLEDclearBuffer();
+		// ***** Test 504 Scroll **
 
-	// ***** Test 504 Scroll **
+		myOLED.setCursor(16,16 );
+		myOLED.print("SCROLL EST 504  ");
+		printf("OLED Scroll test 504\r\n");
+		myOLED.OLEDupdate();
 
-	myOLED.setCursor(16,16 );
-	myOLED.print("SCROLL EST 504  ");
-	printf("OLED Scroll test 504\r\n");
-	myOLED.OLEDupdate();
+		bcm2835_delay(2500);
+		myOLED.OLEDStartScrollRight(0, 0x0F);
+		bcm2835_delay(3000);
+		myOLED.OLEDStopScroll();
+		printf("OLEDStartScrollRight\r\n");
 
-	bcm2835_delay(2500);
-	myOLED.OLEDStartScrollRight(0, 0x0F);
-	bcm2835_delay(3000);
-	myOLED.OLEDStopScroll();
-	printf("OLEDStartScrollRight\r\n");
+		myOLED.OLEDStartScrollLeft(0, 0x0F);
+		bcm2835_delay(3000);
+		myOLED.OLEDStopScroll();
+		printf("OLEDStartScrollLeft\r\n");
+
+		myOLED.OLEDStartScrollDiagRight(0, 0x07);
+		bcm2835_delay(3000);
+		myOLED.OLEDStopScroll();
+		printf("OLEDStartScrollDiagRight\r\n");
 	
-	myOLED.OLEDStartScrollLeft(0, 0x0F);
-	bcm2835_delay(3000);
-	myOLED.OLEDStopScroll();
-	printf("OLEDStartScrollLeft\r\n");
-
-	myOLED.OLEDStartScrollDiagRight(0, 0x07);
-	bcm2835_delay(3000);
-	myOLED.OLEDStopScroll();
-	printf("OLEDStartScrollDiagRight\r\n");
- 	
-	myOLED.OLEDStartScrollDiagLeft(0, 0x07);
-	bcm2835_delay(3000);
-	myOLED.OLEDStopScroll();
-	printf("OLEDStartScrollDiagLeft\r\n"); 	 	
-
+		myOLED.OLEDStartScrollDiagLeft(0, 0x07);
+		bcm2835_delay(3000);
+		myOLED.OLEDStopScroll();
+		printf("OLEDStartScrollDiagLeft\r\n"); 	 	
     }
 
-    const std::vector <std::string>& Oled_t::convertToMayuscule( std::vector <std::string>& display_text ){
-		
+    const std::vector <std::string>& Oled_t::convertToMayuscule( std::vector <std::string>& display_text ){		
         //std::transform(display_text.begin(), display_text.end(), display_text.begin(), ::toupper); 
 		for (auto& str : display_text) 
         // Convertir cada cadena a mayúsculas
-        std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c) { return std::toupper(c); });
-		
+        std::transform(str.begin(), str.end(), str.begin(), [](unsigned char c) { return std::toupper(c); });		
     return display_text;    
     }
 
@@ -227,8 +218,7 @@ namespace OLED{
 		for(uint16_t x=0 ;x < pos_x;++x)
 			for(uint16_t y=0 ;y < pos_y;++y){
 				//myOLED.drawPixel(x,y,*p_qr_msj++);
-			}
-			
+			}			
 		//myOLED.OLEDupdate();	
 	}
 }

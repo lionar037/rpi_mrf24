@@ -1,6 +1,3 @@
-
-
-
 //////////////////////////////////////////////////////////////////////////////
 //     
 //          filename            :   epaper.cpp
@@ -10,10 +7,10 @@
 //          Processor           :   ARM
 //          Hardware            :		
 //          Complier            :   ARM
-//          Company             :
-//          Dependencies        :
-//          Description         :
-//          brief               :	
+//          Company             :   lionar037
+//          Dependencies        :   spi , bcm2835 
+//          Description         :   epaper display 
+//          @brief              :	
 //
 //////////////////////////////////////////////////////////////////////////////
 
@@ -25,7 +22,6 @@
 
 
 namespace EPAPER{
-
 
 EPD_Driver::EPD_Driver(uint32_t eScreen_EPD, const pins_t board)
 :     Gpio_t            ( enable )
@@ -145,57 +141,23 @@ void EPD_Driver::COG_initial()
 	
     pinMode( pin_cfg_epaper.panelCS, OUTPUT );
 	digitalWrite(pin_cfg_epaper.panelCS, HIGH);
-
-
-	if (pin_cfg_epaper.panelON_EXT2 != 0xff){
-    //    printf("pin_cfg_epaper.panelON_EXT2 \n");
-	//	if( 0 == pinMode( pin_cfg_epaper.panelON_EXT2, OUTPUT ))
-    //        digitalWrite( pin_cfg_epaper.panelON_EXT2, HIGH );    //PANEL_ON# = 1 //NOT_CONNECTED
-    //    
-	//	if( 0 == pinMode( pin_cfg_epaper.panelSPI43_EXT2, OUTPUT ) )
-	//	    digitalWrite( pin_cfg_epaper.panelSPI43_EXT2, LOW );//NOT_CONNECTED
-	}
-
-    //pinMode(pin_cfg_epaper.flashCS, OUTPUT);    
-    //digitalWrite(pin_cfg_epaper.flashCS, HIGH);
-	
-	// SPI init
-	// #ifndef SPI_CLOCK_MAX
-		 #define SPI_CLOCK_MAX 1600000
-	// #endif
-
+	if (pin_cfg_epaper.panelON_EXT2 != 0xff){}
+	// SPI init	
+		 #define SPI_CLOCK_MAX 1600000	
 	#if defined(ENERGIA)
-	{
-		//spi.begin();//ya inicio , 
-		//spi.setDataMode(SPI_MODE0); // esta configurado 
-		//spi.setClockDivider(SPI_CLOCK_DIV32); // tambien 
-		        // SPI.setClockDivider(16000000 / min(16000000, 4000000)); // Velocidad configurada
-		//spi.setBitOrder(MSBFIRST);
-	}
+	{ }
 	#else
-	{
-		//SPISettings settingScreen;        
-		//settingScreen = {8000000, MSBFIRST, SPI_MODE0};
-		//spi.begin();
-		//spi.beginTransaction(settingScreen);
-	}
+    { }
 	#endif
-
-	//digitalWrite( pin_cfg_epaper.panelON_EXT2, HIGH );    //PANEL_ON# = 1
-	//digitalWrite( pin_cfg_epaper.panelSPI43_EXT2, LOW );
-
 	TYME::delay_ms( 5 );
 	// Power On COG driver sequence
     reset(5, 5, 10, 5, 5); 
 	// reset(1, 5, 10, 5, 1); // en la hoja de datos 
 
 	softReset();
-    
 	sendIndexData( 0xe5, &register_data[2], 1 );  //Input Temperature: 25C
 	sendIndexData( 0xe0, &register_data[3], 1 );  //Active Temperature
 	sendIndexData( 0x00, &register_data[4], 2 );  //PSR
-
-
     v_screenSizeV = 296; // vertical = wide size
     v_screenSizeH = 152; // horizontal = small size
 }
@@ -279,15 +241,11 @@ void EPD_Driver::sendIndexData( uint8_t index, const uint8_t *data, uint32_t len
         #endif
     	// send second frame
     	sendIndexData(0x13, data2s, image_data_size); // Second frame	
-        //sendIndexData(0x13, data2s, static_cast<uint32_t>(image_data_size)); // Second frame	
         #ifdef DBG_EPAPER
         std::cout << "cmd 0x13 size : "<< static_cast<int>(size_t(data2s))<<"\n" ;
         #endif
     	DCDC_powerOn();
-    	displayRefresh();
-    	
-        //digitalWrite(pin_cfg_epaper.panelCS, HIGH);//originalmente comentado
-
+    	displayRefresh();    	
     }
 
     // CoG shutdown function
