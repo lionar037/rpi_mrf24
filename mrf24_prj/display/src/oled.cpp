@@ -244,7 +244,7 @@ namespace OLED{
                         i++;                                                                                
                 }        
                 uint8_t fullscreenBuffer[1024]; 
-                myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
+                //myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
                 myOLED.OLEDclearBuffer();  
                 static int move{0};
                 
@@ -252,8 +252,8 @@ namespace OLED{
 
                 myOLED.OLEDBitmap(move++, 0 , x, y, buff, false);                
                 myOLED.setCursor(128-24, 64-12);
-                myOLED.setFontNum(OLEDFontType_Wide);
-                myOLED.print(reinterpret_cast<int>(count++));                
+                //myOLED.setFontNum(OLEDFontType_Wide);
+                //myOLED.print(reinterpret_cast<int>(count++));                
                 myOLED.OLEDupdate();
         }
 
