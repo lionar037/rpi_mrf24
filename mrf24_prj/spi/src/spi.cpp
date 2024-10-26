@@ -134,13 +134,10 @@ const uint8_t Spi::Transfer2bytes(const uint16_t cmd){
     return m_rx_buffer[2];
     }
 
-
     void Spi::spi_close(){
         if(fs)close(fs);
       return;
     }
-
-
 
 
   uint32_t Spi::get_spi_speed(){

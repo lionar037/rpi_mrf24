@@ -23,7 +23,6 @@
 #define     SECTOR_SIZE_8       8
 #define     LARGE_SECTOR_SIZE   256 // Tamaño de un sector grande (puede ser modificado)
 
-
 namespace SPI{
   struct  Spi{
     //[[nodiscard]] 
