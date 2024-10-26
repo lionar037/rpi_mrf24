@@ -17,6 +17,7 @@ $(2) : $(3) $(4)
 	$(1) -c -o $(2) $(3) $(filter-out -I$(SRC),$(5)) $(INCDIRS)
 endef
 
+
 define C2O
 $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(patsubst $(SRC)%,$(OBJ)%,$(1))))
 endef
@@ -46,10 +47,23 @@ else
     $(info ningun OS detectado)
 	APP := bin/mrf24_app
 endif
+# Flags para generar las dependencias automáticamente
+DEPFLAGS = -MMD -MP
 
 #APP         := bin/mrf24_app
 CFLAGS     	:= -Wall -pedantic
 CCFLAGS     := $(CFLAGS) -std=c++17
+
+# Modifica los flags del compilador para incluir DEPFLAGS
+CFLAGS += $(DEPFLAGS)
+CCFLAGS += $(DEPFLAGS)
+
+# Lista de archivos .d generados
+DEPS = $(ALLOBJ:.o=.d)
+
+# Incluir los archivos de dependencias generados (.d)
+-include $(DEPS)
+
 CC          := g++
 C			:= gcc
 MKDIR       := mkdir -p
