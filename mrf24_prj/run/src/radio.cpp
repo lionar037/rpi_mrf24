@@ -50,11 +50,8 @@ namespace MRF24J40{
         #endif
             
         mrf24j40_spi->init();
-
         mrf24j40_spi->settingsSecurity();
-
         mrf24j40_spi->interrupt_handler();
-
         mrf24j40_spi->set_pan(PAN_ID);
         // This is _our_ address
 
@@ -93,6 +90,7 @@ namespace MRF24J40{
         gpio->app(m_flag);      
         Start(m_flag);                
         interrupt_routine() ;    
+        std::cout <<"flag : "<< std::to_string(m_flag) <<"\n";
         return m_flag; 
     }
 
