@@ -2,10 +2,10 @@
 
 #if defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4)
     // Si es de 32 bits
-    #define USE_MRF24_RX
+    #define USE_MRF24_TX
 #else
     // Si es de 64 bits
-    #define USE_MRF24_TX
+    #define USE_MRF24_RX
 #endif
 
 //#define USE_MAC_ADDRESS_LONG
@@ -50,7 +50,7 @@
     #define ADDRESS 0x6002
     #define PAN_ID 0x1235
     #define ADDRESS_SLAVE  0x6001
-    #define MRF24_RECEIVER_ENABLE
+    #define MRF24_RECEIVER_ENABLE   //MRF24_RECEIVER_ENABLE
     #define MRF24_TRANSMITER_ENABLE
     #define ENABLE_INTERRUPT_MRF24
 #endif
