@@ -13,6 +13,10 @@
 #include <thread>
 #include <vector>
 
+namespace DEBUGGER{
+    extern void debug();
+    extern void debug(const std::string_view);
+}
  
 namespace MRF24J40{
     extern std::string msj_txt;
@@ -57,15 +61,19 @@ int Run_t::start(){
             //std::thread thread1([mrf = std::move(mrf)]() {});            
             //thread1.join();
             thread2.join();            
-            
-            ip->GetHostname(MRF24J40::msj_txt);
+            DEBUGGER::debug("thread2.join"); 
+
+            ip->GetHostname( MRF24J40::msj_txt);
+            const auto host =MRF24J40::msj_txt;
+            DEBUGGER::debug(host); 
             #ifdef USE_MRF24_RX
-            thread3.join();                                                        
-            oled->create(MRF24J40::msj_txt.c_str());
-            while(true)
+                thread3.join();                                                        
+                oled->create(MRF24J40::msj_txt.c_str());
+                while(true)
             #endif
-            {                                
-                flag= zigbee->Run();     
+            {   
+                DEBUGGER::debug("flag = zigbee->Run");                              
+                flag = zigbee->Run();     
                 #ifdef USE_MRF24_RX
                 if(flag==true){                
                     const auto x = QR::codeQrGlobal.height;
@@ -73,9 +81,7 @@ int Run_t::start(){
                     oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
                 }
                 #endif                                
-            }
-
-                
+            }                
         }//end try
         catch(...){
                     std::cerr<<"\nerror :(\n";

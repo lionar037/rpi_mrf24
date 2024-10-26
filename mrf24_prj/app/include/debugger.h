@@ -24,10 +24,7 @@ uint16_t Next{0};
             std::cout << " step : "<< std::to_string(++Next) <<"\n";
             #endif
         }     
-        void debug(std::string_view txt){
-            //#ifdef DBG
-                //static uint16_t Next{0};
-                std::cout << " step : "<< std::to_string(++Next)<< " :: "<<txt <<"\n";
-            //#endif
+        void debug(const std::string_view txt){                            
+                std::cout << " step : "<< std::to_string(++Next)<< " :: "<<txt <<"\n";            
         }  
 }
