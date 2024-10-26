@@ -64,10 +64,10 @@ void Run_t::start()
             {                                
                 flag= mrf->Run();     
                 #ifdef USE_MRF24_RX
-                if(flag==true){                
-                    const auto x = QR::codeQrGlobal.height;
-                    const auto y = QR::codeQrGlobal.width;                                            
-                    #ifdef
+                if(flag==true){                                                        
+                    #ifdef USE_OLED
+                        const auto x = QR::codeQrGlobal.height;
+                        const auto y = QR::codeQrGlobal.width;                                            
                         oled->Graphics(x,y,QR::codeQrGlobal.data,QR::codeQrGlobal.bufferComplete);
                     #endif
                 }
