@@ -222,7 +222,8 @@ namespace OLED{
 	//	//myOLED.OLEDupdate();	
 	//}
 	 void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
-                uint8_t buff [(x+3)*(y+3)]={0x00};
+		const auto value = (x+3)*(y+3);                				
+		std::vector<uint8_t> buff(value, 0x00);  // Inicializar el vector con 0x00
                 int l{-1},Position{0};
                 //int module =0;
 
@@ -243,14 +244,15 @@ namespace OLED{
                         buff[l] |= (w[i] & true ? 1 : 0) << Position ;                                                                                    
                         i++;                                                                                
                 }        
-                uint8_t fullscreenBuffer[1024]; 
+
+				std::vector <uint8_t>fullscreenBuffer(1024,0x0);
                 //myOLED.buffer = (uint8_t*) &fullscreenBuffer; // buffer to the pointer
                 myOLED.OLEDclearBuffer();  
                 static int move{0};
                 
                 if(move==32)move=0;
 
-                myOLED.OLEDBitmap(move++, 0 , x, y, buff, false);                
+                myOLED.OLEDBitmap(move++, 0 , x, y, buff.data(), false);                
                 myOLED.setCursor(128-24, 64-12);
                 //myOLED.setFontNum(OLEDFontType_Wide);
                 //myOLED.print(reinterpret_cast<int>(count++));                
