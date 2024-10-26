@@ -213,14 +213,6 @@ namespace OLED{
 		myOLED.OLEDupdate();
 	}
 
-	//void Oled_t::Graphics(const int pos_x,const int pos_y ,const bool status , uint8_t* p_qr_msj){		
-	//	myOLED.setCursor(pos_x, pos_y);
-	//	for(uint16_t x=0 ;x < pos_x;++x)
-	//		for(uint16_t y=0 ;y < pos_y;++y){
-	//			//myOLED.drawPixel(x,y,*p_qr_msj++);
-	//		}			
-	//	//myOLED.OLEDupdate();	
-	//}
 	 void  Oled_t::Graphics(const int x,const int y,const bool* z,const uint8_t* w){
 		const auto value = (x+3)*(y+3);                				
 		std::vector<uint8_t> buff(value, 0x00);  // Inicializar el vector con 0x00
