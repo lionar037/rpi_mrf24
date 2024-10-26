@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 
 #include <mysql_driver.h>
 #include <mysql_connection.h>
@@ -7,19 +9,24 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-#include <others/include/gpio.h>
+#include <gpio/include/gpio.h>
 #include <files/include/database.h>
 #include <app/include/config.h>
 #include <app/include/work.h>
 #include <app/include/data_analisis.h>
 #include <qr/include/qr.h>
 #include <security/include/security.h>
-#include <iostream>
+
+#include <mrf24/include/mrf24j40.h>
+
 #include <memory>
 #include <vector>
 #include <sstream>
 #include <iomanip>
 #include <functional>
+#include <cstdint>
+#include <string>
+
 
 #ifdef USE_MAC_ADDRESS_LONG 
     #define MACADDR64
@@ -41,6 +48,7 @@
 
 
 namespace MRF24J40{
+//struct Mrf24j;
 
    struct Radio_t
    {
@@ -66,18 +74,18 @@ namespace MRF24J40{
             
         #ifdef ENABLE_INTERRUPT_MRF24 // rx
             std::unique_ptr<DATABASE::Database_t>   database{};
-            //std::unique_ptr<WORK::Work_t>           fs{};
+            std::unique_ptr<WORK::Work_t>           fs{};
             struct DATA::packet_rx                  buffer_receiver{};
         #else   //IS_TX
             #ifdef ENABLE_QR 
-                std::unique_ptr<WORK::Work_t> qr{};                    
+                std::unique_ptr<WORK::Work_t>               qr{};                    
             #endif
         #endif             
-        struct DATA::packet_tx                  buffer_transmiter{};
-        std::unique_ptr <GPIO::Gpio> gpio{};    
+        //static struct DATA::packet_tx                       buffer_transmiter;
+        std::unique_ptr <GPIO::Gpio_t>                      gpio{};    
         static std::unique_ptr < SECURITY::Security_t >     security;
-        static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;                    
+        static std::unique_ptr < MOSQUITTO::Mosquitto_t >   mosq;  
+        
+        //static Mrf24j mrf24j40_spi ;
     };
-
-
 }//end MRF24J40
