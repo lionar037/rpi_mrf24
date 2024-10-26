@@ -33,8 +33,8 @@ namespace GPIO {
     constexpr int IN_INTERRUPT = 23;
     constexpr int OUT_INTERRUPT = 12;
 #else
-    //constexpr int IN_INTERRUPT = 531;//restarle 512
-    //constexpr int OUT_INTERRUPT = 532;//restarle 512
+    //constexpr int IN_INTERRUPT = 535;//restarle 512
+    //constexpr int OUT_INTERRUPT = 524;//restarle 512
     constexpr int IN_INTERRUPT = 23;
     constexpr int OUT_INTERRUPT = 12;
 #endif
