@@ -30,13 +30,13 @@ namespace GPIO {
 
 #if defined(__SIZEOF_POINTER__) && (__SIZEOF_POINTER__ == 4)
     // Si es de 32 bits
-    constexpr int IN_INTERRUPT = 19;
-    constexpr int OUT_INTERRUPT = 20;
+    constexpr int IN_INTERRUPT = 23;
+    constexpr int OUT_INTERRUPT = 12;
 #else
     //constexpr int IN_INTERRUPT = 531;//restarle 512
     //constexpr int OUT_INTERRUPT = 532;//restarle 512
-    constexpr int IN_INTERRUPT = 19;
-    constexpr int OUT_INTERRUPT = 20;
+    constexpr int IN_INTERRUPT = 23;
+    constexpr int OUT_INTERRUPT = 12;
 #endif
 
 
