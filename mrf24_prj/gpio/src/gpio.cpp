@@ -235,6 +235,10 @@ namespace GPIO {
         int m_looper { 0 };
         char *buf[64];
 
+        #ifdef DBG_GPIO
+            printf("const bool Gpio_t::app()...%d\r\n",m_res);   
+        #endif         
+
         settings( m_gpio_in  , DIR_IN  ,filenameGpio);
         settings( m_gpio_out , DIR_OUT ,filenameGpio);
         
@@ -279,10 +283,6 @@ namespace GPIO {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));            
         }    
         gpio_set_value(m_gpio_out,VALUE_LOW);
-        
-   
         return false;
     }
-
-
 }

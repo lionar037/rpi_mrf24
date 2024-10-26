@@ -66,7 +66,7 @@
 //#define DBG_MRF
 //#define ENABLE_PRINTS_DBG
 #define DBG_PRINT_GET_INFO
-//#define DBG_GPIO
+#define DBG_GPIO
 //#define DBG_OLED
 
 //config QR string 
